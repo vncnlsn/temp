@@ -300,8 +300,8 @@
   }
   .marquee-viewport::before{ left:0; background: linear-gradient(to right, var(--paper), rgba(250,246,234,0)); }
   .marquee-viewport::after{ right:0; background: linear-gradient(to left, var(--paper), rgba(250,246,234,0)); }
-  .marquee-track{ display:flex; align-items:stretch; width: max-content; animation: scroll-left 52s linear infinite; }
-  .marquee-track-reverse{ animation-name: scroll-right; animation-duration: 58s; }
+  .marquee-track{ display:flex; align-items:stretch; width: max-content; animation: scroll-left 78s linear infinite; }
+  .marquee-track-reverse{ animation-name: scroll-right; animation-duration: 86s; }
   .marquee-viewport:hover .marquee-track{ animation-play-state: paused; }
   @keyframes scroll-left{ from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
   @keyframes scroll-right{ from{ transform: translateX(-50%); } to{ transform: translateX(0); } }
@@ -561,8 +561,8 @@
      image assets when the client uploads them (e.g. { name:'Devon',
      img:'logos/devon.png' }). */
   var CLIENTS_ROW_A = [
-    'Anadarko','Apache','Batelle','Charger Exploration','ConocoPhillips',
-    'Dawson Geophysical','Denbury','Devon','EOG Resources','Geokinetiks',
+    'ConocoPhillips','Dawson Geophysical','EOG Resources','Anadarko','Apache',
+    'Batelle','Charger Exploration','Denbury','Devon','Geokinetiks',
     'Global Geophysical','Interstate Exploration','Marathon Oil','Microseismic','Noble Energy'
   ];
   var CLIENTS_ROW_B = [
