@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APS Land Services — Permit Acquisition &amp; Land Services Since 1980</title>
+<meta name="description" content="APS Land Services delivers seismic permitting, right-of-way acquisition, title curative, and GIS services for energy and exploration projects nationwide. Setting the standard since 1980.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:        #1E3B5F;
+    --navy-deep:   #16222C;
+    --paper:       #FAF6EA;
+    --paper-dim:   #EEE6D2;
+    --clay:        #B23A28;
+    --clay-bright: #D9755F;
+    --brass:       #8C8271;
+    --ink:         #221C15;
+    --ink-soft:    rgba(34,28,21,.66);
+    --paper-soft:  rgba(250,246,234,.9);
+    --line:        rgba(28,27,24,.14);
+    --line-on-navy: rgba(250,246,234,.16);
+    /* Map accent — restrained instrument-panel signal, deliberately kept
+       separate from the clay/brass site palette. */
+    --glow:        #55D6C4;
+    --glow-strong: #7CE8D9;
+    --glow-dim:    rgba(85,214,196,.22);
+    --glow-line:   rgba(85,214,196,.4);
+    --ease: cubic-bezier(.22,.61,.36,1);
+    --shell: 1440px;
+    --nav-h: 78px;
+    --serif: 'Spectral', Georgia, serif;
+    --sans: 'Public Sans', -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{ margin:0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  ::selection{ background: var(--clay); color: var(--paper); }
+  :focus-visible{ outline: 2px solid var(--brass); outline-offset: 3px; }
+  .shell{ max-width: var(--shell); margin: 0 auto; padding: 0 56px; }
+
+  .eyebrow{ font-family: var(--mono); font-size: .72rem; letter-spacing: .07em; text-transform: uppercase; font-weight: 500; color: var(--clay); }
+  .eyebrow::before{ content:"— "; color: var(--brass); }
+
+  h1,h2,h3{ font-family: var(--serif); font-weight: 600; letter-spacing: -.005em; margin:0; }
+
+  [data-reveal]{ opacity: 0; transform: translateY(16px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+  [data-reveal].in-view{ opacity: 1; transform: translateY(0); }
+
+  /* ================= NAV (logo only) ================= */
+  .site-nav{ position: fixed; top:0; left:0; right:0; z-index: 200; height: var(--nav-h); background: var(--navy-deep); border-bottom: 1px solid var(--line-on-navy); box-shadow: 0 4px 18px rgba(0,0,0,.14); transition: box-shadow .35s var(--ease); display:flex; align-items:center; justify-content:center; }
+  .site-nav.scrolled{ box-shadow: 0 8px 26px rgba(0,0,0,.22); }
+  .nav-logo{ display:flex; align-items:center; justify-content:center; }
+  .nav-logo-img{ height: 46px; width:auto; max-height: calc(var(--nav-h) - 26px); display:block; filter: brightness(0) invert(1); }
+  .nav-logo-fallback{ font-family: var(--serif); font-weight: 600; font-size: 1.28rem; color: var(--paper); }
+
+  @media (max-width: 640px){
+    :root{ --nav-h: 64px; }
+    .nav-logo-img{ height: 36px; }
+  }
+
+  /* ================= HERO ================= */
+  .hero{
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding: calc(var(--nav-h) + clamp(32px, 5vw, 56px)) 0 clamp(80px, 10vw, 120px);
+    text-align:center;
+  }
+
+  /* --- Zone 1: Identity — who APS is --- */
+  .hero-identity{ display:flex; flex-direction:column; align-items:center; }
+  .hero h1{ font-size: clamp(3.4rem, 9.5vw, 7.2rem); color: var(--navy); line-height: 1.02; letter-spacing: -.015em; }
+  .hero-tagline{ font-family: var(--mono); font-size: .86rem; letter-spacing: .14em; text-transform: uppercase; color: var(--brass); margin: 30px 0 0; }
+  .hero-rule{ width: 64px; height: 2px; background: var(--clay); margin: 24px auto 0; }
+
+  /* --- Zone 2: Purpose — why APS exists --- */
+  .hero-purpose{
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 600;
+    font-size: clamp(1.9rem, 3.8vw, 2.9rem);
+    letter-spacing: -.01em;
+    color: var(--navy);
+    max-width: 760px;
+    margin: clamp(72px, 10vw, 116px) auto 0;
+    line-height: 1.32;
+  }
+
+  /* --- Zone 3: Capabilities — what APS does --- */
+  .hero-capabilities{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap: 12px 0;
+    width: 100%;
+    max-width: 900px;
+    margin: clamp(64px, 8vw, 96px) auto 0;
+    padding: clamp(24px, 3vw, 30px) 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-capabilities span:not(.hero-sep){ font-family: var(--mono); font-size: .76rem; letter-spacing: .08em; text-transform: uppercase; color: var(--navy); font-weight:600; }
+  .hero-sep{ width:1px; height: 11px; background: var(--brass); opacity:.5; display:inline-block; margin: 0 20px; }
+
+  @media (max-width: 640px){
+    .hero-capabilities{ gap: 12px 0; }
+    .hero-sep{ display:none; }
+    .hero-capabilities span:not(.hero-sep){ width: 100%; }
+  }
+
+  /* ================= FOOTPRINT (map section) ================= */
+  .footprint-section{ background: var(--navy-deep); padding: clamp(64px, 7vw, 96px) 0 clamp(56px, 6vw, 80px); }
+  .footprint-frame{ max-width: 1880px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 72px); text-align:center; }
+  .footprint-head h2{ font-size: clamp(2rem, 4.4vw, 3rem); color: var(--paper); }
+
+  .footprint-stats{ display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:center; gap: 20px clamp(28px, 4vw, 56px); margin: clamp(30px, 4vw, 44px) auto clamp(40px, 5vw, 56px); max-width: 1100px; }
+  .footprint-stats .stat{ display:flex; flex-direction:column; gap: 6px; }
+  .footprint-stats .stat strong{ font-family: var(--mono); font-weight:600; font-size: clamp(1.1rem, 1.9vw, 1.5rem); color: var(--glow-strong); letter-spacing: .02em; }
+  .footprint-stats .stat small{ font-family: var(--sans); font-size: .8rem; color: rgba(250,246,234,.62); max-width: 220px; line-height:1.45; }
+  .stat-divider{ width:1px; align-self:stretch; background: var(--line-on-navy); display:block; }
+  @media (max-width: 780px){ .stat-divider{ display:none; } .footprint-stats{ gap: 24px; } .footprint-stats .stat{ align-items:center; text-align:center; } }
+
+  /* Outer layout: reserved western gutter for the info card (panel) plus
+     the map stage. Flex siblings — the card can never sit on top of the
+     geography because it isn't part of the same box. */
+  .map-canvas-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: clamp(28px, 3.4vw, 52px);
+    max-width: 1780px;
+    margin: 0 auto;
+  }
+
+  .map-stage{
+    position: relative;
+    flex: 1 1 auto;
+    height: min(64vh, 700px);
+    width: auto;
+    max-width: 1520px;
+    aspect-ratio: 860 / 535;
+  }
+
+  .map-canvas svg{
+    /* Single composite shadow around the whole silhouette — floats the
+       country above the navy field without outlining every state. */
+    filter:
+      drop-shadow(0 10px 26px rgba(0,0,0,.45))
+      drop-shadow(0 0 1.5px rgba(250,246,234,.4));
+  }
+
+  .map-canvas path{
+    fill: rgba(250,246,234,.018);
+    stroke: rgba(250,246,234,.1);
+    stroke-width: 0.6;
+    cursor: pointer;
+    transition: fill .35s var(--ease), stroke .3s var(--ease);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .map-canvas path.covered{ fill: rgba(85,214,196,.22); stroke: rgba(250,246,234,.16); }
+  .map-canvas path.covered.hovered,
+  .map-canvas path.covered.pinned{
+    fill: rgba(85,214,196,.52);
+    stroke: rgba(250,246,234,.34);
+    transform: scale(1.015);
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,.4));
+    transition: fill .3s var(--ease), stroke .3s var(--ease), transform .3s var(--ease), filter .3s var(--ease);
+  }
+  /* One-time reveal — states fade/brighten into their covered treatment;
+     no scale or shadow pop, kept quiet relative to the hover state above. */
+  .map-canvas path.revealing{
+    transition: fill .9s var(--ease), stroke .9s var(--ease);
+  }
+
+  .hq-marker{ cursor: pointer; }
+  .hq-ring{
+    fill: none;
+    stroke: rgba(217,117,95,.4);
+    stroke-width: 1;
+    transition: stroke .35s var(--ease), opacity .35s var(--ease);
+  }
+  .hq-dot{
+    fill: var(--clay);
+    stroke: var(--clay-bright);
+    stroke-width: 1.5;
+    filter: drop-shadow(0 0 4px rgba(178,58,40,.6));
+    transition: stroke .35s var(--ease), fill .35s var(--ease), filter .35s var(--ease);
+  }
+  .hq-marker:hover .hq-dot,
+  .hq-marker.pinned .hq-dot{
+    fill: var(--glow-strong);
+    stroke: var(--glow-strong);
+    filter: drop-shadow(0 0 6px rgba(85,214,196,.7));
+  }
+  .hq-marker:hover .hq-ring,
+  .hq-marker.pinned .hq-ring{ stroke: var(--glow-line); }
+
+  /* Info card: a fixed-width flex sibling to the west of the map stage,
+     never absolutely positioned over the geography. Width is generous
+     enough that "Pennsylvania" / "West Virginia" never wrap or crowd
+     back toward the SVG. */
+  .map-state-panel{
+    flex: 0 0 236px;
+    width: 236px;
+    padding: 12px 20px;
+    background: rgba(22,34,44,.85);
+    border-left: 2px solid var(--glow-line);
+    box-shadow: 0 12px 30px rgba(0,0,0,.35);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity .25s var(--ease), transform .25s var(--ease);
+    pointer-events: none;
+    text-align:left;
+  }
+  .map-state-panel.msp-visible{ opacity: 1; transform: translateY(0); }
+  .msp-name{ display:block; font-family: var(--serif); font-weight: 500; font-size: 1.05rem; color: var(--paper); white-space: nowrap; }
+  .msp-county{ display:none; font-family: var(--mono); font-weight: 500; font-size: .74rem; letter-spacing:.04em; text-transform:uppercase; color: var(--glow-strong); text-align:left; margin-top: 5px; }
+  .msp-county.msp-county-visible{ display:block; }
+
+  @media (max-width: 1280px){
+    .map-canvas-wrap{ flex-direction:column; gap: 18px; }
+    .map-stage{ order:1; max-width: 1100px; height: min(50vh, 560px); }
+    .map-state-panel{
+      order:2;
+      flex: 0 0 auto;
+      width:auto;
+      max-width: 320px;
+      margin: 0 auto;
+      border-left:none;
+      border-top: 2px solid var(--glow-line);
+      text-align:center;
+    }
+    .msp-name{ white-space: normal; }
+    .msp-county{ text-align:center; }
+  }
+
+  /* Portrait / narrow phones: the map must be driven by the available
+     WIDTH, not viewport height — otherwise a tall, narrow viewport
+     forces an oversized width from the fixed aspect-ratio and the map
+     overflows the screen horizontally. Below this breakpoint the stage
+     goes full-width-with-gutter and height is derived from that width. */
+  @media (max-width: 640px){
+    .map-stage{ width: 100%; max-width: 100%; height: auto; }
+  }
+
+  /* ================= CAPABILITIES ================= */
+  .capabilities-section{ padding: clamp(80px, 9vw, 120px) 0 clamp(64px, 7vw, 96px); }
+  .section-head-center{ text-align:center; max-width: 640px; margin: 0 auto clamp(48px, 5.5vw, 68px); }
+  .section-head-center .eyebrow{ display:block; margin-bottom: 16px; }
+  .section-head-center h2{ font-size: clamp(1.7rem, 3vw, 2.4rem); color: var(--navy); }
+
+  .capabilities-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2.4vw, 30px); align-items:stretch; }
+  .cap-card{
+    background: #FFFEFA;
+    padding: clamp(30px, 3vw, 40px) clamp(26px, 2.6vw, 34px);
+    border-radius: 3px;
+    display:flex;
+    flex-direction:column;
+    box-shadow: 0 1px 2px rgba(34,28,21,.04), 0 10px 22px rgba(34,28,21,.06);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .cap-card:hover{ transform: translateY(-3px); box-shadow: 0 2px 4px rgba(34,28,21,.05), 0 14px 28px rgba(34,28,21,.08); }
+  .cap-card h3{ font-size: 1.18rem; color: var(--navy); line-height:1.3; margin-bottom: 20px; }
+  .cap-list{ list-style:none; margin:0 0 24px; padding:0; }
+  .cap-list li{ font-size: .92rem; color: var(--ink-soft); padding: 10px 0; border-top: 1px solid var(--line); }
+  .cap-list li:first-child{ border-top:none; padding-top:0; }
+  .cap-contrast{ font-family: var(--serif); font-style: italic; font-weight:500; font-size: 1.05rem; color: var(--clay); line-height:1.45; margin: 0 0 24px; }
+  .cap-close{ font-family: var(--mono); font-size: .74rem; letter-spacing: .03em; color: var(--brass); line-height:1.6; margin: auto 0 0; padding-top: 18px; border-top: 1px solid var(--line); }
+  .isn-badge-placeholder{ display:flex; align-items:center; gap: 10px; margin-top: 20px; }
+  .isn-badge-mark{ font-family: var(--mono); font-size: .62rem; font-weight:600; letter-spacing:.04em; color: var(--paper); background: var(--navy); padding: 5px 8px; border-radius: 2px; }
+  .isn-caption{ font-size: .74rem; color: var(--ink-soft); }
+
+  @media (max-width: 900px){ .capabilities-grid{ grid-template-columns: 1fr; } }
+
+  /* ================= PROVEN EXPERIENCE ================= */
+  .proven-section{ padding: clamp(64px, 7vw, 100px) 0; border-top: 1px solid var(--line); }
+  .marquee-stack{ margin-top: clamp(36px, 4.5vw, 52px); display:flex; flex-direction:column; gap: 2px; }
+  .marquee-viewport{
+    position:relative; overflow:hidden;
+    border-top: 1px solid var(--paper-dim); border-bottom: 1px solid var(--paper-dim);
+  }
+  .marquee-viewport::before, .marquee-viewport::after{
+    content:""; position:absolute; top:0; bottom:0; width: 80px; z-index:2; pointer-events:none;
+  }
+  .marquee-viewport::before{ left:0; background: linear-gradient(to right, var(--paper), rgba(250,246,234,0)); }
+  .marquee-viewport::after{ right:0; background: linear-gradient(to left, var(--paper), rgba(250,246,234,0)); }
+  .marquee-track{ display:flex; align-items:stretch; width: max-content; animation: scroll-left 52s linear infinite; }
+  .marquee-track-reverse{ animation-name: scroll-right; animation-duration: 58s; }
+  .marquee-viewport:hover .marquee-track{ animation-play-state: paused; }
+  @keyframes scroll-left{ from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
+  @keyframes scroll-right{ from{ transform: translateX(-50%); } to{ transform: translateX(0); } }
+  .logo-cell{
+    flex: 0 0 auto; height: 76px; display:flex; align-items:center; justify-content:center;
+    padding: 0 32px; border-right: 1px solid var(--paper-dim);
+    font-family: var(--serif); font-style: italic; font-weight: 500; font-size: .96rem;
+    color: var(--ink-soft); white-space: nowrap;
+  }
+  @media (prefers-reduced-motion: reduce){ .marquee-track{ animation: none; } }
+
+  /* ================= CTA + FOOTER ================= */
+  .cta-band{ background: var(--navy-deep); padding: clamp(64px, 7vw, 92px) 0; }
+  .cta-inner{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap: clamp(24px, 3vw, 32px); text-align:center; }
+  .cta-inner h2{ font-size: clamp(1.6rem, 2.8vw, 2.2rem); color: var(--paper); }
+  .cta-actions{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap: 16px; }
+  .cta-btn{
+    display:inline-flex; align-items:center; gap: 12px; padding: 15px 28px;
+    border: 1px solid var(--paper-soft); color: var(--paper);
+    font-size:.86rem; font-weight:600; flex:0 0 auto;
+    transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+  }
+  .cta-btn:hover{ background: var(--clay); border-color: var(--clay); }
+  .cta-btn .arrow{ transition: transform .25s var(--ease); }
+  .cta-btn:hover .arrow{ transform: translateX(4px); }
+
+  footer{ background: var(--navy-deep); color: var(--paper); padding: 48px 0 32px; }
+  .footer-brand{ display:flex; flex-direction:column; align-items:center; text-align:center; padding-bottom: 32px; }
+  .footer-logo-img{ height: 32px; width:auto; filter: brightness(0) invert(1); margin-bottom: 12px; }
+  .footer-brand-fallback{ display:none; font-family: var(--serif); font-weight:600; font-size: 1.24rem; color: var(--paper); margin-bottom: 10px; }
+  .footer-brand p{ font-size: .86rem; color: var(--paper-soft); max-width: 220px; line-height:1.6; font-family: var(--sans); margin:0; }
+  .footer-bottom{ text-align:center; padding-top: 22px; border-top: 1px solid var(--line-on-navy); font-family: var(--mono); font-size: .7rem; color: var(--paper-soft); }
+
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } [data-reveal]{ transition: opacity .3s linear; transform:none; } }
+
+  /* ================= MOBILE-WIDE MARGIN SAFETY ================= */
+  @media (max-width: 640px){
+    .shell{ padding: 0 20px; }
+    .footprint-frame{ padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav" aria-label="Primary">
+  <a class="nav-logo" href="index.html" aria-label="APS Land Services — Home">
+    <img class="nav-logo-img" src="assets/APSLand_Logo.png" alt="APS Land" decoding="async" onerror="this.style.display='none';document.getElementById('navLogoFallback').style.display='inline'">
+    <span id="navLogoFallback" class="nav-logo-fallback" style="display:none;">APS Land</span>
+  </a>
+</nav>
+
+<!-- ================= 1. HERO ================= -->
+<header class="hero shell" data-reveal>
+
+  <!-- Zone 1 — Identity: WHO APS is -->
+  <div class="hero-identity">
+    <h1>APS Land Services</h1>
+    <p class="hero-tagline">Setting the Standard Since 1980</p>
+    <div class="hero-rule"></div>
+  </div>
+
+  <!-- Zone 2 — Purpose: WHY APS exists -->
+  <p class="hero-purpose">Supporting the energy and exploration projects that power America.</p>
+
+  <!-- Zone 3 — Capabilities: WHAT APS does -->
+  <div class="hero-capabilities">
+    <span>Seismic Permitting</span>
+    <span class="hero-sep" aria-hidden="true"></span>
+    <span>Right-of-Way Acquisition</span>
+    <span class="hero-sep" aria-hidden="true"></span>
+    <span>Title Curative</span>
+    <span class="hero-sep" aria-hidden="true"></span>
+    <span>GIS Services</span>
+  </div>
+</header>
+
+<!-- ================= 2. A NATIONWIDE FOOTPRINT ================= -->
+<section class="footprint-section" id="footprint">
+  <div class="footprint-frame">
+    <div class="footprint-head" data-reveal>
+      <h2>A Nationwide Footprint</h2>
+    </div>
+
+    <div class="footprint-stats" data-reveal>
+      <span class="stat">
+        <strong>23 States</strong>
+        <small>permitted to date, plus project experience in Alberta and Saskatchewan</small>
+      </span>
+      <span class="stat-divider" aria-hidden="true"></span>
+      <span class="stat">
+        <strong>Hundreds</strong>
+        <small>of successful projects</small>
+      </span>
+      <span class="stat-divider" aria-hidden="true"></span>
+      <span class="stat">
+        <strong>Thousands</strong>
+        <small>of square miles successfully permitted</small>
+      </span>
+    </div>
+
+    <div class="map-canvas-wrap" data-reveal>
+      <div id="map-state-panel" class="map-state-panel">
+        <span id="msp-name" class="msp-name"></span>
+        <span id="msp-county" class="msp-county"></span>
+      </div>
+      <div class="map-stage">
+        <div id="us-map" class="map-canvas" aria-label="Interactive map of the contiguous United States where APS Land Services operates"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. CAPABILITIES & COMMITMENTS ================= -->
+<section class="capabilities-section shell" id="capabilities">
+  <div class="section-head-center" data-reveal>
+    <span class="eyebrow">Capabilities &amp; Commitments</span>
+    <h2>We get the details right.</h2>
+  </div>
+
+  <div class="capabilities-grid">
+    <div class="cap-card" data-reveal>
+      <h3>End-to-End Land Services</h3>
+      <ul class="cap-list">
+        <li>Seismic Permitting</li>
+        <li>Right-of-Way Acquisition</li>
+        <li>Title Curative</li>
+        <li>GIS Services</li>
+      </ul>
+      <p class="cap-close">One team. Direct oversight. Continuous reporting.</p>
+    </div>
+
+    <div class="cap-card" data-reveal>
+      <h3>Guaranteed Turnkey Pricing</h3>
+      <p class="cap-contrast">Other firms estimate. APS guarantees.</p>
+      <p class="cap-close">One project. One price. No surprises.</p>
+    </div>
+
+    <div class="cap-card" data-reveal>
+      <h3>Safety Without Compromise</h3>
+      <ul class="cap-list">
+        <li>Safety Program Manual</li>
+        <li>Injury &amp; Illness Prevention Program</li>
+      </ul>
+      <p class="cap-close">Personal accountability. Incident prevention. No exceptions.</p>
+      <!-- ISNetworld badge asset not yet provided — placeholder mark below -->
+      <div class="isn-badge-placeholder">
+        <span class="isn-badge-mark" aria-hidden="true">ISN</span>
+        <span class="isn-caption">Active Member of ISNetworld</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. PROVEN EXPERIENCE ================= -->
+<section class="proven-section shell" id="clients">
+  <div class="section-head-center" data-reveal>
+    <span class="eyebrow">Proven Experience</span>
+    <h2>Trusted to represent our clients in the field.</h2>
+  </div>
+
+  <div class="marquee-stack" data-reveal>
+    <div class="marquee-viewport">
+      <div class="marquee-track" id="marqueeTrackA"><!-- populated by JS --></div>
+    </div>
+    <div class="marquee-viewport">
+      <div class="marquee-track marquee-track-reverse" id="marqueeTrackB"><!-- populated by JS --></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5. CTA + FOOTER ================= -->
+<section class="cta-band">
+  <div class="shell cta-inner" data-reveal>
+    <h2>Let's get to work.</h2>
+    <div class="cta-actions">
+      <a class="cta-btn" href="tel:+13039035873">Call 303-903-5873 <span class="arrow">→</span></a>
+      <a class="cta-btn" href="mailto:contact@apsland.com">Email contact@apsland.com <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="shell">
+    <div class="footer-brand">
+      <img class="footer-logo-img" src="assets/APSLand_Logo.png" alt="APS Land Services" decoding="async" onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='block'">
+      <span id="footerLogoFallback" class="footer-brand-fallback">APS Land Services</span>
+      <p>Setting the Standard Since 1980</p>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 APS Land Services. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav = document.getElementById('siteNav');
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 12); }
+  document.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  /* Reveal-on-scroll */
+  var reveals = document.querySelectorAll('[data-reveal]');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('in-view'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  /* Logo click: reload/scroll to top of this same page */
+  if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+  var logo = document.querySelector('.nav-logo');
+  logo.addEventListener('click', function(e){
+    e.preventDefault();
+    window.scrollTo(0, 0);
+    window.location.reload();
+  });
+
+  /* Client marquee — placeholder text wordmarks; swap for real logo
+     image assets when the client uploads them (e.g. { name:'Devon',
+     img:'logos/devon.png' }). */
+  var CLIENTS_ROW_A = [
+    'Anadarko','Apache','Batelle','Charger Exploration','ConocoPhillips',
+    'Dawson Geophysical','Denbury','Devon','EOG Resources','Geokinetiks',
+    'Global Geophysical','Interstate Exploration','Marathon Oil','Microseismic','Noble Energy'
+  ];
+  var CLIENTS_ROW_B = [
+    'Ormat','OXY (Occidental Petroleum)','PanAmerican Geoexchange','Paragon Geophysical','PGS Onshore',
+    'Pioneer','SAE Exploration','Samson Resources','Schlumberger','Seitel',
+    'Silverthorne Seismic','Tesla-Conquest Inc','TGS','Vantage Geophysical','777 Oil'
+  ];
+
+  function buildTrack(el, list){
+    if (!el) return;
+    function buildSet(){
+      var frag = document.createDocumentFragment();
+      list.forEach(function(name){
+        var cell = document.createElement('div');
+        cell.className = 'logo-cell';
+        cell.textContent = name;
+        frag.appendChild(cell);
+      });
+      return frag;
+    }
+    el.appendChild(buildSet());
+    el.appendChild(buildSet());
+  }
+  buildTrack(document.getElementById('marqueeTrackA'), CLIENTS_ROW_A);
+  buildTrack(document.getElementById('marqueeTrackB'), CLIENTS_ROW_B);
+})();
+</script>
+<script src="assets/us-map.js" defer></script>
+
+</body>
+</html>
