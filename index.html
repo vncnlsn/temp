@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>APS Land Services est. 1980</title>
+<title>APS Land Services — Permit Acquisition &amp; Land Services Since 1980</title>
 <meta name="description" content="APS Land Services delivers seismic permitting, right-of-way acquisition, title curative, and GIS services for energy and exploration projects nationwide. Setting the standard since 1980.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -328,21 +328,21 @@
   .cta-btn .arrow{ transition: transform .25s var(--ease); }
   .cta-btn:hover .arrow{ transform: translateX(4px); }
 
-  footer{ background: var(--navy-deep); color: var(--paper); padding: 64px 0 32px; }
-  .footer-grid{ display:grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 44px; border-bottom: 1px solid var(--line-on-navy); }
+  footer{ background: var(--navy-deep); color: var(--paper); padding: 44px 0 26px; }
+  .footer-grid{ display:flex; flex-wrap:wrap; justify-content:center; gap: 48px clamp(48px, 6vw, 88px); padding-bottom: 30px; border-bottom: 1px solid var(--line-on-navy); text-align:left; }
   .footer-brand{ display:block; }
-  .footer-logo-img{ height: 32px; width:auto; filter: brightness(0) invert(1); margin-bottom: 12px; }
-  .footer-brand-fallback{ display:none; font-family: var(--serif); font-weight:600; font-size: 1.24rem; color: var(--paper); margin-bottom: 10px; }
-  .footer-brand p{ font-size: .86rem; color: var(--paper-soft); max-width: 220px; line-height:1.6; font-family: var(--sans); margin:0; }
-  footer h4{ font-family: var(--mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: var(--clay-bright); margin: 0 0 14px; font-weight:500; }
+  .footer-logo-img{ height: 28px; width:auto; filter: brightness(0) invert(1); margin-bottom: 10px; }
+  .footer-brand-fallback{ display:none; font-family: var(--serif); font-weight:600; font-size: 1.15rem; color: var(--paper); margin-bottom: 8px; }
+  .footer-brand p{ font-size: .82rem; color: var(--paper-soft); max-width: 220px; line-height:1.6; font-family: var(--sans); margin:0; }
+  footer h4{ font-family: var(--mono); font-size: .64rem; letter-spacing: .08em; text-transform: uppercase; color: var(--clay-bright); margin: 0 0 12px; font-weight:500; }
   footer ul{ list-style:none; margin:0; padding:0; }
-  footer li{ margin-bottom: 10px; font-size: .88rem; color: var(--paper-soft); }
-  footer a{ font-size: .88rem; color: var(--paper-soft); transition: color .25s var(--ease); }
+  footer li{ margin-bottom: 8px; font-size: .86rem; color: var(--paper-soft); }
+  footer li:last-child{ margin-bottom:0; }
+  footer a{ font-size: .86rem; color: var(--paper-soft); transition: color .25s var(--ease); }
   footer a:hover{ color: var(--clay-bright); }
-  .footer-bottom{ padding-top: 22px; font-family: var(--mono); font-size: .7rem; color: var(--paper-soft); }
+  .footer-bottom{ padding-top: 18px; text-align:center; font-family: var(--mono); font-size: .68rem; color: var(--paper-soft); }
 
-  @media (max-width: 980px){ .footer-grid{ grid-template-columns: 1fr 1fr 1fr; } }
-  @media (max-width: 640px){ .footer-grid{ grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px){ .footer-grid{ justify-content:center; text-align:center; } .footer-brand p{ margin:0 auto; } }
 
   @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } [data-reveal]{ transition: opacity .3s linear; transform:none; } }
 
@@ -373,7 +373,7 @@
   </div>
 
   <!-- Zone 2 — Purpose: WHY APS exists -->
-  <p class="hero-purpose">Supporting the energy, exploration, and infrastructure projects that power America.</p>
+  <p class="hero-purpose">Supporting the energy and exploration projects that power America.</p>
 
   <!-- Zone 3 — Capabilities: WHAT APS does -->
   <div class="hero-capabilities">
@@ -497,15 +497,6 @@
         <p>Setting the Standard Since 1980</p>
       </div>
       <div>
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div>
         <h4>Contact</h4>
         <ul>
           <li><a href="tel:+13039035873">303-903-5873</a></li>
@@ -516,13 +507,6 @@
         <h4>Headquarters</h4>
         <ul>
           <li>Cache Valley, Utah</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Landowners</h4>
-        <ul>
-          <li>Contacted by APS?</li>
-          <li><a href="about.html#landowner">Landowner Information →</a></li>
         </ul>
       </div>
     </div>
