@@ -131,21 +131,23 @@
   .stat-divider{ width:1px; align-self:stretch; background: var(--line-on-navy); display:block; }
   @media (max-width: 780px){ .stat-divider{ display:none; } .footprint-stats{ gap: 24px; } .footprint-stats .stat{ align-items:center; text-align:center; } }
 
-  /* Outer layout: reserved western gutter for the info card (panel) plus
-     the map stage. Flex siblings — the card can never sit on top of the
-     geography because it isn't part of the same box. */
+  /* Outer layout: a 3-column grid — panel | map | spacer — where the
+     outer two columns share the same fr sizing. This keeps the map
+     stage (the middle, content-sized column) truly centered on the
+     page at all times, while the panel hugs its left edge without ever
+     sitting on top of the geography (it lives in its own column). */
   .map-canvas-wrap{
-    display:flex;
+    display:grid;
+    grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
     align-items:center;
-    justify-content:center;
     gap: clamp(28px, 3.4vw, 52px);
     max-width: 1780px;
     margin: 0 auto;
   }
 
   .map-stage{
+    grid-column: 2;
     position: relative;
-    flex: 1 1 auto;
     height: min(64vh, 700px);
     width: auto;
     max-width: 1520px;
@@ -212,7 +214,9 @@
      enough that "Pennsylvania" / "West Virginia" never wrap or crowd
      back toward the SVG. */
   .map-state-panel{
-    flex: 0 0 236px;
+    grid-column: 1;
+    justify-self: end;
+    align-self: center;
     width: 236px;
     padding: 12px 20px;
     background: rgba(22,34,44,.85);
@@ -232,11 +236,12 @@
   .msp-county.msp-county-visible{ display:block; }
 
   @media (max-width: 1280px){
-    .map-canvas-wrap{ flex-direction:column; gap: 18px; }
+    .map-canvas-wrap{ display:flex; flex-direction:column; gap: 18px; }
     .map-stage{ order:1; max-width: 1100px; height: min(50vh, 560px); }
     .map-state-panel{
       order:2;
-      flex: 0 0 auto;
+      justify-self:auto;
+      align-self:auto;
       width:auto;
       max-width: 320px;
       margin: 0 auto;
@@ -280,9 +285,6 @@
   .cap-list li:first-child{ border-top:none; padding-top:0; }
   .cap-contrast{ font-family: var(--serif); font-style: italic; font-weight:500; font-size: 1.05rem; color: var(--clay); line-height:1.45; margin: 0 0 24px; }
   .cap-close{ font-family: var(--mono); font-size: .74rem; letter-spacing: .03em; color: var(--brass); line-height:1.6; margin: auto 0 0; padding-top: 18px; border-top: 1px solid var(--line); }
-  .isn-badge-placeholder{ display:flex; align-items:center; gap: 10px; margin-top: 20px; }
-  .isn-badge-mark{ font-family: var(--mono); font-size: .62rem; font-weight:600; letter-spacing:.04em; color: var(--paper); background: var(--navy); padding: 5px 8px; border-radius: 2px; }
-  .isn-caption{ font-size: .74rem; color: var(--ink-soft); }
 
   @media (max-width: 900px){ .capabilities-grid{ grid-template-columns: 1fr; } }
 
@@ -326,12 +328,21 @@
   .cta-btn .arrow{ transition: transform .25s var(--ease); }
   .cta-btn:hover .arrow{ transform: translateX(4px); }
 
-  footer{ background: var(--navy-deep); color: var(--paper); padding: 48px 0 32px; }
-  .footer-brand{ display:flex; flex-direction:column; align-items:center; text-align:center; padding-bottom: 32px; }
+  footer{ background: var(--navy-deep); color: var(--paper); padding: 64px 0 32px; }
+  .footer-grid{ display:grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 44px; border-bottom: 1px solid var(--line-on-navy); }
+  .footer-brand{ display:block; }
   .footer-logo-img{ height: 32px; width:auto; filter: brightness(0) invert(1); margin-bottom: 12px; }
   .footer-brand-fallback{ display:none; font-family: var(--serif); font-weight:600; font-size: 1.24rem; color: var(--paper); margin-bottom: 10px; }
   .footer-brand p{ font-size: .86rem; color: var(--paper-soft); max-width: 220px; line-height:1.6; font-family: var(--sans); margin:0; }
-  .footer-bottom{ text-align:center; padding-top: 22px; border-top: 1px solid var(--line-on-navy); font-family: var(--mono); font-size: .7rem; color: var(--paper-soft); }
+  footer h4{ font-family: var(--mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: var(--clay-bright); margin: 0 0 14px; font-weight:500; }
+  footer ul{ list-style:none; margin:0; padding:0; }
+  footer li{ margin-bottom: 10px; font-size: .88rem; color: var(--paper-soft); }
+  footer a{ font-size: .88rem; color: var(--paper-soft); transition: color .25s var(--ease); }
+  footer a:hover{ color: var(--clay-bright); }
+  .footer-bottom{ padding-top: 22px; font-family: var(--mono); font-size: .7rem; color: var(--paper-soft); }
+
+  @media (max-width: 980px){ .footer-grid{ grid-template-columns: 1fr 1fr 1fr; } }
+  @media (max-width: 640px){ .footer-grid{ grid-template-columns: 1fr 1fr; } }
 
   @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } [data-reveal]{ transition: opacity .3s linear; transform:none; } }
 
@@ -444,11 +455,6 @@
         <li>Injury &amp; Illness Prevention Program</li>
       </ul>
       <p class="cap-close">Personal accountability. Incident prevention. No exceptions.</p>
-      <!-- ISNetworld badge asset not yet provided — placeholder mark below -->
-      <div class="isn-badge-placeholder">
-        <span class="isn-badge-mark" aria-hidden="true">ISN</span>
-        <span class="isn-caption">Active Member of ISNetworld</span>
-      </div>
     </div>
   </div>
 </section>
@@ -476,17 +482,48 @@
     <h2>Let's get to work.</h2>
     <div class="cta-actions">
       <a class="cta-btn" href="tel:+13039035873">Call 303-903-5873 <span class="arrow">→</span></a>
-      <a class="cta-btn" href="mailto:contact@apsland.com">Email contact@apsland.com <span class="arrow">→</span></a>
+      <a class="cta-btn" href="mailto:allstatepermit@allstatepermit.com">Email allstatepermit@allstatepermit.com <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="shell">
-    <div class="footer-brand">
-      <img class="footer-logo-img" src="assets/APSLand_Logo.png" alt="APS Land Services" decoding="async" onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='block'">
-      <span id="footerLogoFallback" class="footer-brand-fallback">APS Land Services</span>
-      <p>Setting the Standard Since 1980</p>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img class="footer-logo-img" src="assets/APSLand_Logo.png" alt="APS Land Services" decoding="async" onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='block'">
+        <span id="footerLogoFallback" class="footer-brand-fallback">APS Land Services</span>
+        <p>Setting the Standard Since 1980</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+13039035873">303-903-5873</a></li>
+          <li><a href="mailto:allstatepermit@allstatepermit.com">allstatepermit@allstatepermit.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Headquarters</h4>
+        <ul>
+          <li>Cache Valley, Utah</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Landowners</h4>
+        <ul>
+          <li>Contacted by APS?</li>
+          <li><a href="about.html#landowner">Landowner Information →</a></li>
+        </ul>
+      </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 APS Land Services. All rights reserved.</span>
