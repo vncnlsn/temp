@@ -342,7 +342,7 @@
   footer a:hover{ color: var(--clay-bright); }
   .footer-bottom{ padding-top: 18px; text-align:center; font-family: var(--mono); font-size: .68rem; color: var(--paper-soft); }
 
-  @media (max-width: 640px){ .footer-grid{ justify-content:center; text-align:center; } .footer-brand p{ margin:0 auto; } }
+  @media (max-width: 640px){ .footer-grid{ justify-content:center; text-align:center; } .footer-brand p{ margin:0 auto; } .footer-logo-img{ margin-left:auto; margin-right:auto; } }
 
   @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } [data-reveal]{ transition: opacity .3s linear; transform:none; } }
 
@@ -357,6 +357,7 @@
      screens — subtle, not a redesign of the section rhythm used on
      larger viewports. */
   @media (max-width: 640px){
+    .hero{ padding-top: calc(var(--nav-h) + clamp(48px, 9vw, 72px)); }
     .footprint-section{ padding-top: clamp(80px, 12vw, 104px); padding-bottom: clamp(72px, 11vw, 96px); }
     .capabilities-section{ padding-top: clamp(96px, 15vw, 128px); padding-bottom: clamp(80px, 12vw, 104px); }
     .proven-section{ padding-top: clamp(80px, 12vw, 108px); padding-bottom: clamp(80px, 12vw, 108px); }
