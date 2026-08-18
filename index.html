@@ -54,6 +54,7 @@
   [data-reveal].in-view{ opacity: 1; transform: translateY(0); }
 
 /* ================= NAV ================= */
+/* ================= NAV ================= */
   .site-nav {
     position: fixed;
     top: 0;
@@ -67,32 +68,24 @@
     transition: box-shadow .35s var(--ease);
     display: flex;
     align-items: center;
+    justify-content: center;
   }
   .site-nav.scrolled { box-shadow: 0 8px 26px rgba(0,0,0,.22); }
 
-  .nav-container {
-    width: 100%;
-    max-width: var(--shell);
-    margin: 0 auto;
-    padding: 0 56px;
+  .nav-menu-centered {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-  }
-
-  .nav-logo { display: flex; align-items: center; }
-  .nav-logo-img { height: 42px; width: auto; max-height: calc(var(--nav-h) - 26px); display: block; filter: brightness(0) invert(1); }
-  .nav-logo-fallback { font-family: var(--serif); font-weight: 600; font-size: 1.28rem; color: var(--paper); }
-
-  .nav-menu {
-    display: flex;
-    align-items: center;
-    gap: clamp(20px, 3.5vw, 44px);
+    justify-content: center;
+    gap: clamp(20px, 4vw, 48px);
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 0 20px;
   }
+
+  .nav-logo { display: flex; align-items: center; justify-content: center; }
+  .nav-logo-img { height: 40px; width: auto; max-height: calc(var(--nav-h) - 26px); display: block; filter: brightness(0) invert(1); }
+  .nav-logo-fallback { font-family: var(--serif); font-weight: 600; font-size: 1.28rem; color: var(--paper); }
+
   .nav-link {
     font-family: var(--mono);
     font-size: .78rem;
@@ -101,17 +94,17 @@
     font-weight: 500;
     color: var(--paper-soft);
     transition: color .25s var(--ease);
+    white-space: nowrap;
   }
   .nav-link:hover,
   .nav-link.active {
     color: var(--clay-bright);
   }
 
-  @media (max-width: 768px) {
-    .nav-container { padding: 0 20px; }
-    .nav-menu { gap: 16px; }
-    .nav-link { font-size: .7rem; letter-spacing: .05em; }
-    .nav-logo-img { height: 32px; }
+  @media (max-width: 640px) {
+    .nav-menu-centered { gap: 14px; padding: 0 12px; }
+    .nav-link { font-size: .68rem; letter-spacing: .04em; }
+    .nav-logo-img { height: 30px; }
   }
 
   /* ================= HERO ================= */
