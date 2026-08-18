@@ -187,15 +187,6 @@
 
   .team-profile-content{ min-width: 0; flex: 1; }
 
-  .team-index{
-    display: block;
-    font-family: var(--mono);
-    font-size: .8rem;
-    letter-spacing: .12em;
-    color: rgba(250,246,234,.4);
-    margin-bottom: 10px;
-  }
-
   .team-profile-content h3{
     font-size: clamp(1.6rem, 2.2vw, 2rem);
     color: var(--paper);
@@ -218,16 +209,6 @@
     font-size: 1rem;
     line-height: 1.62;
     color: var(--paper-soft);
-    margin: 0 0 14px;
-  }
-
-  .team-meta{
-    display: inline-block;
-    font-family: var(--mono);
-    font-size: .7rem;
-    letter-spacing: .05em;
-    text-transform: uppercase;
-    color: rgba(250,246,234,.45);
     margin: 0;
   }
 
@@ -295,11 +276,16 @@
     color: var(--ink-soft);
   }
 
-  .page-nav-links{ display: flex; flex-wrap: wrap; justify-content: center; gap: 20px 48px; max-width: 940px; margin: 0 auto; padding-top: 32px; border-top: 1px solid var(--line); }
-  .page-nav-link{ font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: var(--navy); display: inline-flex; align-items: center; gap: 8px; transition: color .25s var(--ease); }
-  .page-nav-link:hover{ color: var(--clay); }
+  .page-nav-links{ display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 16px 20px; max-width: 940px; margin: 0 auto; padding-top: 36px; border-top: 1px solid var(--line); }
+  .page-nav-link{
+    display:inline-flex; align-items:center; gap: 12px; padding: 14px 26px;
+    border: 1px solid rgba(30,59,95,.3); border-radius: 3px; color: var(--navy);
+    font-family: var(--mono); font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; font-weight:600;
+    transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+  }
+  .page-nav-link:hover{ background: var(--navy); border-color: var(--navy); color: var(--paper); }
   .page-nav-link .arrow{ transition: transform .25s var(--ease); }
-  .page-nav-link:hover .arrow{ transform: translateX(5px); }
+  .page-nav-link:hover .arrow{ transform: translateX(4px); }
 
   @media (max-width: 640px){
     .reassure-grid{ grid-template-columns: 1fr; gap: 26px; }
@@ -395,7 +381,6 @@
 <section class="team-section">
   <div class="shell">
     <div class="section-head-center" data-reveal>
-      <span class="eyebrow eyebrow-on-navy">Leadership</span>
       <h2>Meet the Team</h2>
     </div>
 
@@ -406,11 +391,9 @@
           <img src="assets/mark_photo.jpg" alt="Mark Fischbuch, President &amp; Founder" loading="lazy">
         </div>
         <div class="team-profile-content">
-          <span class="team-index">01</span>
           <h3>Mark Fischbuch</h3>
           <span class="team-role">President &amp; Founder</span>
           <p class="team-bio">Mark Fischbuch founded Allstate Permit Services in 1980 after years of hard work across surveying, drilling, permitting, and field operations. He learned the industry firsthand, from the science and technology behind it to the realities of difficult field work. That practical knowledge shaped APS's comprehensive approach to land services and remains at the foundation of the company today.</p>
-          <p class="team-meta">With APS Since 1980</p>
         </div>
       </article>
 
@@ -420,11 +403,9 @@
           <img src="assets/zane_photo1.jpg" alt="Zane Nelson, Vice President" loading="lazy">
         </div>
         <div class="team-profile-content">
-          <span class="team-index">02</span>
           <h3>Zane Nelson</h3>
           <span class="team-role">Vice President</span>
           <p class="team-bio">Zane Nelson joined APS in 2010, building on a successful career spanning accounting, business analysis, and enterprise operations. He's combined those disciplines to lead the company's day-to-day operations, transform its financial and operational structure, and expand its capabilities. He has developed extensive knowledge of land services through years of hands-on project and field experience. Zane remains deeply involved in strengthening client relationships, personally overseeing field work, and positioning APS for new opportunities across the industry.</p>
-          <p class="team-meta">With APS Since 2010</p>
         </div>
       </article>
     </div>
@@ -484,10 +465,10 @@
 
   <div class="page-nav-links" data-reveal>
     <a class="page-nav-link" href="index.html#clients">
-      See Who We've Worked With — View companies APS has represented <span class="arrow">→</span>
+      View Companies We've Represented <span class="arrow">→</span>
     </a>
-    <a class="page-nav-link" href="mailto:allstatepermit@allstatepermit.com">
-      Speak Directly With APS — Contact APS leadership <span class="arrow">→</span>
+    <a class="page-nav-link" href="#footer">
+      Contact APS Leadership <span class="arrow">→</span>
     </a>
   </div>
 </section>
@@ -503,7 +484,7 @@
   </div>
 </section>
 
-<footer>
+<footer id="footer">
   <div class="shell">
     <div class="footer-grid">
       <div class="footer-brand">
