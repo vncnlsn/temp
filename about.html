@@ -143,30 +143,34 @@
   .section-head-center h2{ font-size: clamp(1.9rem, 3.4vw, 2.7rem); color: var(--navy); }
 
   .team-list{
-    display: flex;
-    flex-direction: column;
-    gap: clamp(56px, 7vw, 96px);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(32px, 4vw, 56px);
     max-width: 1180px;
     margin: clamp(48px, 6vw, 72px) auto 0;
   }
 
   .team-profile{
-    display: grid;
-    grid-template-columns: minmax(240px, 380px) 1fr;
-    gap: clamp(36px, 5vw, 76px);
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Equal size and weight for both profiles — the offset below is purely
+     a vertical stagger for visual rhythm, not a difference in scale. */
+  .team-profile-reverse{
+    margin-top: clamp(36px, 4.5vw, 60px);
   }
 
   .team-photo-frame{
-    order: 1;
     position: relative;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
     border-radius: 3px;
     border-top: 3px solid var(--clay);
     box-shadow: 0 6px 18px rgba(34,28,21,.10);
     background: var(--navy-deep);
     transition: transform .45s var(--ease), box-shadow .45s var(--ease);
+    margin-bottom: clamp(20px, 2.4vw, 28px);
   }
   .team-photo-frame img{
     width: 100%;
@@ -181,21 +185,17 @@
   }
   .team-profile:hover .team-photo-frame img{ transform: scale(1.035); }
 
-  .team-profile-content{ order: 2; }
-  .team-profile-reverse .team-photo-frame{ order: 2; }
-  .team-profile-reverse .team-profile-content{ order: 1; }
-
   .team-index{
     display: block;
     font-family: var(--mono);
-    font-size: .8rem;
+    font-size: .78rem;
     letter-spacing: .12em;
     color: var(--brass);
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
 
   .team-profile-content h3{
-    font-size: clamp(1.8rem, 2.6vw, 2.35rem);
+    font-size: clamp(1.5rem, 1.9vw, 1.75rem);
     color: var(--navy);
     margin-bottom: 4px;
     line-height: 1.15;
@@ -204,48 +204,48 @@
   .team-role{
     display: block;
     font-family: var(--mono);
-    font-size: .8rem;
+    font-size: .76rem;
     letter-spacing: .07em;
     text-transform: uppercase;
     color: var(--clay);
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
   .team-bio{
-    font-size: 1.03rem;
-    line-height: 1.72;
+    font-size: .94rem;
+    line-height: 1.62;
     color: var(--ink);
-    margin: 0 0 22px;
+    margin: 0 0 18px;
   }
 
   .team-meta{
     display: inline-block;
     font-family: var(--mono);
-    font-size: .72rem;
+    font-size: .7rem;
     letter-spacing: .06em;
     text-transform: uppercase;
     color: var(--brass);
     margin: 0;
-    padding-top: 16px;
+    padding-top: 14px;
     border-top: 1px solid var(--line);
   }
 
   @media (max-width: 780px) {
-    .team-profile,
-    .team-profile-reverse{
+    .team-list{
       grid-template-columns: 1fr;
+      gap: clamp(48px, 6vw, 72px);
+    }
+    .team-profile-reverse{
+      margin-top: 0;
+    }
+    .team-photo-frame{
+      max-width: 340px;
+      margin: 0 auto clamp(20px, 2.4vw, 28px);
+    }
+    .team-profile{
       text-align: center;
     }
-    .team-photo-frame,
-    .team-profile-reverse .team-photo-frame{
-      order: 1;
-      max-width: 300px;
-      margin: 0 auto;
-    }
-    .team-profile-content,
-    .team-profile-reverse .team-profile-content{ order: 2; }
-    .team-meta{ display: block; }
   }
 
   /* ================= YOU STAY IN CONTROL ================= */
