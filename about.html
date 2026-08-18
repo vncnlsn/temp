@@ -243,46 +243,66 @@
     .team-bio{ font-size: .95rem; }
   }
 
-  /* ================= YOU STAY IN CONTROL ================= */
+  /* ================= YOU STAY IN CONTROL =================
+     Warm and skimmable on purpose: no bordered "disclosure" boxes, no
+     legalistic uppercase labels — just plain sentences, a friendly
+     checkmark, and one calm, human statement at the center of it. */
   .control-section{ padding: clamp(80px, 9vw, 112px) 0; }
 
-  .control-header{ text-align:center; max-width: 700px; margin: 0 auto clamp(48px, 5.5vw, 64px); }
+  .control-header{ text-align:center; max-width: 640px; margin: 0 auto clamp(48px, 5.5vw, 64px); }
   .control-header .eyebrow{ display:block; margin-bottom: 10px; }
   .control-header h2{ font-size: clamp(2rem, 3.6vw, 2.8rem); color: var(--navy); margin: 0 0 18px; }
-  .control-header p{ font-size: 1.05rem; line-height: 1.65; color: var(--ink-soft); margin: 0; }
+  .control-header p{ font-size: 1.06rem; line-height: 1.65; color: var(--ink-soft); margin: 0; }
 
-  .control-grid{ display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 2.4vw, 28px); max-width: 940px; margin: 0 auto; }
-  .control-card{
-    background: #FFFEFA;
-    padding: clamp(26px, 2.8vw, 32px);
-    border-radius: 3px;
-    box-shadow: 0 1px 2px rgba(34,28,21,.04), 0 10px 22px rgba(34,28,21,.06);
-    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  .reassure-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(30px, 3.4vw, 44px) clamp(36px, 4.4vw, 60px);
+    max-width: 860px;
+    margin: 0 auto clamp(52px, 6vw, 72px);
   }
-  .control-card:hover{ transform: translateY(-3px); box-shadow: 0 2px 4px rgba(34,28,21,.05), 0 14px 28px rgba(34,28,21,.08); }
-  .control-card h3{ font-family: var(--mono); font-size: .82rem; letter-spacing: .05em; text-transform: uppercase; color: var(--navy); margin-bottom: 12px; font-weight: 600; }
-  .control-card p{ font-size: .94rem; line-height: 1.6; color: var(--ink-soft); margin: 0; }
-
-  .control-note{
-    max-width: 940px;
-    margin: 0 auto;
-    background: var(--paper-dim);
-    border-left: 3px solid var(--clay);
-    padding: clamp(28px, 3vw, 40px) clamp(30px, 3.4vw, 44px);
-    border-radius: 0 3px 3px 0;
-    margin: 0 auto clamp(40px, 5vw, 52px);
+  .reassure-item{ display:flex; align-items:flex-start; gap: 18px; text-align:left; }
+  .reassure-check{
+    flex: 0 0 auto;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: rgba(178,58,40,.08);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--clay);
   }
-  .control-note p{ font-size: .98rem; line-height: 1.7; color: var(--ink); margin: 0; }
-  .control-note p + p{ margin-top: 18px; }
+  .reassure-check svg{ width: 20px; height: 20px; }
+  .reassure-item h3{ font-family: var(--serif); font-weight: 600; font-size: 1.16rem; color: var(--navy); margin: 0 0 6px; line-height: 1.3; }
+  .reassure-item p{ font-size: .96rem; line-height: 1.58; color: var(--ink-soft); margin: 0; }
 
-  .page-nav-links{ display: flex; flex-wrap: wrap; justify-content: center; gap: 20px 48px; max-width: 940px; margin: clamp(40px, 5vw, 52px) auto 0; padding-top: 32px; border-top: 1px solid var(--line); }
+  .control-lead{
+    max-width: 760px;
+    margin: 0 auto clamp(18px, 2.4vw, 24px);
+    text-align: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.3rem, 2.3vw, 1.6rem);
+    color: var(--navy);
+    line-height: 1.5;
+  }
+
+  .control-detail{
+    max-width: 700px;
+    margin: 0 auto clamp(44px, 5.5vw, 60px);
+    text-align: center;
+    font-size: .92rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+
+  .page-nav-links{ display: flex; flex-wrap: wrap; justify-content: center; gap: 20px 48px; max-width: 940px; margin: 0 auto; padding-top: 32px; border-top: 1px solid var(--line); }
   .page-nav-link{ font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: var(--navy); display: inline-flex; align-items: center; gap: 8px; transition: color .25s var(--ease); }
   .page-nav-link:hover{ color: var(--clay); }
   .page-nav-link .arrow{ transition: transform .25s var(--ease); }
   .page-nav-link:hover .arrow{ transform: translateX(5px); }
 
-  @media (max-width: 768px){
-    .control-grid{ grid-template-columns: 1fr; }
+  @media (max-width: 640px){
+    .reassure-grid{ grid-template-columns: 1fr; gap: 26px; }
   }
 
   /* ================= CTA + FOOTER ================= */
@@ -414,33 +434,53 @@
 <!-- YOU STAY IN CONTROL OF YOUR LAND -->
 <section class="control-section shell">
   <div class="control-header" data-reveal>
+    <span class="eyebrow">Straight Talk</span>
     <h2>You Stay in Control of Your Land</h2>
-    <p>If APS has contacted you, we're representing a company whose project may involve your property. We'll tell you who we represent, why we've contacted you, what is being requested, and what work may take place.</p>
+    <p>If we've reached out, it's because a project may involve your property. Here's what that does — and doesn't — mean, plainly put.</p>
   </div>
 
-  <div class="control-note" data-reveal>
-    <p>For seismic survey projects, APS secures defined access for crews and equipment used to map the geology beneath the surface. These agreements allow specific survey activities without transferring ownership of your property or mineral rights.</p>
-    <p>APS also supports right-of-way acquisition and other energy, utility, telecommunications, and infrastructure projects. The rights and agreements involved vary by project. We'll explain exactly what is being requested, why it's needed, and the terms that apply to your property.</p>
+  <div class="reassure-grid" data-reveal>
+    <div class="reassure-item">
+      <span class="reassure-check" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </span>
+      <div>
+        <h3>You Keep Your Land</h3>
+        <p>An access agreement never transfers ownership of your property.</p>
+      </div>
+    </div>
+    <div class="reassure-item">
+      <span class="reassure-check" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </span>
+      <div>
+        <h3>Your Minerals Stay Yours</h3>
+        <p>This isn't a mineral lease. Seismic survey access doesn't touch your mineral rights.</p>
+      </div>
+    </div>
+    <div class="reassure-item">
+      <span class="reassure-check" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </span>
+      <div>
+        <h3>No Drilling, No Fracking</h3>
+        <p>Seismic surveying maps what's underground — it doesn't extract anything.</p>
+      </div>
+    </div>
+    <div class="reassure-item">
+      <span class="reassure-check" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </span>
+      <div>
+        <h3>Everything's Agreed Upfront</h3>
+        <p>Access, compensation, and timing are all spelled out before any work starts.</p>
+      </div>
+    </div>
   </div>
 
-  <div class="control-grid" data-reveal>
-    <div class="control-card">
-      <h3>Not a Mineral Lease</h3>
-      <p>Seismic survey access does not transfer your mineral rights.</p>
-    </div>
-    <div class="control-card">
-      <h3>Not Drilling or Fracking</h3>
-      <p>Seismic surveying maps the subsurface. It does not extract the resources beneath it.</p>
-    </div>
-    <div class="control-card">
-      <h3>No Transfer of Property Ownership</h3>
-      <p>A seismic access agreement does not transfer ownership of your property.</p>
-    </div>
-    <div class="control-card">
-      <h3>Defined Access &amp; Compensation</h3>
-      <p>The agreement defines the permitted activities, access, compensation, and other terms before work begins.</p>
-    </div>
-  </div>
+  <p class="control-lead" data-reveal>We'll always tell you who we represent, why we've reached out, and what to expect — in plain language, before anything happens on your land.</p>
+
+  <p class="control-detail" data-reveal>This applies to seismic survey work as well as right-of-way, utility, and other infrastructure projects. The specifics vary by project, and we'll walk you through them directly — no surprises, no fine print.</p>
 
   <div class="page-nav-links" data-reveal>
     <a class="page-nav-link" href="index.html#clients">
