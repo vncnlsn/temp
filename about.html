@@ -170,7 +170,7 @@
   .team-photo-frame{
     position: relative;
     flex: 0 0 auto;
-    width: clamp(190px, 18vw, 260px);
+    width: clamp(205px, 19.5vw, 282px);
     aspect-ratio: 1 / 1;
     overflow: hidden;
     border-radius: 3px;
@@ -238,7 +238,7 @@
       gap: 20px;
     }
     .team-photo-frame{
-      width: clamp(140px, 34vw, 200px);
+      width: clamp(150px, 36vw, 216px);
     }
     .team-bio{ font-size: .95rem; }
   }
@@ -251,7 +251,7 @@
   .control-header h2{ font-size: clamp(2rem, 3.6vw, 2.8rem); color: var(--navy); margin: 0 0 18px; }
   .control-header p{ font-size: 1.05rem; line-height: 1.65; color: var(--ink-soft); margin: 0; }
 
-  .control-grid{ display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 2.4vw, 28px); max-width: 940px; margin: 0 auto clamp(40px, 5vw, 52px); }
+  .control-grid{ display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 2.4vw, 28px); max-width: 940px; margin: 0 auto; }
   .control-card{
     background: #FFFEFA;
     padding: clamp(26px, 2.8vw, 32px);
@@ -270,6 +270,7 @@
     border-left: 3px solid var(--clay);
     padding: clamp(28px, 3vw, 40px) clamp(30px, 3.4vw, 44px);
     border-radius: 0 3px 3px 0;
+    margin: 0 auto clamp(40px, 5vw, 52px);
   }
   .control-note p{ font-size: .98rem; line-height: 1.7; color: var(--ink); margin: 0; }
   .control-note p + p{ margin-top: 18px; }
@@ -417,6 +418,11 @@
     <p>If APS has contacted you, we're representing a company whose project may involve your property. We'll tell you who we represent, why we've contacted you, what is being requested, and what work may take place.</p>
   </div>
 
+  <div class="control-note" data-reveal>
+    <p>For seismic survey projects, APS secures defined access for crews and equipment used to map the geology beneath the surface. These agreements allow specific survey activities without transferring ownership of your property or mineral rights.</p>
+    <p>APS also supports right-of-way acquisition and other energy, utility, telecommunications, and infrastructure projects. The rights and agreements involved vary by project. We'll explain exactly what is being requested, why it's needed, and the terms that apply to your property.</p>
+  </div>
+
   <div class="control-grid" data-reveal>
     <div class="control-card">
       <h3>Not a Mineral Lease</h3>
@@ -434,11 +440,6 @@
       <h3>Defined Access &amp; Compensation</h3>
       <p>The agreement defines the permitted activities, access, compensation, and other terms before work begins.</p>
     </div>
-  </div>
-
-  <div class="control-note" data-reveal>
-    <p>For seismic survey projects, APS secures defined access for crews and equipment used to map the geology beneath the surface. These agreements allow specific survey activities without transferring ownership of your property or mineral rights.</p>
-    <p>APS also supports right-of-way acquisition and other energy, utility, telecommunications, and infrastructure projects. The rights and agreements involved vary by project. We'll explain exactly what is being requested, why it's needed, and the terms that apply to your property.</p>
   </div>
 
   <div class="page-nav-links" data-reveal>
