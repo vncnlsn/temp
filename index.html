@@ -417,10 +417,18 @@
 <body>
 
 <nav class="site-nav" id="siteNav" aria-label="Primary">
-  <a class="nav-logo" href="index.html" aria-label="APS Land Services — Home">
-    <img class="nav-logo-img" src="assets/APSLand_Logo.png" alt="APS Land" decoding="async" onerror="this.style.display='none';document.getElementById('navLogoFallback').style.display='inline'">
-    <span id="navLogoFallback" class="nav-logo-fallback" style="display:none;">APS Land</span>
-  </a>
+  <div class="nav-container">
+    <a class="nav-logo" href="index.html" aria-label="APS Land Services — Home">
+      <img class="nav-logo-img" src="assets/APSLand_Logo.png" alt="APS Land" decoding="async" onerror="this.style.display='none';document.getElementById('navLogoFallback').style.display='inline'">
+      <span id="navLogoFallback" class="nav-logo-fallback" style="display:none;">APS Land</span>
+    </a>
+    <ul class="nav-menu">
+      <li><a class="nav-link active" href="index.html">Home</a></li>
+      <li><a class="nav-link" href="about.html">About</a></li>
+      <li><a class="nav-link" href="index.html#capabilities">Services</a></li>
+      <li><a class="nav-link" href="#footer">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
 <!-- ================= 1. HERO ================= -->
