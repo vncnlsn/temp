@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — APS Land Services</title>
+<meta name="description" content="Learn about APS Land Services, setting the standard in energy, exploration, and infrastructure land services since 1980. Meet our leadership team.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:        #1E3B5F;
+    --navy-deep:   #16222C;
+    --paper:       #FAF6EA;
+    --paper-dim:   #EEE6D2;
+    --clay:        #B23A28;
+    --clay-bright: #D9755F;
+    --brass:       #8C8271;
+    --ink:         #221C15;
+    --ink-soft:    rgba(34,28,21,.66);
+    --paper-soft:  rgba(250,246,234,.9);
+    --line:        rgba(28,27,24,.14);
+    --line-on-navy: rgba(250,246,234,.16);
+    --glow-strong: #7CE8D9;
+    --ease: cubic-bezier(.22,.61,.36,1);
+    --shell: 1440px;
+    --nav-h: 78px;
+    --serif: 'Spectral', Georgia, serif;
+    --sans: 'Public Sans', -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{ margin:0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  ::selection{ background: var(--clay); color: var(--paper); }
+  :focus-visible{ outline: 2px solid var(--brass); outline-offset: 3px; }
+  .shell{ max-width: var(--shell); margin: 0 auto; padding: 0 56px; }
+
+  .eyebrow{ font-family: var(--mono); font-size: .72rem; letter-spacing: .07em; text-transform: uppercase; font-weight: 500; color: var(--clay); }
+  .eyebrow::before{ content:"— "; color: var(--brass); }
+
+  h1,h2,h3,h4{ font-family: var(--serif); font-weight: 600; letter-spacing: -.005em; margin:0; }
+
+  [data-reveal]{ opacity: 0; transform: translateY(16px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+  [data-reveal].in-view{ opacity: 1; transform: translateY(0); }
+
+/* ================= NAV =================== */
+  .site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    height: var(--nav-h);
+    background: var(--navy-deep);
+    border-bottom: 1px solid var(--line-on-navy);
+    box-shadow: 0 4px 18px rgba(0,0,0,.14);
+    transition: box-shadow .35s var(--ease);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .site-nav.scrolled { box-shadow: 0 8px 26px rgba(0,0,0,.22); }
+
+  .nav-menu-centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(28px, 5.5vw, 68px);
+    list-style: none;
+    margin: 0;
+    padding: 0 24px;
+  }
+
+  .nav-logo { display: flex; align-items: center; justify-content: center; }
+  .nav-logo-img { height: 44px; width: auto; max-height: calc(var(--nav-h) - 22px); display: block; filter: brightness(0) invert(1); }
+  .nav-logo-fallback { font-family: var(--serif); font-weight: 600; font-size: 1.35rem; color: var(--paper); }
+
+  .nav-link {
+    font-family: var(--mono);
+    font-size: .88rem;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--paper-soft);
+    transition: color .25s var(--ease);
+    white-space: nowrap;
+  }
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--clay-bright);
+  }
+
+  @media (max-width: 768px) {
+    .nav-menu-centered { gap: 18px; padding: 0 16px; }
+    .nav-link { font-size: .74rem; letter-spacing: .05em; }
+    .nav-logo-img { height: 32px; }
+  }
+
+  /* ================= HERO ================= */
+  .about-hero{
+    padding: calc(var(--nav-h) + clamp(48px, 6vw, 72px)) 0 clamp(48px, 6vw, 72px);
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .about-hero h1{ font-size: clamp(2.8rem, 6vw, 4.8rem); color: var(--navy); line-height: 1.08; margin-top: 12px; }
+
+  /* ================= OUR COMPANY ================= */
+  .company-section{ padding: clamp(64px, 8vw, 96px) 0; }
+  .company-grid{
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: start;
+  }
+  .company-title h2{ font-size: clamp(2rem, 3.8vw, 3rem); color: var(--navy); line-height: 1.15; margin-top: 8px; }
+  .company-body p{ font-size: 1.06rem; line-height: 1.7; color: var(--ink); margin: 0 0 24px; }
+  .company-body p:last-child{ margin-bottom: 0; }
+  .company-body p.lead{ font-size: 1.2rem; font-weight: 500; color: var(--navy); }
+
+  @media (max-width: 900px){
+    .company-grid{ grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  /* ================= MEET THE TEAM (EDITORIAL) ================= */
+  .team-section {
+    background: var(--paper-dim);
+    padding: clamp(80px, 9vw, 120px) 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section-head-center {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto clamp(20px, 3vw, 32px);
+  }
+  .section-head-center .eyebrow{ display:block; margin-bottom: 16px; }
+  .section-head-center h2{ font-size: clamp(1.9rem, 3.4vw, 2.7rem); color: var(--navy); }
+
+  .team-list{
+    display: flex;
+    flex-direction: column;
+    gap: clamp(56px, 7vw, 96px);
+    max-width: 1180px;
+    margin: clamp(48px, 6vw, 72px) auto 0;
+  }
+
+  .team-profile{
+    display: grid;
+    grid-template-columns: minmax(240px, 380px) 1fr;
+    gap: clamp(36px, 5vw, 76px);
+    align-items: center;
+  }
+
+  .team-photo-frame{
+    order: 1;
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 3px;
+    border-top: 3px solid var(--clay);
+    box-shadow: 0 6px 18px rgba(34,28,21,.10);
+    background: var(--navy-deep);
+    transition: transform .45s var(--ease), box-shadow .45s var(--ease);
+  }
+  .team-photo-frame img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform .6s var(--ease);
+  }
+  .team-profile:hover .team-photo-frame{
+    transform: translateY(-5px);
+    box-shadow: 0 20px 36px rgba(34,28,21,.18);
+  }
+  .team-profile:hover .team-photo-frame img{ transform: scale(1.035); }
+
+  .team-profile-content{ order: 2; }
+  .team-profile-reverse .team-photo-frame{ order: 2; }
+  .team-profile-reverse .team-profile-content{ order: 1; }
+
+  .team-index{
+    display: block;
+    font-family: var(--mono);
+    font-size: .8rem;
+    letter-spacing: .12em;
+    color: var(--brass);
+    margin-bottom: 14px;
+  }
+
+  .team-profile-content h3{
+    font-size: clamp(1.8rem, 2.6vw, 2.35rem);
+    color: var(--navy);
+    margin-bottom: 4px;
+    line-height: 1.15;
+  }
+
+  .team-role{
+    display: block;
+    font-family: var(--mono);
+    font-size: .8rem;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--clay);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .team-bio{
+    font-size: 1.03rem;
+    line-height: 1.72;
+    color: var(--ink);
+    margin: 0 0 22px;
+  }
+
+  .team-meta{
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin: 0;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 780px) {
+    .team-profile,
+    .team-profile-reverse{
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .team-photo-frame,
+    .team-profile-reverse .team-photo-frame{
+      order: 1;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    .team-profile-content,
+    .team-profile-reverse .team-profile-content{ order: 2; }
+    .team-meta{ display: block; }
+  }
+
+  /* ================= YOU STAY IN CONTROL ================= */
+  .control-section{ padding: clamp(80px, 9vw, 120px) 0; }
+  .control-header{ max-width: 820px; margin-bottom: clamp(40px, 5vw, 56px); }
+  .control-header h2{ font-size: clamp(2rem, 3.8vw, 3rem); color: var(--navy); margin: 12px 0 20px; }
+  .control-header p{ font-size: 1.12rem; line-height: 1.65; color: var(--ink); margin: 0; }
+
+  .control-grid{ display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 2.5vw, 32px); margin-bottom: clamp(40px, 5vw, 56px); }
+  .control-card{
+    background: #FFFEFA;
+    padding: clamp(28px, 3vw, 36px);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--clay);
+    border-radius: 3px;
+    box-shadow: 0 4px 14px rgba(34,28,21,.03);
+  }
+  .control-card h3{ font-family: var(--mono); font-size: .88rem; letter-spacing: .05em; text-transform: uppercase; color: var(--navy); margin-bottom: 12px; font-weight: 600; }
+  .control-card p{ font-size: .96rem; line-height: 1.6; color: var(--ink-soft); margin: 0; }
+
+  .control-subtext{
+    background: var(--navy-deep);
+    color: var(--paper);
+    padding: clamp(32px, 4vw, 48px);
+    border-radius: 3px;
+    max-width: 920px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+  .control-subtext p{ margin: 0; }
+
+  .page-nav-links{ display: flex; flex-wrap: wrap; gap: 20px 40px; margin-top: clamp(40px, 5vw, 56px); padding-top: 32px; border-top: 1px solid var(--line); }
+  .page-nav-link{ font-family: var(--serif); font-size: 1.15rem; font-weight: 600; color: var(--navy); display: inline-flex; align-items: center; gap: 8px; transition: color .25s var(--ease); }
+  .page-nav-link:hover{ color: var(--clay); }
+  .page-nav-link .arrow{ transition: transform .25s var(--ease); }
+  .page-nav-link:hover .arrow{ transform: translateX(5px); }
+
+  @media (max-width: 768px){
+    .control-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ================= CTA + FOOTER ================= */
+  .cta-band{ background: var(--navy-deep); padding: clamp(64px, 7vw, 92px) 0; }
+  .cta-inner{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap: clamp(24px, 3vw, 32px); text-align:center; }
+  .cta-inner h2{ font-size: clamp(1.6rem, 2.8vw, 2.2rem); color: var(--paper); }
+  .cta-actions{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap: 16px; }
+  .cta-btn{
+    display:inline-flex; align-items:center; gap: 12px; padding: 15px 28px;
+    border: 1px solid var(--paper-soft); color: var(--paper);
+    font-size:.86rem; font-weight:600; flex:0 0 auto;
+    transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+  }
+  .cta-btn:hover{ background: var(--clay); border-color: var(--clay); }
+  .cta-btn .arrow{ transition: transform .25s var(--ease); }
+  .cta-btn:hover .arrow{ transform: translateX(4px); }
+
+  footer{ background: var(--navy-deep); color: var(--paper); padding: 44px 0 26px; }
+  .footer-grid{ display:flex; flex-wrap:wrap; justify-content:center; gap: 48px clamp(48px, 6vw, 88px); padding-bottom: 30px; border-bottom: 1px solid var(--line-on-navy); text-align:left; }
+  .footer-brand{ display:block; }
+  .footer-logo-img{ height: 28px; width:auto; filter: brightness(0) invert(1); margin-bottom: 10px; }
+  .footer-brand-fallback{ display:none; font-family: var(--serif); font-weight:600; font-size: 1.15rem; color: var(--paper); margin-bottom: 8px; }
+  .footer-brand p{ font-size: .82rem; color: var(--paper-soft); max-width: 220px; line-height:1.6; font-family: var(--sans); margin:0; }
+  footer h4{ font-family: var(--mono); font-size: .64rem; letter-spacing: .08em; text-transform: uppercase; color: var(--clay-bright); margin: 0 0 12px; font-weight:500; }
+  footer ul{ list-style:none; margin:0; padding:0; }
+  footer li{ margin-bottom: 8px; font-size: .86rem; color: var(--paper-soft); }
+  footer li:last-child{ margin-bottom:0; }
+  footer a{ font-size: .86rem; color: var(--paper-soft); transition: color .25s var(--ease); }
+  footer a:hover{ color: var(--clay-bright); }
+  .footer-bottom{ padding-top: 18px; text-align:center; font-family: var(--mono); font-size: .68rem; color: var(--paper-soft); }
+
+  @media (max-width: 640px){
+    .shell{ padding: 0 20px; }
+    .footer-grid{ justify-content:center; text-align:center; }
+    .footer-brand p{ margin:0 auto; }
+    .footer-logo-img{ margin-left:auto; margin-right:auto; }
+  }
+
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } [data-reveal]{ transition: opacity .3s linear; transform:none; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" id="siteNav" aria-label="Primary">
+  <ul class="nav-menu-centered">
+    <li><a class="nav-link" href="index.html">Home</a></li>
+    <li><a class="nav-link active" href="about.html">About</a></li>
+    <li>
+      <a class="nav-logo" href="index.html" aria-label="APS Land Services — Home">
+        <img class="nav-logo-img" src="assets/APSLand_Logo.png" alt="APS Land" decoding="async" onerror="this.style.display='none';document.getElementById('navLogoFallback').style.display='inline'">
+        <span id="navLogoFallback" class="nav-logo-fallback" style="display:none;">APS Land</span>
+      </a>
+    </li>
+    <li><a class="nav-link" href="index.html#capabilities">Services</a></li>
+    <li><a class="nav-link" href="#footer">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<header class="about-hero shell" data-reveal>
+  <h1>We are APS Land</h1>
+</header>
+
+<!-- OUR COMPANY -->
+<section class="company-section shell">
+  <div class="company-grid" data-reveal>
+    <div class="company-title">
+      <h2>Setting the Standard Since 1980</h2>
+    </div>
+    <div class="company-body">
+      <p class="lead">APS began in 1980 as Allstate Permit Services. From its roots in permitting, the company has since grown to support energy, exploration, and infrastructure projects across North America.</p>
+      <p>Our work has spanned hundreds of successful projects in 23 states, with additional project experience in Alberta and Saskatchewan. Thousands of square miles have been successfully permitted. We don't outsource communication; our team has coordinated directly with thousands of landowners across private, state, federal, and tribal lands. Decades of experience have refined our approach as we continue to advance our technology, processes, and project management capabilities without losing sight of what matters most: getting the details right. We take great pride in protecting landowners, field crews, the environment, and the projects we're entrusted with.</p>
+      <p>In August 2026, we became APS Land Services. The new name reflects the depth of expertise and range of capabilities we've built through decades in the field while carrying forward the standard we began with: hard work, honesty, and being exceptionally good at what we do.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MEET THE TEAM -->
+<section class="team-section">
+  <div class="shell">
+    <div class="section-head-center" data-reveal>
+      <span class="eyebrow">Leadership</span>
+      <h2>Meet the Team</h2>
+    </div>
+
+    <div class="team-list">
+      <!-- Mark -->
+      <article class="team-profile" data-reveal>
+        <div class="team-photo-frame">
+          <img src="assets/mark_photo.jpg" alt="Mark Fischbuch, President &amp; Founder" loading="lazy">
+        </div>
+        <div class="team-profile-content">
+          <span class="team-index">01</span>
+          <h3>Mark Fischbuch</h3>
+          <span class="team-role">President &amp; Founder</span>
+          <p class="team-bio">Mark Fischbuch founded Allstate Permit Services in 1980 after years of hard work across surveying, drilling, permitting, and field operations. He learned the industry firsthand, from the science and technology behind it to the realities of difficult field work. That practical knowledge shaped APS's comprehensive approach to land services and remains at the foundation of the company today.</p>
+          <p class="team-meta">With APS Since 1980</p>
+        </div>
+      </article>
+
+      <!-- Zane -->
+      <article class="team-profile team-profile-reverse" data-reveal>
+        <div class="team-photo-frame">
+          <img src="assets/zane_photo1.jpg" alt="Zane Nelson, Vice President" loading="lazy">
+        </div>
+        <div class="team-profile-content">
+          <span class="team-index">02</span>
+          <h3>Zane Nelson</h3>
+          <span class="team-role">Vice President</span>
+          <p class="team-bio">Zane Nelson joined APS in 2010, building on a successful career spanning accounting, business analysis, and enterprise operations. He's combined those disciplines to lead the company's day-to-day operations, transform its financial and operational structure, and expand its capabilities. He has developed extensive knowledge of land services through years of hands-on project and field experience. Zane remains deeply involved in strengthening client relationships, personally overseeing field work, and positioning APS for new opportunities across the industry.</p>
+          <p class="team-meta">With APS Since 2010</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- YOU STAY IN CONTROL OF YOUR LAND -->
+<section class="control-section shell">
+  <div class="control-header" data-reveal>
+    <h2>You Stay in Control of Your Land</h2>
+    <p>If APS has contacted you, we're representing a company whose project may involve your property. We'll tell you who we represent, why we've contacted you, what is being requested, and what work may take place.</p>
+  </div>
+
+  <div class="control-grid" data-reveal>
+    <div class="control-card">
+      <h3>Not a Mineral Lease</h3>
+      <p>Seismic survey access does not transfer your mineral rights.</p>
+    </div>
+    <div class="control-card">
+      <h3>Not Drilling or Fracking</h3>
+      <p>Seismic surveying maps the subsurface. It does not extract the resources beneath it.</p>
+    </div>
+    <div class="control-card">
+      <h3>No Transfer of Property Ownership</h3>
+      <p>A seismic access agreement does not transfer ownership of your property.</p>
+    </div>
+    <div class="control-card">
+      <h3>Defined Access &amp; Compensation</h3>
+      <p>The agreement defines the permitted activities, access, compensation, and other terms before work begins.</p>
+    </div>
+  </div>
+
+  <div class="control-subtext" data-reveal>
+    <p>For seismic survey projects, APS secures defined access for crews and equipment used to map the geology beneath the surface. These agreements allow specific survey activities without transferring ownership of your property or mineral rights.</p>
+    <br>
+    <p>APS also supports right-of-way acquisition and other energy, utility, telecommunications, and infrastructure projects. The rights and agreements involved vary by project. We'll explain exactly what is being requested, why it's needed, and the terms that apply to your property.</p>
+  </div>
+
+  <div class="page-nav-links" data-reveal>
+    <a class="page-nav-link" href="index.html#clients">
+      See Who We've Worked With — View companies APS has represented <span class="arrow">→</span>
+    </a>
+    <a class="page-nav-link" href="mailto:allstatepermit@allstatepermit.com">
+      Speak Directly With APS — Contact APS leadership <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- CTA & FOOTER -->
+<section class="cta-band">
+  <div class="shell cta-inner" data-reveal>
+    <h2>Ready when you are.</h2>
+    <div class="cta-actions">
+      <a class="cta-btn" href="tel:+13039035873">Call 303-903-5873 <span class="arrow">→</span></a>
+      <a class="cta-btn" href="mailto:allstatepermit@allstatepermit.com">Email allstatepermit@allstatepermit.com <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="shell">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img class="footer-logo-img" src="assets/APSLand_Logo.png" alt="APS Land Services" decoding="async" onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='block'">
+        <span id="footerLogoFallback" class="footer-brand-fallback">APS Land Services</span>
+        <p>Setting the Standard Since 1980</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+13039035873">303-903-5873</a></li>
+          <li><a href="mailto:allstatepermit@allstatepermit.com">allstatepermit@allstatepermit.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Headquarters</h4>
+        <ul>
+          <li>Cache Valley, Utah</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 APS Land Services. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav = document.getElementById('siteNav');
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 12); }
+  document.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  /* Reveal-on-scroll */
+  var reveals = document.querySelectorAll('[data-reveal]');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('in-view'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in-view'); });
+  }
+})();
+</script>
+
+</body>
+</html>
