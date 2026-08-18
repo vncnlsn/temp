@@ -143,23 +143,23 @@
   .section-head-center h2{ font-size: clamp(1.5rem, 2.4vw, 1.9rem); color: var(--navy); }
 
   .team-list{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: clamp(24px, 3.5vw, 48px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 3.2vw, 40px);
     max-width: 1080px;
     margin: clamp(20px, 3vw, 32px) auto 0;
-    align-items: start;
   }
 
   .team-profile{
     display: flex;
-    gap: clamp(14px, 1.6vw, 20px);
+    align-items: center;
+    gap: clamp(28px, 3.4vw, 44px);
   }
 
   .team-photo-frame{
     position: relative;
     flex: 0 0 auto;
-    width: clamp(96px, 11vw, 128px);
+    width: clamp(150px, 15vw, 200px);
     aspect-ratio: 1 / 1;
     overflow: hidden;
     border-radius: 3px;
@@ -172,19 +172,19 @@
     object-position: center top;
   }
 
-  .team-profile-content{ min-width: 0; }
+  .team-profile-content{ min-width: 0; flex: 1; }
 
   .team-index{
     display: block;
     font-family: var(--mono);
-    font-size: .68rem;
+    font-size: .72rem;
     letter-spacing: .12em;
     color: var(--brass);
     margin-bottom: 6px;
   }
 
   .team-profile-content h3{
-    font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+    font-size: clamp(1.3rem, 1.8vw, 1.6rem);
     color: var(--navy);
     margin-bottom: 2px;
     line-height: 1.15;
@@ -193,17 +193,17 @@
   .team-role{
     display: block;
     font-family: var(--mono);
-    font-size: .66rem;
+    font-size: .72rem;
     letter-spacing: .06em;
     text-transform: uppercase;
     color: var(--clay);
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 
   .team-bio{
-    font-size: .76rem;
-    line-height: 1.48;
+    font-size: .88rem;
+    line-height: 1.55;
     color: var(--ink);
     margin: 0 0 8px;
   }
@@ -211,7 +211,7 @@
   .team-meta{
     display: inline-block;
     font-family: var(--mono);
-    font-size: .62rem;
+    font-size: .64rem;
     letter-spacing: .05em;
     text-transform: uppercase;
     color: var(--brass);
@@ -219,14 +219,15 @@
   }
 
   @media (max-width: 780px) {
-    .team-list{
-      grid-template-columns: 1fr;
-      gap: clamp(28px, 5vw, 40px);
+    .team-profile{
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
     }
     .team-photo-frame{
-      width: clamp(90px, 26vw, 120px);
+      width: clamp(120px, 30vw, 160px);
     }
-    .team-bio{ font-size: .82rem; }
+    .team-bio{ font-size: .9rem; }
   }
 
   /* ================= YOU STAY IN CONTROL ================= */
