@@ -32,8 +32,8 @@
   }
 
   *{ box-sizing: border-box; }
-  html{ scroll-behavior: smooth; }
-  body{ margin:0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  html{ scroll-behavior: smooth; overscroll-behavior-y: none; }
+  body{ margin:0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; overscroll-behavior-y: none; }
   img{ max-width:100%; display:block; }
   a{ color:inherit; text-decoration:none; }
   ::selection{ background: var(--clay); color: var(--paper); }
@@ -95,7 +95,7 @@
      unit on the first screen, echoing the homepage hero's restraint. */
   .approach-section{ padding: clamp(56px, 6.5vw, 84px) 0 clamp(64px, 7.5vw, 96px); text-align: center; }
 
-  .approach-intro{ max-width: 740px; margin: 0 auto; }
+  .approach-intro{ max-width: 900px; margin: 0 auto; }
   .approach-intro p{ font-size: 1.02rem; line-height: 1.65; color: var(--ink); margin: 0 0 16px; }
   .approach-intro p:last-child{ margin-bottom: 0; }
   .approach-intro p.lead{ font-size: 1.18rem; font-weight: 500; color: var(--navy); }
@@ -120,7 +120,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: clamp(20px, 2.4vw, 30px);
-    max-width: 1080px;
+    max-width: 1240px;
     margin: 0 auto;
     align-items: stretch;
     text-align: left;
@@ -134,12 +134,7 @@
     transition: transform .3s var(--ease), box-shadow .3s var(--ease);
   }
   .pillar-card:hover{ transform: translateY(-3px); box-shadow: 0 2px 4px rgba(34,28,21,.05), 0 14px 28px rgba(34,28,21,.08); }
-  .pillar-num{
-    display: block;
-    font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase;
-    font-weight: 600; color: var(--brass); margin-bottom: 14px;
-  }
-  .pillar-card h3{ font-size: 1.14rem; color: var(--navy); margin: 0 0 8px; line-height: 1.3; }
+  .pillar-card h3{ font-size: 1.14rem; color: var(--navy); margin: 0 0 8px; line-height: 1.3; text-align: center; }
   .pillar-card p{ font-size: .93rem; line-height: 1.58; color: var(--ink-soft); margin: 0; }
 
   @media (max-width: 900px){
@@ -326,17 +321,14 @@
 
   <div class="pillars-row" data-reveal>
     <div class="pillar-card">
-      <span class="pillar-num">01</span>
       <h3>Senior Oversight</h3>
       <p>Experienced APS leadership stays directly involved in day-to-day project execution and provides clear, consistent communication.</p>
     </div>
     <div class="pillar-card">
-      <span class="pillar-num">02</span>
       <h3>Controlled Execution</h3>
       <p>APS brings order to complex project information. Ownership records, GIS data, access agreements, reporting, project status, and field operations stay organized, current, and connected as the project develops. As scope and field personnel increase, APS maintains the same control without compromising accuracy, quality, safety, or critical timelines.</p>
     </div>
     <div class="pillar-card">
-      <span class="pillar-num">03</span>
       <h3>Turnkey Pricing</h3>
       <p>APS defines the scope and establishes a guaranteed price before work begins. No surprises.</p>
     </div>
@@ -570,6 +562,9 @@
 
 <script>
 (function(){
+  if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+  window.scrollTo(0, 0);
+
   var nav = document.getElementById('siteNav');
   function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 12); }
   document.addEventListener('scroll', onScroll, { passive:true });
