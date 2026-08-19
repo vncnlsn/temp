@@ -234,7 +234,9 @@
      geography instead of a sidebar next to it. */
   .map-canvas-wrap{
     display:flex;
+    align-items:center;
     justify-content:center;
+    gap: clamp(24px, 3.2vw, 56px);
     max-width: 1780px;
     margin: 0 auto;
   }
@@ -306,63 +308,63 @@
   .hq-marker:hover .hq-ring,
   .hq-marker.pinned .hq-ring{ stroke: var(--glow-line); }
 
-  /* Info card: on desktop this floats as an absolutely positioned
-     overlay anchored to the top-right corner of the map stage — clear
-     of the coverage geography (which clusters center/west), reading
-     as a label pinned to the frame rather than a strip fighting the
-     states underneath it. Text lines up left under a small top rule
-     instead of centering. */
+  /* Info card: now a normal flex sibling of the map stage, not an
+     overlay on top of it — desktop sits to the side, vertically
+     centered next to the map, so nothing ever floats over the
+     geography. Tablet/mobile drop it below the map, centered, with
+     its own margin so it never touches the map edge. */
   .map-state-panel{
-    position: absolute;
-    top: clamp(4px, 1vw, 16px);
-    right: clamp(4px, 1vw, 16px);
-    left: auto;
-    transform: translateY(-6px);
-    width: 220px;
-    padding: 12px 18px;
+    flex: 0 0 220px;
+    align-self: center;
+    padding: 14px 20px;
     background: rgba(22,34,44,.85);
-    border-top: 2px solid var(--glow-line);
+    border-left: 2px solid var(--glow-line);
     box-shadow: 0 12px 30px rgba(0,0,0,.35);
     -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
     opacity: 0;
+    transform: translateX(-10px);
     transition: opacity .25s var(--ease), transform .25s var(--ease);
     pointer-events: none;
     text-align:left;
   }
-  .map-state-panel.msp-visible{ opacity: 1; transform: translateY(0); }
+  .map-state-panel.msp-visible{ opacity: 1; transform: translateX(0); }
   .msp-hq-label{ display:none; font-family: var(--mono); font-weight: 600; font-size: .66rem; letter-spacing:.12em; text-transform:uppercase; color: var(--glow-strong); }
   .msp-hq-rule{ display:none; width: 28px; height: 1px; background: var(--glow-line); margin: 7px 0; }
   .map-state-panel.msp-hq .msp-hq-label,
   .map-state-panel.msp-hq .msp-hq-rule{ display:block; }
-  .msp-name{ display:block; font-family: var(--serif); font-weight: 500; font-size: 1.05rem; color: var(--paper); white-space: nowrap; }
+  .msp-name{ display:block; font-family: var(--serif); font-weight: 500; font-size: 1.05rem; color: var(--paper); }
   .msp-county{ display:none; font-family: var(--mono); font-weight: 500; font-size: .74rem; letter-spacing:.04em; text-transform:uppercase; color: var(--glow-strong); text-align:left; margin-top: 5px; }
   .msp-county.msp-county-visible{ display:block; }
 
-  /* Below this, the panel drops out of the map stage entirely and
-     into normal flow — stacked under the map, centered, which reads
-     as "bottom, centered" on tablet and mobile alike. */
   @media (max-width: 1280px){
-    .map-canvas-wrap{ display:flex; flex-direction:column; gap: 18px; }
-    .map-stage{ order:1; max-width: 1100px; height: min(50vh, 560px); }
+    .map-canvas-wrap{ flex-direction:column; gap: 18px; }
+    .map-stage{ max-width: 1100px; height: min(50vh, 560px); }
     .map-state-panel{
-      order:2;
-      position: static;
-      top:auto; right:auto; left:auto;
-      transform: none;
+      flex: 0 0 auto;
       width:auto;
       max-width: 320px;
       margin: 0 auto;
       text-align:center;
+      border-left:none;
+      border-top: 2px solid var(--glow-line);
+      transform: translateY(-8px);
     }
-    .map-state-panel.msp-visible{ transform: none; }
+    .map-state-panel.msp-visible{ transform: translateY(0); }
     .msp-name{ white-space: normal; }
     .msp-hq-rule{ margin: 7px auto; }
     .msp-county{ text-align:center; }
   }
 
   @media (max-width: 640px){
-    .map-state-panel{ margin-top: 4px; }
+    .map-state-panel{
+      max-width: 240px;
+      padding: 10px 16px;
+      margin-top: 6px;
+    }
+    .msp-name{ font-size: .92rem; }
+    .msp-county{ font-size: .66rem; }
+    .msp-hq-label{ font-size: .6rem; }
   }
 
   /* Portrait / narrow phones: the map must be driven by the available
@@ -563,12 +565,12 @@
     <div class="map-canvas-wrap" data-reveal>
       <div class="map-stage">
         <div id="us-map" class="map-canvas" aria-label="Interactive map of the contiguous United States where APS Land Services operates"></div>
-        <div id="map-state-panel" class="map-state-panel">
-          <span id="msp-hq-label" class="msp-hq-label">Headquarters</span>
-          <span id="msp-hq-rule" class="msp-hq-rule" aria-hidden="true"></span>
-          <span id="msp-name" class="msp-name"></span>
-          <span id="msp-county" class="msp-county"></span>
-        </div>
+      </div>
+      <div id="map-state-panel" class="map-state-panel">
+        <span id="msp-hq-label" class="msp-hq-label">Headquarters</span>
+        <span id="msp-hq-rule" class="msp-hq-rule" aria-hidden="true"></span>
+        <span id="msp-name" class="msp-name"></span>
+        <span id="msp-county" class="msp-county"></span>
       </div>
     </div>
   </div>
