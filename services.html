@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/jpeg" href="assets/APS_favicon_2.jpg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — APS Land Services est. 1980</title>
+<meta name="description" content="Title &amp; ownership research, GIS services, seismic permitting, and right-of-way acquisition for energy and exploration projects nationwide. Setting the standard since 1980.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:        #1E3B5F;
+    --navy-deep:   #16222C;
+    --paper:       #FAF6EA;
+    --paper-dim:   #EEE6D2;
+    --clay:        #B23A28;
+    --clay-bright: #D9755F;
+    --brass:       #8C8271;
+    --ink:         #221C15;
+    --ink-soft:    rgba(34,28,21,.66);
+    --paper-soft:  rgba(250,246,234,.9);
+    --line:        rgba(28,27,24,.14);
+    --line-on-navy: rgba(250,246,234,.16);
+    --ease: cubic-bezier(.22,.61,.36,1);
+    --shell: 1440px;
+    --nav-h: 78px;
+    --serif: 'Spectral', Georgia, serif;
+    --sans: 'Public Sans', -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{ margin:0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  ::selection{ background: var(--clay); color: var(--paper); }
+  :focus-visible{ outline: 2px solid var(--brass); outline-offset: 3px; }
+  .shell{ max-width: var(--shell); margin: 0 auto; padding: 0 56px; }
+
+  .eyebrow{ font-family: var(--mono); font-size: .72rem; letter-spacing: .07em; text-transform: uppercase; font-weight: 500; color: var(--clay); }
+  .eyebrow::before{ content:"— "; color: var(--brass); }
+
+  h1,h2,h3,h4{ font-family: var(--serif); font-weight: 600; letter-spacing: -.005em; margin:0; }
+
+  [data-reveal]{ opacity: 0; transform: translateY(16px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+  [data-reveal].in-view{ opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 640px){ .shell{ padding: 0 20px; } }
+
+  /* ================= NAV ================= */
+  .site-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    height: var(--nav-h); background: var(--navy-deep);
+    border-bottom: 1px solid var(--line-on-navy);
+    box-shadow: 0 4px 18px rgba(0,0,0,.14);
+    transition: box-shadow .35s var(--ease);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .site-nav.scrolled { box-shadow: 0 8px 26px rgba(0,0,0,.22); }
+  .nav-menu-centered {
+    display: flex; align-items: center; justify-content: center;
+    gap: clamp(28px, 5.5vw, 68px); list-style: none; margin: 0; padding: 0 24px;
+  }
+  .nav-logo { display: flex; align-items: center; justify-content: center; }
+  .nav-logo-img { height: 44px; width: auto; max-height: calc(var(--nav-h) - 22px); display: block; filter: brightness(0) invert(1); }
+  .nav-logo-fallback { font-family: var(--serif); font-weight: 600; font-size: 1.35rem; color: var(--paper); }
+  .nav-link {
+    font-family: var(--mono); font-size: .88rem; letter-spacing: .09em; text-transform: uppercase;
+    font-weight: 500; color: var(--paper-soft); transition: color .25s var(--ease); white-space: nowrap;
+  }
+  .nav-link:hover, .nav-link.active { color: var(--clay-bright); }
+  @media (max-width: 768px) {
+    .nav-menu-centered { gap: 18px; padding: 0 16px; }
+    .nav-link { font-size: .74rem; letter-spacing: .05em; }
+    .nav-logo-img { height: 32px; }
+  }
+
+  /* ================= HERO — matches about.html exactly ================= */
+  .svc-hero{
+    padding: calc(var(--nav-h) + clamp(48px, 6vw, 72px)) 0 clamp(48px, 6vw, 72px);
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .svc-hero h1{ font-size: clamp(2.8rem, 6vw, 4.8rem); color: var(--navy); line-height: 1.08; }
+
+  /* ================= OUR APPROACH (mirrors about.html's company-section) ================= */
+  .approach-section{ padding: clamp(72px, 9vw, 108px) 0; }
+  .approach-grid{
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: start;
+  }
+  .approach-title h2{ font-size: clamp(1.9rem, 3.6vw, 2.8rem); color: var(--navy); line-height: 1.15; }
+  .approach-body p{ font-size: 1.03rem; line-height: 1.68; color: var(--ink); margin: 0 0 20px; }
+  .approach-body p:last-child{ margin-bottom: 0; }
+  .approach-body p.lead{ font-size: 1.15rem; font-weight: 500; color: var(--navy); }
+
+  @media (max-width: 900px){
+    .approach-grid{ grid-template-columns: 1fr; gap: 24px; text-align: center; }
+    .approach-title{ display: flex; justify-content: center; }
+  }
+
+  /* --- How We Work: quiet three-up list beneath the intro, same
+     visual weight as about.html's reassure-item entries, no table
+     styling, no mono labels. --- */
+  .principles-row{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(28px, 3.4vw, 44px);
+    max-width: 1080px;
+    margin: clamp(48px, 6vw, 68px) auto 0;
+    padding-top: clamp(40px, 5vw, 56px);
+    border-top: 1px solid var(--line);
+  }
+  .principle h3{ font-size: 1.16rem; color: var(--navy); margin: 0 0 8px; line-height: 1.3; }
+  .principle p{ font-size: .96rem; line-height: 1.6; color: var(--ink-soft); margin: 0; }
+  @media (max-width: 900px){
+    .principles-row{ grid-template-columns: 1fr; text-align: center; gap: 28px; }
+  }
+
+  /* ================= SAFETY / HSE (mirrors about.html's team-section) ================= */
+  .hse-section{ background: var(--navy-deep); padding: clamp(72px, 8vw, 104px) 0; }
+  .section-head-center{ text-align: center; max-width: 640px; margin: 0 auto clamp(24px, 3vw, 36px); }
+  .section-head-center h2{ font-size: clamp(2rem, 3.4vw, 2.8rem); color: var(--navy); }
+  .hse-section .section-head-center h2{ color: var(--paper); }
+
+  .hse-content{ max-width: 680px; margin: clamp(24px, 3vw, 32px) auto 0; }
+  .hse-content p{ font-size: 1rem; line-height: 1.75; color: var(--paper-soft); margin: 0 0 20px; }
+  .hse-content p:last-child{ margin-bottom: 0; }
+
+  .hse-lead{
+    max-width: 700px; margin: clamp(36px, 4.5vw, 52px) auto 0; text-align: center;
+    font-family: var(--serif); font-style: italic; font-weight: 500;
+    font-size: clamp(1.2rem, 2vw, 1.45rem); color: var(--paper); line-height: 1.5;
+  }
+
+  .hse-badge{ display: flex; flex-direction: column; align-items: center; gap: 10px; margin: clamp(32px, 4vw, 44px) auto 0; }
+  .hse-badge-mark{
+    width: 60px; height: 60px; border: 1px solid var(--line-on-navy); border-radius: 3px;
+  }
+  .hse-badge span{
+    font-family: var(--mono); font-size: .64rem; letter-spacing: .06em; text-transform: uppercase;
+    color: rgba(250,246,234,.4);
+  }
+
+  /* ================= OUR CAPABILITIES =================
+     Editorial, always-open list — matches the prose rhythm of
+     approach-body/company-body and reuses the site's established
+     list treatment (mono micro-label + top-ruled items, as seen in
+     index.html's cap-list) instead of an interactive accordion. */
+  .capabilities-section{ padding: clamp(72px, 9vw, 108px) 0 clamp(64px, 7vw, 96px); }
+
+  .service-list{
+    max-width: 900px;
+    margin: clamp(44px, 5.5vw, 64px) auto 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-block{
+    padding: clamp(48px, 6vw, 72px) 0;
+    border-top: 1px solid var(--line);
+  }
+  .service-list .service-block:first-child{ border-top: none; padding-top: 0; }
+
+  .service-name{
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    color: var(--navy);
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+
+  .service-prose p{ font-size: 1.02rem; line-height: 1.75; color: var(--ink); margin: 0 0 18px; max-width: 700px; }
+  .service-prose p:last-child{ margin-bottom: 0; }
+
+  .service-lists{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(24px, 3vw, 40px);
+    margin-top: clamp(28px, 3.4vw, 36px);
+  }
+  .service-list-col h4{
+    font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase;
+    font-weight: 600; color: var(--brass); margin: 0 0 14px;
+  }
+  .service-list-col ul{ list-style: none; margin: 0; padding: 0; }
+  .service-list-col li{
+    font-size: .92rem; color: var(--ink-soft); padding: 9px 0; border-top: 1px solid var(--line); line-height: 1.5;
+  }
+  .service-list-col li:first-child{ border-top: none; padding-top: 0; }
+
+  @media (max-width: 720px){
+    .service-lists{ grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  /* ================= CTA + FOOTER ================= */
+  .cta-band{ background: var(--navy-deep); padding: clamp(64px, 7vw, 92px) 0; }
+  .cta-inner{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap: clamp(24px, 3vw, 32px); text-align:center; }
+  .cta-inner h2{ font-size: clamp(1.6rem, 2.8vw, 2.2rem); color: var(--paper); }
+  .cta-actions{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap: 16px; }
+  .cta-btn{
+    display:inline-flex; align-items:center; gap: 12px; padding: 15px 28px;
+    border: 1px solid var(--paper-soft); color: var(--paper);
+    font-size:.86rem; font-weight:600; flex:0 0 auto;
+    transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+  }
+  .cta-btn:hover{ background: var(--clay); border-color: var(--clay); }
+  .cta-btn .arrow{ transition: transform .25s var(--ease); }
+  .cta-btn:hover .arrow{ transform: translateX(4px); }
+
+  footer{ background: var(--navy-deep); color: var(--paper); padding: 44px 0 26px; }
+  .footer-grid{ display:flex; flex-wrap:wrap; justify-content:center; gap: 48px clamp(48px, 6vw, 88px); padding-bottom: 30px; border-bottom: 1px solid var(--line-on-navy); text-align:left; }
+  .footer-brand{ display:block; }
+  .footer-logo-img{ height: 28px; width:auto; filter: brightness(0) invert(1); margin-bottom: 10px; }
+  .footer-brand-fallback{ display:none; font-family: var(--serif); font-weight:600; font-size: 1.15rem; color: var(--paper); margin-bottom: 8px; }
+  .footer-brand p{ font-size: .82rem; color: var(--paper-soft); max-width: 220px; line-height:1.6; font-family: var(--sans); margin:0; }
+  footer h4{ font-family: var(--mono); font-size: .64rem; letter-spacing: .08em; text-transform: uppercase; color: var(--clay-bright); margin: 0 0 12px; font-weight:500; }
+  footer ul{ list-style:none; margin:0; padding:0; }
+  footer li{ margin-bottom: 8px; font-size: .86rem; color: var(--paper-soft); }
+  footer li:last-child{ margin-bottom:0; }
+  footer a{ font-size: .86rem; color: var(--paper-soft); transition: color .25s var(--ease); }
+  footer a:hover{ color: var(--clay-bright); }
+  .footer-bottom{ padding-top: 18px; text-align:center; font-family: var(--mono); font-size: .68rem; color: var(--paper-soft); }
+
+  @media (max-width: 640px){ .footer-grid{ justify-content:center; text-align:center; } .footer-brand p{ margin:0 auto; } .footer-logo-img{ margin-left:auto; margin-right:auto; } }
+
+  /* Mobile breathing room — matches the rhythm used on about.html */
+  @media (max-width: 640px){
+    .svc-hero{ padding-top: calc(var(--nav-h) + clamp(48px, 9vw, 72px)); }
+    .approach-section{ padding-top: clamp(64px, 12vw, 88px); padding-bottom: clamp(64px, 12vw, 88px); }
+    .hse-section{ padding-top: clamp(72px, 12vw, 96px); padding-bottom: clamp(72px, 12vw, 96px); }
+    .capabilities-section{ padding-top: clamp(72px, 12vw, 96px); }
+    .cta-band{ padding-top: clamp(80px, 12vw, 104px); padding-bottom: clamp(80px, 12vw, 104px); }
+  }
+
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } [data-reveal]{ transition: opacity .3s linear; transform:none; } }
+</style>
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav" aria-label="Primary">
+  <ul class="nav-menu-centered">
+    <li><a class="nav-link" href="index.html">Home</a></li>
+    <li><a class="nav-link" href="about.html">About</a></li>
+    <li>
+      <a class="nav-logo" href="index.html" aria-label="APS Land Services — Home">
+        <img class="nav-logo-img" src="assets/APSLand_Logo.png" alt="APS Land" decoding="async" onerror="this.style.display='none';document.getElementById('navLogoFallback').style.display='inline'">
+        <span id="navLogoFallback" class="nav-logo-fallback" style="display:none;">APS Land</span>
+      </a>
+    </li>
+    <li><a class="nav-link active" href="services.html">Services</a></li>
+    <li><a class="nav-link" href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO — same treatment as about.html -->
+<header class="svc-hero shell" data-reveal>
+  <h1>We&rsquo;ve Done It All.</h1>
+</header>
+
+<!-- OUR APPROACH -->
+<section class="approach-section shell">
+  <div class="approach-grid" data-reveal>
+    <div class="approach-title">
+      <h2>How We Work</h2>
+    </div>
+    <div class="approach-body">
+      <p class="lead">APS can work a land project from initial ownership research through active field operations, or step in and course-correct an existing project at any point.</p>
+      <p>More than 45 years supporting energy, exploration, and infrastructure projects has taken us across 23 states. We&rsquo;ve worked through complex ownership, difficult jurisdictions, and challenging access while successfully permitting thousands of square miles and completing extensive right-of-way (ROW) acquisition.</p>
+    </div>
+  </div>
+
+  <div class="principles-row" data-reveal>
+    <div class="principle">
+      <h3>Senior Oversight</h3>
+      <p>Experienced APS leadership stays directly involved in day-to-day project execution and provides clear, consistent communication.</p>
+    </div>
+    <div class="principle">
+      <h3>Controlled Execution</h3>
+      <p>APS brings order to complex project information. Ownership records, GIS data, access agreements, reporting, project status, and field operations stay organized, current, and connected as the project develops. As scope and field personnel increase, APS maintains the same control without compromising accuracy, quality, safety, or critical timelines.</p>
+    </div>
+    <div class="principle">
+      <h3>Turnkey Pricing</h3>
+      <p>APS defines the scope and establishes a guaranteed price before work begins. No surprises.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY / HSE -->
+<section class="hse-section" data-reveal>
+  <div class="shell">
+    <div class="section-head-center">
+      <h2>Safety / HSE</h2>
+    </div>
+    <div class="hse-content">
+      <p>APS personnel are accountable for Health, Safety, and Environmental (HSE) compliance and take an active role in accident prevention. Our work follows a company Safety Program Manual and Injury &amp; Illness Prevention Program (IIPP), along with applicable client and project requirements.</p>
+      <p>In the field, APS participates in daily safety briefings and Job Safety Analyses (JSAs), monitors operations for compliance, and exercises stop-work authority when conditions or activity fall outside established requirements.</p>
+    </div>
+    <p class="hse-lead">APS Land Services is an active and compliant member of ISNetworld.</p>
+    <div class="hse-badge" aria-hidden="true">
+      <div class="hse-badge-mark"></div>
+      <span>ISNetworld badge</span>
+    </div>
+  </div>
+</section>
+
+<!-- OUR CAPABILITIES -->
+<section class="capabilities-section shell" id="services">
+  <div class="section-head-center" data-reveal>
+    <span class="eyebrow">Our Capabilities</span>
+    <h2>Full service, start to finish.</h2>
+  </div>
+
+  <div class="service-list">
+
+    <!-- Title & Ownership -->
+    <article class="service-block" id="title-ownership" data-reveal>
+      <h3 class="service-name">Title &amp; Ownership</h3>
+      <div class="service-prose">
+        <p>APS researches surface and mineral ownership at any stage of a project, from early feasibility through active permitting and acquisition. Preliminary research can reveal who controls the land, how ownership is divided, where access may be difficult, and how many interests will need to be addressed. That information helps define project scope, permitting strategy, staffing, and cost before significant resources are committed.</p>
+        <p>Ownership records can quickly become complicated. Surface and mineral estates may have separated generations ago, interests may be divided among multiple heirs, and federal, state, or tribal lands can involve separate records and approval requirements. APS traces and reconciles ownership through public sources, courthouses, and government archives, then maintains the resulting ownership information for use throughout GIS mapping, permitting, acquisition, and field operations.</p>
+      </div>
+      <div class="service-lists">
+        <div class="service-list-col">
+          <h4>Research Sources</h4>
+          <ul>
+            <li>County Courthouses &amp; Recorder Offices</li>
+            <li>Federal, State &amp; Tribal Land Systems</li>
+            <li>Deeds, Patents &amp; Historical Archives</li>
+          </ul>
+        </div>
+        <div class="service-list-col">
+          <h4>Title Capabilities</h4>
+          <ul>
+            <li>Title Curative</li>
+            <li>Full Title Search to Sovereignty</li>
+            <li>Surface &amp; Mineral Ownership</li>
+            <li>Probate, Heirship &amp; Fractional Interests</li>
+            <li>Land, Surface &amp; Mineral Title Opinions</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- GIS Services -->
+    <article class="service-block" id="gis-services" data-reveal>
+      <h3 class="service-name">GIS Services</h3>
+      <div class="service-prose">
+        <p>APS builds comprehensive project maps and databases that connect ownership and title information to the land itself. Surface and mineral ownership, legal descriptions, topography, infrastructure, project boundaries, and other relevant data are organized geographically for planning, permitting, acquisition, and field use.</p>
+        <p>Surface and mineral interests don&rsquo;t always follow the same boundaries. Historical legal descriptions may not align cleanly with current parcels, and a change in project alignment can introduce an entirely different set of affected properties. APS reconciles those changes in the mapping and maintains the supporting project data as the work develops.</p>
+      </div>
+      <div class="service-lists">
+        <div class="service-list-col">
+          <h4>Mapped Information</h4>
+          <ul>
+            <li>Surface &amp; Mineral Ownership</li>
+            <li>Tracts &amp; Legal Descriptions</li>
+            <li>Topography &amp; Infrastructure</li>
+            <li>Project Boundaries &amp; Alignments</li>
+          </ul>
+        </div>
+        <div class="service-list-col">
+          <h4>GIS Capabilities</h4>
+          <ul>
+            <li>Comprehensive Project Mapping</li>
+            <li>Project Databases</li>
+            <li>Maps &amp; Exhibits</li>
+            <li>Data Maintenance &amp; Updates</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Seismic Permitting -->
+    <article class="service-block" id="seismic-permitting" data-reveal>
+      <h3 class="service-name">Seismic Permitting</h3>
+      <div class="service-prose">
+        <p>Seismic permitting has been at the core of APS&rsquo;s work for more than 45 years. We manage the land access and permitting required for 2D and 3D seismic surveys, microseismic, Vertical Seismic Profile (VSP), and other geophysical field programs.</p>
+        <p>Every property presents unique conditions. Access routes, crops and livestock, fences, water wells, existing infrastructure, environmental restrictions, compensation, and potential damages can all affect where and how survey crews operate. APS personally contacts landowners to explain who we represent, what the survey involves, what access is being requested, and how the property will be used. We negotiate and document those conditions, then oversee their enforcement in the field to protect all parties.</p>
+      </div>
+      <div class="service-lists">
+        <div class="service-list-col">
+          <h4>Permit Acquisition</h4>
+          <ul>
+            <li>2D, 3D, Microseismic &amp; VSP Permitting</li>
+            <li>Surface &amp; Mineral Permitting</li>
+            <li>Landowner Negotiation &amp; Property-Specific Conditions</li>
+            <li>Municipal, County, State &amp; Federal Permitting</li>
+          </ul>
+        </div>
+        <div class="service-list-col">
+          <h4>Project Management</h4>
+          <ul>
+            <li>Permit Status Tracking &amp; Comprehensive Reporting</li>
+            <li>Landowner Payments, Check Processing &amp; Required IRS Filings</li>
+            <li>Surface Damage Coordination &amp; Settlement</li>
+            <li>Field Oversight &amp; Permit Compliance</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Right-of-Way Acquisition -->
+    <article class="service-block" id="right-of-way" data-reveal>
+      <h3 class="service-name">Right-of-Way Acquisition</h3>
+      <div class="service-prose">
+        <p>APS secures linear property rights for pipelines, electric transmission, utilities, telecommunications, roads, and other infrastructure. We verify corridor ownership and existing rights, identify affected tracts and encumbrances, personally contact landowners, negotiate compensation and property terms, and execute easement and access agreements.</p>
+        <p>ROW acquisition develops alongside the route itself. Requirements vary tract by tract, and a rejected agreement, divided interest, existing easement, utility conflict, or physical constraint can change an alignment after acquisition is already underway. A reroute can introduce new parcels, owners, title, mapping, and negotiations into the project. APS identifies these conflicts early and keeps ownership, GIS, acquisition status, and route changes synchronized as the corridor develops.</p>
+      </div>
+      <div class="service-lists">
+        <div class="service-list-col">
+          <h4>Property Rights</h4>
+          <ul>
+            <li>Permanent &amp; Temporary Easements</li>
+            <li>Temporary &amp; Additional Workspace</li>
+            <li>Ingress/Egress &amp; Access Agreements</li>
+            <li>Property Restrictions &amp; Restoration Terms</li>
+          </ul>
+        </div>
+        <div class="service-list-col">
+          <h4>Acquisition Management</h4>
+          <ul>
+            <li>Corridor Ownership, Title &amp; Encumbrance Review</li>
+            <li>Landowner Negotiation &amp; Compensation</li>
+            <li>Acquisition Status Tracking &amp; Reporting</li>
+            <li>Agreement Execution &amp; Documentation</li>
+            <li>Public Agency &amp; Crossing Coordination</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- CTA + FOOTER -->
+<section class="cta-band">
+  <div class="shell cta-inner" data-reveal>
+    <h2>Just Say the Word.</h2>
+    <div class="cta-actions">
+      <a class="cta-btn" href="tel:+13039035873">Call 303-903-5873 <span class="arrow">→</span></a>
+      <a class="cta-btn" href="mailto:allstatepermit@allstatepermit.com">Email allstatepermit@allstatepermit.com <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="shell">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img class="footer-logo-img" src="assets/APSLand_Logo.png" alt="APS Land Services" decoding="async" onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='block'">
+        <span id="footerLogoFallback" class="footer-brand-fallback">APS Land Services</span>
+        <p>Setting the Standard Since 1980</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+13039035873">303-903-5873</a></li>
+          <li><a href="mailto:allstatepermit@allstatepermit.com">allstatepermit@allstatepermit.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Headquarters</h4>
+        <ul>
+          <li>Cache Valley, Utah</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 APS Land Services. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav = document.getElementById('siteNav');
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 12); }
+  document.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  /* Reveal-on-scroll */
+  var reveals = document.querySelectorAll('[data-reveal]');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('in-view'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in-view'); });
+  }
+})();
+</script>
+
+</body>
+</html>
