@@ -40,20 +40,12 @@
   :focus-visible{ outline: 2px solid var(--brass); outline-offset: 3px; }
   .shell{ max-width: var(--shell); margin: 0 auto; padding: 0 56px; }
 
-  h1,h2,h3{ font-family: var(--serif); font-weight: 600; letter-spacing: -.005em; margin:0; }
-
-  /* Shared centered reading column — used throughout this page so the
-     hero, safety note, and service list all share one quiet rhythm
-     instead of reading as separate wide dashboard blocks. */
-  .col{ max-width: 760px; margin: 0 auto; }
-  .col-wide{ max-width: 900px; margin: 0 auto; }
+  h1,h2,h3,h4{ font-family: var(--serif); font-weight: 600; letter-spacing: -.005em; margin:0; }
 
   [data-reveal]{ opacity: 0; transform: translateY(16px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
   [data-reveal].in-view{ opacity: 1; transform: translateY(0); }
 
-  @media (max-width: 640px){
-    .shell{ padding: 0 20px; }
-  }
+  @media (max-width: 640px){ .shell{ padding: 0 20px; } }
 
   /* ================= NAV ================= */
   .site-nav {
@@ -83,84 +75,81 @@
     .nav-logo-img { height: 32px; }
   }
 
-  /* ================= SERVICES HERO ================= */
-  .svc-hero{ padding: calc(var(--nav-h) + clamp(48px, 6vw, 72px)) 0 0; text-align:center; }
-  .svc-hero h1{ font-size: clamp(2.8rem, 6vw, 4.8rem); color: var(--navy); line-height: 1.08; letter-spacing: -.01em; }
-  .svc-hero-rule{ width: 64px; height: 2px; background: var(--clay); margin: 26px auto 0; }
-  .svc-hero-prose{ margin: 28px auto 0; max-width: 600px; text-align:left; }
-  .svc-hero-prose p{ font-size: .96rem; line-height: 1.62; color: var(--ink-soft); margin: 0 0 12px; }
-  .svc-hero-prose p:last-child{ margin-bottom: 0; }
+  /* ================= HERO — matches about.html exactly ================= */
+  .svc-hero{
+    padding: calc(var(--nav-h) + clamp(48px, 6vw, 72px)) 0 clamp(48px, 6vw, 72px);
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .svc-hero h1{ font-size: clamp(2.8rem, 6vw, 4.8rem); color: var(--navy); line-height: 1.08; }
 
-  /* --- How We Work: horizontal rows, label left / copy right --- */
-  .how-we-work{
-    margin-top: clamp(56px, 7vw, 84px);
-    padding: clamp(36px, 4.5vw, 52px) 0 clamp(8px, 1vw, 12px);
+  /* ================= OUR APPROACH (mirrors about.html's company-section) ================= */
+  .approach-section{ padding: clamp(72px, 9vw, 108px) 0; }
+  .approach-grid{
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: start;
+  }
+  .approach-title h2{ font-size: clamp(1.9rem, 3.6vw, 2.8rem); color: var(--navy); line-height: 1.15; }
+  .approach-body p{ font-size: 1.03rem; line-height: 1.68; color: var(--ink); margin: 0 0 20px; }
+  .approach-body p:last-child{ margin-bottom: 0; }
+  .approach-body p.lead{ font-size: 1.15rem; font-weight: 500; color: var(--navy); }
+
+  @media (max-width: 900px){
+    .approach-grid{ grid-template-columns: 1fr; gap: 24px; text-align: center; }
+    .approach-title{ display: flex; justify-content: center; }
+  }
+
+  /* --- How We Work: quiet three-up list beneath the intro, same
+     visual weight as about.html's reassure-item entries, no table
+     styling, no mono labels. --- */
+  .principles-row{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(28px, 3.4vw, 44px);
+    max-width: 1080px;
+    margin: clamp(48px, 6vw, 68px) auto 0;
+    padding-top: clamp(40px, 5vw, 56px);
     border-top: 1px solid var(--line);
   }
-  .how-we-work h2{
-    position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
-    clip:rect(0,0,0,0); white-space:nowrap; border:0;
-  }
-  .hww-rows{ max-width: 980px; margin: 0 auto; }
-  .hww-row{
-    display:flex; align-items:baseline; gap: clamp(28px, 4vw, 56px);
-    padding: clamp(22px, 2.8vw, 30px) 0; border-bottom: 1px solid var(--line);
-    text-align:left;
-  }
-  .hww-label{
-    flex: 0 0 clamp(150px, 18vw, 210px);
-    font-family: var(--mono); font-weight: 600; font-size: .82rem; letter-spacing: .06em;
-    text-transform: uppercase; color: var(--clay); line-height: 1.4;
-  }
-  .hww-copy{ flex: 1 1 auto; font-size: .96rem; line-height: 1.7; color: var(--ink-soft); }
-  @media (max-width: 700px){
-    .hww-row{ flex-direction:column; align-items:flex-start; gap: 10px; }
-    .hww-label{ flex-basis:auto; }
+  .principle h3{ font-size: 1.16rem; color: var(--navy); margin: 0 0 8px; line-height: 1.3; }
+  .principle p{ font-size: .96rem; line-height: 1.6; color: var(--ink-soft); margin: 0; }
+  @media (max-width: 900px){
+    .principles-row{ grid-template-columns: 1fr; text-align: center; gap: 28px; }
   }
 
-  /* ================= SAFETY / HSE ================= */
-  .hse-band{ background: var(--navy-deep); padding: clamp(72px, 9vw, 108px) 0; }
-  .hse-inner{ max-width: 1040px; margin: 0 auto; }
-  .hse-band h2{
-    font-size: clamp(2rem, 3.6vw, 2.8rem); color: var(--paper); text-align:center;
-    margin-bottom: clamp(40px, 5vw, 56px);
-  }
-  .hse-cols{ display:grid; grid-template-columns: minmax(0,1.35fr) minmax(0,1fr); gap: clamp(40px, 5vw, 64px); align-items:start; }
-  .hse-body p{ font-size: 1rem; line-height: 1.75; color: var(--paper-soft); margin: 0 0 20px; }
-  .hse-body p:last-child{ margin-bottom: 0; }
+  /* ================= SAFETY / HSE (mirrors about.html's team-section) ================= */
+  .hse-section{ background: var(--navy-deep); padding: clamp(72px, 8vw, 104px) 0; }
+  .section-head-center{ text-align: center; max-width: 640px; margin: 0 auto clamp(24px, 3vw, 36px); }
+  .section-head-center h2{ font-size: clamp(2rem, 3.4vw, 2.8rem); color: var(--navy); }
+  .hse-section .section-head-center h2{ color: var(--paper); }
 
-  .hse-credential{
-    border: 1px solid var(--line-on-navy); padding: clamp(24px, 2.8vw, 32px);
-    display:flex; flex-direction:column; align-items:flex-start; gap: 18px;
-  }
-  .hse-credential-label{
-    font-family: var(--mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase;
-    color: var(--brass);
-  }
-  .hse-badge-slot{
-    display:flex; align-items:center; justify-content:center;
-    width: 100%; max-width: 168px; height: 92px; border: 1px dashed var(--line-on-navy);
-    color: rgba(250,246,234,.4); font-family: var(--mono); font-size: .62rem;
-    letter-spacing: .06em; text-transform: uppercase; text-align:center; padding: 8px;
-  }
-  .hse-member{
-    font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 1.02rem;
-    color: var(--clay-bright); line-height: 1.5; margin: 0;
-  }
-  @media (max-width: 780px){
-    .hse-cols{ grid-template-columns: 1fr; }
-    .hse-credential{ flex-direction:row; align-items:center; flex-wrap:wrap; }
-    .hse-badge-slot{ max-width: 120px; height: 72px; }
+  .hse-content{ max-width: 680px; margin: clamp(24px, 3vw, 32px) auto 0; }
+  .hse-content p{ font-size: 1rem; line-height: 1.75; color: var(--paper-soft); margin: 0 0 20px; }
+  .hse-content p:last-child{ margin-bottom: 0; }
+
+  .hse-lead{
+    max-width: 700px; margin: clamp(36px, 4.5vw, 52px) auto 0; text-align: center;
+    font-family: var(--serif); font-style: italic; font-weight: 500;
+    font-size: clamp(1.2rem, 2vw, 1.45rem); color: var(--paper); line-height: 1.5;
   }
 
-  /* ================= SERVICES TIMELINE ================= */
-  .timeline-section{ padding: clamp(64px, 7vw, 92px) 0 clamp(24px, 3vw, 32px); }
-  .timeline-section-head{ text-align:center; margin-bottom: clamp(56px, 7vw, 84px); }
-  .timeline-section-head h2{ font-size: clamp(2.4rem, 5vw, 3.8rem); color: var(--navy); line-height: 1.05; letter-spacing: -.01em; }
-  .timeline-section-head .svc-hero-rule{ margin: 22px auto 0; }
-  .timeline{ max-width: 780px; margin: 0 auto; }
+  .hse-badge{ display: flex; flex-direction: column; align-items: center; gap: 10px; margin: clamp(32px, 4vw, 44px) auto 0; }
+  .hse-badge-mark{
+    width: 60px; height: 60px; border: 1px solid var(--line-on-navy); border-radius: 3px;
+  }
+  .hse-badge span{
+    font-family: var(--mono); font-size: .64rem; letter-spacing: .06em; text-transform: uppercase;
+    color: rgba(250,246,234,.4);
+  }
+
+  /* ================= OUR CAPABILITIES ================= */
+  .capabilities-section{ padding: clamp(72px, 9vw, 108px) 0 clamp(24px, 3vw, 32px); }
+  .timeline{ max-width: 780px; margin: clamp(32px, 4.5vw, 52px) auto 0; }
 
   .tl-row{ border-bottom: 1px solid var(--line); position: relative; }
+  .tl-row:first-child{ border-top: 1px solid var(--line); }
 
   .tl-trigger{
     display:flex; align-items:center; width:100%; gap: clamp(18px, 3vw, 36px);
@@ -200,10 +189,7 @@
   }
   .tl-row.open::after{ width: 100%; }
 
-  /* Grid-rows animation trick: animates height without JS measurement */
-  .tl-panel{
-    display:grid; grid-template-rows: 0fr; transition: grid-template-rows .5s var(--ease);
-  }
+  .tl-panel{ display:grid; grid-template-rows: 0fr; transition: grid-template-rows .5s var(--ease); }
   .tl-row.open .tl-panel{ grid-template-rows: 1fr; }
   .tl-panel-inner{ overflow:hidden; }
   .tl-panel-content{ padding: 0 0 clamp(40px, 5vw, 56px); }
@@ -235,7 +221,7 @@
     .tl-toggle::after{ transition:none; }
   }
 
-  /* ================= CTA + FOOTER (matches home) ================= */
+  /* ================= CTA + FOOTER ================= */
   .cta-band{ background: var(--navy-deep); padding: clamp(64px, 7vw, 92px) 0; }
   .cta-inner{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap: clamp(24px, 3vw, 32px); text-align:center; }
   .cta-inner h2{ font-size: clamp(1.6rem, 2.8vw, 2.2rem); color: var(--paper); }
@@ -266,6 +252,15 @@
 
   @media (max-width: 640px){ .footer-grid{ justify-content:center; text-align:center; } .footer-brand p{ margin:0 auto; } .footer-logo-img{ margin-left:auto; margin-right:auto; } }
 
+  /* Mobile breathing room — matches the rhythm used on about.html */
+  @media (max-width: 640px){
+    .svc-hero{ padding-top: calc(var(--nav-h) + clamp(48px, 9vw, 72px)); }
+    .approach-section{ padding-top: clamp(64px, 12vw, 88px); padding-bottom: clamp(64px, 12vw, 88px); }
+    .hse-section{ padding-top: clamp(72px, 12vw, 96px); padding-bottom: clamp(72px, 12vw, 96px); }
+    .capabilities-section{ padding-top: clamp(72px, 12vw, 96px); }
+    .cta-band{ padding-top: clamp(80px, 12vw, 104px); padding-bottom: clamp(80px, 12vw, 104px); }
+  }
+
   @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } [data-reveal]{ transition: opacity .3s linear; transform:none; } }
 </style>
 </head>
@@ -286,58 +281,61 @@
   </ul>
 </nav>
 
-<!-- ================= HERO: We've Done It All ================= -->
+<!-- HERO — same treatment as about.html -->
 <header class="svc-hero shell" data-reveal>
   <h1>We&rsquo;ve Done It All.</h1>
-  <div class="svc-hero-rule"></div>
-
-  <div class="svc-hero-prose">
-    <p>APS can work a land project from initial ownership research through active field operations, or step in and course-correct an existing project at any point.</p>
-    <p>More than 45 years supporting energy, exploration, and infrastructure projects has taken us across 23 states. We&rsquo;ve worked through complex ownership, difficult jurisdictions, and challenging access while successfully permitting thousands of square miles and completing extensive right-of-way (ROW) acquisition.</p>
-  </div>
-
-  <div class="how-we-work">
-    <h2>How We Work</h2>
-    <div class="hww-rows">
-      <div class="hww-row">
-        <span class="hww-label">Senior Oversight</span>
-        <p class="hww-copy">Experienced APS leadership stays directly involved in day-to-day project execution and provides clear, consistent communication.</p>
-      </div>
-      <div class="hww-row">
-        <span class="hww-label">Controlled Execution</span>
-        <p class="hww-copy">APS brings order to complex project information. Ownership records, GIS data, access agreements, reporting, project status, and field operations stay organized, current, and connected as the project develops. As scope and field personnel increase, APS maintains the same control without compromising accuracy, quality, safety, or critical timelines.</p>
-      </div>
-      <div class="hww-row">
-        <span class="hww-label">Turnkey Pricing</span>
-        <p class="hww-copy">APS defines the scope and establishes a guaranteed price before work begins. No surprises.</p>
-      </div>
-    </div>
-  </div>
 </header>
 
-<!-- ================= SAFETY / HSE ================= -->
-<section class="hse-band" data-reveal>
-  <div class="shell hse-inner">
-    <h2>Safety / HSE</h2>
-    <div class="hse-cols">
-      <div class="hse-body">
-        <p>APS personnel are accountable for Health, Safety, and Environmental (HSE) compliance and take an active role in accident prevention. Our work follows a company Safety Program Manual and Injury &amp; Illness Prevention Program (IIPP), along with applicable client and project requirements.</p>
-        <p>In the field, APS participates in daily safety briefings and Job Safety Analyses (JSAs), monitors operations for compliance, and exercises stop-work authority when conditions or activity fall outside established requirements.</p>
-      </div>
-      <div class="hse-credential">
-        <span class="hse-credential-label">Compliance Membership</span>
-        <div class="hse-badge-slot" aria-label="ISNetworld badge placeholder">ISNetworld Badge</div>
-        <p class="hse-member">APS Land Services is an active and compliant member of ISNetworld.</p>
-      </div>
+<!-- OUR APPROACH -->
+<section class="approach-section shell">
+  <div class="approach-grid" data-reveal>
+    <div class="approach-title">
+      <h2>How We Work</h2>
+    </div>
+    <div class="approach-body">
+      <p class="lead">APS can work a land project from initial ownership research through active field operations, or step in and course-correct an existing project at any point.</p>
+      <p>More than 45 years supporting energy, exploration, and infrastructure projects has taken us across 23 states. We&rsquo;ve worked through complex ownership, difficult jurisdictions, and challenging access while successfully permitting thousands of square miles and completing extensive right-of-way (ROW) acquisition.</p>
+    </div>
+  </div>
+
+  <div class="principles-row" data-reveal>
+    <div class="principle">
+      <h3>Senior Oversight</h3>
+      <p>Experienced APS leadership stays directly involved in day-to-day project execution and provides clear, consistent communication.</p>
+    </div>
+    <div class="principle">
+      <h3>Controlled Execution</h3>
+      <p>APS brings order to complex project information. Ownership records, GIS data, access agreements, reporting, project status, and field operations stay organized, current, and connected as the project develops. As scope and field personnel increase, APS maintains the same control without compromising accuracy, quality, safety, or critical timelines.</p>
+    </div>
+    <div class="principle">
+      <h3>Turnkey Pricing</h3>
+      <p>APS defines the scope and establishes a guaranteed price before work begins. No surprises.</p>
     </div>
   </div>
 </section>
 
-<!-- ================= SERVICES TIMELINE ================= -->
-<section class="timeline-section shell" id="services">
-  <div class="timeline-section-head" data-reveal>
+<!-- SAFETY / HSE -->
+<section class="hse-section" data-reveal>
+  <div class="shell">
+    <div class="section-head-center">
+      <h2>Safety / HSE</h2>
+    </div>
+    <div class="hse-content">
+      <p>APS personnel are accountable for Health, Safety, and Environmental (HSE) compliance and take an active role in accident prevention. Our work follows a company Safety Program Manual and Injury &amp; Illness Prevention Program (IIPP), along with applicable client and project requirements.</p>
+      <p>In the field, APS participates in daily safety briefings and Job Safety Analyses (JSAs), monitors operations for compliance, and exercises stop-work authority when conditions or activity fall outside established requirements.</p>
+    </div>
+    <p class="hse-lead">APS Land Services is an active and compliant member of ISNetworld.</p>
+    <div class="hse-badge" aria-hidden="true">
+      <div class="hse-badge-mark"></div>
+      <span>ISNetworld badge</span>
+    </div>
+  </div>
+</section>
+
+<!-- OUR CAPABILITIES -->
+<section class="capabilities-section shell" id="services">
+  <div class="section-head-center" data-reveal>
     <h2>Our Capabilities</h2>
-    <div class="svc-hero-rule"></div>
   </div>
 
   <div class="timeline" data-reveal>
@@ -502,7 +500,7 @@
   </div>
 </section>
 
-<!-- ================= CTA + FOOTER ================= -->
+<!-- CTA + FOOTER -->
 <section class="cta-band">
   <div class="shell cta-inner" data-reveal>
     <h2>Just Say the Word.</h2>
@@ -555,7 +553,7 @@
       entries.forEach(function(entry){
         if(entry.isIntersecting){ entry.target.classList.add('in-view'); io.unobserve(entry.target); }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.15 });
     reveals.forEach(function(el){ io.observe(el); });
   } else {
     reveals.forEach(function(el){ el.classList.add('in-view'); });
