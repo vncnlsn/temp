@@ -144,21 +144,38 @@
     flex-wrap:wrap;
     align-items:center;
     justify-content:center;
-    gap: 12px 0;
+    gap: 14px 0;
     width: 100%;
-    max-width: 900px;
+    max-width: 960px;
     margin: clamp(64px, 8vw, 96px) auto 0;
-    padding: clamp(24px, 3vw, 30px) 0;
+    padding: clamp(26px, 3.2vw, 34px) 0;
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
   }
-  .hero-capabilities span:not(.hero-sep){ font-family: var(--mono); font-size: .76rem; letter-spacing: .08em; text-transform: uppercase; color: var(--navy); font-weight:600; }
-  .hero-sep{ width:1px; height: 11px; background: var(--brass); opacity:.5; display:inline-block; margin: 0 20px; }
+  .hero-cap-link{
+    font-family: var(--mono);
+    font-size: .92rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--navy);
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 3px;
+    transition: color .25s var(--ease);
+  }
+  .hero-cap-link::after{
+    content:"";
+    position:absolute; left:0; right:100%; bottom:0; height:2px; background: var(--clay);
+    transition: right .3s var(--ease);
+  }
+  .hero-cap-link:hover{ color: var(--clay); }
+  .hero-cap-link:hover::after{ right:0; }
+  .hero-sep{ width:1px; height: 13px; background: var(--brass); opacity:.5; display:inline-block; margin: 0 22px; }
 
   @media (max-width: 640px){
-    .hero-capabilities{ gap: 12px 0; }
+    .hero-capabilities{ gap: 16px 0; }
     .hero-sep{ display:none; }
-    .hero-capabilities span:not(.hero-sep){ width: 100%; }
+    .hero-cap-link{ width: 100%; font-size: .82rem; }
   }
 
   /* ================= FOOTPRINT (map section) ================= */
@@ -173,22 +190,19 @@
   .stat-divider{ width:1px; align-self:stretch; background: var(--line-on-navy); display:block; }
   @media (max-width: 780px){ .stat-divider{ display:none; } .footprint-stats{ gap: 24px; } .footprint-stats .stat{ align-items:center; text-align:center; } }
 
-  /* Outer layout: a 3-column grid — panel | map | spacer — where the
-     outer two columns share the same fr sizing. This keeps the map
-     stage (the middle, content-sized column) truly centered on the
-     page at all times, while the panel hugs its left edge without ever
-     sitting on top of the geography (it lives in its own column). */
+  /* Outer layout: map stage centered in the frame. On desktop the
+     state-info panel is an absolutely-positioned overlay anchored to
+     the top of the map stage (near the ND/MN area) rather than a
+     separate grid column, so it reads as a label floating over the
+     geography instead of a sidebar next to it. */
   .map-canvas-wrap{
-    display:grid;
-    grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
-    align-items:center;
-    gap: clamp(28px, 3.4vw, 52px);
+    display:flex;
+    justify-content:center;
     max-width: 1780px;
     margin: 0 auto;
   }
 
   .map-stage{
-    grid-column: 2;
     position: relative;
     height: min(64vh, 700px);
     width: auto;
@@ -212,7 +226,10 @@
     transition: fill .35s var(--ease), stroke .3s var(--ease);
     transform-box: fill-box;
     transform-origin: center;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
   }
+  .map-canvas path:focus{ outline: none; }
   .map-canvas path.covered{ fill: rgba(85,214,196,.22); stroke: rgba(250,246,234,.16); }
   .map-canvas path.covered.hovered,
   .map-canvas path.covered.pinned{
@@ -228,7 +245,8 @@
     transition: fill .9s var(--ease), stroke .9s var(--ease);
   }
 
-  .hq-marker{ cursor: pointer; }
+  .hq-marker{ cursor: pointer; -webkit-tap-highlight-color: transparent; outline: none; }
+  .hq-marker:focus{ outline: none; }
   .hq-ring{
     fill: none;
     stroke: rgba(217,117,95,.4);
@@ -251,30 +269,34 @@
   .hq-marker:hover .hq-ring,
   .hq-marker.pinned .hq-ring{ stroke: var(--glow-line); }
 
-  /* Info card: a fixed-width flex sibling to the west of the map stage,
-     never absolutely positioned over the geography. Width is generous
-     enough that "Pennsylvania" / "West Virginia" never wrap or crowd
-     back toward the SVG. */
+  /* Info card: on desktop this floats as an absolutely positioned
+     overlay near the top of the map stage (roughly over the ND/MN
+     area), centered horizontally rather than sitting in its own
+     sidebar column. */
   .map-state-panel{
-    grid-column: 1;
-    justify-self: end;
-    align-self: center;
-    width: 236px;
+    position: absolute;
+    top: clamp(-6px, -1vw, 4px);
+    left: 54%;
+    transform: translateX(-50%) translateY(-4px);
+    width: 240px;
     padding: 12px 20px;
     background: rgba(22,34,44,.85);
-    border-left: 2px solid var(--glow-line);
+    border-top: 2px solid var(--glow-line);
     box-shadow: 0 12px 30px rgba(0,0,0,.35);
     -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
     opacity: 0;
-    transform: translateY(-4px);
     transition: opacity .25s var(--ease), transform .25s var(--ease);
     pointer-events: none;
-    text-align:left;
+    text-align:center;
   }
-  .map-state-panel.msp-visible{ opacity: 1; transform: translateY(0); }
+  .map-state-panel.msp-visible{ opacity: 1; transform: translateX(-50%) translateY(0); }
+  .msp-hq-label{ display:none; font-family: var(--mono); font-weight: 600; font-size: .66rem; letter-spacing:.12em; text-transform:uppercase; color: var(--glow-strong); }
+  .msp-hq-rule{ display:none; width: 28px; height: 1px; background: var(--glow-line); margin: 7px auto; }
+  .map-state-panel.msp-hq .msp-hq-label,
+  .map-state-panel.msp-hq .msp-hq-rule{ display:block; }
   .msp-name{ display:block; font-family: var(--serif); font-weight: 500; font-size: 1.05rem; color: var(--paper); white-space: nowrap; }
-  .msp-county{ display:none; font-family: var(--mono); font-weight: 500; font-size: .74rem; letter-spacing:.04em; text-transform:uppercase; color: var(--glow-strong); text-align:left; margin-top: 5px; }
+  .msp-county{ display:none; font-family: var(--mono); font-weight: 500; font-size: .74rem; letter-spacing:.04em; text-transform:uppercase; color: var(--glow-strong); text-align:center; margin-top: 5px; }
   .msp-county.msp-county-visible{ display:block; }
 
   @media (max-width: 1280px){
@@ -282,17 +304,15 @@
     .map-stage{ order:1; max-width: 1100px; height: min(50vh, 560px); }
     .map-state-panel{
       order:2;
-      justify-self:auto;
-      align-self:auto;
+      position: static;
+      transform: none;
       width:auto;
       max-width: 320px;
       margin: 0 auto;
-      border-left:none;
-      border-top: 2px solid var(--glow-line);
       text-align:center;
     }
+    .map-state-panel.msp-visible{ transform: none; }
     .msp-name{ white-space: normal; }
-    .msp-county{ text-align:center; }
   }
 
   /* Portrait / narrow phones: the map must be driven by the available
@@ -336,24 +356,22 @@
   .marquee-viewport{
     position:relative; overflow:hidden;
     border-top: 1px solid var(--paper-dim); border-bottom: 1px solid var(--paper-dim);
+    cursor: grab;
+    touch-action: pan-y;
   }
+  .marquee-viewport.dragging{ cursor: grabbing; }
   .marquee-viewport::before, .marquee-viewport::after{
     content:""; position:absolute; top:0; bottom:0; width: 80px; z-index:2; pointer-events:none;
   }
   .marquee-viewport::before{ left:0; background: linear-gradient(to right, var(--paper), rgba(250,246,234,0)); }
   .marquee-viewport::after{ right:0; background: linear-gradient(to left, var(--paper), rgba(250,246,234,0)); }
-  .marquee-track{ display:flex; align-items:stretch; width: max-content; animation: scroll-left 78s linear infinite; }
-  .marquee-track-reverse{ animation-name: scroll-right; animation-duration: 86s; }
-  .marquee-viewport:hover .marquee-track{ animation-play-state: paused; }
-  @keyframes scroll-left{ from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
-  @keyframes scroll-right{ from{ transform: translateX(-50%); } to{ transform: translateX(0); } }
+  .marquee-track{ display:flex; align-items:stretch; width: max-content; will-change: transform; }
   .logo-cell{
     flex: 0 0 auto; height: 76px; display:flex; align-items:center; justify-content:center;
     padding: 0 32px; border-right: 1px solid var(--paper-dim);
     font-family: var(--serif); font-style: italic; font-weight: 500; font-size: .96rem;
-    color: var(--ink-soft); white-space: nowrap;
+    color: var(--ink-soft); white-space: nowrap; user-select: none;
   }
-  @media (prefers-reduced-motion: reduce){ .marquee-track{ animation: none; } }
 
   /* ================= CTA + FOOTER ================= */
   .cta-band{ background: var(--navy-deep); padding: clamp(64px, 7vw, 92px) 0; }
@@ -419,7 +437,7 @@
         <span id="navLogoFallback" class="nav-logo-fallback" style="display:none;">APS Land</span>
       </a>
     </li>
-    <li><a class="nav-link" href="index.html#capabilities">Services</a></li>
+    <li><a class="nav-link" href="services.html">Services</a></li>
     <li><a class="nav-link" href="contact.html">Contact</a></li>
   </ul>
 </nav>
@@ -437,15 +455,17 @@
   <!-- Zone 2 — Purpose: WHY APS exists -->
   <p class="hero-purpose">Supporting the energy, exploration, and infrastructure projects that power America.</p>
 
-  <!-- Zone 3 — Capabilities: WHAT APS does -->
+  <!-- Zone 3 — Capabilities: WHAT APS does. Same order and naming as
+       the "Our Capabilities" timeline on services.html, each linking
+       straight to that service's description. -->
   <div class="hero-capabilities">
-    <span>Seismic Permitting</span>
+    <a class="hero-cap-link" href="services.html#title-ownership">Title &amp; Ownership</a>
     <span class="hero-sep" aria-hidden="true"></span>
-    <span>Right-of-Way Acquisition</span>
+    <a class="hero-cap-link" href="services.html#gis-services">GIS Services</a>
     <span class="hero-sep" aria-hidden="true"></span>
-    <span>Title Curative</span>
+    <a class="hero-cap-link" href="services.html#seismic-permitting">Seismic Permitting</a>
     <span class="hero-sep" aria-hidden="true"></span>
-    <span>GIS Services</span>
+    <a class="hero-cap-link" href="services.html#right-of-way">Right-of-Way Acquisition</a>
   </div>
 </header>
 
@@ -474,12 +494,14 @@
     </div>
 
     <div class="map-canvas-wrap" data-reveal>
-      <div id="map-state-panel" class="map-state-panel">
-        <span id="msp-name" class="msp-name"></span>
-        <span id="msp-county" class="msp-county"></span>
-      </div>
       <div class="map-stage">
         <div id="us-map" class="map-canvas" aria-label="Interactive map of the contiguous United States where APS Land Services operates"></div>
+        <div id="map-state-panel" class="map-state-panel">
+          <span id="msp-hq-label" class="msp-hq-label">Headquarters</span>
+          <span id="msp-hq-rule" class="msp-hq-rule" aria-hidden="true"></span>
+          <span id="msp-name" class="msp-name"></span>
+          <span id="msp-county" class="msp-county"></span>
+        </div>
       </div>
     </div>
   </div>
@@ -530,10 +552,10 @@
   </div>
 
   <div class="marquee-stack" data-reveal>
-    <div class="marquee-viewport">
+    <div class="marquee-viewport" id="marqueeViewportA">
       <div class="marquee-track" id="marqueeTrackA"><!-- populated by JS --></div>
     </div>
-    <div class="marquee-viewport">
+    <div class="marquee-viewport" id="marqueeViewportB">
       <div class="marquee-track marquee-track-reverse" id="marqueeTrackB"><!-- populated by JS --></div>
     </div>
   </div>
@@ -598,13 +620,35 @@
     reveals.forEach(function(el){ el.classList.add('in-view'); });
   }
 
-  /* Logo click: reload/scroll to top of this same page */
   if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+
+  /* Logo: always a full, hard refresh of the site — never an in-page
+     scroll, even when already on the homepage. */
   var logo = document.querySelector('.nav-logo');
   logo.addEventListener('click', function(e){
     e.preventDefault();
-    window.scrollTo(0, 0);
+    window.location.href = logo.getAttribute('href');
     window.location.reload();
+  });
+
+  /* Other nav links: if the link points at the page we're already on,
+     do a smooth scroll back to the top instead of reloading. If it
+     points elsewhere, let the browser navigate normally. */
+  function samePage(href){
+    var target = document.createElement('a');
+    target.href = href;
+    var targetPath = target.pathname.replace(/\/index\.html$/, '/').replace(/\/$/, '') || '/';
+    var herePath = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\/$/, '') || '/';
+    return targetPath === herePath;
+  }
+  document.querySelectorAll('.nav-link').forEach(function(link){
+    link.addEventListener('click', function(e){
+      var href = link.getAttribute('href');
+      if(samePage(href)){
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
   });
 
   /* Client marquee — placeholder text wordmarks; swap for real logo
@@ -638,6 +682,121 @@
   }
   buildTrack(document.getElementById('marqueeTrackA'), CLIENTS_ROW_A);
   buildTrack(document.getElementById('marqueeTrackB'), CLIENTS_ROW_B);
+
+  /* Marquee: driven entirely by transform, never by native scroll — so
+     there is no scrollbar to show. Each track auto-advances every
+     frame; clicking/touching and dragging (PC: mouse-drag, mobile:
+     thumb) overrides that for the duration of the interaction and can
+     send it either direction, with a flick carrying momentum on
+     release. Merely hovering with a mouse does nothing — only an
+     actual press/touch takes over. Once the drag or flick settles, it
+     eases back into normal auto-advance from wherever it ended up. */
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function setupMarquee(viewport, track, direction, durationSeconds){
+    if(!viewport || !track) return;
+    var half = track.scrollWidth / 2 || 1;
+    var autoSpeed = reduceMotion ? 0 : (half / (durationSeconds * 60)); // px per frame
+    var offset = 0;            // current position, wrapped into [0, half)
+    var momentum = 0;          // px/frame carried from a flick, decays to 0
+    var isDown = false;
+    var lastX = 0, lastT = 0, lastDx = 0;
+
+    function wrap(){
+      offset = offset % half;
+      if(offset < 0) offset += half;
+    }
+    function render(){
+      track.style.transform = 'translate3d(' + (-offset) + 'px,0,0)';
+    }
+
+    function frame(){
+      if(isDown){
+        // position already driven by pointermove
+      } else if(Math.abs(momentum) > 0.05){
+        offset -= momentum;
+        momentum *= 0.94;
+      } else {
+        momentum = 0;
+        offset += direction * autoSpeed;
+      }
+      wrap();
+      render();
+      requestAnimationFrame(frame);
+    }
+
+    viewport.addEventListener('pointerdown', function(e){
+      isDown = true;
+      momentum = 0;
+      lastX = e.clientX; lastT = performance.now(); lastDx = 0;
+      viewport.classList.add('dragging');
+      if(viewport.setPointerCapture){ try{ viewport.setPointerCapture(e.pointerId); }catch(err){} }
+    });
+    viewport.addEventListener('pointermove', function(e){
+      if(!isDown) return;
+      var now = performance.now();
+      var dx = e.clientX - lastX;
+      offset -= dx; // drag right -> content follows to the right
+      wrap();
+      render();
+      var dt = Math.max(1, now - lastT);
+      lastDx = dx / dt; // px per ms, most recent movement only
+      lastX = e.clientX; lastT = now;
+    });
+    function endDrag(){
+      if(!isDown) return;
+      isDown = false;
+      viewport.classList.remove('dragging');
+      // Convert the last flick velocity (px/ms) into a per-frame
+      // momentum, matching the drag's own convention (offset -= dx).
+      momentum = lastDx * 16.7;
+    }
+    viewport.addEventListener('pointerup', endDrag);
+    viewport.addEventListener('pointercancel', endDrag);
+    viewport.addEventListener('pointerleave', function(){ if(isDown) endDrag(); });
+
+    requestAnimationFrame(frame);
+
+    return {
+      recalc: function(){ half = track.scrollWidth / 2 || 1; autoSpeed = reduceMotion ? 0 : (half / (durationSeconds * 60)); }
+    };
+  }
+
+  var marqueeA = setupMarquee(document.getElementById('marqueeViewportA'), document.getElementById('marqueeTrackA'), 1, 78);
+  var marqueeB = setupMarquee(document.getElementById('marqueeViewportB'), document.getElementById('marqueeTrackB'), -1, 86);
+  window.addEventListener('resize', function(){
+    if(marqueeA) marqueeA.recalc();
+    if(marqueeB) marqueeB.recalc();
+  });
+
+  /* ---- Map: HQ label + reset-on-click-away ----
+     us-map.js owns hover/pin state for state paths. Here we only:
+     (a) toggle the "Headquarters" eyebrow when the HQ marker itself
+         is the active target, and (b) reset any pinned selection back
+         to plain hover mode when the user clicks/taps outside the map. */
+  var mapStage = document.querySelector('.map-stage');
+  var statePanel = document.getElementById('map-state-panel');
+  if(mapStage && statePanel){
+    mapStage.addEventListener('mouseover', function(e){
+      var hq = e.target.closest('.hq-marker');
+      var isState = e.target.closest('.map-canvas path');
+      if(hq){ statePanel.classList.add('msp-hq'); }
+      else if(isState){ statePanel.classList.remove('msp-hq'); }
+    });
+    mapStage.addEventListener('click', function(e){
+      var hq = e.target.closest('.hq-marker');
+      var isState = e.target.closest('.map-canvas path');
+      if(hq){ statePanel.classList.add('msp-hq'); }
+      else if(isState){ statePanel.classList.remove('msp-hq'); }
+    });
+
+    document.addEventListener('click', function(e){
+      if(!mapStage.contains(e.target)){
+        document.querySelectorAll('.pinned').forEach(function(el){ el.classList.remove('pinned'); });
+        statePanel.classList.remove('msp-visible', 'msp-hq');
+      }
+    });
+  }
 })();
 </script>
 <script src="assets/us-map.js" defer></script>
