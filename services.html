@@ -50,7 +50,7 @@
 
   @media (max-width: 640px){ .shell{ padding: 0 20px; } }
 
-  /* ================= NAV =================== */
+  /* ================= NAV ================= */
   .site-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 200;
     height: var(--nav-h); background: var(--navy-deep);
@@ -104,22 +104,57 @@
     .approach-title{ display: flex; justify-content: center; }
   }
 
-  /* --- How We Work: quiet three-up list beneath the intro, same
-     visual weight as about.html's reassure-item entries, no table
-     styling, no mono labels. --- */
-  .principles-row{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(28px, 3.4vw, 44px);
-    max-width: 1080px;
-    margin: clamp(48px, 6vw, 68px) auto 0;
+  /* --- The Three Pillars ---
+     A short bridging line (same italic-serif "lead statement" device
+     used elsewhere on the site — see about.html's .control-lead and
+     index.html's .cap-contrast) makes the relationship explicit
+     before the row itself: the three items beneath are not a random
+     feature list, they are APS's stated guiding principles. The row
+     is then given real visual weight — raised cards, not bare text —
+     borrowing the site's established cap-card treatment from
+     index.html so each principle reads as a distinct, load-bearing
+     pillar rather than a footnote under the intro paragraph. */
+  .pillars-intro{
+    text-align: center;
+    max-width: 620px;
+    margin: clamp(52px, 6.5vw, 76px) auto 0;
     padding-top: clamp(40px, 5vw, 56px);
     border-top: 1px solid var(--line);
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    color: var(--clay);
+    line-height: 1.5;
   }
-  .principle h3{ font-size: 1.16rem; color: var(--navy); margin: 0 0 8px; line-height: 1.3; }
-  .principle p{ font-size: .96rem; line-height: 1.6; color: var(--ink-soft); margin: 0; }
+
+  .pillars-row{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 2.4vw, 30px);
+    max-width: 1080px;
+    margin: clamp(32px, 4vw, 44px) auto 0;
+    align-items: stretch;
+  }
+  .pillar-card{
+    background: #FFFEFA;
+    padding: clamp(30px, 3vw, 38px) clamp(26px, 2.6vw, 32px);
+    border-radius: 3px;
+    border-top: 2px solid var(--clay);
+    box-shadow: 0 1px 2px rgba(34,28,21,.04), 0 10px 22px rgba(34,28,21,.06);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .pillar-card:hover{ transform: translateY(-3px); box-shadow: 0 2px 4px rgba(34,28,21,.05), 0 14px 28px rgba(34,28,21,.08); }
+  .pillar-num{
+    display: block;
+    font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase;
+    font-weight: 600; color: var(--brass); margin-bottom: 16px;
+  }
+  .pillar-card h3{ font-size: 1.18rem; color: var(--navy); margin: 0 0 10px; line-height: 1.3; }
+  .pillar-card p{ font-size: .95rem; line-height: 1.62; color: var(--ink-soft); margin: 0; }
+
   @media (max-width: 900px){
-    .principles-row{ grid-template-columns: 1fr; text-align: center; gap: 28px; }
+    .pillars-row{ grid-template-columns: 1fr; }
   }
 
   /* ================= SAFETY / HSE (mirrors about.html's team-section) ================= */
@@ -147,54 +182,81 @@
     color: rgba(250,246,234,.4);
   }
 
-  /* ================= OUR CAPABILITIES =================
-     Editorial, always-open list — matches the prose rhythm of
-     approach-body/company-body and reuses the site's established
-     list treatment (mono micro-label + top-ruled items, as seen in
-     index.html's cap-list) instead of an interactive accordion. */
-  .capabilities-section{ padding: clamp(72px, 9vw, 108px) 0 clamp(64px, 7vw, 96px); }
+  /* ================= OUR CAPABILITIES ================= */
+  .capabilities-section{ padding: clamp(72px, 9vw, 108px) 0 clamp(24px, 3vw, 32px); }
+  .timeline{ max-width: 780px; margin: clamp(32px, 4.5vw, 52px) auto 0; }
 
-  .service-list{
-    max-width: 900px;
-    margin: clamp(44px, 5.5vw, 64px) auto 0;
-    display: flex;
-    flex-direction: column;
+  .tl-row{ border-bottom: 1px solid var(--line); position: relative; }
+  .tl-row:first-child{ border-top: 1px solid var(--line); }
+
+  .tl-trigger{
+    display:flex; align-items:center; width:100%; gap: clamp(18px, 3vw, 36px);
+    padding: clamp(26px, 3.2vw, 36px) 0; background: none; border: none; cursor: pointer;
+    text-align:left; font-family: inherit; color: inherit;
+    -webkit-tap-highlight-color: transparent;
   }
-
-  .service-block{
-    padding: clamp(48px, 6vw, 72px) 0;
-    border-top: 1px solid var(--line);
+  .tl-num{
+    font-family: var(--mono); font-size: .95rem; font-weight: 600; color: var(--brass);
+    min-width: 2.6ch; letter-spacing: .02em; transition: color .3s var(--ease);
   }
-  .service-list .service-block:first-child{ border-top: none; padding-top: 0; }
-
-  .service-name{
-    font-size: clamp(1.5rem, 2.6vw, 2rem);
-    color: var(--navy);
-    line-height: 1.25;
-    margin-bottom: 20px;
+  .tl-name{
+    font-family: var(--serif); font-weight: 600; font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+    color: var(--navy); flex: 1 1 auto; transition: color .3s var(--ease);
   }
+  .tl-toggle{
+    flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--line); display:flex; align-items:center; justify-content:center;
+    position: relative; transition: border-color .3s var(--ease), background .3s var(--ease);
+  }
+  .tl-toggle::before, .tl-toggle::after{
+    content:""; position:absolute; background: var(--navy); transition: background .3s var(--ease), transform .3s var(--ease);
+  }
+  .tl-toggle::before{ width: 12px; height: 1.5px; }
+  .tl-toggle::after{ width: 1.5px; height: 12px; }
 
-  .service-prose p{ font-size: 1.02rem; line-height: 1.75; color: var(--ink); margin: 0 0 18px; max-width: 700px; }
-  .service-prose p:last-child{ margin-bottom: 0; }
+  .tl-row.open .tl-num,
+  .tl-row.open .tl-name{ color: var(--clay); }
+  .tl-row.open .tl-toggle{ border-color: var(--clay); }
+  .tl-row.open .tl-toggle::before,
+  .tl-row.open .tl-toggle::after{ background: var(--clay); }
+  .tl-row.open .tl-toggle::after{ transform: rotate(90deg) scaleY(0); }
 
-  .service-lists{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: clamp(24px, 3vw, 40px);
+  .tl-row::after{
+    content:""; position:absolute; left:0; bottom:-1px; height:2px; width:0; background: var(--clay);
+    transition: width .45s var(--ease);
+  }
+  .tl-row.open::after{ width: 100%; }
+
+  .tl-panel{ display:grid; grid-template-rows: 0fr; transition: grid-template-rows .5s var(--ease); }
+  .tl-row.open .tl-panel{ grid-template-rows: 1fr; }
+  .tl-panel-inner{ overflow:hidden; }
+  .tl-panel-content{ padding: 0 0 clamp(40px, 5vw, 56px); }
+
+  .tl-prose p{ font-size: 1rem; line-height: 1.8; color: var(--ink-soft); margin: 0 0 20px; }
+  .tl-prose p:last-child{ margin-bottom: 0; }
+
+  .tl-lists{
+    display:grid; grid-template-columns: repeat(2, 1fr); gap: clamp(28px, 3.6vw, 48px);
     margin-top: clamp(28px, 3.4vw, 36px);
   }
-  .service-list-col h4{
+  .tl-list h4{
     font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase;
-    font-weight: 600; color: var(--brass); margin: 0 0 14px;
+    font-weight: 600; color: var(--brass); margin: 0 0 16px;
   }
-  .service-list-col ul{ list-style: none; margin: 0; padding: 0; }
-  .service-list-col li{
-    font-size: .92rem; color: var(--ink-soft); padding: 9px 0; border-top: 1px solid var(--line); line-height: 1.5;
+  .tl-list ul{ list-style:none; margin:0; padding:0; }
+  .tl-list li{
+    font-size: .94rem; color: var(--ink); padding: 10px 0; border-top: 1px solid var(--line); line-height: 1.5;
   }
-  .service-list-col li:first-child{ border-top: none; padding-top: 0; }
+  .tl-list li:first-child{ border-top:none; padding-top:0; }
 
   @media (max-width: 720px){
-    .service-lists{ grid-template-columns: 1fr; gap: 24px; }
+    .tl-lists{ grid-template-columns: 1fr; gap: 28px; }
+    .tl-trigger{ gap: 14px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .tl-panel{ transition:none; }
+    .tl-toggle::after{ transition:none; }
   }
 
   /* ================= CTA + FOOTER ================= */
@@ -274,16 +336,21 @@
     </div>
   </div>
 
-  <div class="principles-row" data-reveal>
-    <div class="principle">
+  <p class="pillars-intro" data-reveal>Three principles hold every APS project together, no matter its size or scope.</p>
+
+  <div class="pillars-row" data-reveal>
+    <div class="pillar-card">
+      <span class="pillar-num">01</span>
       <h3>Senior Oversight</h3>
       <p>Experienced APS leadership stays directly involved in day-to-day project execution and provides clear, consistent communication.</p>
     </div>
-    <div class="principle">
+    <div class="pillar-card">
+      <span class="pillar-num">02</span>
       <h3>Controlled Execution</h3>
       <p>APS brings order to complex project information. Ownership records, GIS data, access agreements, reporting, project status, and field operations stay organized, current, and connected as the project develops. As scope and field personnel increase, APS maintains the same control without compromising accuracy, quality, safety, or critical timelines.</p>
     </div>
-    <div class="principle">
+    <div class="pillar-card">
+      <span class="pillar-num">03</span>
       <h3>Turnkey Pricing</h3>
       <p>APS defines the scope and establishes a guaranteed price before work begins. No surprises.</p>
     </div>
@@ -311,128 +378,167 @@
 <!-- OUR CAPABILITIES -->
 <section class="capabilities-section shell" id="services">
   <div class="section-head-center" data-reveal>
-    <span class="eyebrow">Our Capabilities</span>
-    <h2>Full service, start to finish.</h2>
+    <h2>Our Capabilities</h2>
   </div>
 
-  <div class="service-list">
+  <div class="timeline" data-reveal>
 
-    <!-- Title & Ownership -->
-    <article class="service-block" id="title-ownership" data-reveal>
-      <h3 class="service-name">Title &amp; Ownership</h3>
-      <div class="service-prose">
-        <p>APS researches surface and mineral ownership at any stage of a project, from early feasibility through active permitting and acquisition. Preliminary research can reveal who controls the land, how ownership is divided, where access may be difficult, and how many interests will need to be addressed. That information helps define project scope, permitting strategy, staffing, and cost before significant resources are committed.</p>
-        <p>Ownership records can quickly become complicated. Surface and mineral estates may have separated generations ago, interests may be divided among multiple heirs, and federal, state, or tribal lands can involve separate records and approval requirements. APS traces and reconciles ownership through public sources, courthouses, and government archives, then maintains the resulting ownership information for use throughout GIS mapping, permitting, acquisition, and field operations.</p>
-      </div>
-      <div class="service-lists">
-        <div class="service-list-col">
-          <h4>Research Sources</h4>
-          <ul>
-            <li>County Courthouses &amp; Recorder Offices</li>
-            <li>Federal, State &amp; Tribal Land Systems</li>
-            <li>Deeds, Patents &amp; Historical Archives</li>
-          </ul>
+    <!-- 01 Title & Ownership -->
+    <div class="tl-row" id="title-ownership" data-service>
+      <button class="tl-trigger" aria-expanded="false" aria-controls="panel-title-ownership">
+        <span class="tl-num">01</span>
+        <span class="tl-name">Title &amp; Ownership</span>
+        <span class="tl-toggle" aria-hidden="true"></span>
+      </button>
+      <div class="tl-panel" id="panel-title-ownership">
+        <div class="tl-panel-inner">
+          <div class="tl-panel-content">
+            <div class="tl-prose">
+              <p>APS researches surface and mineral ownership at any stage of a project, from early feasibility through active permitting and acquisition. Preliminary research can reveal who controls the land, how ownership is divided, where access may be difficult, and how many interests will need to be addressed. That information helps define project scope, permitting strategy, staffing, and cost before significant resources are committed.</p>
+              <p>Ownership records can quickly become complicated. Surface and mineral estates may have separated generations ago, interests may be divided among multiple heirs, and federal, state, or tribal lands can involve separate records and approval requirements. APS traces and reconciles ownership through public sources, courthouses, and government archives, then maintains the resulting ownership information for use throughout GIS mapping, permitting, acquisition, and field operations.</p>
+            </div>
+            <div class="tl-lists">
+              <div class="tl-list">
+                <h4>Research Sources</h4>
+                <ul>
+                  <li>County Courthouses &amp; Recorder Offices</li>
+                  <li>Federal, State &amp; Tribal Land Systems</li>
+                  <li>Deeds, Patents &amp; Historical Archives</li>
+                </ul>
+              </div>
+              <div class="tl-list">
+                <h4>Title Capabilities</h4>
+                <ul>
+                  <li>Title Curative</li>
+                  <li>Full Title Search to Sovereignty</li>
+                  <li>Surface &amp; Mineral Ownership</li>
+                  <li>Probate, Heirship &amp; Fractional Interests</li>
+                  <li>Land, Surface &amp; Mineral Title Opinions</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="service-list-col">
-          <h4>Title Capabilities</h4>
-          <ul>
-            <li>Title Curative</li>
-            <li>Full Title Search to Sovereignty</li>
-            <li>Surface &amp; Mineral Ownership</li>
-            <li>Probate, Heirship &amp; Fractional Interests</li>
-            <li>Land, Surface &amp; Mineral Title Opinions</li>
-          </ul>
-        </div>
       </div>
-    </article>
+    </div>
 
-    <!-- GIS Services -->
-    <article class="service-block" id="gis-services" data-reveal>
-      <h3 class="service-name">GIS Services</h3>
-      <div class="service-prose">
-        <p>APS builds comprehensive project maps and databases that connect ownership and title information to the land itself. Surface and mineral ownership, legal descriptions, topography, infrastructure, project boundaries, and other relevant data are organized geographically for planning, permitting, acquisition, and field use.</p>
-        <p>Surface and mineral interests don&rsquo;t always follow the same boundaries. Historical legal descriptions may not align cleanly with current parcels, and a change in project alignment can introduce an entirely different set of affected properties. APS reconciles those changes in the mapping and maintains the supporting project data as the work develops.</p>
-      </div>
-      <div class="service-lists">
-        <div class="service-list-col">
-          <h4>Mapped Information</h4>
-          <ul>
-            <li>Surface &amp; Mineral Ownership</li>
-            <li>Tracts &amp; Legal Descriptions</li>
-            <li>Topography &amp; Infrastructure</li>
-            <li>Project Boundaries &amp; Alignments</li>
-          </ul>
+    <!-- 02 GIS Services -->
+    <div class="tl-row" id="gis-services" data-service>
+      <button class="tl-trigger" aria-expanded="false" aria-controls="panel-gis-services">
+        <span class="tl-num">02</span>
+        <span class="tl-name">GIS Services</span>
+        <span class="tl-toggle" aria-hidden="true"></span>
+      </button>
+      <div class="tl-panel" id="panel-gis-services">
+        <div class="tl-panel-inner">
+          <div class="tl-panel-content">
+            <div class="tl-prose">
+              <p>APS builds comprehensive project maps and databases that connect ownership and title information to the land itself. Surface and mineral ownership, legal descriptions, topography, infrastructure, project boundaries, and other relevant data are organized geographically for planning, permitting, acquisition, and field use.</p>
+              <p>Surface and mineral interests don&rsquo;t always follow the same boundaries. Historical legal descriptions may not align cleanly with current parcels, and a change in project alignment can introduce an entirely different set of affected properties. APS reconciles those changes in the mapping and maintains the supporting project data as the work develops.</p>
+            </div>
+            <div class="tl-lists">
+              <div class="tl-list">
+                <h4>Mapped Information</h4>
+                <ul>
+                  <li>Surface &amp; Mineral Ownership</li>
+                  <li>Tracts &amp; Legal Descriptions</li>
+                  <li>Topography &amp; Infrastructure</li>
+                  <li>Project Boundaries &amp; Alignments</li>
+                </ul>
+              </div>
+              <div class="tl-list">
+                <h4>GIS Capabilities</h4>
+                <ul>
+                  <li>Comprehensive Project Mapping</li>
+                  <li>Project Databases</li>
+                  <li>Maps &amp; Exhibits</li>
+                  <li>Data Maintenance &amp; Updates</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="service-list-col">
-          <h4>GIS Capabilities</h4>
-          <ul>
-            <li>Comprehensive Project Mapping</li>
-            <li>Project Databases</li>
-            <li>Maps &amp; Exhibits</li>
-            <li>Data Maintenance &amp; Updates</li>
-          </ul>
-        </div>
       </div>
-    </article>
+    </div>
 
-    <!-- Seismic Permitting -->
-    <article class="service-block" id="seismic-permitting" data-reveal>
-      <h3 class="service-name">Seismic Permitting</h3>
-      <div class="service-prose">
-        <p>Seismic permitting has been at the core of APS&rsquo;s work for more than 45 years. We manage the land access and permitting required for 2D and 3D seismic surveys, microseismic, Vertical Seismic Profile (VSP), and other geophysical field programs.</p>
-        <p>Every property presents unique conditions. Access routes, crops and livestock, fences, water wells, existing infrastructure, environmental restrictions, compensation, and potential damages can all affect where and how survey crews operate. APS personally contacts landowners to explain who we represent, what the survey involves, what access is being requested, and how the property will be used. We negotiate and document those conditions, then oversee their enforcement in the field to protect all parties.</p>
-      </div>
-      <div class="service-lists">
-        <div class="service-list-col">
-          <h4>Permit Acquisition</h4>
-          <ul>
-            <li>2D, 3D, Microseismic &amp; VSP Permitting</li>
-            <li>Surface &amp; Mineral Permitting</li>
-            <li>Landowner Negotiation &amp; Property-Specific Conditions</li>
-            <li>Municipal, County, State &amp; Federal Permitting</li>
-          </ul>
+    <!-- 03 Seismic Permitting -->
+    <div class="tl-row" id="seismic-permitting" data-service>
+      <button class="tl-trigger" aria-expanded="false" aria-controls="panel-seismic-permitting">
+        <span class="tl-num">03</span>
+        <span class="tl-name">Seismic Permitting</span>
+        <span class="tl-toggle" aria-hidden="true"></span>
+      </button>
+      <div class="tl-panel" id="panel-seismic-permitting">
+        <div class="tl-panel-inner">
+          <div class="tl-panel-content">
+            <div class="tl-prose">
+              <p>Seismic permitting has been at the core of APS&rsquo;s work for more than 45 years. We manage the land access and permitting required for 2D and 3D seismic surveys, microseismic, Vertical Seismic Profile (VSP), and other geophysical field programs.</p>
+              <p>Every property presents unique conditions. Access routes, crops and livestock, fences, water wells, existing infrastructure, environmental restrictions, compensation, and potential damages can all affect where and how survey crews operate. APS personally contacts landowners to explain who we represent, what the survey involves, what access is being requested, and how the property will be used. We negotiate and document those conditions, then oversee their enforcement in the field to protect all parties.</p>
+            </div>
+            <div class="tl-lists">
+              <div class="tl-list">
+                <h4>Permit Acquisition</h4>
+                <ul>
+                  <li>2D, 3D, Microseismic &amp; VSP Permitting</li>
+                  <li>Surface &amp; Mineral Permitting</li>
+                  <li>Landowner Negotiation &amp; Property-Specific Conditions</li>
+                  <li>Municipal, County, State &amp; Federal Permitting</li>
+                </ul>
+              </div>
+              <div class="tl-list">
+                <h4>Project Management</h4>
+                <ul>
+                  <li>Permit Status Tracking &amp; Comprehensive Reporting</li>
+                  <li>Landowner Payments, Check Processing &amp; Required IRS Filings</li>
+                  <li>Surface Damage Coordination &amp; Settlement</li>
+                  <li>Field Oversight &amp; Permit Compliance</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="service-list-col">
-          <h4>Project Management</h4>
-          <ul>
-            <li>Permit Status Tracking &amp; Comprehensive Reporting</li>
-            <li>Landowner Payments, Check Processing &amp; Required IRS Filings</li>
-            <li>Surface Damage Coordination &amp; Settlement</li>
-            <li>Field Oversight &amp; Permit Compliance</li>
-          </ul>
-        </div>
       </div>
-    </article>
+    </div>
 
-    <!-- Right-of-Way Acquisition -->
-    <article class="service-block" id="right-of-way" data-reveal>
-      <h3 class="service-name">Right-of-Way Acquisition</h3>
-      <div class="service-prose">
-        <p>APS secures linear property rights for pipelines, electric transmission, utilities, telecommunications, roads, and other infrastructure. We verify corridor ownership and existing rights, identify affected tracts and encumbrances, personally contact landowners, negotiate compensation and property terms, and execute easement and access agreements.</p>
-        <p>ROW acquisition develops alongside the route itself. Requirements vary tract by tract, and a rejected agreement, divided interest, existing easement, utility conflict, or physical constraint can change an alignment after acquisition is already underway. A reroute can introduce new parcels, owners, title, mapping, and negotiations into the project. APS identifies these conflicts early and keeps ownership, GIS, acquisition status, and route changes synchronized as the corridor develops.</p>
-      </div>
-      <div class="service-lists">
-        <div class="service-list-col">
-          <h4>Property Rights</h4>
-          <ul>
-            <li>Permanent &amp; Temporary Easements</li>
-            <li>Temporary &amp; Additional Workspace</li>
-            <li>Ingress/Egress &amp; Access Agreements</li>
-            <li>Property Restrictions &amp; Restoration Terms</li>
-          </ul>
+    <!-- 04 Right-of-Way Acquisition -->
+    <div class="tl-row" id="right-of-way" data-service>
+      <button class="tl-trigger" aria-expanded="false" aria-controls="panel-right-of-way">
+        <span class="tl-num">04</span>
+        <span class="tl-name">Right-of-Way Acquisition</span>
+        <span class="tl-toggle" aria-hidden="true"></span>
+      </button>
+      <div class="tl-panel" id="panel-right-of-way">
+        <div class="tl-panel-inner">
+          <div class="tl-panel-content">
+            <div class="tl-prose">
+              <p>APS secures linear property rights for pipelines, electric transmission, utilities, telecommunications, roads, and other infrastructure. We verify corridor ownership and existing rights, identify affected tracts and encumbrances, personally contact landowners, negotiate compensation and property terms, and execute easement and access agreements.</p>
+              <p>ROW acquisition develops alongside the route itself. Requirements vary tract by tract, and a rejected agreement, divided interest, existing easement, utility conflict, or physical constraint can change an alignment after acquisition is already underway. A reroute can introduce new parcels, owners, title, mapping, and negotiations into the project. APS identifies these conflicts early and keeps ownership, GIS, acquisition status, and route changes synchronized as the corridor develops.</p>
+            </div>
+            <div class="tl-lists">
+              <div class="tl-list">
+                <h4>Property Rights</h4>
+                <ul>
+                  <li>Permanent &amp; Temporary Easements</li>
+                  <li>Temporary &amp; Additional Workspace</li>
+                  <li>Ingress/Egress &amp; Access Agreements</li>
+                  <li>Property Restrictions &amp; Restoration Terms</li>
+                </ul>
+              </div>
+              <div class="tl-list">
+                <h4>Acquisition Management</h4>
+                <ul>
+                  <li>Corridor Ownership, Title &amp; Encumbrance Review</li>
+                  <li>Landowner Negotiation &amp; Compensation</li>
+                  <li>Acquisition Status Tracking &amp; Reporting</li>
+                  <li>Agreement Execution &amp; Documentation</li>
+                  <li>Public Agency &amp; Crossing Coordination</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="service-list-col">
-          <h4>Acquisition Management</h4>
-          <ul>
-            <li>Corridor Ownership, Title &amp; Encumbrance Review</li>
-            <li>Landowner Negotiation &amp; Compensation</li>
-            <li>Acquisition Status Tracking &amp; Reporting</li>
-            <li>Agreement Execution &amp; Documentation</li>
-            <li>Public Agency &amp; Crossing Coordination</li>
-          </ul>
-        </div>
       </div>
-    </article>
+    </div>
 
   </div>
 </section>
@@ -495,6 +601,45 @@
   } else {
     reveals.forEach(function(el){ el.classList.add('in-view'); });
   }
+
+  /* ---- Accordion timeline: one open at a time, no forced scrolling ---- */
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.tl-row[data-service]'));
+
+  function openRow(row, opts){
+    opts = opts || {};
+    rows.forEach(function(r){
+      var isTarget = (r === row);
+      var trigger = r.querySelector('.tl-trigger');
+      if(isTarget && !opts.toggleOff){
+        r.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+      } else {
+        r.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  rows.forEach(function(row){
+    var trigger = row.querySelector('.tl-trigger');
+    trigger.addEventListener('click', function(){
+      var alreadyOpen = row.classList.contains('open');
+      openRow(row, { toggleOff: alreadyOpen });
+    });
+  });
+
+  /* Open the row matching the URL hash on load (browser handles the
+     scroll natively via the fragment jump — no extra JS scrolling). */
+  function openFromHash(){
+    var id = window.location.hash.replace('#', '');
+    if(!id) return;
+    var target = document.getElementById(id);
+    if(target && target.matches('.tl-row[data-service]')){
+      openRow(target);
+    }
+  }
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
 })();
 </script>
 
