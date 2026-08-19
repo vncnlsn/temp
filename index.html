@@ -233,17 +233,13 @@
      separate grid column, so it reads as a label floating over the
      geography instead of a sidebar next to it. */
   .map-canvas-wrap{
-    display:grid;
-    grid-template-columns: 220px 1fr 220px;
-    align-items:center;
-    gap: clamp(24px, 3.2vw, 56px);
+    display:flex;
+    justify-content:center;
     max-width: 1780px;
     margin: 0 auto;
   }
 
   .map-stage{
-    grid-column: 2;
-    justify-self: center;
     position: relative;
     height: min(64vh, 700px);
     width: auto;
@@ -315,44 +311,54 @@
      centered next to the map, so nothing ever floats over the
      geography. Tablet/mobile drop it below the map, centered, with
      its own margin so it never touches the map edge. */
+  /* Info card: floats near the top-left of the map — roughly where
+     Washington/Oregon sit — so the eye lands on it before the
+     geography, without drifting off into the empty space further
+     out. Auto-width (no fixed box) means short state names sit snug
+     and only the longest names stretch the box close to the border. */
   .map-state-panel{
-    grid-column: 3;
-    justify-self: start;
-    padding: 14px 20px;
+    position: absolute;
+    top: clamp(8px, 2vw, 22px);
+    left: clamp(8px, 2vw, 22px);
+    width: max-content;
+    max-width: 250px;
+    padding: 12px 18px;
     background: rgba(22,34,44,.85);
     border-left: 2px solid var(--glow-line);
     box-shadow: 0 12px 30px rgba(0,0,0,.35);
     -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
     opacity: 0;
-    transform: translateX(-10px);
+    transform: translateY(-6px);
     transition: opacity .25s var(--ease), transform .25s var(--ease);
     pointer-events: none;
     text-align:left;
   }
-  .map-state-panel.msp-visible{ opacity: 1; transform: translateX(0); }
+  .map-state-panel.msp-visible{ opacity: 1; transform: translateY(0); }
   .msp-hq-label{ display:none; font-family: var(--mono); font-weight: 600; font-size: .66rem; letter-spacing:.12em; text-transform:uppercase; color: var(--glow-strong); }
   .msp-hq-rule{ display:none; width: 28px; height: 1px; background: var(--glow-line); margin: 7px 0; }
   .map-state-panel.msp-hq .msp-hq-label,
   .map-state-panel.msp-hq .msp-hq-rule{ display:block; }
-  .msp-name{ display:block; font-family: var(--serif); font-weight: 500; font-size: 1.05rem; color: var(--paper); }
+  .msp-name{ display:block; font-family: var(--serif); font-weight: 500; font-size: 1.05rem; color: var(--paper); white-space: nowrap; }
   .msp-county{ display:none; font-family: var(--mono); font-weight: 500; font-size: .74rem; letter-spacing:.04em; text-transform:uppercase; color: var(--glow-strong); text-align:left; margin-top: 5px; }
   .msp-county.msp-county-visible{ display:block; }
 
   @media (max-width: 1280px){
     .map-canvas-wrap{ display:flex; flex-direction:column; gap: 18px; }
-    .map-stage{ grid-column:auto; justify-self:auto; max-width: 1100px; height: min(50vh, 560px); }
+    .map-stage{ order:1; max-width: 1100px; height: min(50vh, 560px); }
     .map-state-panel{
-      grid-column:auto; justify-self:auto;
+      order:2;
+      position: static;
+      top:auto; left:auto;
+      transform: none;
       width:auto;
       max-width: 320px;
       margin: 0 auto;
       text-align:center;
       border-left:none;
       border-top: 2px solid var(--glow-line);
-      transform: translateY(-8px);
     }
-    .map-state-panel.msp-visible{ transform: translateY(0); }
+    .map-state-panel.msp-visible{ transform: none; }
     .msp-name{ white-space: normal; }
     .msp-hq-rule{ margin: 7px auto; }
     .msp-county{ text-align:center; }
@@ -567,12 +573,12 @@
     <div class="map-canvas-wrap" data-reveal>
       <div class="map-stage">
         <div id="us-map" class="map-canvas" aria-label="Interactive map of the contiguous United States where APS Land Services operates"></div>
-      </div>
-      <div id="map-state-panel" class="map-state-panel">
-        <span id="msp-hq-label" class="msp-hq-label">Headquarters</span>
-        <span id="msp-hq-rule" class="msp-hq-rule" aria-hidden="true"></span>
-        <span id="msp-name" class="msp-name"></span>
-        <span id="msp-county" class="msp-county"></span>
+        <div id="map-state-panel" class="map-state-panel">
+          <span id="msp-hq-label" class="msp-hq-label">Headquarters</span>
+          <span id="msp-hq-rule" class="msp-hq-rule" aria-hidden="true"></span>
+          <span id="msp-name" class="msp-name"></span>
+          <span id="msp-county" class="msp-county"></span>
+        </div>
       </div>
     </div>
   </div>
