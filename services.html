@@ -80,52 +80,40 @@
 
   /* ================= HERO — matches about.html exactly ================= */
   .svc-hero{
-    padding: calc(var(--nav-h) + clamp(48px, 6vw, 72px)) 0 clamp(48px, 6vw, 72px);
+    padding: calc(var(--nav-h) + clamp(40px, 5vw, 60px)) 0 clamp(36px, 4.5vw, 52px);
     text-align: center;
     border-bottom: 1px solid var(--line);
   }
-  .svc-hero h1{ font-size: clamp(2.8rem, 6vw, 4.8rem); color: var(--navy); line-height: 1.08; }
+  .svc-hero h1{ font-size: clamp(2.6rem, 5.4vw, 4.2rem); color: var(--navy); line-height: 1.08; }
 
-  /* ================= OUR APPROACH (mirrors about.html's company-section) ================= */
-  .approach-section{ padding: clamp(72px, 9vw, 108px) 0; }
-  .approach-grid{
-    display: grid;
-    grid-template-columns: 1fr 1.6fr;
-    gap: clamp(32px, 5vw, 64px);
-    align-items: start;
+  /* ================= OUR APPROACH =================
+     Centered intro, no left/right split — "How We Work" now sits as
+     the single hinge between the intro statement above it and the
+     three pillar cards below, rather than being paired 1:1 with the
+     intro copy in a grid. Spacing is kept tight on purpose so the
+     whole section (intro + heading + pillars) reads as one compact
+     unit on the first screen, echoing the homepage hero's restraint. */
+  .approach-section{ padding: clamp(56px, 6.5vw, 84px) 0 clamp(64px, 7.5vw, 96px); text-align: center; }
+
+  .approach-intro{ max-width: 740px; margin: 0 auto; }
+  .approach-intro p{ font-size: 1.02rem; line-height: 1.65; color: var(--ink); margin: 0 0 16px; }
+  .approach-intro p:last-child{ margin-bottom: 0; }
+  .approach-intro p.lead{ font-size: 1.18rem; font-weight: 500; color: var(--navy); }
+
+  .approach-branch{
+    display: flex;
+    align-items: center;
+    gap: clamp(16px, 2.4vw, 28px);
+    max-width: 640px;
+    margin: clamp(34px, 4.4vw, 48px) auto clamp(28px, 3.6vw, 38px);
   }
-  .approach-title h2{ font-size: clamp(1.9rem, 3.6vw, 2.8rem); color: var(--navy); line-height: 1.15; }
-  .approach-body p{ font-size: 1.03rem; line-height: 1.68; color: var(--ink); margin: 0 0 20px; }
-  .approach-body p:last-child{ margin-bottom: 0; }
-  .approach-body p.lead{ font-size: 1.15rem; font-weight: 500; color: var(--navy); }
+  .approach-branch::before,
+  .approach-branch::after{ content:""; flex: 1 1 auto; height: 1px; background: var(--line); }
+  .approach-branch h2{ font-size: clamp(1.4rem, 2.4vw, 1.9rem); color: var(--navy); white-space: nowrap; }
 
-  @media (max-width: 900px){
-    .approach-grid{ grid-template-columns: 1fr; gap: 24px; text-align: center; }
-    .approach-title{ display: flex; justify-content: center; }
-  }
-
-  /* --- The Three Pillars ---
-     A short bridging line (same italic-serif "lead statement" device
-     used elsewhere on the site — see about.html's .control-lead and
-     index.html's .cap-contrast) makes the relationship explicit
-     before the row itself: the three items beneath are not a random
-     feature list, they are APS's stated guiding principles. The row
-     is then given real visual weight — raised cards, not bare text —
-     borrowing the site's established cap-card treatment from
-     index.html so each principle reads as a distinct, load-bearing
-     pillar rather than a footnote under the intro paragraph. */
-  .pillars-intro{
-    text-align: center;
-    max-width: 620px;
-    margin: clamp(52px, 6.5vw, 76px) auto 0;
-    padding-top: clamp(40px, 5vw, 56px);
-    border-top: 1px solid var(--line);
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 500;
-    font-size: clamp(1.15rem, 2vw, 1.4rem);
-    color: var(--clay);
-    line-height: 1.5;
+  @media (max-width: 560px){
+    .approach-branch{ gap: 14px; }
+    .approach-branch h2{ font-size: 1.3rem; white-space: normal; }
   }
 
   .pillars-row{
@@ -133,12 +121,13 @@
     grid-template-columns: repeat(3, 1fr);
     gap: clamp(20px, 2.4vw, 30px);
     max-width: 1080px;
-    margin: clamp(32px, 4vw, 44px) auto 0;
+    margin: 0 auto;
     align-items: stretch;
+    text-align: left;
   }
   .pillar-card{
     background: #FFFEFA;
-    padding: clamp(30px, 3vw, 38px) clamp(26px, 2.6vw, 32px);
+    padding: clamp(28px, 2.8vw, 34px) clamp(24px, 2.4vw, 30px);
     border-radius: 3px;
     border-top: 2px solid var(--clay);
     box-shadow: 0 1px 2px rgba(34,28,21,.04), 0 10px 22px rgba(34,28,21,.06);
@@ -148,10 +137,10 @@
   .pillar-num{
     display: block;
     font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase;
-    font-weight: 600; color: var(--brass); margin-bottom: 16px;
+    font-weight: 600; color: var(--brass); margin-bottom: 14px;
   }
-  .pillar-card h3{ font-size: 1.18rem; color: var(--navy); margin: 0 0 10px; line-height: 1.3; }
-  .pillar-card p{ font-size: .95rem; line-height: 1.62; color: var(--ink-soft); margin: 0; }
+  .pillar-card h3{ font-size: 1.14rem; color: var(--navy); margin: 0 0 8px; line-height: 1.3; }
+  .pillar-card p{ font-size: .93rem; line-height: 1.58; color: var(--ink-soft); margin: 0; }
 
   @media (max-width: 900px){
     .pillars-row{ grid-template-columns: 1fr; }
@@ -292,8 +281,8 @@
 
   /* Mobile breathing room — matches the rhythm used on about.html */
   @media (max-width: 640px){
-    .svc-hero{ padding-top: calc(var(--nav-h) + clamp(48px, 9vw, 72px)); }
-    .approach-section{ padding-top: clamp(64px, 12vw, 88px); padding-bottom: clamp(64px, 12vw, 88px); }
+    .svc-hero{ padding-top: calc(var(--nav-h) + clamp(40px, 8vw, 60px)); }
+    .approach-section{ padding-top: clamp(48px, 10vw, 68px); padding-bottom: clamp(56px, 11vw, 80px); }
     .hse-section{ padding-top: clamp(72px, 12vw, 96px); padding-bottom: clamp(72px, 12vw, 96px); }
     .capabilities-section{ padding-top: clamp(72px, 12vw, 96px); }
     .cta-band{ padding-top: clamp(80px, 12vw, 104px); padding-bottom: clamp(80px, 12vw, 104px); }
@@ -326,17 +315,14 @@
 
 <!-- OUR APPROACH -->
 <section class="approach-section shell">
-  <div class="approach-grid" data-reveal>
-    <div class="approach-title">
-      <h2>How We Work</h2>
-    </div>
-    <div class="approach-body">
-      <p class="lead">APS can work a land project from initial ownership research through active field operations, or step in and course-correct an existing project at any point.</p>
-      <p>More than 45 years supporting energy, exploration, and infrastructure projects has taken us across 23 states. We&rsquo;ve worked through complex ownership, difficult jurisdictions, and challenging access while successfully permitting thousands of square miles and completing extensive right-of-way (ROW) acquisition.</p>
-    </div>
+  <div class="approach-intro" data-reveal>
+    <p class="lead">APS can work a land project from initial ownership research through active field operations, or step in and course-correct an existing project at any point.</p>
+    <p>More than 45 years supporting energy, exploration, and infrastructure projects has taken us across 23 states. We&rsquo;ve worked through complex ownership, difficult jurisdictions, and challenging access while successfully permitting thousands of square miles and completing extensive right-of-way (ROW) acquisition.</p>
   </div>
 
-  <p class="pillars-intro" data-reveal>Three principles hold every APS project together, no matter its size or scope.</p>
+  <div class="approach-branch" data-reveal>
+    <h2>How We Work</h2>
+  </div>
 
   <div class="pillars-row" data-reveal>
     <div class="pillar-card">
