@@ -233,15 +233,17 @@
      separate grid column, so it reads as a label floating over the
      geography instead of a sidebar next to it. */
   .map-canvas-wrap{
-    display:flex;
+    display:grid;
+    grid-template-columns: 220px 1fr 220px;
     align-items:center;
-    justify-content:center;
     gap: clamp(24px, 3.2vw, 56px);
     max-width: 1780px;
     margin: 0 auto;
   }
 
   .map-stage{
+    grid-column: 2;
+    justify-self: center;
     position: relative;
     height: min(64vh, 700px);
     width: auto;
@@ -314,8 +316,8 @@
      geography. Tablet/mobile drop it below the map, centered, with
      its own margin so it never touches the map edge. */
   .map-state-panel{
-    flex: 0 0 220px;
-    align-self: center;
+    grid-column: 3;
+    justify-self: start;
     padding: 14px 20px;
     background: rgba(22,34,44,.85);
     border-left: 2px solid var(--glow-line);
@@ -338,10 +340,10 @@
   .msp-county.msp-county-visible{ display:block; }
 
   @media (max-width: 1280px){
-    .map-canvas-wrap{ flex-direction:column; gap: 18px; }
-    .map-stage{ max-width: 1100px; height: min(50vh, 560px); }
+    .map-canvas-wrap{ display:flex; flex-direction:column; gap: 18px; }
+    .map-stage{ grid-column:auto; justify-self:auto; max-width: 1100px; height: min(50vh, 560px); }
     .map-state-panel{
-      flex: 0 0 auto;
+      grid-column:auto; justify-self:auto;
       width:auto;
       max-width: 320px;
       margin: 0 auto;
