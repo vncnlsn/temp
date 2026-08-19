@@ -40,10 +40,13 @@
   :focus-visible{ outline: 2px solid var(--brass); outline-offset: 3px; }
   .shell{ max-width: var(--shell); margin: 0 auto; padding: 0 56px; }
 
-  .eyebrow{ font-family: var(--mono); font-size: .72rem; letter-spacing: .07em; text-transform: uppercase; font-weight: 500; color: var(--clay); }
-  .eyebrow::before{ content:"— "; color: var(--brass); }
-
   h1,h2,h3{ font-family: var(--serif); font-weight: 600; letter-spacing: -.005em; margin:0; }
+
+  /* Shared centered reading column — used throughout this page so the
+     hero, safety note, and service list all share one quiet rhythm
+     instead of reading as separate wide dashboard blocks. */
+  .col{ max-width: 760px; margin: 0 auto; }
+  .col-wide{ max-width: 900px; margin: 0 auto; }
 
   [data-reveal]{ opacity: 0; transform: translateY(16px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
   [data-reveal].in-view{ opacity: 1; transform: translateY(0); }
@@ -81,49 +84,43 @@
   }
 
   /* ================= SERVICES HERO ================= */
-  .svc-hero{ padding: calc(var(--nav-h) + clamp(56px, 8vw, 96px)) 0 clamp(48px, 6vw, 72px); }
-  .svc-hero h1{ font-size: clamp(2.6rem, 6vw, 4.4rem); color: var(--navy); line-height: 1.05; letter-spacing: -.01em; max-width: 780px; }
-  .svc-hero-rule{ width: 64px; height: 2px; background: var(--clay); margin: 26px 0 0; }
-  .svc-hero-prose{ margin: clamp(30px, 3.5vw, 40px) 0 0; max-width: 640px; }
+  .svc-hero{ padding: calc(var(--nav-h) + clamp(56px, 8vw, 96px)) 0 clamp(48px, 6vw, 72px); text-align:center; }
+  .svc-hero h1{ font-size: clamp(2.6rem, 6vw, 4.4rem); color: var(--navy); line-height: 1.05; letter-spacing: -.01em; }
+  .svc-hero-rule{ width: 64px; height: 2px; background: var(--clay); margin: 26px auto 0; }
+  .svc-hero-prose{ margin: clamp(30px, 3.5vw, 40px) auto 0; max-width: 620px; text-align:left; }
   .svc-hero-prose p{ font-size: 1.05rem; line-height: 1.75; color: var(--ink-soft); margin: 0 0 20px; }
   .svc-hero-prose p:last-child{ margin-bottom: 0; }
 
   /* --- How We Work --- */
-  .how-we-work{ margin-top: clamp(56px, 7vw, 84px); padding-top: clamp(40px, 5vw, 56px); border-top: 1px solid var(--line); }
-  .how-we-work .eyebrow{ display:block; margin-bottom: clamp(28px, 3.5vw, 40px); }
-  .hww-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: clamp(32px, 4vw, 48px); }
-  .hww-item{ padding-left: clamp(18px, 2vw, 24px); border-left: 2px solid var(--clay); }
-  .hww-item h3{ font-size: 1.15rem; color: var(--navy); margin-bottom: 12px; }
+  .how-we-work{ margin-top: clamp(64px, 8vw, 96px); }
+  .how-we-work h2{ font-size: clamp(1.5rem, 2.6vw, 1.9rem); color: var(--navy); margin-bottom: clamp(32px, 4vw, 48px); }
+  .hww-grid{ display:flex; align-items:flex-start; justify-content:center; gap: 0 clamp(32px, 4vw, 52px); text-align:center; }
+  .hww-item{ flex: 1 1 0; max-width: 260px; }
+  .hww-item h3{ font-size: 1.1rem; color: var(--navy); margin-bottom: 12px; }
   .hww-item p{ font-size: .92rem; line-height: 1.65; color: var(--ink-soft); margin: 0; }
-  @media (max-width: 900px){
-    .hww-grid{ grid-template-columns: 1fr; gap: 28px; }
+  .hww-divider{ width:1px; align-self:stretch; background: var(--line); flex: 0 0 auto; margin-top: 4px; }
+  @media (max-width: 780px){
+    .hww-grid{ flex-direction:column; align-items:center; gap: 32px; }
+    .hww-item{ max-width: 340px; }
+    .hww-divider{ display:none; }
   }
 
-  /* ================= SAFETY / HSE BAND ================= */
-  .hse-band{ background: var(--navy-deep); padding: clamp(64px, 8vw, 100px) 0; margin-top: clamp(64px, 8vw, 96px); }
-  .hse-inner{ display:grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(40px, 6vw, 80px); align-items:start; }
-  .hse-head h2{ font-size: clamp(1.9rem, 3.6vw, 2.6rem); color: var(--paper); line-height: 1.15; }
-  .hse-head .eyebrow{ display:block; margin-bottom: 18px; }
-  .hse-body p{ font-size: 1rem; line-height: 1.75; color: var(--paper-soft); margin: 0 0 22px; }
-  .hse-body p:last-of-type{ margin-bottom: 28px; }
-  .hse-member{ font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 1.08rem; color: var(--clay-bright); line-height: 1.5; margin: 0 0 28px; }
+  /* ================= SAFETY / HSE — compact ================= */
+  .hse-band{ background: var(--navy-deep); padding: clamp(40px, 5vw, 56px) 0; margin-top: clamp(64px, 8vw, 96px); text-align:center; }
+  .hse-band h2{ font-size: clamp(1.3rem, 2vw, 1.6rem); color: var(--paper); margin-bottom: clamp(16px, 2vw, 20px); }
+  .hse-body p{ font-size: .94rem; line-height: 1.65; color: var(--paper-soft); margin: 0 0 14px; text-align:left; }
+  .hse-body p:last-of-type{ margin-bottom: 18px; }
+  .hse-member{ font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 1rem; color: var(--clay-bright); line-height: 1.5; margin: 0 0 20px; }
   .hse-badge-slot{
-    display:flex; align-items:center; justify-content:center;
-    width: 140px; height: 88px; border: 1px dashed var(--line-on-navy);
-    color: rgba(250,246,234,.4); font-family: var(--mono); font-size: .62rem;
-    letter-spacing: .06em; text-transform: uppercase; text-align:center; padding: 8px;
-  }
-  @media (max-width: 860px){
-    .hse-inner{ grid-template-columns: 1fr; gap: 32px; }
+    display:flex; align-items:center; justify-content:center; margin: 0 auto;
+    width: 116px; height: 68px; border: 1px dashed var(--line-on-navy);
+    color: rgba(250,246,234,.4); font-family: var(--mono); font-size: .6rem;
+    letter-spacing: .06em; text-transform: uppercase; text-align:center; padding: 6px;
   }
 
   /* ================= SERVICES TIMELINE ================= */
-  .timeline-section{ padding: clamp(80px, 9vw, 116px) 0 clamp(40px, 5vw, 56px); }
-  .timeline-head{ max-width: 640px; margin: 0 0 clamp(48px, 5.5vw, 68px); }
-  .timeline-head .eyebrow{ display:block; margin-bottom: 16px; }
-  .timeline-head h2{ font-size: clamp(1.8rem, 3.2vw, 2.5rem); color: var(--navy); }
-
-  .timeline{ border-top: 1px solid var(--line); }
+  .timeline-section{ padding: clamp(64px, 7vw, 92px) 0 clamp(24px, 3vw, 32px); }
+  .timeline{ max-width: 780px; margin: 0 auto; }
 
   .tl-row{ border-bottom: 1px solid var(--line); position: relative; }
 
@@ -171,15 +168,14 @@
   }
   .tl-row.open .tl-panel{ grid-template-rows: 1fr; }
   .tl-panel-inner{ overflow:hidden; }
-  .tl-panel-content{ padding: 0 0 clamp(40px, 5vw, 56px); max-width: 880px; }
+  .tl-panel-content{ padding: 0 0 clamp(40px, 5vw, 56px); }
 
   .tl-prose p{ font-size: 1rem; line-height: 1.8; color: var(--ink-soft); margin: 0 0 20px; }
   .tl-prose p:last-child{ margin-bottom: 0; }
 
   .tl-lists{
-    display:grid; grid-template-columns: repeat(2, 1fr); gap: clamp(32px, 4vw, 56px);
-    margin-top: clamp(32px, 4vw, 44px); padding-top: clamp(28px, 3.4vw, 36px);
-    border-top: 1px solid var(--line);
+    display:grid; grid-template-columns: repeat(2, 1fr); gap: clamp(28px, 3.6vw, 48px);
+    margin-top: clamp(28px, 3.4vw, 36px);
   }
   .tl-list h4{
     font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase;
@@ -263,16 +259,18 @@
   </div>
 
   <div class="how-we-work">
-    <span class="eyebrow">How We Work</span>
+    <h2>How We Work</h2>
     <div class="hww-grid">
       <div class="hww-item">
         <h3>Senior Oversight</h3>
         <p>Experienced APS leadership stays directly involved in day-to-day project execution and provides clear, consistent communication.</p>
       </div>
+      <div class="hww-divider" aria-hidden="true"></div>
       <div class="hww-item">
         <h3>Controlled Execution</h3>
         <p>APS brings order to complex project information. Ownership records, GIS data, access agreements, reporting, project status, and field operations stay organized, current, and connected as the project develops. As scope and field personnel increase, APS maintains the same control without compromising accuracy, quality, safety, or critical timelines.</p>
       </div>
+      <div class="hww-divider" aria-hidden="true"></div>
       <div class="hww-item">
         <h3>Turnkey Pricing</h3>
         <p>APS defines the scope and establishes a guaranteed price before work begins. No surprises.</p>
@@ -281,29 +279,21 @@
   </div>
 </header>
 
-<!-- ================= SAFETY / HSE ================= -->
+<!-- ================= SAFETY / HSE (compact) ================= -->
 <section class="hse-band" data-reveal>
-  <div class="shell hse-inner">
-    <div class="hse-head">
-      <span class="eyebrow">Safety</span>
-      <h2>Safety / HSE</h2>
-    </div>
+  <div class="shell col">
+    <h2>Safety / HSE</h2>
     <div class="hse-body">
       <p>APS personnel are accountable for Health, Safety, and Environmental (HSE) compliance and take an active role in accident prevention. Our work follows a company Safety Program Manual and Injury &amp; Illness Prevention Program (IIPP), along with applicable client and project requirements.</p>
       <p>In the field, APS participates in daily safety briefings and Job Safety Analyses (JSAs), monitors operations for compliance, and exercises stop-work authority when conditions or activity fall outside established requirements.</p>
-      <p class="hse-member">APS Land Services is an active and compliant member of ISNetworld.</p>
-      <div class="hse-badge-slot" aria-label="ISNetworld badge placeholder">ISNetworld Badge</div>
     </div>
+    <p class="hse-member">APS Land Services is an active and compliant member of ISNetworld.</p>
+    <div class="hse-badge-slot" aria-label="ISNetworld badge placeholder">ISNetworld Badge</div>
   </div>
 </section>
 
 <!-- ================= SERVICES TIMELINE ================= -->
 <section class="timeline-section shell" id="services">
-  <div class="timeline-head" data-reveal>
-    <span class="eyebrow">Capabilities</span>
-    <h2>What we do.</h2>
-  </div>
-
   <div class="timeline" data-reveal>
 
     <!-- 01 Title & Ownership -->
