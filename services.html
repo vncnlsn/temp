@@ -259,11 +259,11 @@
   .cta-btn:hover .arrow{ transform: translateX(4px); }
 
   footer{ background: var(--navy-deep); color: var(--paper); padding: 44px 0 26px; }
-  .footer-grid{ display:flex; flex-wrap:wrap; justify-content:center; gap: 48px clamp(48px, 6vw, 88px); padding-bottom: 30px; border-bottom: 1px solid var(--line-on-navy); text-align:left; }
-  .footer-brand{ display:block; }
-  .footer-logo-img{ height: 28px; width:auto; filter: brightness(0) invert(1); margin-bottom: 10px; }
+  .footer-grid{ display:flex; flex-wrap:wrap; justify-content:center; gap: 48px clamp(48px, 6vw, 88px); padding-bottom: 30px; border-bottom: 1px solid var(--line-on-navy); text-align:center; }
+  .footer-brand{ display:flex; flex-direction:column; align-items:center; }
+  .footer-logo-img{ height: 28px; width:auto; filter: brightness(0) invert(1); margin: 0 auto 10px; }
   .footer-brand-fallback{ display:none; font-family: var(--serif); font-weight:600; font-size: 1.15rem; color: var(--paper); margin-bottom: 8px; }
-  .footer-brand p{ font-size: .82rem; color: var(--paper-soft); max-width: 220px; line-height:1.6; font-family: var(--sans); margin:0; }
+  .footer-brand p{ font-size: .82rem; color: var(--paper-soft); max-width: 220px; line-height:1.6; font-family: var(--sans); margin: 0 auto; }
   footer h4{ font-family: var(--mono); font-size: .64rem; letter-spacing: .08em; text-transform: uppercase; color: var(--clay-bright); margin: 0 0 12px; font-weight:500; }
   footer ul{ list-style:none; margin:0; padding:0; }
   footer li{ margin-bottom: 8px; font-size: .86rem; color: var(--paper-soft); }
@@ -271,8 +271,6 @@
   footer a{ font-size: .86rem; color: var(--paper-soft); transition: color .25s var(--ease); }
   footer a:hover{ color: var(--clay-bright); }
   .footer-bottom{ padding-top: 18px; text-align:center; font-family: var(--mono); font-size: .68rem; color: var(--paper-soft); }
-
-  @media (max-width: 640px){ .footer-grid{ justify-content:center; text-align:center; } .footer-brand p{ margin:0 auto; } .footer-logo-img{ margin-left:auto; margin-right:auto; } }
 
   /* Mobile breathing room — matches the rhythm used on about.html */
   @media (max-width: 640px){
@@ -526,8 +524,7 @@
   <div class="shell cta-inner" data-reveal>
     <h2>Just Say the Word.</h2>
     <div class="cta-actions">
-      <a class="cta-btn" href="tel:+13039035873">Call 303-903-5873 <span class="arrow">→</span></a>
-      <a class="cta-btn" href="mailto:allstatepermit@allstatepermit.com">Email allstatepermit@allstatepermit.com <span class="arrow">→</span></a>
+      <a class="cta-btn" href="contact.html">Contact Us <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -539,6 +536,15 @@
         <img class="footer-logo-img" src="assets/APSLand_Logo.png" alt="APS Land Services" decoding="async" onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='block'">
         <span id="footerLogoFallback" class="footer-brand-fallback">APS Land Services</span>
         <p>Setting the Standard Since 1980</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
       </div>
       <div>
         <h4>Contact</h4>
@@ -566,6 +572,28 @@
   window.scrollTo(0, 0);
 
   var nav = document.getElementById('siteNav');
+  var logo = document.querySelector('.nav-logo');
+  logo.addEventListener('click', function(e){
+    e.preventDefault();
+    window.location.href = logo.getAttribute('href');
+    window.location.reload();
+  });
+  function samePage(href){
+    var target = document.createElement('a');
+    target.href = href;
+    var targetPath = target.pathname.replace(/\/index\.html$/, '/').replace(/\/$/, '') || '/';
+    var herePath = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\/$/, '') || '/';
+    return targetPath === herePath;
+  }
+  document.querySelectorAll('.nav-link').forEach(function(link){
+    link.addEventListener('click', function(e){
+      var href = link.getAttribute('href');
+      if(samePage(href)){
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
   function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 12); }
   document.addEventListener('scroll', onScroll, { passive:true });
   onScroll();
