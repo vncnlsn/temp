@@ -226,23 +226,25 @@
     powerOnCoverage();
   }
 
-  /* ---- Reset pin when clicking empty map space ---- */
-mapEl.addEventListener('click', function (e) {
-  var clickedState = e.target.closest('path[data-state]');
-  var clickedHQ = e.target.closest('.hq-marker');
+  /* ---- Reset pin when clicking anywhere except an active map target ---- */
+document.addEventListener('click', function (e) {
+  var clickedState = e.target.closest('#us-map path[data-state]');
+  var clickedHQ = e.target.closest('#us-map .hq-marker');
 
-  if (!clickedState && !clickedHQ) {
-    if (pinned) {
-      pinned.classList.remove('pinned');
-      pinned = null;
-    }
+  /* Clicking an actual state or HQ is handled by their own click handlers. */
+  if (clickedState || clickedHQ) return;
 
-    allInteractive.forEach(function (el) {
-      el.classList.remove('hovered', 'pinned');
-    });
-
-    hidePanel();
+  /* Any other click anywhere on the page clears the pinned selection. */
+  if (pinned) {
+    pinned.classList.remove('pinned');
+    pinned = null;
   }
+
+  allInteractive.forEach(function (el) {
+    el.classList.remove('hovered', 'pinned');
+  });
+
+  hidePanel();
 });
 
 /* ---- Reset pin when the map section scrolls out of view ---- */
