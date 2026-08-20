@@ -97,7 +97,7 @@
 
     .footer-grid { 
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr; /* 3 balanced columns */
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 40px; 
       padding-bottom: 48px; 
       border-bottom: 1px solid var(--line-on-navy); 
@@ -105,7 +105,7 @@
       align-items: start;
     }
 
-    /* Left Column: Brand & HQ */
+    /* Column 1: Logo & Linked HQ Badge */
     .footer-brand { 
       display: flex; 
       flex-direction: column; 
@@ -136,11 +136,13 @@
       color: rgba(250,246,234,.7); 
       line-height: 1.5; 
       font-family: var(--sans); 
-      margin: 0 0 12px 0; 
+      margin: 0; 
       text-align: center;
     }
 
     .footer-hq-badge {
+      display: inline-block;
+      margin-top: 16px; /* Added breathing room */
       font-family: var(--mono);
       font-size: .72rem;
       letter-spacing: .08em;
@@ -148,11 +150,18 @@
       color: var(--clay-bright);
       background: rgba(217,117,95,.08);
       border: 1px solid rgba(217,117,95,.2);
-      padding: 4px 12px;
+      padding: 6px 14px;
       border-radius: 3px;
+      transition: background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
     }
 
-    /* Center Column: Navigation (Aligned under CTA) */
+    .footer-hq-badge:hover {
+      background: rgba(217,117,95,.18);
+      border-color: rgba(217,117,95,.4);
+      color: var(--paper);
+    }
+
+    /* Headers */
     footer h4 { 
       font-family: var(--mono); 
       font-size: .68rem; 
@@ -164,13 +173,14 @@
       text-align: center;
     }
 
+    /* Column 2 & 3 Flex Containers */
     footer ul { 
       list-style: none; 
       margin: 0; 
       padding: 0; 
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: center; /* Ensures chips & links align centrally under headers */
     }
 
     footer li { 
@@ -194,7 +204,7 @@
       color: var(--clay-bright); 
     }
 
-    /* Right Column: Contact */
+    /* Contact Chips */
     .contact-link {
       background: rgba(250,246,234,.04);
       padding: 6px 14px;
@@ -202,6 +212,7 @@
       border: 1px solid rgba(250,246,234,.06);
       font-family: var(--mono);
       font-size: .80rem;
+      transition: background .25s var(--ease), border-color .25s var(--ease);
     }
 
     .contact-link:hover {
@@ -250,15 +261,15 @@
     <div class="shell">
       <div class="footer-grid">
         
-        <!-- Column 1 (Left): Logo, Tagline, & Headquarters -->
+        <!-- Column 1: Logo, Tagline, & Maps HQ Link -->
         <div class="footer-brand">
           <img class="footer-logo-img" src="assets/APSLand_Logo.png" alt="APS Land Services" decoding="async" onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='block'">
           <span id="footerLogoFallback" class="footer-brand-fallback">APS Land Services</span>
           <p>Setting the Standard Since 1980</p>
-          <span class="footer-hq-badge">Cache Valley, Utah</span>
+          <a class="footer-hq-badge" href="https://maps.google.com/?q=Logan,+UT" target="_blank" rel="noopener noreferrer">Cache Valley, Utah ↗</a>
         </div>
 
-        <!-- Column 2 (Center): Navigation -->
+        <!-- Column 2: Navigation -->
         <div>
           <h4>Navigation</h4>
           <ul>
@@ -269,7 +280,7 @@
           </ul>
         </div>
 
-        <!-- Column 3 (Right): Contact -->
+        <!-- Column 3: Contact (Centered Chips) -->
         <div>
           <h4>Contact</h4>
           <ul>
