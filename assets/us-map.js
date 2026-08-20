@@ -226,9 +226,12 @@
     powerOnCoverage();
   }
 
-  /* ---- Reset pin when clicking outside the map ---- */
-document.addEventListener('click', function (e) {
-  if (!mapEl.contains(e.target)) {
+  /* ---- Reset pin when clicking empty map space ---- */
+mapEl.addEventListener('click', function (e) {
+  var clickedState = e.target.closest('path[data-state]');
+  var clickedHQ = e.target.closest('.hq-marker');
+
+  if (!clickedState && !clickedHQ) {
     if (pinned) {
       pinned.classList.remove('pinned');
       pinned = null;
