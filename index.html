@@ -138,99 +138,145 @@
     line-height: 1.32;
   }
 
-  /* --- Zone 3: Capabilities — what APS does --- */
+  /* --- Zone 3: Capabilities --- */
+.hero-capabilities{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px 0;
+  width: 100%;
+  max-width: 1040px;
+  margin: clamp(56px, 7vw, 88px) auto 0;
+  padding: clamp(30px, 3.6vw, 40px) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-cap-link{
+  font-family: var(--mono);
+  font-size: 1rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--navy);
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color .25s var(--ease);
+}
+
+.hero-cap-link::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  height: 2px;
+  background: var(--clay);
+  transition: right .3s var(--ease);
+}
+
+.hero-cap-link:hover{
+  color: var(--clay);
+}
+
+.hero-cap-link:hover::after{
+  right: 0;
+}
+
+.hero-sep{
+  width: 1px;
+  height: 14px;
+  background: var(--brass);
+  opacity: .5;
+  display: inline-block;
+  margin: 0 24px;
+}
+
+@media (max-width: 640px){
   .hero-capabilities{
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:center;
-    gap: 14px 0;
-    width: 100%;
-    max-width: 960px;
-    margin: clamp(64px, 8vw, 96px) auto 0;
-    padding: clamp(26px, 3.2vw, 34px) 0;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+    gap: 16px 0;
   }
+
+  .hero-sep{
+    display: none;
+  }
+
   .hero-cap-link{
-    font-family: var(--mono);
-    font-size: .92rem;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    color: var(--navy);
-    font-weight: 700;
-    position: relative;
-    padding-bottom: 3px;
-    transition: color .25s var(--ease);
+    width: 100%;
+    font-size: .82rem;
   }
-  .hero-cap-link::after{
-    content:"";
-    position:absolute; left:0; right:100%; bottom:0; height:2px; background: var(--clay);
-    transition: right .3s var(--ease);
-  }
-  .hero-cap-link:hover{ color: var(--clay); }
-  .hero-cap-link:hover::after{ right:0; }
-  .hero-sep{ width:1px; height: 13px; background: var(--brass); opacity:.5; display:inline-block; margin: 0 22px; }
+}
 
-  @media (max-width: 640px){
-    .hero-capabilities{ gap: 16px 0; }
-    .hero-sep{ display:none; }
-    .hero-cap-link{ width: 100%; font-size: .82rem; }
-  }
+  /* --- Landowner redirect --- */
+.hero-landowner{
+  position: absolute;
+  right: clamp(40px, 7vw, 100px);
+  bottom: clamp(36px, 5vw, 56px);
+}
 
-  /* --- Landowner redirect — a quiet aside tucked into the corner of
-     the hero, not competing with the main identity/purpose/capability
-     zones above it. Desktop: pinned to the bottom-right of the hero.
-     Mobile: drops into normal flow, centered, below the capabilities
-     row. --- */
+.hero-landowner-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: .82rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--navy);
+  padding: 11px 16px;
+  border: 1px solid rgba(178,58,40,.45);
+  border-radius: 3px;
+  background: rgba(250,246,234,.45);
+  transition:
+    color .25s var(--ease),
+    background .25s var(--ease),
+    border-color .25s var(--ease);
+}
+
+.hero-landowner-link:hover{
+  color: var(--paper);
+  background: var(--clay);
+  border-color: var(--clay);
+}
+
+.hero-landowner-link .arrow{
+  transition: transform .25s var(--ease);
+}
+
+.hero-landowner-link:hover .arrow{
+  transform: translateX(4px);
+}
+
+@media (max-width: 640px){
   .hero-landowner{
-    position: absolute;
-    right: clamp(24px, 4vw, 56px);
-    bottom: clamp(28px, 4vw, 48px);
+    position: static;
+    display: flex;
+    justify-content: center;
+    margin: clamp(28px, 6vw, 40px) 0 0;
   }
-  .hero-landowner-link{
-    display:inline-flex;
-    align-items:center;
-    gap: 8px;
-    font-family: var(--mono);
-    font-size: .74rem;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: var(--brass);
-    padding-bottom: 2px;
-    border-bottom: 1px solid rgba(140,130,113,.35);
-    transition: color .25s var(--ease), border-color .25s var(--ease);
-  }
-  .hero-landowner-link:hover{ color: var(--clay); border-color: var(--clay); }
-  .hero-landowner-link .arrow{ transition: transform .25s var(--ease); }
-  .hero-landowner-link:hover .arrow{ transform: translateX(4px); }
 
-  @media (max-width: 640px){
-    .hero-landowner{
-      position: static;
-      display:flex;
-      justify-content:center;
-      margin: clamp(28px, 6vw, 40px) 0 0;
-    }
-    .hero-landowner-link{
-      font-size: .9rem;
-      gap: 8px;
-      letter-spacing: .04em;
-      white-space: nowrap;
-      color: var(--paper);
-      background: var(--clay);
-      padding: 14px 22px;
-      border-radius: 3px;
-      border-bottom: none;
-      box-shadow: 0 8px 20px rgba(178,58,40,.28);
-    }
-    .hero-landowner-link:hover,
-    .hero-landowner-link:active{
-      color: var(--paper);
-      background: var(--clay-bright);
-    }
+  .hero-landowner-link{
+    font-size: .9rem;
+    gap: 8px;
+    letter-spacing: .04em;
+    white-space: nowrap;
+    color: var(--paper);
+    background: var(--clay);
+    padding: 14px 22px;
+    border-radius: 3px;
+    border: none;
+    box-shadow: 0 8px 20px rgba(178,58,40,.28);
   }
+
+  .hero-landowner-link:hover,
+  .hero-landowner-link:active{
+    color: var(--paper);
+    background: var(--clay-bright);
+    border-color: var(--clay-bright);
+  }
+}
 
   /* ================= FOOTPRINT (map section) ================= */
   .footprint-section{ background: var(--navy-deep); padding: clamp(64px, 7vw, 96px) 0 clamp(56px, 6vw, 80px); }
