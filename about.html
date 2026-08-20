@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/jpeg" href="assets/APS_favicon_2.jpg">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About Us — APS Land Services</title>
@@ -97,10 +98,22 @@
     color: var(--clay-bright);
   }
 
-  @media (max-width: 768px) {
-    .nav-menu-centered { gap: 18px; padding: 0 16px; }
-    .nav-link { font-size: .74rem; letter-spacing: .05em; }
-    .nav-logo-img { height: 32px; }
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;justify-content:center;gap:5px;z-index:210;}
+  .menu-toggle span{display:block;width:22px;height:2px;background-color:var(--paper);border-radius:2px;transition:transform .4s var(--ease),opacity .4s var(--ease);}
+  .menu-toggle.is-active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .menu-toggle.is-active span:nth-child(2){opacity:0;}
+  .menu-toggle.is-active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .mobile-drawer{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--navy-deep);border-bottom:2px solid var(--clay);padding:24px 0;z-index:199;box-shadow:0 10px 20px rgba(0,0,0,.5);transform:translateY(-100%);opacity:0;transition:transform .5s var(--ease),opacity .5s var(--ease);}
+  .mobile-drawer.is-open{transform:translateY(0);opacity:1;}
+  .mobile-drawer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;align-items:center;gap:20px;}
+
+  @media (max-width:768px){
+    .site-nav{justify-content:space-between;padding:0 20px;}
+    .menu-toggle{display:flex;position:absolute;left:20px;}
+    .nav-menu-centered{display:flex;justify-content:center;padding:0;width:100%;}
+    .nav-menu-centered .desktop-only{display:none;}
+    .nav-logo-img{height:34px;}
+    .mobile-drawer{display:block;}
   }
 
   /* ================= HERO ================= */
@@ -472,11 +485,11 @@
       padding-bottom: 24px;
     }
 
-    .col-nav     { order: 1; }
-    .col-brand   { order: 2; }
-    .col-contact { display: none; }
+    .col-nav{order:1;}
+    .col-brand{order:2;}
+    .col-contact{display:none !important;}
 
-    footer h4.nav-header { display: none; }
+    footer h4.nav-header{display:none;}
     footer ul.nav-list {
       flex-direction: row;
       flex-wrap: wrap;
@@ -496,7 +509,7 @@
       font-weight: bold;
     }
 
-    .footer-brand p { display: none; }
+    .footer-brand p{display:block;}
     .footer-hq-badge { margin-top: 10px; }
 
     .footer-bottom {
@@ -537,19 +550,20 @@
 
 <!-- NAV -->
 <nav class="site-nav" id="siteNav" aria-label="Primary">
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-menu-centered">
-    <li><a class="nav-link" href="index.html">Home</a></li>
-    <li><a class="nav-link active" href="about.html">About</a></li>
-    <li>
-      <a class="nav-logo" href="index.html" aria-label="APS Land Services — Home">
-        <img class="nav-logo-img" src="assets/APSLand_Logo.png" alt="APS Land" decoding="async" onerror="this.style.display='none';document.getElementById('navLogoFallback').style.display='inline'">
-        <span id="navLogoFallback" class="nav-logo-fallback" style="display:none;">APS Land</span>
-      </a>
-    </li>
-    <li><a class="nav-link" href="services.html">Services</a></li>
-    <li><a class="nav-link" href="contact.html">Contact</a></li>
+    <li class="desktop-only"><a class="nav-link" href="index.html">Home</a></li>
+    <li class="desktop-only"><a class="nav-link active" href="about.html">About</a></li>
+    <li><a class="nav-logo" href="index.html" aria-label="APS Land Services — Home"><img class="nav-logo-img" src="assets/APSLand_Logo.png" alt="APS Land" decoding="async" onerror="this.style.display='none';document.getElementById('navLogoFallback').style.display='inline'"><span id="navLogoFallback" class="nav-logo-fallback" style="display:none;">APS Land</span></a></li>
+    <li class="desktop-only"><a class="nav-link" href="services.html">Services</a></li>
+    <li class="desktop-only"><a class="nav-link" href="contact.html">Contact</a></li>
   </ul>
 </nav>
+<div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+  <ul>
+    <li><a class="nav-link" href="index.html">Home</a></li><li><a class="nav-link active" href="about.html">About</a></li><li><a class="nav-link" href="services.html">Services</a></li><li><a class="nav-link" href="contact.html">Contact</a></li>
+  </ul>
+</div>
 
 <!-- PAGE HERO -->
 <header class="about-hero shell" data-reveal>
@@ -693,7 +707,7 @@
         <img class="footer-logo-img" src="assets/APSLand_Logo.png" alt="APS Land Services" decoding="async" onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='block'">
         <span id="footerLogoFallback" class="footer-brand-fallback">APS Land Services</span>
         <p>Setting the Standard Since 1980</p>
-        <a class="footer-hq-badge" href="https://www.google.com/maps/search/?api=1&query=Logan%2C+UT" target="_blank" rel="noopener noreferrer">Cache Valley, Utah ↗</a>
+        <a class="footer-hq-badge" href="https://www.google.com/maps/search/?api=1&query=Lewiston%2C+UT" target="_blank" rel="noopener noreferrer">Cache Valley, Utah ↗</a>
       </div>
 
       <!-- Column 2: Navigation -->
@@ -727,46 +741,19 @@
 
 <script>
 (function(){
-  var nav = document.getElementById('siteNav');
-
-  function onScroll(){
-    nav.classList.toggle('scrolled', window.scrollY > 12);
-  }
-
-  document.addEventListener('scroll', onScroll, { passive:true });
-  onScroll();
-
-  /* Reveal-on-scroll */
-  var reveals = document.querySelectorAll('[data-reveal]');
-
-  if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          entry.target.classList.add('in-view');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    reveals.forEach(function(el){
-      io.observe(el);
-    });
-  } else {
-    reveals.forEach(function(el){
-      el.classList.add('in-view');
-    });
-  }
-
-  /* Soft scroll-to-top refresh animation */
-  window.addEventListener('load', function(){
-    if(window.scrollY > 0 && !window.location.hash){
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    }
-  });
-
+  var nav=document.getElementById('siteNav');
+  var toggleBtn=document.getElementById('menuToggle');
+  var mobileDrawer=document.getElementById('mobileDrawer');
+  function closeDrawer(){if(mobileDrawer&&toggleBtn&&mobileDrawer.classList.contains('is-open')){mobileDrawer.classList.remove('is-open');toggleBtn.classList.remove('is-active');toggleBtn.setAttribute('aria-expanded','false');mobileDrawer.setAttribute('aria-hidden','true');}}
+  function onScroll(){if(nav)nav.classList.toggle('scrolled',window.scrollY>12);closeDrawer();}
+  document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  if(toggleBtn&&mobileDrawer){toggleBtn.addEventListener('click',function(e){e.stopPropagation();if(mobileDrawer.classList.contains('is-open'))closeDrawer();else{mobileDrawer.classList.add('is-open');toggleBtn.classList.add('is-active');toggleBtn.setAttribute('aria-expanded','true');mobileDrawer.setAttribute('aria-hidden','false');}});}
+  document.addEventListener('click',function(e){if(mobileDrawer&&mobileDrawer.classList.contains('is-open')){var inNav=nav&&nav.contains(e.target),inDrawer=mobileDrawer.contains(e.target);if(!inNav&&!inDrawer)closeDrawer();}});
+  function samePage(href){var target=document.createElement('a');target.href=href;var tp=target.pathname.replace(/\/index\.html$/,'/').replace(/\/$/,'')||'/';var hp=window.location.pathname.replace(/\/index\.html$/,'/').replace(/\/$/,'')||'/';return tp===hp;}
+  var logo=document.querySelector('.nav-logo');if(logo){logo.addEventListener('click',function(e){e.preventDefault();window.location.href=logo.getAttribute('href');});}
+  document.querySelectorAll('.nav-link').forEach(function(link){link.addEventListener('click',function(e){var href=link.getAttribute('href');closeDrawer();if(samePage(href)){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});}});});
+  var currentPath=window.location.pathname.split('/').pop()||'index.html';document.querySelectorAll('.nav-link').forEach(function(link){var href=link.getAttribute('href');link.classList.toggle('active',href===currentPath||(currentPath===''&&href==='index.html'));});
+  var reveals=document.querySelectorAll('[data-reveal]');if('IntersectionObserver'in window){var io=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('in-view');io.unobserve(entry.target);}});},{threshold:.15});reveals.forEach(function(el){io.observe(el);});}else{reveals.forEach(function(el){el.classList.add('in-view');});}
+  window.addEventListener('load',function(){if(window.scrollY>0&&!window.location.hash)window.scrollTo({top:0,behavior:'smooth'});});
 })();
 </script>
