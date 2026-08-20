@@ -419,6 +419,12 @@
   .cap-list{ list-style:none; margin:0; padding:0; }
   .cap-list li{ font-size: .92rem; color: var(--ink-soft); padding: 10px 0; border-top: 1px solid var(--line); }
   .cap-list li:first-child{ border-top:none; padding-top:0; }
+  /* List items that double as links (End-to-End Land Services) — same
+     visual weight as the plain-text list items elsewhere in this grid,
+     just with a hover/focus state to signal they're tappable. */
+  .cap-list a.cap-list-link{ display:block; color: inherit; transition: color .2s var(--ease); }
+  .cap-list a.cap-list-link:hover,
+  .cap-list a.cap-list-link:focus-visible{ color: var(--clay); }
   .cap-contrast{ font-family: var(--serif); font-style: italic; font-weight:500; font-size: 1.05rem; color: var(--clay); line-height:1.45; margin: 0; text-align:center; }
   .cap-close{ font-family: var(--mono); font-size: .74rem; letter-spacing: .03em; color: var(--brass); line-height:1.6; text-align:center; margin: 24px 0 0; padding-top: 18px; border-top: 1px solid var(--line); min-height: 58px; }
 
@@ -495,6 +501,16 @@
     .proven-section{ padding-top: clamp(80px, 12vw, 108px); padding-bottom: clamp(80px, 12vw, 108px); }
     .cta-band{ padding-top: clamp(80px, 12vw, 104px); padding-bottom: clamp(80px, 12vw, 104px); }
   }
+
+  /* ================= MOBILE HERO: capabilities row removed ================= */
+  /* On mobile the four capability links are dropped from the hero
+     entirely, and the "Contacted by APS?" link (already position:static
+     and next in DOM order at this breakpoint) rises to sit directly
+     under the "Supporting the energy..." purpose line. No markup
+     reordering needed — collapsing this block is enough. */
+  @media (max-width: 640px){
+    .hero-capabilities{ display:none; }
+  }
 </style>
 </head>
 <body>
@@ -529,7 +545,9 @@
 
   <!-- Zone 3 — Capabilities: WHAT APS does. Same order and naming as
        the "Our Capabilities" timeline on services.html, each linking
-       straight to that service's description. -->
+       straight to that service's description. Hidden on mobile
+       (≤640px) — see .hero-capabilities media query — so the
+       "Contacted by APS?" link below rises to take this spot instead. -->
   <div class="hero-capabilities">
     <a class="hero-cap-link" href="services.html#title-ownership">Title &amp; Ownership</a>
     <span class="hero-sep" aria-hidden="true"></span>
@@ -540,7 +558,10 @@
     <a class="hero-cap-link" href="services.html#right-of-way">Right-of-Way Acquisition</a>
   </div>
 
-  <!-- Landowner redirect: quiet aside, not part of the main capability set -->
+  <!-- Landowner redirect: quiet aside on desktop, pinned to the hero
+       corner. On mobile it becomes a static in-flow element, and since
+       .hero-capabilities collapses to display:none at that breakpoint,
+       this lands immediately after the purpose line above. -->
   <div class="hero-landowner">
     <a class="hero-landowner-link" href="about.html#landowner-info">Contacted by APS? Start Here <span class="arrow">→</span></a>
   </div>
@@ -595,10 +616,10 @@
       <h3>End-to-End Land Services</h3>
       <div class="cap-body">
         <ul class="cap-list">
-          <li>Title Curative</li>
-          <li>GIS Services</li>
-          <li>Seismic Permitting</li>
-          <li>Right-of-Way Acquisition</li>
+          <li><a class="cap-list-link" href="services.html#title-ownership">Title Curative</a></li>
+          <li><a class="cap-list-link" href="services.html#gis-services">GIS Services</a></li>
+          <li><a class="cap-list-link" href="services.html#seismic-permitting">Seismic Permitting</a></li>
+          <li><a class="cap-list-link" href="services.html#right-of-way">Right-of-Way Acquisition</a></li>
         </ul>
       </div>
       <p class="cap-close">One team. Direct oversight. Continuous reporting.</p>
