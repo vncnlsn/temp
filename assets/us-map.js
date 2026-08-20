@@ -108,7 +108,7 @@ var panel = document.getElementById('map-state-panel');
 var panelName = document.getElementById('msp-name');
 var panelCounty = document.getElementById('msp-county');
 
-function showPanel(name, secondary) {
+function showPanel(name, secondary, isHQ) {
   if (!panel) return;
 
   panelName.textContent = name;
@@ -121,13 +121,19 @@ function showPanel(name, secondary) {
     panelCounty.classList.remove('msp-county-visible');
   }
 
+  if (isHQ) {
+    panel.classList.add('msp-hq');
+  } else {
+    panel.classList.remove('msp-hq');
+  }
+
   panel.classList.add('msp-visible');
 }
 
 function hidePanel() {
   if (!panel) return;
 
-  panel.classList.remove('msp-visible');
+  panel.classList.remove('msp-visible', 'msp-hq');
   panelName.textContent = '';
   panelCounty.textContent = '';
   panelCounty.classList.remove('msp-county-visible');
@@ -148,6 +154,7 @@ var pinned = null;
 
 function wire(el, name, variant, secondary) {
   var reactive = variant === 'covered' || variant === 'hq';
+  var isHQ = variant === 'hq';
 
   el.addEventListener('mouseenter', function () {
     if (pinned) return;
@@ -156,7 +163,7 @@ function wire(el, name, variant, secondary) {
       el.classList.add('hovered');
     }
 
-    showPanel(name, secondary);
+    showPanel(name, secondary, isHQ);
   });
 
   el.addEventListener('mouseleave', function () {
@@ -167,18 +174,18 @@ function wire(el, name, variant, secondary) {
   });
 
   el.addEventListener('click', function () {
-    togglePin(el, name, reactive, secondary);
+    togglePin(el, name, reactive, secondary, isHQ);
   });
 
   el.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      togglePin(el, name, reactive, secondary);
+      togglePin(el, name, reactive, secondary, isHQ);
     }
   });
 }
 
-function togglePin(el, name, reactive, secondary) {
+function togglePin(el, name, reactive, secondary, isHQ) {
   if (pinned === el) {
     pinned = null;
     el.classList.remove('pinned');
@@ -196,7 +203,7 @@ function togglePin(el, name, reactive, secondary) {
     el.classList.add('pinned');
   }
 
-  showPanel(name, secondary);
+  showPanel(name, secondary, isHQ);
 }
 
 
@@ -256,7 +263,7 @@ function powerOnCoverage() {
   });
 }
 
-wire(hqGroup, HQ.name, 'hq');
+wire(hqGroup, HQ.name, 'hq', '');
 
 
 /* ---- Fires once on first entry only ---- */
@@ -280,15 +287,6 @@ if (mapSection && 'IntersectionObserver' in window) {
 
 /* ============================================================
    UNIVERSAL RESET
-
-   This is deliberately attached to WINDOW, not the SVG, map,
-   map-stage, document, or a particular container.
-
-   Any interaction anywhere on the site resets the pinned state
-   unless the interaction actually originated on a state path or
-   the HQ marker.
-
-   Capture phase ensures this runs before normal click handlers.
    ============================================================ */
 
 function resetPinnedState() {
@@ -309,8 +307,6 @@ function isMapTarget(event) {
 
   if (!target) return false;
 
-  /* Walk the event path rather than trusting the SVG/container
-     boundary or target type. */
   var path = typeof event.composedPath === 'function'
     ? event.composedPath()
     : [];
@@ -329,7 +325,6 @@ function isMapTarget(event) {
     }
   }
 
-  /* Fallback for browsers without composedPath(). */
   if (target.closest) {
     if (target.closest('#us-map path[data-state]')) {
       return true;
