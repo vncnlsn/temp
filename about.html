@@ -728,33 +728,45 @@
 <script>
 (function(){
   var nav = document.getElementById('siteNav');
-  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 12); }
+
+  function onScroll(){
+    nav.classList.toggle('scrolled', window.scrollY > 12);
+  }
+
   document.addEventListener('scroll', onScroll, { passive:true });
   onScroll();
 
   /* Reveal-on-scroll */
   var reveals = document.querySelectorAll('[data-reveal]');
+
   if('IntersectionObserver' in window){
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
-        if(entry.isIntersecting){ entry.target.classList.add('in-view'); io.unobserve(entry.target); }
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
       });
     }, { threshold: 0.15 });
-    reveals.forEach(function(el){ io.observe(el); });
+
+    reveals.forEach(function(el){
+      io.observe(el);
+    });
   } else {
-    reveals.forEach(function(el){ el.classList.add('in-view'); });
+    reveals.forEach(function(el){
+      el.classList.add('in-view');
+    });
   }
 
-  /* Soft scroll-to-top refresh animation: on load/refresh, if the
-     browser has restored a scrolled position (or landed on a hash),
-     ease the viewport back up to the top instead of snapping there. */
+  /* Soft scroll-to-top refresh animation */
   window.addEventListener('load', function(){
-  if (window.scrollY > 0 && !window.location.hash) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-});
-  
-</script>
+    if(window.scrollY > 0 && !window.location.hash){
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  });
 
-</body>
-</html>
+})();
+</script>
