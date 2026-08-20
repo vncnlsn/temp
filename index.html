@@ -411,7 +411,8 @@
     .map-stage{ width: 100%; max-width: 100%; height: auto; }
   }
 
-  /* ================= CAPABILITIES ================= */
+/* ================= CAPABILITIES ================= */
+
 .capabilities-section{
   padding: clamp(80px, 9vw, 120px) 0 clamp(64px, 7vw, 96px);
 }
@@ -432,6 +433,7 @@
   color: var(--navy);
 }
 
+/* Three-card layout */
 .capabilities-grid{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -439,7 +441,7 @@
   align-items: stretch;
 }
 
-/* Standard warm-white cards */
+/* Cards */
 .cap-card{
   background: #FFFDF7;
   padding: clamp(30px, 3vw, 40px) clamp(26px, 2.6vw, 34px);
@@ -461,6 +463,7 @@
     0 14px 28px rgba(34,28,21,.08);
 }
 
+/* Card titles */
 .cap-card h3{
   font-size: 1.18rem;
   color: var(--navy);
@@ -471,7 +474,7 @@
   letter-spacing: .04em;
 }
 
-/* Shared card content */
+/* Shared card content area */
 .cap-body{
   flex: 1;
   display: flex;
@@ -479,7 +482,31 @@
   justify-content: center;
 }
 
-/* Lists */
+/* Power statements */
+.cap-contrast{
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: var(--clay);
+  line-height: 1.4;
+  margin: 0 0 28px;
+  text-align: center;
+}
+
+/* "No surprises." */
+.cap-simple{
+  font-family: var(--mono);
+  font-size: .95rem;
+  font-weight: 500;
+  letter-spacing: .03em;
+  color: var(--brass);
+  line-height: 1.6;
+  text-align: center;
+  margin: 0;
+}
+
+/* Supporting lists */
 .cap-list{
   list-style: none;
   margin: 0;
@@ -508,55 +535,6 @@
 .cap-list a.cap-list-link:hover,
 .cap-list a.cap-list-link:focus-visible{
   color: var(--clay);
-}
-
-/* Power statements */
-.cap-contrast{
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 500;
-  font-size: 1.25rem;
-  color: var(--clay);
-  line-height: 1.4;
-  margin: 0 0 28px;
-  text-align: center;
-}
-
-.cap-simple{
-  font-family: var(--mono);
-  font-size: .95rem;
-  font-weight: 500;
-  letter-spacing: .03em;
-  color: var(--brass);
-  line-height: 1.6;
-  text-align: center;
-  margin: 0;
-}
-
-/* Featured Turnkey Pricing card */
-.cap-card-featured{
-  background: #DCE2E3;
-  box-shadow:
-    0 1px 2px rgba(34,28,21,.04),
-    0 12px 26px rgba(34,28,21,.08);
-}
-
-.cap-card-featured h3{
-  color: var(--navy);
-}
-
-.cap-card-featured .cap-contrast{
-  color: var(--clay);
-}
-
-.cap-card-featured .cap-simple{
-  color: var(--brass);
-}
-
-.cap-card-featured:hover{
-  box-shadow:
-    0 2px 4px rgba(34,28,21,.05),
-    0 16px 30px rgba(34,28,21,.10);
 }
 
 /* Mobile */
