@@ -191,26 +191,27 @@
     }
     .contact-hero-copy strong{ color: var(--navy); font-weight: 600; }
 
-    /* Subdued Dark Navy Contact Box */
+    /* OPTION 1: Clean, Light Integrated Contact Box */
     .contact-card{
       width: 100%;
       max-width: 460px;
-      margin: clamp(14px, 2vw, 22px) auto 0;
-      background: var(--navy-deep);
-      border: 1px solid var(--line-on-navy);
+      margin: clamp(16px, 2.5vw, 24px) auto 0;
+      background: var(--paper-dim);
+      border: 1px solid var(--line);
       border-radius: 6px;
-      padding: clamp(18px, 2.5vw, 24px);
-      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+      padding: clamp(20px, 3vw, 28px);
+      box-shadow: 0 4px 16px rgba(0,0,0,.04);
       text-align: center;
     }
 
+    /* Brass Accent Header */
     .contact-card-lead{
       font-family: var(--mono);
       font-size: .74rem;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: var(--paper);
-      margin: 0 0 14px;
+      color: var(--brass);
+      margin: 0 0 16px;
       text-align: center;
       font-weight: 600;
     }
@@ -219,20 +220,21 @@
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap: 10px;
+      gap: 12px;
     }
 
+    /* Solid Navy Primary Buttons */
     .contact-btn{
       display:inline-flex; align-items:center; justify-content:center; gap: 12px;
       width: min(320px, 100%);
-      padding: 13px 24px;
-      background: transparent;
-      border: 1px solid var(--paper-soft);
+      padding: 14px 26px;
+      background: var(--navy);
+      border: 1px solid var(--navy);
       color: var(--paper);
       font-family: var(--sans);
       font-size: .90rem; font-weight: 600;
       border-radius: 3px;
-      transition: background .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease);
+      transition: background .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease);
     }
     .contact-btn:hover{ 
       background: var(--clay); 
@@ -243,7 +245,7 @@
     .contact-btn .arrow{ transition: transform .25s var(--ease); }
     .contact-btn:hover .arrow{ transform: translateX(4px); }
 
-    /* ================= RESTORED ORIGINAL FOOTER ================= */
+    /* ================= ORIGINAL FOOTER ================= */
     footer { 
       flex: 0 0 auto;
       background: linear-gradient(180deg, #16222C 0%, #111B23 100%); 
