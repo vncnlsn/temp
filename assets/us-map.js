@@ -244,6 +244,7 @@ document.addEventListener('click', function (e) {
 
 /* ---- Reset pin when the map section scrolls out of view ---- */
 var resetSection = document.getElementById('footprint');
+
 if (resetSection && 'IntersectionObserver' in window) {
   var io2 = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
@@ -264,4 +265,5 @@ if (resetSection && 'IntersectionObserver' in window) {
 
   io2.observe(resetSection);
 }
+
 })();
