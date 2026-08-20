@@ -1211,34 +1211,37 @@ var CLIENTS_ROW_B = [
     if(marqueeB) marqueeB.recalc();
   });
 
-  /* ---- Map: HQ label + reset-on-click-away ----
-     us-map.js owns hover/pin state for state paths. Here we only:
-     (a) toggle the "Headquarters" eyebrow when the HQ marker itself
-         is the active target, and (b) reset any pinned selection back
-         to plain hover mode when the user clicks/taps outside the map. */
-  var mapStage = document.querySelector('.map-stage');
-  var statePanel = document.getElementById('map-state-panel');
-  if(mapStage && statePanel){
-    mapStage.addEventListener('mouseover', function(e){
-      var hq = e.target.closest('.hq-marker');
-      var isState = e.target.closest('.map-canvas path');
-      if(hq){ statePanel.classList.add('msp-hq'); }
-      else if(isState){ statePanel.classList.remove('msp-hq'); }
-    });
-    mapStage.addEventListener('click', function(e){
-      var hq = e.target.closest('.hq-marker');
-      var isState = e.target.closest('.map-canvas path');
-      if(hq){ statePanel.classList.add('msp-hq'); }
-      else if(isState){ statePanel.classList.remove('msp-hq'); }
-    });
+  /* ---- Map: HQ label ----
+   us-map.js owns hover/pin state for state paths. Here we only:
+   (a) toggle the "Headquarters" eyebrow when the HQ marker itself
+       is the active target, and (b) let us-map.js own all pin/reset
+       behavior. */
+var mapStage = document.querySelector('.map-stage');
+var statePanel = document.getElementById('map-state-panel');
 
-    document.addEventListener('click', function(e){
-      if(!mapStage.contains(e.target)){
-        document.querySelectorAll('.pinned').forEach(function(el){ el.classList.remove('pinned'); });
-        statePanel.classList.remove('msp-visible', 'msp-hq');
-      }
-    });
-  }
+if(mapStage && statePanel){
+  mapStage.addEventListener('mouseover', function(e){
+    var hq = e.target.closest('.hq-marker');
+    var isState = e.target.closest('.map-canvas path');
+
+    if(hq){
+      statePanel.classList.add('msp-hq');
+    } else if(isState){
+      statePanel.classList.remove('msp-hq');
+    }
+  });
+
+  mapStage.addEventListener('click', function(e){
+    var hq = e.target.closest('.hq-marker');
+    var isState = e.target.closest('.map-canvas path');
+
+    if(hq){
+      statePanel.classList.add('msp-hq');
+    } else if(isState){
+      statePanel.classList.remove('msp-hq');
+    }
+  });
+}
 })();
 </script>
 <script src="assets/us-map.js" defer></script>
