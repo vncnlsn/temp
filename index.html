@@ -343,22 +343,33 @@
   .msp-county{ display:none; font-family: var(--mono); font-weight: 500; font-size: .74rem; letter-spacing:.04em; text-transform:uppercase; color: var(--glow-strong); text-align:left; margin-top: 5px; }
   .msp-county.msp-county-visible{ display:block; }
 
+  /* Below 1280px the panel is still a DOM child of .map-stage (position:
+     relative), so instead of trying to pull it out into a flex sibling
+     slot (which never actually applied — it isn't a direct child of
+     .map-canvas-wrap), we anchor it as an absolutely-positioned element
+     just below the map stage's own bottom edge: top:100%, centered
+     horizontally. That keeps it fully clear of every state border,
+     still inside the navy footprint section, roughly centered under
+     the middle of the country (Texas-ish). .map-stage gets matching
+     bottom margin reserved so the panel has room to sit in without
+     crowding the section below it. */
   @media (max-width: 1280px){
-    .map-canvas-wrap{ display:flex; flex-direction:column; gap: 18px; }
-    .map-stage{ order:1; max-width: 1100px; height: min(50vh, 560px); }
+    .map-canvas-wrap{ display:flex; flex-direction:column; align-items:center; }
+    .map-stage{ max-width: 1100px; height: min(50vh, 560px); margin-bottom: clamp(70px, 12vw, 110px); }
     .map-state-panel{
-      order:2;
-      position: static;
-      top:auto; left:auto;
-      transform: none;
-      width:auto;
-      max-width: 320px;
-      margin: 0 auto;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      bottom: auto;
+      width: max-content;
+      max-width: 280px;
+      margin-top: 16px;
       text-align:center;
       border-left:none;
       border-top: 2px solid var(--glow-line);
+      transform: translate(-50%, -6px);
     }
-    .map-state-panel.msp-visible{ transform: none; }
+    .map-state-panel.msp-visible{ transform: translate(-50%, 0); }
     .msp-name{ white-space: normal; }
     .msp-hq-rule{ margin: 7px auto; }
     .msp-county{ text-align:center; }
@@ -368,7 +379,6 @@
     .map-state-panel{
       max-width: 240px;
       padding: 10px 16px;
-      margin-top: 6px;
     }
     .msp-name{ font-size: .92rem; }
     .msp-county{ font-size: .66rem; }
