@@ -226,20 +226,42 @@
     powerOnCoverage();
   }
 
-  /* ---- Pin/hover reset when the section scrolls out of view (keeps the
-     card from being left open on return, without touching the one-time
-     reveal above) ---- */
-  var resetSection = document.getElementById('footprint');
-  if (resetSection && 'IntersectionObserver' in window) {
-    var io2 = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) {
-          if (pinned) { pinned.classList.remove('pinned'); pinned = null; }
-          allInteractive.forEach(function (p) { p.classList.remove('hovered', 'pinned'); });
-          hidePanel();
-        }
-      });
-    }, { threshold: 0.01 });
-    io2.observe(resetSection);
+  /* ---- Reset pin when clicking outside the map ---- */
+document.addEventListener('click', function (e) {
+  if (!mapEl.contains(e.target)) {
+    if (pinned) {
+      pinned.classList.remove('pinned');
+      pinned = null;
+    }
+
+    allInteractive.forEach(function (el) {
+      el.classList.remove('hovered', 'pinned');
+    });
+
+    hidePanel();
   }
+});
+
+/* ---- Reset pin when the map section scrolls out of view ---- */
+var resetSection = document.getElementById('footprint');
+if (resetSection && 'IntersectionObserver' in window) {
+  var io2 = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) {
+        if (pinned) {
+          pinned.classList.remove('pinned');
+          pinned = null;
+        }
+
+        allInteractive.forEach(function (el) {
+          el.classList.remove('hovered', 'pinned');
+        });
+
+        hidePanel();
+      }
+    });
+  }, { threshold: 0.01 });
+
+  io2.observe(resetSection);
+}
 })();
