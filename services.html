@@ -636,65 +636,44 @@ if(!window.location.hash){
     reveals.forEach(function(el){ el.classList.add('in-view'); });
   }
 
-  /* ---- Accordion timeline: one open at a time, no forced scrolling ---- */
-  var rows = Array.prototype.slice.call(document.querySelectorAll('.tl-row[data-service]'));
+  /* ---- Accordion timeline: independent sections, no forced scrolling ---- */
+var rows = Array.prototype.slice.call(
+  document.querySelectorAll('.tl-row[data-service]')
+);
 
-  /* Bring a newly-opened row's title fully into view when it's tucked
-     under the fixed nav or otherwise not comfortably visible — a
-     minimal nudge, not a scroll to the full expanded content. Applies
-     on both mobile and desktop. */
-  function ensureTitleVisible(row){
-    var trigger = row.querySelector('.tl-trigger');
-    var navH = nav.offsetHeight;
-    var gap = 16;
-    var rect = trigger.getBoundingClientRect();
-    var desiredTop = navH + gap;
-    // Only adjust if the title isn't already sitting right at/below the
-    // safe reading position — avoids jitter when it's already in place.
-    if(rect.top < desiredTop - 2 || rect.top > desiredTop + 2){
-      var delta = rect.top - desiredTop;
-      window.scrollBy({ top: delta, behavior: 'smooth' });
-    }
-  }
+function toggleRow(row){
+  var trigger = row.querySelector('.tl-trigger');
+  var isOpen = row.classList.contains('open');
 
-  function openRow(row, opts){
-    opts = opts || {};
-    rows.forEach(function(r){
-      var isTarget = (r === row);
-      var trigger = r.querySelector('.tl-trigger');
-      if(isTarget && !opts.toggleOff){
-        r.classList.add('open');
-        trigger.setAttribute('aria-expanded', 'true');
-      } else {
-        r.classList.remove('open');
-        trigger.setAttribute('aria-expanded', 'false');
-      }
-    });
-    if(!opts.toggleOff && !opts.skipScroll){
-      ensureTitleVisible(row);
-    }
-  }
+  row.classList.toggle('open', !isOpen);
+  trigger.setAttribute('aria-expanded', String(!isOpen));
+}
 
-  rows.forEach(function(row){
-    var trigger = row.querySelector('.tl-trigger');
-    trigger.addEventListener('click', function(){
-      var alreadyOpen = row.classList.contains('open');
-      openRow(row, { toggleOff: alreadyOpen });
-    });
+rows.forEach(function(row){
+  var trigger = row.querySelector('.tl-trigger');
+
+  trigger.addEventListener('click', function(){
+    toggleRow(row);
   });
+});
 
-  /* Open the row matching the URL hash on load (browser handles the
-     scroll natively via the fragment jump — no extra JS scrolling). */
-  function openFromHash(){
-    var id = window.location.hash.replace('#', '');
-    if(!id) return;
-    var target = document.getElementById(id);
-    if(target && target.matches('.tl-row[data-service]')){
-      openRow(target, { skipScroll: true });
-    }
+/* Open the row matching the URL hash on load. */
+function openFromHash(){
+  var id = window.location.hash.replace('#', '');
+  if(!id) return;
+
+  var target = document.getElementById(id);
+
+  if(target && target.matches('.tl-row[data-service]')){
+    target.classList.add('open');
+
+    var trigger = target.querySelector('.tl-trigger');
+    trigger.setAttribute('aria-expanded', 'true');
   }
-  openFromHash();
-  window.addEventListener('hashchange', openFromHash);
+}
+
+openFromHash();
+window.addEventListener('hashchange', openFromHash);
 })();
 </script>
 
