@@ -170,7 +170,11 @@
   .capabilities-section{ padding: clamp(72px, 9vw, 108px) 0 clamp(24px, 3vw, 32px); }
   .timeline{ max-width: 780px; margin: clamp(32px, 4.5vw, 52px) auto 0; }
 
-  .tl-row{ border-bottom: 1px solid var(--line); position: relative; }
+  .tl-row{
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  scroll-margin-top: calc(var(--nav-h) + 28px);
+}
   .tl-row:first-child{ border-top: 1px solid var(--line); }
 
   .tl-trigger{
@@ -584,8 +588,13 @@
 
 <script>
 (function(){
-  if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+  if('scrollRestoration' in history){
+  history.scrollRestoration = 'manual';
+}
+
+if(!window.location.hash){
   window.scrollTo(0, 0);
+}
 
   var nav = document.getElementById('siteNav');
   var logo = document.querySelector('.nav-logo');
