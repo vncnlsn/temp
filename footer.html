@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>APS Centered Footer Test</title>
+  <title>APS Centered Header & Footer Test</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -18,6 +18,7 @@
       --clay-bright: #D9755F;
       --line-on-navy: rgba(250,246,234,.12);
       --shell: 1440px;
+      --nav-h: 78px;
       --serif: 'Spectral', Georgia, serif;
       --sans: 'Public Sans', -apple-system, sans-serif;
       --mono: 'IBM Plex Mono', 'Courier New', monospace;
@@ -34,6 +35,95 @@
     *{ box-sizing: border-box; }
     a{ color: inherit; text-decoration: none; }
     .shell{ max-width: var(--shell); margin: 0 auto; padding: 0 56px; }
+
+    /* ================= TOP SITE NAV ================= */
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      height: var(--nav-h);
+      background: var(--navy-deep);
+      border-bottom: 1px solid var(--line-on-navy);
+      box-shadow: 0 4px 18px rgba(0,0,0,.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-menu-centered {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      list-style: none;
+      margin: 0;
+      padding: 0 24px;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .nav-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* Fixed width matching the widest link ("SERVICES") for exact spacing balance */
+      min-width: 110px;
+      text-align: center;
+    }
+
+    .nav-logo-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 0 0 auto;
+      padding: 0 12px;
+    }
+
+    .nav-logo { display: flex; align-items: center; justify-content: center; }
+    .nav-logo-img { height: 44px; width: auto; max-height: calc(var(--nav-h) - 22px); display: block; filter: brightness(0) invert(1); }
+    .nav-logo-fallback { font-family: var(--serif); font-weight: 600; font-size: 1.35rem; color: var(--paper); }
+
+    .nav-link {
+      font-family: var(--mono);
+      font-size: .88rem;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--paper-soft);
+      transition: color .25s var(--ease);
+      white-space: nowrap;
+      text-align: center;
+      width: 100%;
+    }
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--clay-bright);
+    }
+
+    /* Test Content Spacer to test scrolling and placement */
+    .test-spacer {
+      height: 40vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: var(--nav-h);
+      border-bottom: 1px solid var(--line-on-navy);
+    }
+    .test-spacer h1 {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--paper);
+      margin-bottom: 8px;
+    }
+    .test-spacer p {
+      font-family: var(--mono);
+      font-size: .85rem;
+      color: var(--clay-bright);
+      margin: 0;
+    }
 
     /* ================= CTA BAND ================= */
     .cta-band { 
@@ -105,7 +195,6 @@
       align-items: start;
     }
 
-    /* Column 1: Logo & Linked HQ Badge */
     .footer-brand { 
       display: flex; 
       flex-direction: column; 
@@ -161,7 +250,6 @@
       color: var(--paper);
     }
 
-    /* Headers */
     footer h4 { 
       font-family: var(--mono); 
       font-size: .68rem; 
@@ -173,7 +261,6 @@
       text-align: center;
     }
 
-    /* Lists */
     footer ul.nav-list { 
       list-style: none; 
       margin: 0; 
@@ -216,7 +303,6 @@
       color: var(--clay-bright); 
     }
 
-    /* Contact Chips */
     .contact-link {
       background: rgba(250,246,234,.04);
       padding: 6px 14px;
@@ -232,7 +318,6 @@
       border-color: rgba(217,117,95,.3);
     }
 
-    /* Bottom Copyright Bar */
     .footer-bottom { 
       padding-top: 28px; 
       display: flex;
@@ -243,9 +328,32 @@
       color: rgba(250,246,234,.5); 
     }
 
-    /* ================= STREAMLINED MOBILE VIEW ================= */
+    /* ================= MOBILE VIEW (<=768px) ================= */
     @media (max-width: 768px) {
-      .shell { padding: 0 24px; }
+      .shell { padding: 0 16px; }
+
+      /* Precise Mobile Nav Layout using 5-Column Grid */
+      .nav-menu-centered {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        align-items: center;
+        justify-items: center;
+        padding: 0 8px;
+      }
+
+      .nav-item {
+        min-width: 0;
+        width: 100%;
+      }
+
+      .nav-link { 
+        font-size: .72rem; 
+        letter-spacing: .04em; 
+      }
+      
+      .nav-logo-img { height: 32px; }
+
+      /* Footer Mobile Adjustments */
       footer { padding: 32px 0 24px; }
 
       .footer-grid {
@@ -256,12 +364,10 @@
         padding-bottom: 24px;
       }
 
-      /* Resequence Order on Mobile */
       .col-nav     { order: 1; }
       .col-brand   { order: 2; }
-      .col-contact { display: none; } /* Completely hide contact column on mobile */
+      .col-contact { display: none; }
 
-      /* Horizontal Nav Bar with Dot Separators */
       footer h4.nav-header { display: none; }
       footer ul.nav-list {
         flex-direction: row;
@@ -282,8 +388,7 @@
         font-weight: bold;
       }
 
-      /* Compact Logo & HQ Badge */
-      .footer-brand p { display: none; } /* Hide tagline to reduce clutter */
+      .footer-brand p { display: none; }
       .footer-hq-badge { margin-top: 10px; }
 
       .footer-bottom {
@@ -296,6 +401,28 @@
   </style>
 </head>
 <body>
+
+  <!-- TOP SITE NAV BAR -->
+  <nav class="site-nav" id="siteNav" aria-label="Primary">
+    <ul class="nav-menu-centered">
+      <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+      <li class="nav-logo-item">
+        <a class="nav-logo" href="index.html" aria-label="APS Land Services — Home">
+          <img class="nav-logo-img" src="assets/APSLand_Logo.png" alt="APS Land" decoding="async" onerror="this.style.display='none';document.getElementById('navLogoFallback').style.display='inline'">
+          <span id="navLogoFallback" class="nav-logo-fallback" style="display:none;">APS Land</span>
+        </a>
+      </li>
+      <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+      <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- BLANK TEST SPACER ZONE -->
+  <div class="test-spacer">
+    <h1>Navbar & Footer Test Layout</h1>
+    <p>Scroll down to test fixed nav behavior and centered mobile alignment</p>
+  </div>
 
   <!-- CTA BAND -->
   <section class="cta-band">
