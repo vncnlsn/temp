@@ -457,7 +457,7 @@
 
     <!-- Top Bar Navigation / Dead-Center Mobile Logo -->
     <ul class="nav-menu-centered">
-      <li class="desktop-only"><a class="nav-link active" href="index.html">Home</a></li>
+      <li class="desktop-only"><a class="nav-link" href="index.html">Home</a></li>
       <li class="desktop-only"><a class="nav-link" href="about.html">About</a></li>
       <li>
         <a class="nav-logo" href="index.html" aria-label="APS Land Services — Home">
@@ -473,7 +473,7 @@
   <!-- Mobile Slide-Down Navigation Menu -->
   <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
     <ul>
-      <li><a class="nav-link active" href="index.html">Home</a></li>
+      <li><a class="nav-link" href="index.html">Home</a></li>
       <li><a class="nav-link" href="about.html">About</a></li>
       <li><a class="nav-link" href="services.html">Services</a></li>
       <li><a class="nav-link" href="contact.html">Contact</a></li>
@@ -543,6 +543,7 @@
 
   <script>
     (function() {
+      // 1. Mobile Drawer Toggle
       var toggleBtn = document.getElementById('menuToggle');
       var mobileDrawer = document.getElementById('mobileDrawer');
 
@@ -563,6 +564,19 @@
           }
         });
       }
+
+      // 2. Dynamic Active Link Highlighting (PC & Mobile)
+      var currentPath = window.location.pathname.split('/').pop() || 'index.html';
+      var navLinks = document.querySelectorAll('.nav-link');
+
+      navLinks.forEach(function(link) {
+        var linkHref = link.getAttribute('href');
+        if (linkHref === currentPath || (currentPath === '' && linkHref === 'index.html')) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
     })();
   </script>
 </body>
