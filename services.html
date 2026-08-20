@@ -365,18 +365,63 @@
 
   /* Mobile breathing room — matches the rhythm used on about.html */
   @media (max-width: 640px){
-    .svc-hero{ padding-top: calc(var(--nav-h) + clamp(40px, 8vw, 60px)); }
-    .approach-section{ padding-top: clamp(48px, 10vw, 68px); padding-bottom: clamp(56px, 11vw, 80px); }
-    /* Intro and "How We Work" now read as two distinct sections on mobile
-       instead of sitting close together — push the branch heading down. */
-    .approach-branch{ margin-top: clamp(64px, 16vw, 88px); }
-    .hse-section{ padding-top: clamp(72px, 12vw, 96px); padding-bottom: clamp(72px, 12vw, 96px); }
-    .capabilities-section{ padding-top: clamp(72px, 12vw, 96px); }
-    /* Give the capabilities column breathing room off the screen edges
-       instead of the default shell gutter, which reads too tight here. */
-    .capabilities-section.shell{ padding-left: 32px; padding-right: 32px; }
-    .cta-band{ padding-top: clamp(80px, 12vw, 104px); padding-bottom: clamp(80px, 12vw, 104px); }
+  .svc-hero{
+    padding-top: calc(var(--nav-h) + clamp(40px, 8vw, 60px));
   }
+
+  .approach-section{
+    padding-top: clamp(52px, 11vw, 72px);
+    padding-bottom: clamp(64px, 12vw, 88px);
+  }
+
+  /* Keep the opening statement together as the first mobile story,
+     then create a deliberate pause before How We Work. */
+  .approach-branch{
+    margin-top: clamp(96px, 20vw, 132px);
+  }
+
+  .pillars-row{
+    margin-top: 6px;
+  }
+
+  .pillar-card{
+    padding: 30px 0;
+  }
+
+  .pillar-card + .pillar-card{
+    border-left: none;
+    border-top: 1px solid rgba(28,27,24,.11);
+  }
+
+  .pillar-card h3{
+    text-align: center;
+  }
+
+  .pillar-card p{
+    max-width: 320px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hse-section{
+    padding-top: clamp(72px, 12vw, 96px);
+    padding-bottom: clamp(72px, 12vw, 96px);
+  }
+
+  .capabilities-section{
+    padding-top: clamp(72px, 12vw, 96px);
+  }
+
+  .capabilities-section.shell{
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .cta-band{
+    padding-top: clamp(80px, 12vw, 104px);
+    padding-bottom: clamp(80px, 12vw, 104px);
+  }
+}
 
   @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } [data-reveal]{ transition: opacity .3s linear; transform:none; } }
 </style>
