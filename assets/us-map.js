@@ -74,60 +74,74 @@
   ];
 
   var svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  /* Cropped from the original 0 0 1000 589 to the bounding box of the
-     contiguous states — this is what actually delivers the "expand the
-     map substantially" request. Same paths, no re-plotting; the
-     enlargement comes entirely from zooming the viewBox onto the
-     mainland now that AK/HI (and their bottom-left dead space) are gone. */
-  svgEl.setAttribute('viewBox', '135 15 860 535');
-  svgEl.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-  svgEl.setAttribute('aria-label', 'Interactive map of the contiguous United States');
-  svgEl.setAttribute('role', 'img');
-  svgEl.style.cssText = 'width:100%;height:100%;display:block;position:absolute;inset:0;';
-  svgEl.innerHTML = pathStrings.join('\n');
-  mapEl.appendChild(svgEl);
 
-  /* ---- HQ marker — Cache Valley, UT ---- */
-  var HQ = { cx: 333, cy: 206, name: 'Cache Valley, UT' };
-  var hqGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-  hqGroup.setAttribute('class', 'hq-marker');
-  hqGroup.setAttribute('tabindex', '0');
-  hqGroup.setAttribute('role', 'button');
-  hqGroup.setAttribute('aria-label', HQ.name + ' — Headquarters');
-  hqGroup.innerHTML =
-    '<circle class="hq-ring" cx="' + HQ.cx + '" cy="' + HQ.cy + '" r="9"></circle>' +
-    '<circle class="hq-dot" cx="' + HQ.cx + '" cy="' + HQ.cy + '" r="5.5"></circle>';
-  svgEl.appendChild(hqGroup);
+/* Cropped from the original 0 0 1000 589 to the bounding box of the
+   contiguous states. */
+svgEl.setAttribute('viewBox', '135 15 860 535');
+svgEl.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+svgEl.setAttribute('aria-label', 'Interactive map of the contiguous United States');
+svgEl.setAttribute('role', 'img');
+svgEl.style.cssText = 'width:100%;height:100%;display:block;position:absolute;inset:0;';
+svgEl.innerHTML = pathStrings.join('\n');
+mapEl.appendChild(svgEl);
 
-  /* ---- Panel elements ---- */
-  var panel       = document.getElementById('map-state-panel');
-  var panelName   = document.getElementById('msp-name');
-  var panelCounty = document.getElementById('msp-county');
 
-  function showPanel(name, secondary) {
-    if (!panel) return;
-    panelName.textContent = name;
-    if (secondary) {
-      panelCounty.textContent = secondary;
-      panelCounty.classList.add('msp-county-visible');
-    } else {
-      panelCounty.textContent = '';
-      panelCounty.classList.remove('msp-county-visible');
-    }
-    panel.classList.add('msp-visible');
-  }
-  function hidePanel() {
-    if (!panel) return;
-    panel.classList.remove('msp-visible');
-    panelName.textContent = '';
+/* ---- HQ marker — Cache Valley, UT ---- */
+var HQ = { cx: 333, cy: 206, name: 'Cache Valley, UT' };
+
+var hqGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+
+hqGroup.setAttribute('class', 'hq-marker');
+hqGroup.setAttribute('tabindex', '0');
+hqGroup.setAttribute('role', 'button');
+hqGroup.setAttribute('aria-label', HQ.name + ' — Headquarters');
+
+hqGroup.innerHTML =
+  '<circle class="hq-ring" cx="' + HQ.cx + '" cy="' + HQ.cy + '" r="9"></circle>' +
+  '<circle class="hq-dot" cx="' + HQ.cx + '" cy="' + HQ.cy + '" r="5.5"></circle>';
+
+svgEl.appendChild(hqGroup);
+
+
+/* ---- Panel elements ---- */
+var panel = document.getElementById('map-state-panel');
+var panelName = document.getElementById('msp-name');
+var panelCounty = document.getElementById('msp-county');
+
+function showPanel(name, secondary) {
+  if (!panel) return;
+
+  panelName.textContent = name;
+
+  if (secondary) {
+    panelCounty.textContent = secondary;
+    panelCounty.classList.add('msp-county-visible');
+  } else {
     panelCounty.textContent = '';
     panelCounty.classList.remove('msp-county-visible');
   }
 
-  /* ---- Unified interaction wiring (states + HQ marker share one pin) ---- */
+  panel.classList.add('msp-visible');
+}
+
+function hidePanel() {
+  if (!panel) return;
+
+  panel.classList.remove('msp-visible');
+  panelName.textContent = '';
+  panelCounty.textContent = '';
+  panelCounty.classList.remove('msp-county-visible');
+}
+
+
+/* ---- Unified interaction wiring ---- */
 var paths = svgEl.querySelectorAll('path[data-state]');
 var allInteractive = [];
-paths.forEach(function (p) { allInteractive.push(p); });
+
+paths.forEach(function (p) {
+  allInteractive.push(p);
+});
+
 allInteractive.push(hqGroup);
 
 var pinned = null;
@@ -137,12 +151,17 @@ function wire(el, name, variant, secondary) {
 
   el.addEventListener('mouseenter', function () {
     if (pinned) return;
-    if (reactive) el.classList.add('hovered');
+
+    if (reactive) {
+      el.classList.add('hovered');
+    }
+
     showPanel(name, secondary);
   });
 
   el.addEventListener('mouseleave', function () {
     if (pinned) return;
+
     el.classList.remove('hovered');
     hidePanel();
   });
@@ -167,15 +186,11 @@ function togglePin(el, name, reactive, secondary) {
     return;
   }
 
-  if (pinned) {
-    pinned.classList.remove('pinned');
-  }
-
-  pinned = el;
-
   allInteractive.forEach(function (p) {
     p.classList.remove('hovered', 'pinned');
   });
+
+  pinned = el;
 
   if (reactive) {
     el.classList.add('pinned');
@@ -184,6 +199,8 @@ function togglePin(el, name, reactive, secondary) {
   showPanel(name, secondary);
 }
 
+
+/* ---- Wire states ---- */
 var coveredPaths = [];
 
 paths.forEach(function (path) {
@@ -203,11 +220,8 @@ paths.forEach(function (path) {
   );
 });
 
-/* ---- One-time randomized reveal ----
-   Every state starts dark/uncovered. On first viewport entry the 23
-   covered states fade/brighten into their covered treatment in a
-   shuffled order. Runs once; leaving and returning to the section
-   does not replay it. */
+
+/* ---- One-time randomized reveal ---- */
 function shuffle(arr) {
   var a = arr.slice();
 
@@ -244,7 +258,8 @@ function powerOnCoverage() {
 
 wire(hqGroup, HQ.name, 'hq');
 
-/* ---- Fires once on first entry only; no reset/replay on re-entry ---- */
+
+/* ---- Fires once on first entry only ---- */
 var mapSection = document.getElementById('footprint');
 
 if (mapSection && 'IntersectionObserver' in window) {
@@ -262,21 +277,21 @@ if (mapSection && 'IntersectionObserver' in window) {
   powerOnCoverage();
 }
 
-/* ---- Universal reset when clicking anywhere except a state or HQ ----
-   Uses pointerdown in capture phase so the reset is seen anywhere on
-   the page, including the navy background and the margins around SVG. */
-document.addEventListener('pointerdown', function (e) {
-  var target = e.target;
 
-  if (!(target instanceof Element)) return;
+/* ============================================================
+   UNIVERSAL RESET
 
-  var clickedState = target.closest('#us-map path[data-state]');
-  var clickedHQ = target.closest('#us-map .hq-marker');
+   This is deliberately attached to WINDOW, not the SVG, map,
+   map-stage, document, or a particular container.
 
-  /* Actual state/HQ clicks are handled by their own click handlers. */
-  if (clickedState || clickedHQ) return;
+   Any interaction anywhere on the site resets the pinned state
+   unless the interaction actually originated on a state path or
+   the HQ marker.
 
-  /* Any other click anywhere on the site clears the current pin. */
+   Capture phase ensures this runs before normal click handlers.
+   ============================================================ */
+
+function resetPinnedState() {
   if (pinned) {
     pinned.classList.remove('pinned');
     pinned = null;
@@ -287,25 +302,72 @@ document.addEventListener('pointerdown', function (e) {
   });
 
   hidePanel();
+}
+
+function isMapTarget(event) {
+  var target = event.target;
+
+  if (!target) return false;
+
+  /* Walk the event path rather than trusting the SVG/container
+     boundary or target type. */
+  var path = typeof event.composedPath === 'function'
+    ? event.composedPath()
+    : [];
+
+  for (var i = 0; i < path.length; i++) {
+    var node = path[i];
+
+    if (!node || !node.matches) continue;
+
+    if (node.matches('#us-map path[data-state]')) {
+      return true;
+    }
+
+    if (node.matches('#us-map .hq-marker')) {
+      return true;
+    }
+  }
+
+  /* Fallback for browsers without composedPath(). */
+  if (target.closest) {
+    if (target.closest('#us-map path[data-state]')) {
+      return true;
+    }
+
+    if (target.closest('#us-map .hq-marker')) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+
+/* Pointer interaction catches mouse, touch, and pen. */
+window.addEventListener('pointerdown', function (e) {
+  if (!isMapTarget(e)) {
+    resetPinnedState();
+  }
 }, true);
 
-/* ---- Reset pin when the map section scrolls out of view ---- */
+
+/* Click fallback ensures normal mouse clicks also dismiss reliably. */
+window.addEventListener('click', function (e) {
+  if (!isMapTarget(e)) {
+    resetPinnedState();
+  }
+}, true);
+
+
+/* ---- Reset when the map section leaves the viewport ---- */
 var resetSection = document.getElementById('footprint');
 
 if (resetSection && 'IntersectionObserver' in window) {
   var io2 = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (!entry.isIntersecting) {
-        if (pinned) {
-          pinned.classList.remove('pinned');
-          pinned = null;
-        }
-
-        allInteractive.forEach(function (el) {
-          el.classList.remove('hovered', 'pinned');
-        });
-
-        hidePanel();
+        resetPinnedState();
       }
     });
   }, { threshold: 0.01 });
