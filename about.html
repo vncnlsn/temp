@@ -295,8 +295,8 @@
     .reassure-item{ flex-direction: column; align-items: center; text-align: center; gap: 12px; }
   }
 
-  /* ================= CTA + FOOTER ================= */
-  .cta-band{ background: var(--navy-deep); padding: clamp(64px, 7vw, 92px) 0; }
+  /* ================= CTA ================= */
+  .cta-band{ background: var(--navy-deep); padding: clamp(64px, 7vw, 92px) 0; border-bottom: 1px solid var(--line-on-navy); }
   .cta-inner{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap: clamp(24px, 3vw, 32px); text-align:center; }
   .cta-inner h2{ font-size: clamp(1.6rem, 2.8vw, 2.2rem); color: var(--paper); }
   .cta-actions{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap: 16px; }
@@ -310,25 +310,201 @@
   .cta-btn .arrow{ transition: transform .25s var(--ease); }
   .cta-btn:hover .arrow{ transform: translateX(4px); }
 
-  footer{ background: var(--navy-deep); color: var(--paper); padding: 44px 0 26px; }
-  .footer-grid{ display:flex; flex-wrap:wrap; justify-content:center; gap: 48px clamp(48px, 6vw, 88px); padding-bottom: 30px; border-bottom: 1px solid var(--line-on-navy); text-align:left; }
-  .footer-brand{ display:block; }
-  .footer-logo-img{ height: 28px; width:auto; filter: brightness(0) invert(1); margin-bottom: 10px; }
-  .footer-brand-fallback{ display:none; font-family: var(--serif); font-weight:600; font-size: 1.15rem; color: var(--paper); margin-bottom: 8px; }
-  .footer-brand p{ font-size: .82rem; color: var(--paper-soft); max-width: 220px; line-height:1.6; font-family: var(--sans); margin:0; }
-  footer h4{ font-family: var(--mono); font-size: .64rem; letter-spacing: .08em; text-transform: uppercase; color: var(--clay-bright); margin: 0 0 12px; font-weight:500; }
-  footer ul{ list-style:none; margin:0; padding:0; }
-  footer li{ margin-bottom: 8px; font-size: .86rem; color: var(--paper-soft); }
-  footer li:last-child{ margin-bottom:0; }
-  footer a{ font-size: .86rem; color: var(--paper-soft); transition: color .25s var(--ease); }
-  footer a:hover{ color: var(--clay-bright); }
-  .footer-bottom{ padding-top: 18px; text-align:center; font-family: var(--mono); font-size: .68rem; color: var(--paper-soft); }
+  /* ================= FOOTER (updated) ================= */
+  footer {
+    background: linear-gradient(180deg, #16222C 0%, #111B23 100%);
+    color: var(--paper);
+    padding: 64px 0 32px;
+    position: relative;
+    border-top: 2px solid var(--clay);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--line-on-navy);
+    text-align: center;
+    align-items: start;
+  }
+
+  /* Column 1: Logo & Linked HQ Badge */
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .footer-logo-img {
+    height: 32px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    margin: 0 auto 12px auto;
+    display: block;
+  }
+
+  .footer-brand-fallback {
+    display: none;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--paper);
+    margin-bottom: 8px;
+  }
+
+  .footer-brand p {
+    font-size: .85rem;
+    color: rgba(250,246,234,.7);
+    line-height: 1.5;
+    font-family: var(--sans);
+    margin: 0;
+    text-align: center;
+  }
+
+  .footer-hq-badge {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--clay-bright);
+    background: rgba(217,117,95,.08);
+    border: 1px solid rgba(217,117,95,.2);
+    padding: 6px 14px;
+    border-radius: 3px;
+    transition: background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
+  }
+
+  .footer-hq-badge:hover {
+    background: rgba(217,117,95,.18);
+    border-color: rgba(217,117,95,.4);
+    color: var(--paper);
+  }
+
+  footer h4 {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--clay-bright);
+    margin: 0 0 18px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  footer ul.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  footer ul.contact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  footer li {
+    font-size: .88rem;
+    color: var(--paper-soft);
+    text-align: center;
+  }
+
+  footer ul.nav-list li { margin-bottom: 12px; }
+  footer ul.nav-list li:last-child { margin-bottom: 0; }
+
+  footer a {
+    color: var(--paper-soft);
+    transition: color .25s var(--ease);
+    display: inline-block;
+  }
+
+  footer a:hover { color: var(--clay-bright); }
+
+  .contact-link {
+    background: rgba(250,246,234,.04);
+    padding: 6px 14px;
+    border-radius: 3px;
+    border: 1px solid rgba(250,246,234,.06);
+    font-family: var(--mono);
+    font-size: .80rem;
+    transition: background .25s var(--ease), border-color .25s var(--ease);
+  }
+
+  .contact-link:hover {
+    background: rgba(217,117,95,.1);
+    border-color: rgba(217,117,95,.3);
+  }
+
+  .footer-bottom {
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: .70rem;
+    color: rgba(250,246,234,.5);
+  }
+
+  @media (max-width: 768px) {
+    footer { padding: 32px 0 24px; }
+
+    .footer-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding-bottom: 24px;
+    }
+
+    .col-nav     { order: 1; }
+    .col-brand   { order: 2; }
+    .col-contact { display: none; }
+
+    footer h4.nav-header { display: none; }
+    footer ul.nav-list {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+    footer ul.nav-list li {
+      margin-bottom: 0;
+      display: inline-flex;
+      align-items: center;
+    }
+    footer ul.nav-list li:not(:last-child)::after {
+      content: "·";
+      margin-left: 12px;
+      color: rgba(250,246,234,.3);
+      font-weight: bold;
+    }
+
+    .footer-brand p { display: none; }
+    .footer-hq-badge { margin-top: 10px; }
+
+    .footer-bottom {
+      flex-direction: column;
+      gap: 6px;
+      text-align: center;
+      padding-top: 18px;
+    }
+  }
 
   @media (max-width: 640px){
     .shell{ padding: 0 20px; }
-    .footer-grid{ justify-content:center; text-align:center; }
-    .footer-brand p{ margin:0 auto; }
-    .footer-logo-img{ margin-left:auto; margin-right:auto; }
   }
 
   /* Mobile breathing room — matches homepage's stacked-section rhythm;
@@ -346,6 +522,15 @@
 </head>
 <body>
 
+<script>
+  /* Soft scroll-to-top on refresh: stop the browser from silently
+     restoring a mid-page scroll position, and instead ease the user
+     back up to the top of the page. */
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+</script>
+
 <!-- NAV -->
 <nav class="site-nav" id="siteNav" aria-label="Primary">
   <ul class="nav-menu-centered">
@@ -357,7 +542,7 @@
         <span id="navLogoFallback" class="nav-logo-fallback" style="display:none;">APS Land</span>
       </a>
     </li>
-    <li><a class="nav-link" href="index.html#capabilities">Services</a></li>
+    <li><a class="nav-link" href="services.html">Services</a></li>
     <li><a class="nav-link" href="contact.html">Contact</a></li>
   </ul>
 </nav>
@@ -470,47 +655,60 @@
     <a class="page-nav-link" href="index.html#clients">
       View Companies We've Represented <span class="arrow">→</span>
     </a>
-    <a class="page-nav-link" href="#footer">
-  Contact APS Leadership <span class="arrow">→</span>
-</a>
+    <a class="page-nav-link" href="contact.html">
+      Contact APS Leadership <span class="arrow">→</span>
+    </a>
   </div>
 </section>
 
-<!-- CTA & FOOTER -->
+<!-- CTA -->
 <section class="cta-band">
   <div class="shell cta-inner" data-reveal>
-    <h2>Ready when you are.</h2>
+    <h2>Let's get to work.</h2>
     <div class="cta-actions">
-      <a class="cta-btn" href="tel:+13039035873">Call 303-903-5873 <span class="arrow">→</span></a>
-      <a class="cta-btn" href="mailto:allstatepermit@allstatepermit.com">Email allstatepermit@allstatepermit.com <span class="arrow">→</span></a>
+      <a class="cta-btn" href="contact.html">Contact Us <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer id="footer">
   <div class="shell">
     <div class="footer-grid">
-      <div class="footer-brand">
+
+      <!-- Column 1: Logo & HQ Link -->
+      <div class="col-brand footer-brand">
         <img class="footer-logo-img" src="assets/APSLand_Logo.png" alt="APS Land Services" decoding="async" onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='block'">
         <span id="footerLogoFallback" class="footer-brand-fallback">APS Land Services</span>
         <p>Setting the Standard Since 1980</p>
+        <a class="footer-hq-badge" href="https://www.google.com/maps/search/?api=1&query=Logan%2C+UT" target="_blank" rel="noopener noreferrer">Cache Valley, Utah ↗</a>
       </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="tel:+13039035873">303-903-5873</a></li>
-          <li><a href="mailto:allstatepermit@allstatepermit.com">allstatepermit@allstatepermit.com</a></li>
+
+      <!-- Column 2: Navigation -->
+      <div class="col-nav">
+        <h4 class="nav-header">Navigation</h4>
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
-      <div>
-        <h4>Headquarters</h4>
-        <ul>
-          <li>Cache Valley, Utah</li>
+
+      <!-- Column 3: Contact -->
+      <div class="col-contact">
+        <h4 class="contact-header">Contact</h4>
+        <ul class="contact-list">
+          <li><a class="contact-link" href="tel:+13039035873">303-903-5873</a></li>
+          <li><a class="contact-link" href="mailto:allstatepermit@allstatepermit.com">allstatepermit@allstatepermit.com</a></li>
         </ul>
       </div>
+
     </div>
+
     <div class="footer-bottom">
       <span>© 2026 APS Land Services. All rights reserved.</span>
+      <span>Land Services Nationwide</span>
     </div>
   </div>
 </footer>
@@ -534,6 +732,15 @@
   } else {
     reveals.forEach(function(el){ el.classList.add('in-view'); });
   }
+
+  /* Soft scroll-to-top refresh animation: on load/refresh, if the
+     browser has restored a scrolled position (or landed on a hash),
+     ease the viewport back up to the top instead of snapping there. */
+  window.addEventListener('load', function(){
+    if (window.scrollY > 0) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
 })();
 </script>
 
