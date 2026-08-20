@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APS Footer Experiment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --navy-deep:   #16222C;
+      --paper:       #FAF6EA;
+      --clay-bright: #D9755F;
+      --paper-soft:  rgba(250,246,234,.9);
+      --line-on-navy: rgba(250,246,234,.16);
+      --shell: 1440px;
+      --serif: 'Spectral', Georgia, serif;
+      --sans: 'Public Sans', -apple-system, sans-serif;
+      --mono: 'IBM Plex Mono', 'Courier New', monospace;
+    }
+
+    body {
+      margin: 0;
+      background: #10171D; /* Dark background to highlight footer placement */
+      font-family: var(--sans);
+      color: var(--paper);
+    }
+
+    *{ box-sizing: border-box; }
+    a{ color: inherit; text-decoration: none; }
+    .shell{ max-width: var(--shell); margin: 0 auto; padding: 0 56px; }
+
+    /* ================= FOOTER REDESIGN ================= */
+    footer {
+      background: var(--navy-deep);
+      color: var(--paper);
+      padding: 60px 0 28px;
+    }
+
+    /* Top Tier: Brand Identity */
+    .footer-header {
+      text-align: center;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--line-on-navy);
+      margin-bottom: 40px;
+    }
+
+    .footer-logo-img {
+      height: 32px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      margin: 0 auto 12px;
+    }
+
+    .footer-brand-fallback {
+      display: none;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--paper);
+      margin-bottom: 8px;
+    }
+
+    .footer-tagline {
+      font-size: .88rem;
+      color: var(--paper-soft);
+      font-family: var(--sans);
+      margin: 0 0 12px;
+      letter-spacing: .02em;
+    }
+
+    .footer-hq {
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--clay-bright);
+    }
+
+    /* Bottom Tier: Structured Links */
+    .footer-columns {
+      display: flex;
+      justify-content: center;
+      gap: clamp(60px, 10vw, 140px);
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--line-on-navy);
+    }
+
+    .footer-col h4 {
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--clay-bright);
+      margin: 0 0 16px;
+      font-weight: 600;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .footer-col li {
+      margin-bottom: 10px;
+      font-size: .88rem;
+    }
+
+    .footer-col li:last-child {
+      margin-bottom: 0;
+    }
+
+    .footer-col a {
+      color: var(--paper-soft);
+      transition: color .25s ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--clay-bright);
+    }
+
+    .footer-bottom {
+      padding-top: 24px;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: .70rem;
+      color: var(--paper-soft);
+    }
+
+    @media (max-width: 640px) {
+      .shell { padding: 0 24px; }
+      footer { padding: 48px 0 24px; }
+      .footer-columns {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <footer>
+    <div class="shell">
+      
+      <!-- Tier 1: Identity & Location -->
+      <div class="footer-header">
+        <img class="footer-logo-img" src="assets/APSLand_Logo.png" alt="APS Land Services" decoding="async" onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='block'">
+        <span id="footerLogoFallback" class="footer-brand-fallback">APS Land Services</span>
+        <p class="footer-tagline">Setting the Standard Since 1980</p>
+        <div class="footer-hq">Headquarters — Cache Valley, Utah</div>
+      </div>
+
+      <!-- Tier 2: Actionable Links -->
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Direct Contact</h4>
+          <ul>
+            <li><a href="tel:+13039035873">303-903-5873</a></li>
+            <li><a href="mailto:allstatepermit@allstatepermit.com">allstatepermit@allstatepermit.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Tier 3: Legal -->
+      <div class="footer-bottom">
+        <span>© 2026 APS Land Services. All rights reserved.</span>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
