@@ -102,7 +102,7 @@
       height: 2px;
       background-color: var(--paper);
       border-radius: 2px;
-      transition: transform .3s var(--ease), opacity .3s var(--ease);
+      transition: transform .4s var(--ease), opacity .4s var(--ease);
     }
 
     /* Mobile Hamburger Animation when active */
@@ -110,7 +110,7 @@
     .menu-toggle.is-active span:nth-child(2) { opacity: 0; }
     .menu-toggle.is-active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* Mobile Drawer Menu */
+    /* Mobile Drawer Menu (Slower 0.5s ease duration) */
     .mobile-drawer {
       display: none;
       position: fixed;
@@ -124,7 +124,7 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.5);
       transform: translateY(-100%);
       opacity: 0;
-      transition: transform .35s var(--ease), opacity .35s var(--ease);
+      transition: transform .5s var(--ease), opacity .5s var(--ease);
     }
 
     .mobile-drawer.is-open {
@@ -177,7 +177,7 @@
 
     /* Spacer for clear visual testing between nav and footer */
     .test-spacer {
-      min-height: 40vh;
+      min-height: 80vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -484,7 +484,7 @@
     
     <!-- Spacing Area for Mobile/PC Navigation & Footer Alignment Testing -->
     <div class="test-spacer">
-      <p>[ Spacing Area — Scroll/Resize to Test Nav Bar &amp; Footer ]</p>
+      <p>[ Spacing Area — Scroll down or Tap Outside to Test Auto-Retract ]</p>
     </div>
 
     <!-- CTA BAND -->
@@ -547,9 +547,9 @@
       var mobileDrawer = document.getElementById('mobileDrawer');
       var siteNav = document.getElementById('siteNav');
 
-      // Helper function to close the drawer
+      // Helper function to close drawer
       function closeDrawer() {
-        if (mobileDrawer.classList.contains('is-open')) {
+        if (mobileDrawer && mobileDrawer.classList.contains('is-open')) {
           mobileDrawer.classList.remove('is-open');
           toggleBtn.classList.remove('is-active');
           toggleBtn.setAttribute('aria-expanded', 'false');
@@ -560,7 +560,7 @@
       // 1. Mobile Drawer Toggle
       if (toggleBtn && mobileDrawer) {
         toggleBtn.addEventListener('click', function(e) {
-          e.stopPropagation(); // Prevents the outer document click listener from firing immediately
+          e.stopPropagation(); // Prevents outer document click from closing immediately
           var isOpen = mobileDrawer.classList.contains('is-open');
 
           if (isOpen) {
@@ -574,7 +574,7 @@
         });
       }
 
-      // 2. Close Drawer When Clicking Outside Nav & Drawer Areas
+      // 2. Retract Drawer On Click Outside
       document.addEventListener('click', function(e) {
         if (mobileDrawer && mobileDrawer.classList.contains('is-open')) {
           var clickedInsideNav = siteNav && siteNav.contains(e.target);
@@ -586,7 +586,12 @@
         }
       });
 
-      // 3. Dynamic Active Link Highlighting (PC & Mobile)
+      // 3. Retract Drawer On Scroll
+      window.addEventListener('scroll', function() {
+        closeDrawer();
+      }, { passive: true });
+
+      // 4. Dynamic Active Link Highlighting (PC & Mobile)
       var currentPath = window.location.pathname.split('/').pop() || 'index.html';
       var navLinks = document.querySelectorAll('.nav-link');
 
