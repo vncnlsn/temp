@@ -449,11 +449,37 @@
   /* List items that double as links (End-to-End Land Services) — same
      visual weight as the plain-text list items elsewhere in this grid,
      just with a hover/focus state to signal they're tappable. */
-  .cap-list a.cap-list-link{ display:block; color: inherit; transition: color .2s var(--ease); }
-  .cap-list a.cap-list-link:hover,
-  .cap-list a.cap-list-link:focus-visible{ color: var(--clay); }
-  .cap-contrast{ font-family: var(--serif); font-style: italic; font-weight:500; font-size: 1.05rem; color: var(--clay); line-height:1.45; margin: 0; text-align:center; }
-  .cap-close{ font-family: var(--mono); font-size: .74rem; letter-spacing: .03em; color: var(--brass); line-height:1.6; text-align:center; margin: 24px 0 0; padding-top: 18px; border-top: 1px solid var(--line); min-height: 58px; }
+ .cap-list a.cap-list-link{
+  display: block;
+  color: inherit;
+  transition: color .2s var(--ease);
+}
+
+.cap-list a.cap-list-link:hover,
+.cap-list a.cap-list-link:focus-visible{
+  color: var(--clay);
+}
+
+.cap-contrast{
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--clay);
+  line-height: 1.45;
+  margin: 0 0 24px;
+  text-align: center;
+}
+
+.cap-simple{
+  font-family: var(--mono);
+  font-size: .78rem;
+  letter-spacing: .03em;
+  color: var(--brass);
+  line-height: 1.6;
+  text-align: center;
+  margin: 0;
+}
 
   @media (max-width: 900px){ .capabilities-grid{ grid-template-columns: 1fr; } }
 
@@ -640,38 +666,44 @@
   </div>
 
   <div class="capabilities-grid">
+
+    <!-- End-to-End Land Services -->
     <div class="cap-card" data-reveal>
       <h3>End-to-End Land Services</h3>
       <div class="cap-body">
+        <p class="cap-contrast">We can do it all.</p>
         <ul class="cap-list">
-          <li><a class="cap-list-link" href="services.html#title-ownership">Title Curative</a></li>
+          <li><a class="cap-list-link" href="services.html#title-ownership">Title &amp; Ownership</a></li>
           <li><a class="cap-list-link" href="services.html#gis-services">GIS Services</a></li>
           <li><a class="cap-list-link" href="services.html#seismic-permitting">Seismic Permitting</a></li>
           <li><a class="cap-list-link" href="services.html#right-of-way">Right-of-Way Acquisition</a></li>
         </ul>
       </div>
-      <p class="cap-close">One team. Direct oversight. Continuous reporting.</p>
     </div>
 
+    <!-- Turnkey Pricing -->
     <div class="cap-card" data-reveal>
       <h3>Turnkey Pricing</h3>
       <div class="cap-body">
         <p class="cap-contrast">Other firms estimate. APS guarantees.</p>
+        <p class="cap-simple">No surprises.</p>
       </div>
-      <p class="cap-close">One project. One price. No surprises.</p>
     </div>
 
+    <!-- Safety & Compliance -->
     <div class="cap-card" data-reveal>
       <h3>Safety &amp; Compliance</h3>
       <div class="cap-body">
+        <p class="cap-contrast">We don&rsquo;t cut corners.</p>
         <ul class="cap-list">
           <li>Safety Program Manual</li>
           <li>Injury &amp; Illness Prevention Program</li>
           <li>Active Member of ISNetworld</li>
+          <li>Stop-work authority</li>
         </ul>
       </div>
-      <p class="cap-close">Personal accountability. Incident prevention. No exceptions.</p>
     </div>
+
   </div>
 </section>
 
