@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>APS 3-Column Centered Footer Test</title>
+  <title>APS Centered Footer Test</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -38,7 +38,7 @@
     /* ================= CTA BAND ================= */
     .cta-band { 
       background: var(--navy-deep); 
-      padding: clamp(64px, 7vw, 92px) 0; 
+      padding: clamp(48px, 6vw, 92px) 0; 
       border-bottom: 1px solid var(--line-on-navy);
     }
     .cta-inner { 
@@ -46,7 +46,7 @@
       flex-direction: column; 
       align-items: center; 
       justify-content: center; 
-      gap: clamp(24px, 3vw, 32px); 
+      gap: clamp(20px, 3vw, 32px); 
       text-align: center; 
     }
     .cta-inner h2 { 
@@ -105,6 +105,11 @@
       align-items: start;
     }
 
+    /* Columns */
+    .col-brand { order: 1; }
+    .col-nav   { order: 2; }
+    .col-contact { order: 3; }
+
     /* Column 1: Logo & Linked HQ Badge */
     .footer-brand { 
       display: flex; 
@@ -142,7 +147,7 @@
 
     .footer-hq-badge {
       display: inline-block;
-      margin-top: 16px; /* Added breathing room */
+      margin-top: 16px;
       font-family: var(--mono);
       font-size: .72rem;
       letter-spacing: .08em;
@@ -173,25 +178,37 @@
       text-align: center;
     }
 
-    /* Column 2 & 3 Flex Containers */
-    footer ul { 
+    /* Column 2 & 3 Lists */
+    footer ul.nav-list { 
       list-style: none; 
       margin: 0; 
       padding: 0; 
       display: flex;
       flex-direction: column;
-      align-items: center; /* Ensures chips & links align centrally under headers */
+      align-items: center;
+    }
+
+    footer ul.contact-list { 
+      list-style: none; 
+      margin: 0; 
+      padding: 0; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
     }
 
     footer li { 
-      margin-bottom: 12px; 
       font-size: .88rem; 
       color: var(--paper-soft); 
       text-align: center;
     }
 
-    footer li:last-child { 
-      margin-bottom: 0; 
+    footer ul.nav-list li {
+      margin-bottom: 12px;
+    }
+    footer ul.nav-list li:last-child {
+      margin-bottom: 0;
     }
 
     footer a { 
@@ -231,15 +248,46 @@
       color: rgba(250,246,234,.5); 
     }
 
+    /* ================= MOBILE OPTIMIZATIONS ================= */
     @media (max-width: 768px) {
+      .shell { padding: 0 24px; }
+      
+      footer { padding: 40px 0 24px; }
+
       .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
+        padding-bottom: 32px;
       }
+
+      /* Resequence Order on Mobile */
+      .col-nav     { order: 1; }
+      .col-contact { order: 2; }
+      .col-brand   { order: 3; }
+
+      /* Horizontal Navigation Bar for Mobile */
+      footer h4.nav-header { display: none; } /* Hide "NAVIGATION" header to save vertical space */
+      
+      footer ul.nav-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;
+      }
+
+      footer ul.nav-list li {
+        margin-bottom: 0;
+      }
+
+      footer h4 { margin-bottom: 12px; }
+
       .footer-bottom {
         flex-direction: column;
-        gap: 12px;
+        gap: 8px;
         text-align: center;
+        padding-top: 20px;
       }
     }
   </style>
@@ -261,18 +309,18 @@
     <div class="shell">
       <div class="footer-grid">
         
-        <!-- Column 1: Logo, Tagline, & Maps HQ Link -->
-        <div class="footer-brand">
+        <!-- Column 1: Logo, Tagline, & Maps HQ Link (Order 3 on Mobile) -->
+        <div class="col-brand footer-brand">
           <img class="footer-logo-img" src="assets/APSLand_Logo.png" alt="APS Land Services" decoding="async" onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='block'">
           <span id="footerLogoFallback" class="footer-brand-fallback">APS Land Services</span>
           <p>Setting the Standard Since 1980</p>
-          <a class="footer-hq-badge" href="https://maps.google.com/?q=Logan,+UT" target="_blank" rel="noopener noreferrer">Cache Valley, Utah ↗</a>
+          <a class="footer-hq-badge" href="https://www.google.com/maps/search/?api=1&query=Logan%2C+UT" target="_blank" rel="noopener noreferrer">Cache Valley, Utah ↗</a>
         </div>
 
-        <!-- Column 2: Navigation -->
-        <div>
-          <h4>Navigation</h4>
-          <ul>
+        <!-- Column 2: Navigation (Order 1 on Mobile - Horizontal) -->
+        <div class="col-nav">
+          <h4 class="nav-header">Navigation</h4>
+          <ul class="nav-list">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="services.html">Services</a></li>
@@ -280,10 +328,10 @@
           </ul>
         </div>
 
-        <!-- Column 3: Contact (Centered Chips) -->
-        <div>
+        <!-- Column 3: Contact (Order 2 on Mobile) -->
+        <div class="col-contact">
           <h4>Contact</h4>
-          <ul>
+          <ul class="contact-list">
             <li><a class="contact-link" href="tel:+13039035873">303-903-5873</a></li>
             <li><a class="contact-link" href="mailto:allstatepermit@allstatepermit.com">allstatepermit@allstatepermit.com</a></li>
           </ul>
