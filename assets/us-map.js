@@ -125,116 +125,158 @@
   }
 
   /* ---- Unified interaction wiring (states + HQ marker share one pin) ---- */
-  var paths = svgEl.querySelectorAll('path[data-state]');
-  var allInteractive = [];
-  paths.forEach(function (p) { allInteractive.push(p); });
-  allInteractive.push(hqGroup);
+var paths = svgEl.querySelectorAll('path[data-state]');
+var allInteractive = [];
+paths.forEach(function (p) { allInteractive.push(p); });
+allInteractive.push(hqGroup);
 
-  var pinned = null;
+var pinned = null;
 
-  function wire(el, name, variant, secondary) {
-    var reactive = variant === 'covered' || variant === 'hq';
-    el.addEventListener('mouseenter', function () {
-      if (pinned) return;
-      if (reactive) el.classList.add('hovered');
-      showPanel(name, secondary);
-    });
-    el.addEventListener('mouseleave', function () {
-      if (pinned) return;
-      el.classList.remove('hovered');
-      hidePanel();
-    });
-    el.addEventListener('click', function () {
-      togglePin(el, name, reactive, secondary);
-    });
-    el.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        togglePin(el, name, reactive, secondary);
-      }
-    });
-  }
+function wire(el, name, variant, secondary) {
+  var reactive = variant === 'covered' || variant === 'hq';
 
-  function togglePin(el, name, reactive, secondary) {
-    if (pinned === el) {
-      pinned = null;
-      el.classList.remove('pinned');
-      hidePanel();
-      return;
-    }
-    if (pinned) pinned.classList.remove('pinned');
-    pinned = el;
-    allInteractive.forEach(function (p) { p.classList.remove('hovered', 'pinned'); });
-    if (reactive) el.classList.add('pinned');
+  el.addEventListener('mouseenter', function () {
+    if (pinned) return;
+    if (reactive) el.classList.add('hovered');
     showPanel(name, secondary);
-  }
-
-  var coveredPaths = [];
-  paths.forEach(function (path) {
-    var state   = path.getAttribute('data-state');
-    var name    = path.getAttribute('data-name') || state;
-    var covered = COVERED.indexOf(state) > -1;
-    if (covered) coveredPaths.push(path);
-    wire(path, name, covered ? 'covered' : 'uncovered', SECONDARY[state] || '');
   });
 
-  /* ---- One-time randomized reveal ----
-     Every state starts dark/uncovered. On first viewport entry the 23
-     covered states fade/brighten into their covered treatment in a
-     shuffled order — quick, quiet, no scale or pop. Runs once; leaving
-     and returning to the section does not replay it. */
-  function shuffle(arr) {
-    var a = arr.slice();
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var t = a[i]; a[i] = a[j]; a[j] = t;
+  el.addEventListener('mouseleave', function () {
+    if (pinned) return;
+    el.classList.remove('hovered');
+    hidePanel();
+  });
+
+  el.addEventListener('click', function () {
+    togglePin(el, name, reactive, secondary);
+  });
+
+  el.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      togglePin(el, name, reactive, secondary);
     }
-    return a;
+  });
+}
+
+function togglePin(el, name, reactive, secondary) {
+  if (pinned === el) {
+    pinned = null;
+    el.classList.remove('pinned');
+    hidePanel();
+    return;
   }
 
-  var poweredOn = false;
-  function powerOnCoverage() {
-    if (poweredOn) return;
-    poweredOn = true;
-    var order = shuffle(coveredPaths);
-    order.forEach(function (path, i) {
-      path.classList.add('revealing');
-      path.style.transitionDelay = (i * 26) + 'ms';
-      path.classList.add('covered');
-      window.setTimeout(function () {
-        path.style.transitionDelay = '';
-        path.classList.remove('revealing');
-      }, 1500);
+  if (pinned) {
+    pinned.classList.remove('pinned');
+  }
+
+  pinned = el;
+
+  allInteractive.forEach(function (p) {
+    p.classList.remove('hovered', 'pinned');
+  });
+
+  if (reactive) {
+    el.classList.add('pinned');
+  }
+
+  showPanel(name, secondary);
+}
+
+var coveredPaths = [];
+
+paths.forEach(function (path) {
+  var state = path.getAttribute('data-state');
+  var name = path.getAttribute('data-name') || state;
+  var covered = COVERED.indexOf(state) > -1;
+
+  if (covered) {
+    coveredPaths.push(path);
+  }
+
+  wire(
+    path,
+    name,
+    covered ? 'covered' : 'uncovered',
+    SECONDARY[state] || ''
+  );
+});
+
+/* ---- One-time randomized reveal ----
+   Every state starts dark/uncovered. On first viewport entry the 23
+   covered states fade/brighten into their covered treatment in a
+   shuffled order. Runs once; leaving and returning to the section
+   does not replay it. */
+function shuffle(arr) {
+  var a = arr.slice();
+
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = a[i];
+    a[i] = a[j];
+    a[j] = t;
+  }
+
+  return a;
+}
+
+var poweredOn = false;
+
+function powerOnCoverage() {
+  if (poweredOn) return;
+
+  poweredOn = true;
+
+  var order = shuffle(coveredPaths);
+
+  order.forEach(function (path, i) {
+    path.classList.add('revealing');
+    path.style.transitionDelay = (i * 26) + 'ms';
+    path.classList.add('covered');
+
+    window.setTimeout(function () {
+      path.style.transitionDelay = '';
+      path.classList.remove('revealing');
+    }, 1500);
+  });
+}
+
+wire(hqGroup, HQ.name, 'hq');
+
+/* ---- Fires once on first entry only; no reset/replay on re-entry ---- */
+var mapSection = document.getElementById('footprint');
+
+if (mapSection && 'IntersectionObserver' in window) {
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        powerOnCoverage();
+        io.disconnect();
+      }
     });
-  }
+  }, { threshold: 0.2 });
 
-  wire(hqGroup, HQ.name, 'hq');
+  io.observe(mapSection);
+} else {
+  powerOnCoverage();
+}
 
-  /* ---- Fires once on first entry only; no reset/replay on re-entry ---- */
-  var mapSection = document.getElementById('footprint');
-  if (mapSection && 'IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          powerOnCoverage();
-          io.disconnect();
-        }
-      });
-    }, { threshold: 0.2 });
-    io.observe(mapSection);
-  } else {
-    powerOnCoverage();
-  }
+/* ---- Universal reset when clicking anywhere except a state or HQ ----
+   Uses pointerdown in capture phase so the reset is seen anywhere on
+   the page, including the navy background and the margins around SVG. */
+document.addEventListener('pointerdown', function (e) {
+  var target = e.target;
 
-  /* ---- Reset pin when clicking anywhere except an active map target ---- */
-document.addEventListener('click', function (e) {
-  var clickedState = e.target.closest('#us-map path[data-state]');
-  var clickedHQ = e.target.closest('#us-map .hq-marker');
+  if (!(target instanceof Element)) return;
 
-  /* Clicking an actual state or HQ is handled by their own click handlers. */
+  var clickedState = target.closest('#us-map path[data-state]');
+  var clickedHQ = target.closest('#us-map .hq-marker');
+
+  /* Actual state/HQ clicks are handled by their own click handlers. */
   if (clickedState || clickedHQ) return;
 
-  /* Any other click anywhere on the page clears the pinned selection. */
+  /* Any other click anywhere on the site clears the current pin. */
   if (pinned) {
     pinned.classList.remove('pinned');
     pinned = null;
@@ -245,7 +287,7 @@ document.addEventListener('click', function (e) {
   });
 
   hidePanel();
-});
+}, true);
 
 /* ---- Reset pin when the map section scrolls out of view ---- */
 var resetSection = document.getElementById('footprint');
