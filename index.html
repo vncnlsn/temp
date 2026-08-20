@@ -452,8 +452,14 @@
   .map-state-panel.msp-visible{ opacity: 1; transform: translateY(0); }
   .msp-hq-label{ display:none; font-family: var(--mono); font-weight: 600; font-size: .66rem; letter-spacing:.12em; text-transform:uppercase; color: var(--glow-strong); }
   .msp-hq-rule{ display:none; width: 28px; height: 1px; background: var(--glow-line); margin: 7px 0; }
-  .map-state-panel.msp-hq .msp-hq-label,
-  .map-state-panel.msp-hq .msp-hq-rule{ display:block; }
+  .map-state-panel.msp-hq .msp-hq-label{
+  display:block;
+  margin-bottom: 4px;
+}
+
+.map-state-panel.msp-hq .msp-hq-rule{
+  display:none;
+}
   .msp-name{ display:block; font-family: var(--serif); font-weight: 500; font-size: 1.05rem; color: var(--paper); white-space: nowrap; }
   .msp-county{ display:none; font-family: var(--mono); font-weight: 500; font-size: .74rem; letter-spacing:.04em; text-transform:uppercase; color: var(--glow-strong); text-align:left; margin-top: 5px; }
   .msp-county.msp-county-visible{ display:block; }
