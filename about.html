@@ -749,11 +749,11 @@
      browser has restored a scrolled position (or landed on a hash),
      ease the viewport back up to the top instead of snapping there. */
   window.addEventListener('load', function(){
-    if (window.scrollY > 0) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  });
-})();
+  if (window.scrollY > 0 && !window.location.hash) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+});
+  
 </script>
 
 </body>
