@@ -240,14 +240,18 @@
     font-size: clamp(1.2rem, 2vw, 1.45rem); color: var(--paper); line-height: 1.5;
   }
 
-  .hse-badge{ display: flex; flex-direction: column; align-items: center; gap: 10px; margin: clamp(32px, 4vw, 44px) auto 0; }
-  .hse-badge-mark{
-    width: 60px; height: 60px; border: 1px solid var(--line-on-navy); border-radius: 3px;
-  }
-  .hse-badge span{
-    font-family: var(--mono); font-size: .64rem; letter-spacing: .06em; text-transform: uppercase;
-    color: rgba(250,246,234,.4);
-  }
+  .hse-badge{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: clamp(32px, 4vw, 44px) auto 0;
+}
+
+.hse-badge img{
+  width: clamp(110px, 10vw, 140px);
+  height: auto;
+  display: block;
+}
 
   /* ================= OUR CAPABILITIES ================= */
   .capabilities-section{ padding: clamp(72px, 9vw, 108px) 0 clamp(24px, 3vw, 32px); }
@@ -497,10 +501,9 @@
 
     <p class="hse-lead">APS Land Services is an active and compliant member of ISNetworld.</p>
 
-    <div class="hse-badge" aria-hidden="true">
-      <div class="hse-badge-mark"></div>
-      <span>ISNetworld badge</span>
-    </div>
+    <div class="hse-badge">
+  <img src="assets/ISN_Badge.png" alt="ISNetworld Member Contractor">
+</div>
   </div>
 </section>
 
