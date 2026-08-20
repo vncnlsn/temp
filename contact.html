@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Us — APS Land Services</title>
-<meta name="description" content="Learn about APS Land Services, setting the standard in energy, exploration, and infrastructure land services since 1980. Meet our leadership team.">
+<title>Contact Us — APS Land Services</title>
+<meta name="description" content="Get in touch with APS Land Services. Speak directly with our leadership team about your project needs.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -22,7 +22,6 @@
     --paper-soft:  rgba(250,246,234,.9);
     --line:        rgba(28,27,24,.14);
     --line-on-navy: rgba(250,246,234,.16);
-    --glow-strong: #7CE8D9;
     --ease: cubic-bezier(.22,.61,.36,1);
     --shell: 1440px;
     --nav-h: 78px;
@@ -42,40 +41,30 @@
 
   .eyebrow{ font-family: var(--mono); font-size: .72rem; letter-spacing: .07em; text-transform: uppercase; font-weight: 500; color: var(--clay); }
   .eyebrow::before{ content:"— "; color: var(--brass); }
-  .eyebrow-on-navy{ color: var(--clay-bright); }
-  .eyebrow-on-navy::before{ color: rgba(250,246,234,.4); }
 
   h1,h2,h3,h4{ font-family: var(--serif); font-weight: 600; letter-spacing: -.005em; margin:0; }
 
   [data-reveal]{ opacity: 0; transform: translateY(16px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
   [data-reveal].in-view{ opacity: 1; transform: translateY(0); }
 
-/* ================= NAV =================== */
+  /* ================= NAV =================== */
   .site-nav {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 200;
     height: var(--nav-h);
     background: var(--navy-deep);
     border-bottom: 1px solid var(--line-on-navy);
     box-shadow: 0 4px 18px rgba(0,0,0,.14);
     transition: box-shadow .35s var(--ease);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
   }
   .site-nav.scrolled { box-shadow: 0 8px 26px rgba(0,0,0,.22); }
 
   .nav-menu-centered {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     gap: clamp(28px, 5.5vw, 68px);
-    list-style: none;
-    margin: 0;
-    padding: 0 24px;
+    list-style: none; margin: 0; padding: 0 24px;
   }
 
   .nav-logo { display: flex; align-items: center; justify-content: center; }
@@ -83,19 +72,10 @@
   .nav-logo-fallback { font-family: var(--serif); font-weight: 600; font-size: 1.35rem; color: var(--paper); }
 
   .nav-link {
-    font-family: var(--mono);
-    font-size: .88rem;
-    letter-spacing: .09em;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: var(--paper-soft);
-    transition: color .25s var(--ease);
-    white-space: nowrap;
+    font-family: var(--mono); font-size: .88rem; letter-spacing: .09em; text-transform: uppercase;
+    font-weight: 500; color: var(--paper-soft); transition: color .25s var(--ease); white-space: nowrap;
   }
-  .nav-link:hover,
-  .nav-link.active {
-    color: var(--clay-bright);
-  }
+  .nav-link:hover, .nav-link.active { color: var(--clay-bright); }
 
   @media (max-width: 768px) {
     .nav-menu-centered { gap: 18px; padding: 0 16px; }
@@ -103,203 +83,128 @@
     .nav-logo-img { height: 32px; }
   }
 
-  /* ================= HERO ================= */
-  .about-hero{
-    padding: calc(var(--nav-h) + clamp(48px, 6vw, 72px)) 0 clamp(48px, 6vw, 72px);
-    text-align: center;
-    border-bottom: 1px solid var(--line);
+  /* ================= CONTACT MAIN ================= */
+  .contact-hero {
+    padding: calc(var(--nav-h) + clamp(48px, 6vw, 80px)) 0 clamp(64px, 8vw, 104px);
   }
-  .about-hero h1{ font-size: clamp(2.8rem, 6vw, 4.8rem); color: var(--navy); line-height: 1.08; margin-top: 12px; }
 
-  /* ================= OUR COMPANY ================= */
-  .company-section{
-    padding: clamp(72px, 9vw, 108px) 0;
-  }
-  .company-grid{
+  .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1.6fr;
-    gap: clamp(32px, 5vw, 64px);
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 88px);
     align-items: start;
   }
-  .company-title h2{ font-size: clamp(1.9rem, 3.6vw, 2.8rem); color: var(--navy); line-height: 1.15; margin-top: 8px; }
-  .company-body p{ font-size: 1.03rem; line-height: 1.68; color: var(--ink); margin: 0 0 20px; }
-  .company-body p:last-child{ margin-bottom: 0; }
-  .company-body p.lead{ font-size: 1.15rem; font-weight: 500; color: var(--navy); }
 
-  @media (max-width: 900px){
-    .company-grid{ grid-template-columns: 1fr; gap: 24px; text-align: center; }
-    .company-title{ display: flex; justify-content: center; }
+  .contact-info h1 {
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    color: var(--navy);
+    line-height: 1.1;
+    margin-top: 12px;
+    margin-bottom: 24px;
   }
 
-  /* ================= MEET THE TEAM (NAVY TAKEOVER) ================= */
-  .team-section {
-    background: var(--navy-deep);
-    padding: clamp(72px, 8vw, 104px) 0;
+  .contact-lead {
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0 0 40px;
   }
 
-  .team-section .shell{ width: 100%; }
-
-  .section-head-center {
-    text-align: center;
-    max-width: 640px;
-    margin: 0 auto clamp(24px, 3vw, 36px);
+  /* Inline Leadership Team Link */
+  .inline-team-link {
+    color: var(--navy);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: rgba(178, 58, 40, 0.4);
+    text-underline-offset: 4px;
+    transition: color .25s var(--ease), text-decoration-color .25s var(--ease);
   }
-  .section-head-center .eyebrow{ display:block; margin-bottom: 10px; }
-  .section-head-center h2{ font-size: clamp(2rem, 3.4vw, 2.8rem); color: var(--navy); }
-  .team-section .section-head-center h2{ color: var(--paper); }
 
-  .team-list{
+  .inline-team-link:hover {
+    color: var(--clay);
+    text-decoration-color: var(--clay);
+  }
+
+  .contact-methods {
     display: flex;
     flex-direction: column;
-    gap: clamp(44px, 5.5vw, 68px);
-    max-width: 1140px;
-    margin: clamp(32px, 4.5vw, 52px) auto 0;
+    gap: 24px;
   }
 
-  .team-profile{
+  .method-card {
     display: flex;
     align-items: center;
-    gap: clamp(40px, 4.5vw, 64px);
-  }
-
-  .team-photo-frame{
-    position: relative;
-    flex: 0 0 auto;
-    width: clamp(205px, 19.5vw, 282px);
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
+    gap: 20px;
+    padding: 24px;
+    background: var(--paper-dim);
+    border: 1px solid var(--line);
     border-radius: 3px;
-    background: rgba(250,246,234,.04);
-    border: 1px solid var(--line-on-navy);
-    box-shadow: 0 14px 30px rgba(0,0,0,.35);
-  }
-  .team-photo-frame img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
+    transition: border-color .3s var(--ease), transform .3s var(--ease);
   }
 
-  .team-profile-content{ min-width: 0; flex: 1; }
-
-  .team-profile-content h3{
-    font-size: clamp(1.6rem, 2.2vw, 2rem);
-    color: var(--paper);
-    margin-bottom: 4px;
-    line-height: 1.15;
+  .method-card:hover {
+    border-color: var(--clay);
+    transform: translateY(-2px);
   }
 
-  .team-role{
+  .method-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(178,58,40,.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--clay);
+    flex-shrink: 0;
+  }
+
+  .method-icon svg { width: 22px; height: 22px; }
+
+  .method-details span {
     display: block;
     font-family: var(--mono);
-    font-size: .78rem;
-    letter-spacing: .06em;
+    font-size: .75rem;
+    letter-spacing: .08em;
     text-transform: uppercase;
-    color: var(--clay-bright);
-    font-weight: 600;
-    margin-bottom: 16px;
+    color: var(--brass);
+    margin-bottom: 4px;
   }
 
-  .team-bio{
-    font-size: 1rem;
-    line-height: 1.62;
-    color: var(--paper-soft);
+  .method-details a {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--navy);
+    transition: color .25s var(--ease);
+  }
+
+  .method-details a:hover { color: var(--clay); }
+
+  /* Contact Note Container */
+  .contact-note {
+    margin-top: 40px;
+    padding: 24px;
+    border-left: 3px solid var(--clay);
+    background: rgba(30, 59, 95, 0.03);
+  }
+
+  .contact-note h3 {
+    font-size: 1.1rem;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .contact-note p {
+    font-size: .95rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
     margin: 0;
   }
 
-  @media (max-width: 780px) {
-    .team-profile{
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 20px;
-    }
-    .team-photo-frame{
-      width: clamp(150px, 36vw, 216px);
-      margin: 0 auto;
-    }
-    .team-bio{ font-size: .95rem; }
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
   }
-
-  /* ================= YOU STAY IN CONTROL ================= */
-  .control-section{ padding: clamp(80px, 9vw, 112px) 0; }
-
-  .control-header{ text-align:center; max-width: 920px; margin: 0 auto clamp(48px, 5.5vw, 64px); }
-  .control-header .eyebrow{ display:block; margin-bottom: 10px; }
-  .control-header h2{ font-size: clamp(1.9rem, 3.2vw, 2.5rem); color: var(--navy); margin: 0 0 18px; }
-  .control-header p{ font-size: 1.02rem; line-height: 1.65; color: var(--ink-soft); margin: 0; }
-
-  .reassure-grid{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: clamp(30px, 3.4vw, 44px) clamp(36px, 4.4vw, 60px);
-    max-width: 860px;
-    margin: 0 auto clamp(52px, 6vw, 72px);
-  }
-  .reassure-item{ display:flex; align-items:flex-start; gap: 18px; text-align:left; }
-  .reassure-check{
-    flex: 0 0 auto;
-    width: 42px; height: 42px;
-    border-radius: 50%;
-    background: rgba(178,58,40,.08);
-    display:flex; align-items:center; justify-content:center;
-    color: var(--clay);
-  }
-  .reassure-check svg{ width: 20px; height: 20px; }
-  .reassure-item h3{ font-family: var(--serif); font-weight: 600; font-size: 1.16rem; color: var(--navy); margin: 0 0 6px; line-height: 1.3; }
-  .reassure-item p{ font-size: .96rem; line-height: 1.58; color: var(--ink-soft); margin: 0; }
-
-  .control-lead{
-    max-width: 760px;
-    margin: 0 auto clamp(18px, 2.4vw, 24px);
-    text-align: center;
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 500;
-    font-size: clamp(1.3rem, 2.3vw, 1.6rem);
-    color: var(--navy);
-    line-height: 1.5;
-  }
-
-  .control-detail{
-    max-width: 700px;
-    margin: 0 auto clamp(44px, 5.5vw, 60px);
-    text-align: center;
-    font-size: .92rem;
-    line-height: 1.65;
-    color: var(--ink-soft);
-  }
-
-  .page-nav-links{ display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 16px 20px; max-width: 940px; margin: 0 auto; padding-top: 36px; border-top: 1px solid var(--line); }
-  .page-nav-link{
-    display:inline-flex; align-items:center; gap: 12px; padding: 14px 26px;
-    border: 1px solid rgba(30,59,95,.3); border-radius: 3px; color: var(--navy);
-    font-family: var(--mono); font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; font-weight:600;
-    transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
-  }
-  .page-nav-link:hover{ background: var(--navy); border-color: var(--navy); color: var(--paper); }
-  .page-nav-link .arrow{ transition: transform .25s var(--ease); }
-  .page-nav-link:hover .arrow{ transform: translateX(4px); }
-
-  @media (max-width: 640px){
-    .reassure-grid{ grid-template-columns: 1fr; gap: 30px; }
-    .reassure-item{ flex-direction: column; align-items: center; text-align: center; gap: 12px; }
-  }
-
-  /* ================= CTA ================= */
-  .cta-band{ background: var(--navy-deep); padding: clamp(64px, 7vw, 92px) 0; border-bottom: 1px solid var(--line-on-navy); }
-  .cta-inner{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap: clamp(24px, 3vw, 32px); text-align:center; }
-  .cta-inner h2{ font-size: clamp(1.6rem, 2.8vw, 2.2rem); color: var(--paper); }
-  .cta-actions{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap: 16px; }
-  .cta-btn{
-    display:inline-flex; align-items:center; gap: 12px; padding: 15px 28px;
-    border: 1px solid var(--paper-soft); color: var(--paper);
-    font-size:.86rem; font-weight:600; flex:0 0 auto;
-    transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
-  }
-  .cta-btn:hover{ background: var(--clay); border-color: var(--clay); }
-  .cta-btn .arrow{ transition: transform .25s var(--ease); }
-  .cta-btn:hover .arrow{ transform: translateX(4px); }
 
   /* ================= FOOTER ================= */
   footer {
@@ -320,191 +225,54 @@
     align-items: start;
   }
 
-  .footer-brand {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .footer-logo-img {
-    height: 32px;
-    width: auto;
-    filter: brightness(0) invert(1);
-    margin: 0 auto 12px auto;
-    display: block;
-  }
-
-  .footer-brand-fallback {
-    display: none;
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: 1.25rem;
-    color: var(--paper);
-    margin-bottom: 8px;
-  }
-
-  .footer-brand p {
-    font-size: .85rem;
-    color: rgba(250,246,234,.7);
-    line-height: 1.5;
-    font-family: var(--sans);
-    margin: 0;
-    text-align: center;
-  }
+  .footer-brand { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .footer-logo-img { height: 32px; width: auto; filter: brightness(0) invert(1); margin: 0 auto 12px auto; display: block; }
+  .footer-brand-fallback { display: none; font-family: var(--serif); font-weight: 600; font-size: 1.25rem; color: var(--paper); margin-bottom: 8px; }
+  .footer-brand p { font-size: .85rem; color: rgba(250,246,234,.7); line-height: 1.5; font-family: var(--sans); margin: 0; text-align: center; }
 
   .footer-hq-badge {
-    display: inline-block;
-    margin-top: 16px;
-    font-family: var(--mono);
-    font-size: .72rem;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--clay-bright);
-    background: rgba(217,117,95,.08);
-    border: 1px solid rgba(217,117,95,.2);
-    padding: 6px 14px;
-    border-radius: 3px;
-    transition: background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
+    display: inline-block; margin-top: 16px; font-family: var(--mono); font-size: .72rem; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--clay-bright); background: rgba(217,117,95,.08); border: 1px solid rgba(217,117,95,.2);
+    padding: 6px 14px; border-radius: 3px; transition: background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
   }
+  .footer-hq-badge:hover { background: rgba(217,117,95,.18); border-color: rgba(217,117,95,.4); color: var(--paper); }
 
-  .footer-hq-badge:hover {
-    background: rgba(217,117,95,.18);
-    border-color: rgba(217,117,95,.4);
-    color: var(--paper);
-  }
-
-  footer h4 {
-    font-family: var(--mono);
-    font-size: .68rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--clay-bright);
-    margin: 0 0 18px;
-    font-weight: 600;
-    text-align: center;
-  }
-
-  footer ul.nav-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  footer ul.contact-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-
-  footer li {
-    font-size: .88rem;
-    color: var(--paper-soft);
-    text-align: center;
-  }
-
+  footer h4 { font-family: var(--mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--clay-bright); margin: 0 0 18px; font-weight: 600; text-align: center; }
+  footer ul.nav-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
+  footer ul.contact-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  footer li { font-size: .88rem; color: var(--paper-soft); text-align: center; }
   footer ul.nav-list li { margin-bottom: 12px; }
   footer ul.nav-list li:last-child { margin-bottom: 0; }
-
-  footer a {
-    color: var(--paper-soft);
-    transition: color .25s var(--ease);
-    display: inline-block;
-  }
-
+  footer a { color: var(--paper-soft); transition: color .25s var(--ease); display: inline-block; }
   footer a:hover { color: var(--clay-bright); }
 
   .contact-link {
-    background: rgba(250,246,234,.04);
-    padding: 6px 14px;
-    border-radius: 3px;
-    border: 1px solid rgba(250,246,234,.06);
-    font-family: var(--mono);
-    font-size: .80rem;
-    transition: background .25s var(--ease), border-color .25s var(--ease);
+    background: rgba(250,246,234,.04); padding: 6px 14px; border-radius: 3px; border: 1px solid rgba(250,246,234,.06);
+    font-family: var(--mono); font-size: .80rem; transition: background .25s var(--ease), border-color .25s var(--ease);
   }
-
-  .contact-link:hover {
-    background: rgba(217,117,95,.1);
-    border-color: rgba(217,117,95,.3);
-  }
+  .contact-link:hover { background: rgba(217,117,95,.1); border-color: rgba(217,117,95,.3); }
 
   .footer-bottom {
-    padding-top: 28px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: var(--mono);
-    font-size: .70rem;
-    color: rgba(250,246,234,.5);
+    padding-top: 28px; display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: .70rem; color: rgba(250,246,234,.5);
   }
 
   @media (max-width: 768px) {
     footer { padding: 32px 0 24px; }
-
-    .footer-grid {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      padding-bottom: 24px;
-    }
-
-    .col-nav     { order: 1; }
-    .col-brand   { order: 2; }
+    .footer-grid { display: flex; flex-direction: column; align-items: center; gap: 20px; padding-bottom: 24px; }
+    .col-nav { order: 1; }
+    .col-brand { order: 2; }
     .col-contact { display: none; }
-
     footer h4.nav-header { display: none; }
-    footer ul.nav-list {
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-    }
-    footer ul.nav-list li {
-      margin-bottom: 0;
-      display: inline-flex;
-      align-items: center;
-    }
-    footer ul.nav-list li:not(:last-child)::after {
-      content: "·";
-      margin-left: 12px;
-      color: rgba(250,246,234,.3);
-      font-weight: bold;
-    }
-
+    footer ul.nav-list { flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; }
+    footer ul.nav-list li { margin-bottom: 0; display: inline-flex; align-items: center; }
+    footer ul.nav-list li:not(:last-child)::after { content: "·"; margin-left: 12px; color: rgba(250,246,234,.3); font-weight: bold; }
     .footer-brand p { display: none; }
     .footer-hq-badge { margin-top: 10px; }
-
-    .footer-bottom {
-      flex-direction: column;
-      gap: 6px;
-      text-align: center;
-      padding-top: 18px;
-    }
+    .footer-bottom { flex-direction: column; gap: 6px; text-align: center; padding-top: 18px; }
   }
 
-  @media (max-width: 640px){
-    .shell{ padding: 0 20px; }
-  }
-
-  @media (max-width: 640px){
-    .about-hero{ padding-top: calc(var(--nav-h) + clamp(48px, 9vw, 72px)); }
-    .company-section{ padding-top: clamp(64px, 12vw, 88px); padding-bottom: clamp(64px, 12vw, 88px); }
-    .team-section{ padding-top: clamp(72px, 12vw, 96px); padding-bottom: clamp(72px, 12vw, 96px); }
-    .control-section{ padding-top: clamp(72px, 12vw, 96px); padding-bottom: clamp(72px, 12vw, 96px); }
-    .cta-band{ padding-top: clamp(80px, 12vw, 104px); padding-bottom: clamp(80px, 12vw, 104px); }
-  }
-
+  @media (max-width: 640px){ .shell{ padding: 0 20px; } }
   @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } [data-reveal]{ transition: opacity .3s linear; transform:none; } }
 </style>
 </head>
@@ -520,7 +288,7 @@
 <nav class="site-nav" id="siteNav" aria-label="Primary">
   <ul class="nav-menu-centered">
     <li><a class="nav-link" href="index.html">Home</a></li>
-    <li><a class="nav-link active" href="about.html">About</a></li>
+    <li><a class="nav-link" href="about.html">About</a></li>
     <li>
       <a class="nav-logo" href="index.html" aria-label="APS Land Services — Home">
         <img class="nav-logo-img" src="assets/APSLand_Logo.png" alt="APS Land" decoding="async" onerror="this.style.display='none';document.getElementById('navLogoFallback').style.display='inline'">
@@ -528,133 +296,51 @@
       </a>
     </li>
     <li><a class="nav-link" href="services.html">Services</a></li>
-    <li><a class="nav-link" href="contact.html">Contact</a></li>
+    <li><a class="nav-link active" href="contact.html">Contact</a></li>
   </ul>
 </nav>
 
-<!-- PAGE HERO -->
-<header class="about-hero shell" data-reveal>
-  <h1>We are APS Land</h1>
-</header>
-
-<!-- OUR COMPANY -->
-<section class="company-section shell">
-  <div class="company-grid" data-reveal>
-    <div class="company-title">
-      <h2>Setting the Standard Since 1980</h2>
-    </div>
-    <div class="company-body">
-      <p class="lead">APS began in 1980 as Allstate Permit Services. From its roots in permitting, the company has since grown to support energy, exploration, and infrastructure projects across North America.</p>
-      <p>Our work has spanned hundreds of successful projects in 23 states, with additional project experience in Alberta and Saskatchewan. Thousands of square miles have been successfully permitted. We don't outsource communication; our team has coordinated directly with thousands of landowners across private, state, federal, and tribal lands. Decades of experience have refined our approach as we continue to advance our technology, processes, and project management capabilities without losing sight of what matters most: getting the details right. We take great pride in protecting landowners, field crews, the environment, and the projects we're entrusted with.</p>
-      <p>In August 2026, we became APS Land Services. The new name reflects the depth of expertise and range of capabilities we've built through decades in the field while carrying forward the standard we began with: hard work, honesty, and being exceptionally good at what we do.</p>
-    </div>
-  </div>
-</section>
-
-<!-- MEET THE TEAM -->
-<section class="team-section" id="team">
-  <div class="shell">
-    <div class="section-head-center" data-reveal>
-      <h2>Meet the Team</h2>
-    </div>
-
-    <div class="team-list">
-      <!-- Mark -->
-      <article class="team-profile" data-reveal>
-        <div class="team-photo-frame">
-          <img src="assets/mark_photo.jpg" alt="Mark Fischbuch, President &amp; Founder" loading="lazy">
-        </div>
-        <div class="team-profile-content">
-          <h3>Mark Fischbuch</h3>
-          <span class="team-role">President &amp; Founder</span>
-          <p class="team-bio">Mark Fischbuch founded Allstate Permit Services in 1980 after years of hard work across surveying, drilling, permitting, and field operations. He learned the industry firsthand, from the science and technology behind it to the realities of difficult field work. That practical knowledge shaped APS's comprehensive approach to land services and remains at the foundation of the company today.</p>
-        </div>
-      </article>
-
-      <!-- Zane -->
-      <article class="team-profile" data-reveal>
-        <div class="team-photo-frame">
-          <img src="assets/zane_photo1.jpg" alt="Zane Nelson, Vice President" loading="lazy">
-        </div>
-        <div class="team-profile-content">
-          <h3>Zane Nelson</h3>
-          <span class="team-role">Vice President</span>
-          <p class="team-bio">Zane Nelson joined APS in 2010, building on a successful career spanning accounting, business analysis, and enterprise operations. He's combined those disciplines to lead the company's day-to-day operations, transform its financial and operational structure, and expand its capabilities. He has developed extensive knowledge of land services through years of hands-on project and field experience. Zane remains deeply involved in strengthening client relationships, personally overseeing field work, and positioning APS for new opportunities across the industry.</p>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- YOU STAY IN CONTROL OF YOUR LAND -->
-<section class="control-section shell" id="landowner-info">
-  <div class="control-header" data-reveal>
-    <h2>You Stay in Control of Your Land</h2>
-    <p>If we've reached out, it's because a project may involve your property. Here's what that means for you.</p>
-  </div>
-
-  <div class="reassure-grid" data-reveal>
-    <div class="reassure-item">
-      <span class="reassure-check" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-      </span>
-      <div>
-        <h3>You Keep Your Land</h3>
-        <p>An access agreement never transfers ownership of your property.</p>
+<!-- CONTACT MAIN -->
+<main class="contact-hero shell">
+  <div class="contact-grid">
+    
+    <!-- Left Column: Copy & Context -->
+    <div class="contact-info" data-reveal>
+      <span class="eyebrow">Get in Touch</span>
+      <h1>Direct Line to Experience</h1>
+      <p class="contact-lead">When you reach out to APS Land Services, you speak directly with our <a href="about.html#team" class="inline-team-link">leadership team</a>. We are available to answer questions, discuss upcoming projects, or walk you through land access details.</p>
+      
+      <div class="contact-note">
+        <h3>Landowners &amp; Property Owners</h3>
+        <p>If you've received correspondence from us regarding an active project in your area, please call or email directly so we can connect you with the specific field representative assigned to your tract.</p>
       </div>
     </div>
-    <div class="reassure-item">
-      <span class="reassure-check" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-      </span>
-      <div>
-        <h3>Your Minerals Stay Yours</h3>
-        <p>This isn't a mineral lease. Seismic survey access doesn't touch your mineral rights.</p>
+
+    <!-- Right Column: Direct Contact Cards -->
+    <div class="contact-methods" data-reveal>
+      <div class="method-card">
+        <div class="method-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </div>
+        <div class="method-details">
+          <span>Phone Support</span>
+          <a href="tel:+13039035873">303-903-5873</a>
+        </div>
+      </div>
+
+      <div class="method-card">
+        <div class="method-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </div>
+        <div class="method-details">
+          <span>Email Inquiries</span>
+          <a href="mailto:allstatepermit@allstatepermit.com">allstatepermit@allstatepermit.com</a>
+        </div>
       </div>
     </div>
-    <div class="reassure-item">
-      <span class="reassure-check" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-      </span>
-      <div>
-        <h3>Surveying, Not Fracking</h3>
-        <p>Seismic surveying maps what's underground. It doesn't extract anything.</p>
-      </div>
-    </div>
-    <div class="reassure-item">
-      <span class="reassure-check" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-      </span>
-      <div>
-        <h3>Clear From Day One</h3>
-        <p>Access, compensation, and timing are all spelled out before any work starts.</p>
-      </div>
-    </div>
+
   </div>
-
-  <p class="control-lead" data-reveal>We'll always tell you who we represent, why we've reached out, and what to expect before anything happens on your land.</p>
-
-  <p class="control-detail" data-reveal>This applies to seismic survey work as well as right-of-way, utility, and other infrastructure projects. The specifics vary by project, and we'll walk you through them directly. No surprises, no fine print.</p>
-
-  <div class="page-nav-links" data-reveal>
-    <a class="page-nav-link" href="index.html#clients">
-      View Companies We've Represented <span class="arrow">→</span>
-    </a>
-    <a class="page-nav-link" href="contact.html">
-      Contact APS Leadership <span class="arrow">→</span>
-    </a>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-band">
-  <div class="shell cta-inner" data-reveal>
-    <h2>Let's get to work.</h2>
-    <div class="cta-actions">
-      <a class="cta-btn" href="contact.html">Contact Us <span class="arrow">→</span></a>
-    </div>
-  </div>
-</section>
+</main>
 
 <!-- FOOTER -->
 <footer id="footer">
@@ -705,7 +391,6 @@
   document.addEventListener('scroll', onScroll, { passive:true });
   onScroll();
 
-  /* Reveal-on-scroll */
   var reveals = document.querySelectorAll('[data-reveal]');
   if('IntersectionObserver' in window){
     var io = new IntersectionObserver(function(entries){
@@ -719,7 +404,7 @@
   }
 
   window.addEventListener('load', function(){
-    if (window.scrollY > 0) {
+    if (window.scrollY > 0 && !window.location.hash) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   });
