@@ -11,11 +11,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-
     :root{
       --navy:        #1E3B5F;
       --navy-deep:   #16222C;
@@ -339,40 +337,64 @@
     }
 
 
-    /* ================= CONTACT METHODS ================= */
+    /* ================= CONTACT PILLARS ================= */
 
     .contact-section{
       width: 100%;
-      max-width: 460px;
+      max-width: 760px;
+      margin: clamp(32px, 4vw, 46px) auto 0;
+    }
 
-      margin: clamp(28px, 4vw, 42px) auto 0;
+    .contact-pillars{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+    }
+
+    .contact-pillar{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      min-width: 0;
+      padding: 0 clamp(34px, 4vw, 56px);
 
       text-align: center;
     }
 
-    .contact-lead{
+    .contact-pillar + .contact-pillar{
+      border-left: 1px solid var(--line);
+    }
+
+    .contact-lead,
+    .mailing-label{
+      display: block;
+
       font-family: var(--mono);
       font-size: .76rem;
       letter-spacing: .14em;
       text-transform: uppercase;
+      font-weight: 600;
 
       color: var(--navy);
 
       margin: 0 0 18px;
 
       text-align: center;
-      font-weight: 600;
     }
+
+
+    /* ================= CONTACT METHODS ================= */
 
     .contact-methods{
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 12px;
+
+      width: 100%;
     }
-
-
-    /* Primary phone button */
 
     .contact-btn{
       display: inline-flex;
@@ -416,9 +438,6 @@
       transform: translateX(4px);
     }
 
-
-    /* Secondary email button */
-
     .contact-btn-secondary{
       background: transparent;
       border-color: var(--navy);
@@ -432,32 +451,30 @@
     }
 
 
-    /* Mailing address */
+    /* ================= MAILING ADDRESS ================= */
 
     .mailing-address{
-      margin-top: 28px;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      width: 100%;
     }
 
-    .mailing-label{
-  display: block;
-  font-family: var(--mono);
-  font-size: .72rem;
-  font-weight: 600;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--brass);
-  margin-bottom: 8px;
-}
+    .mailing-address address{
+      margin: 0;
 
-.mailing-address address{
-  margin: 0;
-  font-family: var(--sans);
-  font-size: 1rem;
-  line-height: 1.55;
-  font-style: normal;
-  color: var(--ink-soft);
-}
+      font-family: var(--serif);
+      font-size: clamp(1.08rem, 1.5vw, 1.25rem);
+      line-height: 1.6;
+      font-style: normal;
+      font-weight: 500;
+
+      color: var(--navy);
+
+      text-align: center;
+    }
 
 
     /* ================= FOOTER ================= */
@@ -624,9 +641,7 @@
 
     footer a{
       color: var(--paper-soft);
-
       transition: color .25s var(--ease);
-
       display: inline-block;
     }
 
@@ -673,6 +688,11 @@
 
     @media (max-width: 768px){
 
+      body{
+        overflow: auto;
+        min-height: 100%;
+      }
+
       .shell{
         padding: 0 20px;
       }
@@ -712,17 +732,46 @@
       }
 
       .contact-hero{
-        padding-top: calc(var(--nav-h) + 12px);
-        padding-bottom: 12px;
+        flex: 0 0 auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+
+        justify-content: flex-start;
+
+        padding-top: calc(var(--nav-h) + 64px);
+        padding-bottom: 72px;
+      }
+
+      .contact-hero-copy{
+        max-width: 340px;
       }
 
       .contact-section{
-        margin-top: 24px;
-        width: 100%;
+        max-width: 380px;
+        margin-top: 48px;
       }
 
-      .mailing-address{
-        margin-top: 22px;
+      .contact-pillars{
+        grid-template-columns: 1fr;
+      }
+
+      .contact-pillar{
+        padding: 0;
+      }
+
+      .contact-pillar + .contact-pillar{
+        border-left: none;
+        border-top: 1px solid var(--line);
+        margin-top: 40px;
+        padding-top: 40px;
+      }
+
+      .contact-btn{
+        width: min(320px, 100%);
+      }
+
+      .mailing-address address{
+        font-size: 1.08rem;
       }
 
 
@@ -922,41 +971,57 @@
 
     <div class="contact-section">
 
-      <p class="contact-lead">Get in Touch</p>
+      <div class="contact-pillars">
 
 
-      <div class="contact-methods">
+        <!-- Immediate contact -->
 
-        <a
-          class="contact-btn"
-          href="tel:+13039035873"
-        >
-          Call 303-903-5873
-          <span class="arrow">→</span>
-        </a>
+        <div class="contact-pillar">
+
+          <span class="contact-lead">
+            Get in Touch
+          </span>
 
 
-        <a
-          class="contact-btn contact-btn-secondary"
-          href="mailto:allstatepermit@allstatepermit.com"
-        >
-          Email Us
-          <span class="arrow">→</span>
-        </a>
+          <div class="contact-methods">
 
-      </div>
+            <a
+              class="contact-btn"
+              href="tel:+13039035873"
+            >
+              Call 303-903-5873
+              <span class="arrow">→</span>
+            </a>
 
 
-      <div class="mailing-address">
+            <a
+              class="contact-btn contact-btn-secondary"
+              href="mailto:allstatepermit@allstatepermit.com"
+            >
+              Email Us
+              <span class="arrow">→</span>
+            </a>
 
-        <span class="mailing-label">
-          Mailing Address
-        </span>
+          </div>
 
-        <address>
-          PO Box 1<br>
-          Lewiston, UT 84320
-        </address>
+        </div>
+
+
+        <!-- Mailing address -->
+
+        <div class="contact-pillar mailing-address">
+
+          <span class="mailing-label">
+            Mailing Address
+          </span>
+
+          <address>
+            PO Box 1<br>
+            Lewiston, UT 84320
+          </address>
+
+        </div>
+
 
       </div>
 
@@ -1022,29 +1087,10 @@
 
           <ul class="nav-list">
 
-            <li>
-              <a href="index.html">
-                Home
-              </a>
-            </li>
-
-            <li>
-              <a href="about.html">
-                About
-              </a>
-            </li>
-
-            <li>
-              <a href="services.html">
-                Services
-              </a>
-            </li>
-
-            <li>
-              <a href="contact.html">
-                Contact
-              </a>
-            </li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
 
           </ul>
 
@@ -1107,17 +1153,11 @@
   <!-- ================= JAVASCRIPT ================= -->
 
   <script>
-
     (function(){
 
-      var toggleBtn =
-        document.getElementById('menuToggle');
-
-      var mobileDrawer =
-        document.getElementById('mobileDrawer');
-
-      var siteNav =
-        document.getElementById('siteNav');
+      var toggleBtn = document.getElementById('menuToggle');
+      var mobileDrawer = document.getElementById('mobileDrawer');
+      var siteNav = document.getElementById('siteNav');
 
 
       function closeDrawer(){
@@ -1130,100 +1170,74 @@
           mobileDrawer.classList.remove('is-open');
 
           if(toggleBtn){
-
             toggleBtn.classList.remove('is-active');
-
-            toggleBtn.setAttribute(
-              'aria-expanded',
-              'false'
-            );
+            toggleBtn.setAttribute('aria-expanded', 'false');
           }
 
-          mobileDrawer.setAttribute(
-            'aria-hidden',
-            'true'
-          );
+          mobileDrawer.setAttribute('aria-hidden', 'true');
         }
       }
 
 
       if(toggleBtn && mobileDrawer){
 
-        toggleBtn.addEventListener(
-          'click',
-          function(e){
+        toggleBtn.addEventListener('click', function(e){
 
-            e.stopPropagation();
+          e.stopPropagation();
 
-            var isOpen =
-              mobileDrawer.classList.contains('is-open');
+          var isOpen =
+            mobileDrawer.classList.contains('is-open');
 
 
-            if(isOpen){
+          if(isOpen){
 
-              closeDrawer();
+            closeDrawer();
 
-            } else {
+          } else {
 
-              mobileDrawer.classList.add('is-open');
-
-              toggleBtn.classList.add('is-active');
-
-              toggleBtn.setAttribute(
-                'aria-expanded',
-                'true'
-              );
-
-              mobileDrawer.setAttribute(
-                'aria-hidden',
-                'false'
-              );
-            }
+            mobileDrawer.classList.add('is-open');
+            toggleBtn.classList.add('is-active');
+            toggleBtn.setAttribute('aria-expanded', 'true');
+            mobileDrawer.setAttribute('aria-hidden', 'false');
 
           }
-        );
+
+        });
       }
 
 
-      document.addEventListener(
-        'click',
-        function(e){
+      document.addEventListener('click', function(e){
+
+        if(
+          mobileDrawer &&
+          mobileDrawer.classList.contains('is-open')
+        ){
+
+          var clickedInsideNav =
+            siteNav &&
+            siteNav.contains(e.target);
+
+          var clickedInsideDrawer =
+            mobileDrawer.contains(e.target);
+
 
           if(
-            mobileDrawer &&
-            mobileDrawer.classList.contains('is-open')
+            !clickedInsideNav &&
+            !clickedInsideDrawer
           ){
-
-            var clickedInsideNav =
-              siteNav &&
-              siteNav.contains(e.target);
-
-            var clickedInsideDrawer =
-              mobileDrawer.contains(e.target);
-
-
-            if(
-              !clickedInsideNav &&
-              !clickedInsideDrawer
-            ){
-              closeDrawer();
-            }
+            closeDrawer();
           }
-
         }
-      );
+
+      });
 
 
-      window.addEventListener(
-        'scroll',
-        function(){
-          closeDrawer();
-        },
-        { passive: true }
-      );
+      window.addEventListener('scroll', function(){
+        closeDrawer();
+      }, { passive: true });
 
 
-      /* Reveal-on-scroll */
+      /* Reveal */
 
       var reveals =
         document.querySelectorAll('[data-reveal]');
@@ -1232,40 +1246,32 @@
       if('IntersectionObserver' in window){
 
         var io =
-          new IntersectionObserver(
-            function(entries){
+          new IntersectionObserver(function(entries){
 
-              entries.forEach(
-                function(entry){
+            entries.forEach(function(entry){
 
-                  if(entry.isIntersecting){
+              if(entry.isIntersecting){
 
-                    entry.target.classList.add('in-view');
+                entry.target.classList.add('in-view');
+                io.unobserve(entry.target);
 
-                    io.unobserve(entry.target);
-                  }
+              }
 
-                }
-              );
+            });
 
-            },
-            { threshold: 0.15 }
-          );
+          }, { threshold: 0.15 });
 
 
-        reveals.forEach(
-          function(el){
-            io.observe(el);
-          }
-        );
+        reveals.forEach(function(el){
+          io.observe(el);
+        });
 
       } else {
 
-        reveals.forEach(
-          function(el){
-            el.classList.add('in-view');
-          }
-        );
+        reveals.forEach(function(el){
+          el.classList.add('in-view');
+        });
+
       }
 
 
@@ -1280,21 +1286,17 @@
 
       if(logo){
 
-        logo.addEventListener(
-          'click',
-          function(e){
+        logo.addEventListener('click', function(e){
 
-            e.preventDefault();
+          e.preventDefault();
 
-            window.location.href =
-              'index.html';
+          window.location.href = 'index.html';
 
-          }
-        );
+        });
+
       }
 
     })();
-
   </script>
 
 </body>
