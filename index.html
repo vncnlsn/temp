@@ -214,10 +214,21 @@
       margin: clamp(28px, 6vw, 40px) 0 0;
     }
     .hero-landowner-link{
-      font-size: .92rem;
-      gap: 6px;
+      font-size: .9rem;
+      gap: 8px;
       letter-spacing: .04em;
       white-space: nowrap;
+      color: var(--paper);
+      background: var(--clay);
+      padding: 14px 22px;
+      border-radius: 3px;
+      border-bottom: none;
+      box-shadow: 0 8px 20px rgba(178,58,40,.28);
+    }
+    .hero-landowner-link:hover,
+    .hero-landowner-link:active{
+      color: var(--paper);
+      background: var(--clay-bright);
     }
   }
 
@@ -511,7 +522,8 @@
      screens — subtle, not a redesign of the section rhythm used on
      larger viewports. */
   @media (max-width: 640px){
-    .hero{ padding-top: calc(var(--nav-h) + clamp(48px, 9vw, 72px)); }
+    .hero{ padding-top: calc(var(--nav-h) + clamp(18px, 4vw, 28px)); }
+    .hero-purpose{ margin-top: clamp(36px, 7vw, 56px); }
     .footprint-section{ padding-top: clamp(80px, 12vw, 104px); padding-bottom: clamp(72px, 11vw, 96px); }
     .capabilities-section{ padding-top: clamp(96px, 15vw, 128px); padding-bottom: clamp(80px, 12vw, 104px); }
     .proven-section{ padding-top: clamp(80px, 12vw, 108px); padding-bottom: clamp(80px, 12vw, 108px); }
