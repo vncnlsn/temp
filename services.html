@@ -320,8 +320,20 @@
   .tl-panel-inner{ overflow:hidden; }
   .tl-panel-content{ padding: 0 0 clamp(40px, 5vw, 56px); }
 
-  .tl-prose p{ font-size: 1rem; line-height: 1.8; color: var(--ink-soft); margin: 0 0 20px; }
-  .tl-prose p:last-child{ margin-bottom: 0; }
+  .tl-prose{
+  max-width: 720px;
+}
+
+.tl-prose p{
+  font-size: 1rem;
+  line-height: 1.78;
+  color: var(--ink-soft);
+  margin: 0 0 26px;
+}
+
+.tl-prose p:last-child{
+  margin-bottom: 0;
+}
 
   .tl-lists{
     display:grid; grid-template-columns: repeat(2, 1fr); gap: clamp(28px, 3.6vw, 48px);
