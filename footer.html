@@ -543,19 +543,28 @@
 
   <script>
     (function() {
-      // 1. Mobile Drawer Toggle
       var toggleBtn = document.getElementById('menuToggle');
       var mobileDrawer = document.getElementById('mobileDrawer');
+      var siteNav = document.getElementById('siteNav');
 
+      // Helper function to close the drawer
+      function closeDrawer() {
+        if (mobileDrawer.classList.contains('is-open')) {
+          mobileDrawer.classList.remove('is-open');
+          toggleBtn.classList.remove('is-active');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+          mobileDrawer.setAttribute('aria-hidden', 'true');
+        }
+      }
+
+      // 1. Mobile Drawer Toggle
       if (toggleBtn && mobileDrawer) {
-        toggleBtn.addEventListener('click', function() {
+        toggleBtn.addEventListener('click', function(e) {
+          e.stopPropagation(); // Prevents the outer document click listener from firing immediately
           var isOpen = mobileDrawer.classList.contains('is-open');
 
           if (isOpen) {
-            mobileDrawer.classList.remove('is-open');
-            toggleBtn.classList.remove('is-active');
-            toggleBtn.setAttribute('aria-expanded', 'false');
-            mobileDrawer.setAttribute('aria-hidden', 'true');
+            closeDrawer();
           } else {
             mobileDrawer.classList.add('is-open');
             toggleBtn.classList.add('is-active');
@@ -565,7 +574,19 @@
         });
       }
 
-      // 2. Dynamic Active Link Highlighting (PC & Mobile)
+      // 2. Close Drawer When Clicking Outside Nav & Drawer Areas
+      document.addEventListener('click', function(e) {
+        if (mobileDrawer && mobileDrawer.classList.contains('is-open')) {
+          var clickedInsideNav = siteNav && siteNav.contains(e.target);
+          var clickedInsideDrawer = mobileDrawer.contains(e.target);
+
+          if (!clickedInsideNav && !clickedInsideDrawer) {
+            closeDrawer();
+          }
+        }
+      });
+
+      // 3. Dynamic Active Link Highlighting (PC & Mobile)
       var currentPath = window.location.pathname.split('/').pop() || 'index.html';
       var navLinks = document.querySelectorAll('.nav-link');
 
