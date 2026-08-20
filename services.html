@@ -236,6 +236,10 @@
   @media (max-width: 720px){
     .tl-lists{ grid-template-columns: 1fr; gap: 28px; }
     .tl-trigger{ gap: 14px; }
+    .tl-list{ text-align: center; }
+    .tl-list h4{ text-align: center; }
+    .tl-list li{ border-top: none; padding: 6px 0; }
+    .tl-list li:first-child{ padding-top: 6px; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -276,8 +280,14 @@
   @media (max-width: 640px){
     .svc-hero{ padding-top: calc(var(--nav-h) + clamp(40px, 8vw, 60px)); }
     .approach-section{ padding-top: clamp(48px, 10vw, 68px); padding-bottom: clamp(56px, 11vw, 80px); }
+    /* Intro and "How We Work" now read as two distinct sections on mobile
+       instead of sitting close together — push the branch heading down. */
+    .approach-branch{ margin-top: clamp(64px, 16vw, 88px); }
     .hse-section{ padding-top: clamp(72px, 12vw, 96px); padding-bottom: clamp(72px, 12vw, 96px); }
     .capabilities-section{ padding-top: clamp(72px, 12vw, 96px); }
+    /* Give the capabilities column breathing room off the screen edges
+       instead of the default shell gutter, which reads too tight here. */
+    .capabilities-section.shell{ padding-left: 32px; padding-right: 32px; }
     .cta-band{ padding-top: clamp(80px, 12vw, 104px); padding-bottom: clamp(80px, 12vw, 104px); }
   }
 
@@ -614,6 +624,24 @@
   /* ---- Accordion timeline: one open at a time, no forced scrolling ---- */
   var rows = Array.prototype.slice.call(document.querySelectorAll('.tl-row[data-service]'));
 
+  /* Bring a newly-opened row's title fully into view when it's tucked
+     under the fixed nav or otherwise not comfortably visible — a
+     minimal nudge, not a scroll to the full expanded content. Applies
+     on both mobile and desktop. */
+  function ensureTitleVisible(row){
+    var trigger = row.querySelector('.tl-trigger');
+    var navH = nav.offsetHeight;
+    var gap = 16;
+    var rect = trigger.getBoundingClientRect();
+    var desiredTop = navH + gap;
+    // Only adjust if the title isn't already sitting right at/below the
+    // safe reading position — avoids jitter when it's already in place.
+    if(rect.top < desiredTop - 2 || rect.top > desiredTop + 2){
+      var delta = rect.top - desiredTop;
+      window.scrollBy({ top: delta, behavior: 'smooth' });
+    }
+  }
+
   function openRow(row, opts){
     opts = opts || {};
     rows.forEach(function(r){
@@ -627,6 +655,9 @@
         trigger.setAttribute('aria-expanded', 'false');
       }
     });
+    if(!opts.toggleOff && !opts.skipScroll){
+      ensureTitleVisible(row);
+    }
   }
 
   rows.forEach(function(row){
@@ -644,7 +675,7 @@
     if(!id) return;
     var target = document.getElementById(id);
     if(target && target.matches('.tl-row[data-service]')){
-      openRow(target);
+      openRow(target, { skipScroll: true });
     }
   }
   openFromHash();
