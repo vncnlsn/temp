@@ -110,10 +110,26 @@ LOCATIONS.forEach(function (location) {
   group.setAttribute('role', 'button');
   group.setAttribute('aria-label', location.name);
 
-  group.innerHTML =
-    '<circle class="location-ring" cx="' + location.cx + '" cy="' + location.cy + '" r="9"></circle>' +
-    '<circle class="location-dot" cx="' + location.cx + '" cy="' + location.cy + '" r="5.5"></circle>';
+  var ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  ring.setAttribute('class', 'location-ring');
+  ring.setAttribute('cx', location.cx);
+  ring.setAttribute('cy', location.cy);
+  ring.setAttribute('r', '9');
+  ring.setAttribute('fill', 'none');
+  ring.setAttribute('stroke', '#D9755F');
+  ring.setAttribute('stroke-width', '1');
 
+  var dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  dot.setAttribute('class', 'location-dot');
+  dot.setAttribute('cx', location.cx);
+  dot.setAttribute('cy', location.cy);
+  dot.setAttribute('r', '5.5');
+  dot.setAttribute('fill', '#B23A28');
+  dot.setAttribute('stroke', '#D9755F');
+  dot.setAttribute('stroke-width', '1.5');
+
+  group.appendChild(ring);
+  group.appendChild(dot);
   svgEl.appendChild(group);
 
   locationGroups.push({
