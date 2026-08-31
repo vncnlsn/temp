@@ -84,75 +84,87 @@ svgEl.innerHTML = pathStrings.join('\n');
 mapEl.appendChild(svgEl);
 
 
-/* ---- HQ marker — Cache Valley, UT ---- */
-var HQ = { cx: 333, cy: 206, name: 'Cache Valley, UT' };
+/* ---- APS location markers ----
+   These represent APS personnel / operating locations.
+   All three locations use the same visual treatment and interaction. */
 
-var hqGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+var LOCATIONS = [
+  {
+    cx: 333,
+    cy: 206,
+    name: 'Cache Valley, UT'
+  },
+  {
+    cx: 360,
+    cy: 91,
+    name: 'Whitefish, MT'
+  },
+  {
+    cx: 652,
+    cy: 405,
+    name: 'Dallas, TX'
+  }
+];
 
-hqGroup.setAttribute('class', 'hq-marker');
-hqGroup.setAttribute('tabindex', '0');
-hqGroup.setAttribute('role', 'button');
-hqGroup.setAttribute('aria-label', HQ.name + ' — Headquarters');
+var locationGroups = [];
 
-hqGroup.innerHTML =
-  '<circle class="hq-ring" cx="' + HQ.cx + '" cy="' + HQ.cy + '" r="9"></circle>' +
-  '<circle class="hq-dot" cx="' + HQ.cx + '" cy="' + HQ.cy + '" r="5.5"></circle>';
+LOCATIONS.forEach(function (location) {
+  var group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 
-svgEl.appendChild(hqGroup);
+  group.setAttribute('class', 'map-location');
+  group.setAttribute('tabindex', '0');
+  group.setAttribute('role', 'button');
+  group.setAttribute('aria-label', location.name);
+
+  group.innerHTML =
+    '<circle class="location-ring" cx="' + location.cx + '" cy="' + location.cy + '" r="9"></circle>' +
+    '<circle class="location-dot" cx="' + location.cx + '" cy="' + location.cy + '" r="5.5"></circle>';
+
+  svgEl.appendChild(group);
+
+  locationGroups.push({
+    el: group,
+    name: location.name
+  });
+});
 
 
-/* ---- Panel elements ---- */
+/* ---- Map info panel ---- */
+
 var panel = document.getElementById('map-state-panel');
 var panelName = document.getElementById('msp-name');
-var panelCounty = document.getElementById('msp-county');
 
-function showPanel(name, secondary, isHQ) {
-  if (!panel) return;
+function showPanel(name) {
+  if (!panel || !panelName) return;
 
   panelName.textContent = name;
-
-  if (secondary) {
-    panelCounty.textContent = secondary;
-    panelCounty.classList.add('msp-county-visible');
-  } else {
-    panelCounty.textContent = '';
-    panelCounty.classList.remove('msp-county-visible');
-  }
-
-  if (isHQ) {
-    panel.classList.add('msp-hq');
-  } else {
-    panel.classList.remove('msp-hq');
-  }
-
   panel.classList.add('msp-visible');
 }
 
 function hidePanel() {
-  if (!panel) return;
+  if (!panel || !panelName) return;
 
-  panel.classList.remove('msp-visible', 'msp-hq');
+  panel.classList.remove('msp-visible');
   panelName.textContent = '';
-  panelCounty.textContent = '';
-  panelCounty.classList.remove('msp-county-visible');
 }
 
 
 /* ---- Unified interaction wiring ---- */
+
 var paths = svgEl.querySelectorAll('path[data-state]');
 var allInteractive = [];
 
-paths.forEach(function (p) {
-  allInteractive.push(p);
+paths.forEach(function (path) {
+  allInteractive.push(path);
 });
 
-allInteractive.push(hqGroup);
+locationGroups.forEach(function (location) {
+  allInteractive.push(location.el);
+});
 
 var pinned = null;
 
-function wire(el, name, variant, secondary) {
-  var reactive = variant === 'covered' || variant === 'hq';
-  var isHQ = variant === 'hq';
+function wireInteractive(el, name, reactive) {
 
   el.addEventListener('mouseenter', function () {
     if (pinned) return;
@@ -161,7 +173,7 @@ function wire(el, name, variant, secondary) {
       el.classList.add('hovered');
     }
 
-    showPanel(name, secondary, isHQ);
+    showPanel(name);
   });
 
   el.addEventListener('mouseleave', function () {
@@ -172,18 +184,19 @@ function wire(el, name, variant, secondary) {
   });
 
   el.addEventListener('click', function () {
-    togglePin(el, name, reactive, secondary, isHQ);
+    togglePin(el, name, reactive);
   });
 
   el.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      togglePin(el, name, reactive, secondary, isHQ);
+      togglePin(el, name, reactive);
     }
   });
 }
 
-function togglePin(el, name, reactive, secondary, isHQ) {
+function togglePin(el, name, reactive) {
+
   if (pinned === el) {
     pinned = null;
     el.classList.remove('pinned');
@@ -191,8 +204,8 @@ function togglePin(el, name, reactive, secondary, isHQ) {
     return;
   }
 
-  allInteractive.forEach(function (p) {
-    p.classList.remove('hovered', 'pinned');
+  allInteractive.forEach(function (item) {
+    item.classList.remove('hovered', 'pinned');
   });
 
   pinned = el;
@@ -201,11 +214,12 @@ function togglePin(el, name, reactive, secondary, isHQ) {
     el.classList.add('pinned');
   }
 
-  showPanel(name, secondary, isHQ);
+  showPanel(name);
 }
 
 
-/* ---- Wire states ---- */
+/* ---- Wire all states ---- */
+
 var coveredPaths = [];
 
 paths.forEach(function (path) {
@@ -217,16 +231,27 @@ paths.forEach(function (path) {
     coveredPaths.push(path);
   }
 
-  wire(
+  wireInteractive(
     path,
     name,
-    covered ? 'covered' : 'uncovered',
-    SECONDARY[state] || ''
+    covered
   );
 });
 
 
-/* ---- One-time randomized reveal ---- */
+/* ---- Wire APS locations ---- */
+
+locationGroups.forEach(function (location) {
+  wireInteractive(
+    location.el,
+    location.name,
+    true
+  );
+});
+
+
+/* ---- One-time randomized coverage reveal ---- */
+
 function shuffle(arr) {
   var a = arr.slice();
 
@@ -261,25 +286,32 @@ function powerOnCoverage() {
   });
 }
 
-wire(hqGroup, HQ.name, 'hq', '');
 
+/* ---- Fire once on first entry ---- */
 
-/* ---- Fires once on first entry only ---- */
 var mapSection = document.getElementById('footprint');
 
 if (mapSection && 'IntersectionObserver' in window) {
+
   var io = new IntersectionObserver(function (entries) {
+
     entries.forEach(function (entry) {
+
       if (entry.isIntersecting) {
         powerOnCoverage();
         io.disconnect();
       }
+
     });
+
   }, { threshold: 0.2 });
 
   io.observe(mapSection);
+
 } else {
+
   powerOnCoverage();
+
 }
 
 
@@ -288,6 +320,7 @@ if (mapSection && 'IntersectionObserver' in window) {
    ============================================================ */
 
 function resetPinnedState() {
+
   if (pinned) {
     pinned.classList.remove('pinned');
     pinned = null;
@@ -300,7 +333,9 @@ function resetPinnedState() {
   hidePanel();
 }
 
+
 function isMapTarget(event) {
+
   var target = event.target;
 
   if (!target) return false;
@@ -310,6 +345,7 @@ function isMapTarget(event) {
     : [];
 
   for (var i = 0; i < path.length; i++) {
+
     var node = path[i];
 
     if (!node || !node.matches) continue;
@@ -318,17 +354,18 @@ function isMapTarget(event) {
       return true;
     }
 
-    if (node.matches('#us-map .hq-marker')) {
+    if (node.matches('#us-map .map-location')) {
       return true;
     }
   }
 
   if (target.closest) {
+
     if (target.closest('#us-map path[data-state]')) {
       return true;
     }
 
-    if (target.closest('#us-map .hq-marker')) {
+    if (target.closest('#us-map .map-location')) {
       return true;
     }
   }
@@ -338,31 +375,43 @@ function isMapTarget(event) {
 
 
 /* Pointer interaction catches mouse, touch, and pen. */
+
 window.addEventListener('pointerdown', function (e) {
+
   if (!isMapTarget(e)) {
     resetPinnedState();
   }
+
 }, true);
 
 
 /* Click fallback ensures normal mouse clicks also dismiss reliably. */
+
 window.addEventListener('click', function (e) {
+
   if (!isMapTarget(e)) {
     resetPinnedState();
   }
+
 }, true);
 
 
-/* ---- Reset when the map section leaves the viewport ---- */
+/* ---- Reset when the map leaves the viewport ---- */
+
 var resetSection = document.getElementById('footprint');
 
 if (resetSection && 'IntersectionObserver' in window) {
+
   var io2 = new IntersectionObserver(function (entries) {
+
     entries.forEach(function (entry) {
+
       if (!entry.isIntersecting) {
         resetPinnedState();
       }
+
     });
+
   }, { threshold: 0.01 });
 
   io2.observe(resetSection);
