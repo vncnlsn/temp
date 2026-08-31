@@ -352,189 +352,293 @@
 }
 
   /* ================= FOOTPRINT (map section) ================= */
-  .footprint-section{ background: var(--navy-deep); padding: clamp(64px, 7vw, 96px) 0 clamp(56px, 6vw, 80px); }
-  .footprint-frame{ max-width: 1880px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 72px); text-align:center; }
-  .footprint-head h2{ font-size: clamp(2rem, 4.4vw, 3rem); color: var(--paper); }
 
-  .footprint-stats{ display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:center; gap: 20px clamp(28px, 4vw, 56px); margin: clamp(30px, 4vw, 44px) auto clamp(40px, 5vw, 56px); max-width: 1100px; }
-  .footprint-stats .stat{ display:flex; flex-direction:column; gap: 6px; }
-  .footprint-stats .stat strong{ font-family: var(--mono); font-weight:600; font-size: clamp(1.1rem, 1.9vw, 1.5rem); color: var(--glow-strong); letter-spacing: .02em; }
-  .footprint-stats .stat small{ font-family: var(--sans); font-size: .8rem; color: rgba(250,246,234,.62); max-width: 220px; line-height:1.45; }
-  .stat-divider{ width:1px; align-self:stretch; background: var(--line-on-navy); display:block; }
-  @media (max-width: 780px){ .stat-divider{ display:none; } .footprint-stats{ gap: 24px; } .footprint-stats .stat{ align-items:center; text-align:center; } }
+.footprint-section{
+  background: var(--navy-deep);
+  padding: clamp(64px, 7vw, 96px) 0 clamp(56px, 6vw, 80px);
+}
 
-  /* Outer layout: map stage centered in the frame. On desktop the
-     state-info panel is an absolutely-positioned overlay anchored to
-     the top of the map stage (near the ND/MN area) rather than a
-     separate grid column, so it reads as a label floating over the
-     geography instead of a sidebar next to it. */
+.footprint-frame{
+  max-width: 1880px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 72px);
+  text-align: center;
+}
+
+.footprint-head h2{
+  font-size: clamp(2rem, 4.4vw, 3rem);
+  color: var(--paper);
+}
+
+/* ---------- Proof-point row ---------- */
+
+.footprint-stats{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px clamp(28px, 4vw, 56px);
+  margin: clamp(30px, 4vw, 44px) auto clamp(40px, 5vw, 56px);
+  max-width: 1280px;
+}
+
+.footprint-stats .stat{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footprint-stats .stat strong{
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: clamp(1.1rem, 1.9vw, 1.5rem);
+  color: var(--glow-strong);
+  letter-spacing: .02em;
+}
+
+.footprint-stats .stat small{
+  font-family: var(--sans);
+  font-size: .8rem;
+  color: rgba(250,246,234,.62);
+  max-width: 220px;
+  line-height: 1.45;
+}
+
+.stat-divider{
+  width: 1px;
+  align-self: stretch;
+  background: var(--line-on-navy);
+  display: block;
+}
+
+@media (max-width: 780px){
+  .stat-divider{
+    display: none;
+  }
+
+  .footprint-stats{
+    gap: 24px;
+  }
+
+  .footprint-stats .stat{
+    align-items: center;
+    text-align: center;
+  }
+}
+
+
+/* ---------- Map layout ---------- */
+
+.map-canvas-wrap{
+  display: flex;
+  justify-content: center;
+  max-width: 1780px;
+  margin: 0 auto;
+}
+
+.map-stage{
+  position: relative;
+  height: min(64vh, 700px);
+  width: auto;
+  max-width: 1520px;
+  aspect-ratio: 860 / 535;
+}
+
+.map-canvas svg{
+  /* Single composite shadow around the whole silhouette. */
+  filter:
+    drop-shadow(0 10px 26px rgba(0,0,0,.45))
+    drop-shadow(0 0 1.5px rgba(250,246,234,.4));
+}
+
+.map-canvas path{
+  fill: rgba(250,246,234,.018);
+  stroke: rgba(250,246,234,.1);
+  stroke-width: 0.6;
+  cursor: pointer;
+  transition:
+    fill .35s var(--ease),
+    stroke .3s var(--ease);
+  transform-box: fill-box;
+  transform-origin: center;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.map-canvas path:focus{
+  outline: none;
+}
+
+.map-canvas path.covered{
+  fill: rgba(85,214,196,.22);
+  stroke: rgba(250,246,234,.16);
+}
+
+.map-canvas path.covered.hovered,
+.map-canvas path.covered.pinned{
+  fill: rgba(85,214,196,.52);
+  stroke: rgba(250,246,234,.34);
+  transform: scale(1.015);
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,.4));
+  transition:
+    fill .3s var(--ease),
+    stroke .3s var(--ease),
+    transform .3s var(--ease),
+    filter .3s var(--ease);
+}
+
+.map-canvas path.revealing{
+  transition:
+    fill .9s var(--ease),
+    stroke .9s var(--ease);
+}
+
+
+/* ---------- APS location markers ---------- */
+
+.map-location{
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.map-location:focus{
+  outline: none;
+}
+
+.location-ring{
+  fill: none;
+  stroke: rgba(217,117,95,.4);
+  stroke-width: 1;
+  transition:
+    stroke .35s var(--ease),
+    opacity .35s var(--ease);
+}
+
+.location-dot{
+  fill: var(--clay);
+  stroke: var(--clay-bright);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 4px rgba(178,58,40,.6));
+  transition:
+    stroke .35s var(--ease),
+    fill .35s var(--ease),
+    filter .35s var(--ease);
+}
+
+.map-location:hover .location-dot,
+.map-location.pinned .location-dot{
+  fill: var(--glow-strong);
+  stroke: var(--glow-strong);
+  filter: drop-shadow(0 0 6px rgba(85,214,196,.7));
+}
+
+.map-location:hover .location-ring,
+.map-location.pinned .location-ring{
+  stroke: var(--glow-line);
+}
+
+
+/* ---------- Map info panel ---------- */
+
+.map-state-panel{
+  position: absolute;
+  top: clamp(0px, 1vw, 14px);
+  left: clamp(-90px, -4.5vw, -30px);
+  width: max-content;
+  max-width: 250px;
+  padding: 12px 18px;
+  background: rgba(22,34,44,.85);
+  border-left: 2px solid var(--glow-line);
+  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity .25s var(--ease),
+    transform .25s var(--ease);
+  pointer-events: none;
+  text-align: left;
+}
+
+.map-state-panel.msp-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.msp-name{
+  display: block;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--paper);
+  white-space: nowrap;
+}
+
+
+/* ---------- Responsive map panel ---------- */
+
+@media (max-width: 1280px){
+
   .map-canvas-wrap{
-    display:flex;
-    justify-content:center;
-    max-width: 1780px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .map-stage{
-    position: relative;
-    height: min(64vh, 700px);
-    width: auto;
-    max-width: 1520px;
-    aspect-ratio: 860 / 535;
+    max-width: 1100px;
+    height: min(50vh, 560px);
+    margin-bottom: clamp(70px, 12vw, 110px);
   }
 
-  .map-canvas svg{
-    /* Single composite shadow around the whole silhouette — floats the
-       country above the navy field without outlining every state. */
-    filter:
-      drop-shadow(0 10px 26px rgba(0,0,0,.45))
-      drop-shadow(0 0 1.5px rgba(250,246,234,.4));
-  }
-
-  .map-canvas path{
-    fill: rgba(250,246,234,.018);
-    stroke: rgba(250,246,234,.1);
-    stroke-width: 0.6;
-    cursor: pointer;
-    transition: fill .35s var(--ease), stroke .3s var(--ease);
-    transform-box: fill-box;
-    transform-origin: center;
-    -webkit-tap-highlight-color: transparent;
-    outline: none;
-  }
-  .map-canvas path:focus{ outline: none; }
-  .map-canvas path.covered{ fill: rgba(85,214,196,.22); stroke: rgba(250,246,234,.16); }
-  .map-canvas path.covered.hovered,
-  .map-canvas path.covered.pinned{
-    fill: rgba(85,214,196,.52);
-    stroke: rgba(250,246,234,.34);
-    transform: scale(1.015);
-    filter: drop-shadow(0 8px 16px rgba(0,0,0,.4));
-    transition: fill .3s var(--ease), stroke .3s var(--ease), transform .3s var(--ease), filter .3s var(--ease);
-  }
-  /* One-time reveal — states fade/brighten into their covered treatment;
-     no scale or shadow pop, kept quiet relative to the hover state above. */
-  .map-canvas path.revealing{
-    transition: fill .9s var(--ease), stroke .9s var(--ease);
-  }
-
-  .hq-marker{ cursor: pointer; -webkit-tap-highlight-color: transparent; outline: none; }
-  .hq-marker:focus{ outline: none; }
-  .hq-ring{
-    fill: none;
-    stroke: rgba(217,117,95,.4);
-    stroke-width: 1;
-    transition: stroke .35s var(--ease), opacity .35s var(--ease);
-  }
-  .hq-dot{
-    fill: var(--clay);
-    stroke: var(--clay-bright);
-    stroke-width: 1.5;
-    filter: drop-shadow(0 0 4px rgba(178,58,40,.6));
-    transition: stroke .35s var(--ease), fill .35s var(--ease), filter .35s var(--ease);
-  }
-  .hq-marker:hover .hq-dot,
-  .hq-marker.pinned .hq-dot{
-    fill: var(--glow-strong);
-    stroke: var(--glow-strong);
-    filter: drop-shadow(0 0 6px rgba(85,214,196,.7));
-  }
-  .hq-marker:hover .hq-ring,
-  .hq-marker.pinned .hq-ring{ stroke: var(--glow-line); }
-
-  /* Info card: now a normal flex sibling of the map stage, not an
-     overlay on top of it — desktop sits to the side, vertically
-     centered next to the map, so nothing ever floats over the
-     geography. Tablet/mobile drop it below the map, centered, with
-     its own margin so it never touches the map edge. */
-  /* Info card: floats near the top-left of the map — roughly where
-     Washington/Oregon sit — so the eye lands on it before the
-     geography, without drifting off into the empty space further
-     out. Auto-width (no fixed box) means short state names sit snug
-     and only the longest names stretch the box close to the border. */
   .map-state-panel{
     position: absolute;
-    top: clamp(0px, 1vw, 14px);
-    left: clamp(-90px, -4.5vw, -30px);
+    top: 100%;
+    left: 50%;
+    bottom: auto;
     width: max-content;
-    max-width: 250px;
-    padding: 12px 18px;
-    background: rgba(22,34,44,.85);
-    border-left: 2px solid var(--glow-line);
-    box-shadow: 0 12px 30px rgba(0,0,0,.35);
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
-    opacity: 0;
-    transform: translateY(-6px);
-    transition: opacity .25s var(--ease), transform .25s var(--ease);
-    pointer-events: none;
-    text-align:left;
+    max-width: 280px;
+    margin-top: 16px;
+    text-align: center;
+    border-left: none;
+    border-top: 2px solid var(--glow-line);
+    transform: translate(-50%, -6px);
   }
-  .map-state-panel.msp-visible{ opacity: 1; transform: translateY(0); }
-  .msp-hq-label{ display:none; font-family: var(--mono); font-weight: 600; font-size: .66rem; letter-spacing:.12em; text-transform:uppercase; color: var(--glow-strong); }
-  .msp-hq-rule{ display:none; width: 28px; height: 1px; background: var(--glow-line); margin: 7px 0; }
-  .map-state-panel.msp-hq .msp-hq-label{
-  display:block;
-  margin-bottom: 4px;
+
+  .map-state-panel.msp-visible{
+    transform: translate(-50%, 0);
+  }
+
+  .msp-name{
+    white-space: normal;
+  }
 }
 
-.map-state-panel.msp-hq .msp-hq-rule{
-  display:none;
+@media (max-width: 640px){
+
+  .map-state-panel{
+    max-width: 240px;
+    padding: 10px 16px;
+  }
+
+  .msp-name{
+    font-size: .92rem;
+  }
 }
-  .msp-name{ display:block; font-family: var(--serif); font-weight: 500; font-size: 1.05rem; color: var(--paper); white-space: nowrap; }
-  .msp-county{ display:none; font-family: var(--mono); font-weight: 500; font-size: .74rem; letter-spacing:.04em; text-transform:uppercase; color: var(--glow-strong); text-align:left; margin-top: 5px; }
-  .msp-county.msp-county-visible{ display:block; }
 
-  /* Below 1280px the panel is still a DOM child of .map-stage (position:
-     relative), so instead of trying to pull it out into a flex sibling
-     slot (which never actually applied — it isn't a direct child of
-     .map-canvas-wrap), we anchor it as an absolutely-positioned element
-     just below the map stage's own bottom edge: top:100%, centered
-     horizontally. That keeps it fully clear of every state border,
-     still inside the navy footprint section, roughly centered under
-     the middle of the country (Texas-ish). .map-stage gets matching
-     bottom margin reserved so the panel has room to sit in without
-     crowding the section below it. */
-  @media (max-width: 1280px){
-    .map-canvas-wrap{ display:flex; flex-direction:column; align-items:center; }
-    .map-stage{ max-width: 1100px; height: min(50vh, 560px); margin-bottom: clamp(70px, 12vw, 110px); }
-    .map-state-panel{
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      bottom: auto;
-      width: max-content;
-      max-width: 280px;
-      margin-top: 16px;
-      text-align:center;
-      border-left:none;
-      border-top: 2px solid var(--glow-line);
-      transform: translate(-50%, -6px);
-    }
-    .map-state-panel.msp-visible{ transform: translate(-50%, 0); }
-    .msp-name{ white-space: normal; }
-    .msp-hq-rule{ margin: 7px auto; }
-    .msp-county{ text-align:center; }
-  }
 
-  @media (max-width: 640px){
-    .map-state-panel{
-      max-width: 240px;
-      padding: 10px 16px;
-    }
-    .msp-name{ font-size: .92rem; }
-    .msp-county{ font-size: .66rem; }
-    .msp-hq-label{ font-size: .6rem; }
-  }
+/* ---------- Narrow-phone map sizing ---------- */
 
-  /* Portrait / narrow phones: the map must be driven by the available
-     WIDTH, not viewport height — otherwise a tall, narrow viewport
-     forces an oversized width from the fixed aspect-ratio and the map
-     overflows the screen horizontally. Below this breakpoint the stage
-     goes full-width-with-gutter and height is derived from that width. */
-  @media (max-width: 640px){
-    .map-stage{ width: 100%; max-width: 100%; height: auto; }
+@media (max-width: 640px){
+
+  .map-stage{
+    width: 100%;
+    max-width: 100%;
+    height: auto;
   }
+}
 
 /* ================= CAPABILITIES ================= */
 
@@ -1108,12 +1212,23 @@
         <strong>28 States</strong>
         <small>plus project experience in Alberta and Saskatchewan</small>
       </span>
+
       <span class="stat-divider" aria-hidden="true"></span>
+
+      <span class="stat">
+        <strong>3 Locations</strong>
+        <small>Utah &bull; Montana &bull; Texas</small>
+      </span>
+
+      <span class="stat-divider" aria-hidden="true"></span>
+
       <span class="stat">
         <strong>Hundreds</strong>
         <small>of projects completed</small>
       </span>
+
       <span class="stat-divider" aria-hidden="true"></span>
+
       <span class="stat">
         <strong>Thousands</strong>
         <small>of successful negotiations</small>
@@ -1122,12 +1237,14 @@
 
     <div class="map-canvas-wrap" data-reveal>
       <div class="map-stage">
-        <div id="us-map" class="map-canvas" aria-label="Interactive map of the contiguous United States where APS Land Services operates"></div>
+        <div
+          id="us-map"
+          class="map-canvas"
+          aria-label="Interactive map of the contiguous United States showing APS Land Services coverage and locations"
+        ></div>
+
         <div id="map-state-panel" class="map-state-panel">
-          <span id="msp-hq-label" class="msp-hq-label">Headquarters</span>
-          <span id="msp-hq-rule" class="msp-hq-rule" aria-hidden="true"></span>
           <span id="msp-name" class="msp-name"></span>
-          <span id="msp-county" class="msp-county"></span>
         </div>
       </div>
     </div>
