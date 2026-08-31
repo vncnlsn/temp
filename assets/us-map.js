@@ -86,7 +86,7 @@ var LOCATIONS = [
   {
     cx: 343.78,
     cy: 204.48,
-    name: 'Cache Valley, UT'
+    name: 'Cove, UT'
   },
   {
     cx: 329.04,
