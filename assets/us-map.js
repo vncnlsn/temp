@@ -84,18 +84,18 @@ mapEl.appendChild(svgEl);
 
 var LOCATIONS = [
   {
-    cx: 333,
-    cy: 206,
+    cx: 343.78,
+    cy: 204.48,
     name: 'Cache Valley, UT'
   },
   {
-    cx: 360,
-    cy: 91,
+    cx: 329.04,
+    cy: 68.73,
     name: 'Whitefish, MT'
   },
   {
-    cx: 652,
-    cy: 405,
+    cx: 576.74,
+    cy: 402.54,
     name: 'Dallas, TX'
   }
 ];
