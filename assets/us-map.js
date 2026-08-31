@@ -9,9 +9,7 @@
 
   /* ---- Covered states (client-provided list) ---- */
   var COVERED = [
-    'AL','AR','CA','FL','ID','IL','KS','LA','MD','MI',
-    'MS','NE','NV','NM','OH','OK','OR','PA','SD','TX',
-    'UT','WA','WV'
+    'AL','AR','AZ','CA','CO','FL','ID','IL','KS','LA','MD','MI','MS','MT','ND','NE','NV','NM','OH','OK','OR','PA','SD','TX','UT','WA','WV','WY'
   ];
 
   /* ---- Per-state secondary line for the info card. Only Texas has one
