@@ -216,43 +216,66 @@
     list-style: none;
   }
 
-  /* Company */
+  /* Company history */
 
-  .company-intro{
+  .company-section{
+    padding: clamp(88px, 10vw, 132px) 0 clamp(96px, 10vw, 136px);
+    border-top: 1px solid var(--line);
+  }
+
+  .company-heading{
+    max-width: 760px;
+    margin: 0 auto clamp(44px, 5vw, 64px);
+    text-align: center;
+  }
+
+  .company-heading h1{
+    font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+    color: var(--navy);
+    line-height: 1.08;
+  }
+
+  .company-grid{
     display: grid;
-    grid-template-columns: minmax(320px, .92fr) minmax(0, 1.08fr);
-    gap: clamp(36px, 5vw, 72px);
-    align-items: start;
+    grid-template-columns: minmax(260px, .82fr) minmax(0, 1.18fr);
+    gap: clamp(42px, 6vw, 84px);
+    align-items: center;
+    max-width: 1180px;
+    margin: 0 auto;
   }
 
   .company-photo{
-    overflow: hidden;
-    border: 1px solid var(--line);
-    border-radius: 3px;
-    background: var(--paper-dim);
-    box-shadow: 0 12px 28px rgba(34,28,21,.12);
+    max-width: 520px;
+    justify-self: center;
   }
 
   .company-photo img{
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1.24 / 1;
     object-fit: cover;
+    border: 1px solid rgba(28,27,24,.12);
+    border-radius: 3px;
+    box-shadow: 0 18px 34px rgba(0,0,0,.13);
   }
 
-  .company-title{
-    margin-bottom: 20px;
+  .company-photo figcaption{
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--brass);
+    text-align: left;
   }
 
-  .company-title h2{
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
-    color: var(--navy);
-    line-height: 1.1;
+  .company-body{
+    max-width: 720px;
   }
 
   .company-body p{
-    margin: 0 0 18px;
+    margin: 0 0 22px;
     font-size: 1.03rem;
-    line-height: 1.68;
+    line-height: 1.72;
     color: var(--ink);
   }
 
@@ -260,10 +283,16 @@
     margin-bottom: 0;
   }
 
+  .company-body p.lead{
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--navy);
+  }
+
   /* Team */
 
   .team-section{
-    padding: calc(var(--nav-h) + clamp(72px, 8vw, 104px)) 0 clamp(72px, 8vw, 104px);
+    padding: clamp(72px, 8vw, 104px) 0;
     background: var(--navy-deep);
   }
 
@@ -545,18 +574,19 @@
   /* Responsive */
 
   @media (max-width: 900px){
-    .company-intro{
+    .company-grid{
       grid-template-columns: 1fr;
-      gap: 28px;
+      gap: 40px;
     }
 
     .company-photo{
-      max-width: 640px;
-      margin: 0 auto;
+      max-width: 560px;
+      width: 100%;
     }
 
-    .company-title{
-      text-align: center;
+    .company-body{
+      max-width: 760px;
+      margin: 0 auto;
     }
 
     .team-profile{
@@ -656,14 +686,21 @@
       padding: 0 20px;
     }
 
-
     .company-section{
-      padding-top: 68px;
-      padding-bottom: 68px;
+      padding-top: 80px;
+      padding-bottom: 88px;
+    }
+
+    .company-heading{
+      margin-bottom: 40px;
+    }
+
+    .company-photo figcaption{
+      text-align: center;
     }
 
     .team-section{
-      padding-top: calc(var(--nav-h) + 72px);
+      padding-top: 72px;
       padding-bottom: 72px;
     }
 
@@ -671,6 +708,27 @@
       font-size: .95rem;
     }
 
+    .control-section{
+      padding-top: 72px;
+      padding-bottom: 72px;
+    }
+
+    .reassure-grid{
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-bottom: 48px;
+    }
+
+    .reassure-item{
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+    }
+
+    .page-nav-links{
+      padding-top: 28px;
+    }
 
     .cta-band{
       padding-top: 76px;
@@ -772,29 +830,33 @@
   </div>
 </section>
 
-<!-- Company -->
+<!-- Company history -->
 
-<section class="company-section shell">
-  <div class="company-intro" data-reveal>
-    <div class="company-photo">
-      <img src="assets/vintage.jpg" alt="Historical vibroseis operations photograph" loading="lazy">
+<section class="company-section">
+  <div class="shell">
+    <div class="company-heading" data-reveal>
+      <h1>We are APS Land</h1>
     </div>
 
-    <div class="company-body">
-      <div class="company-title">
-        <h2>We are APS Land</h2>
+    <div class="company-grid">
+      <figure class="company-photo" data-reveal>
+        <img src="assets/vintage.jpg" alt="Vintage vibroseis operations photo" loading="lazy">
+        <figcaption>Vibroseis operations · 1980s</figcaption>
+      </figure>
+
+      <div class="company-body" data-reveal>
+        <p>Our work has spanned hundreds of successful projects in 23 states, plus experience in Alberta and Saskatchewan. Thousands of square miles have been successfully permitted, with extensive right-of-way acquired across energy and infrastructure projects. That work has required direct coordination with thousands of landowners across private, state, federal, and tribal lands. We don&rsquo;t outsource that communication.</p>
+
+        <p>Decades in the field have refined how we operate as we continue advancing our technology, processes, and project management, always focused on what matters most: getting the details right. We take pride in protecting landowners, field crews, the environment, and the projects entrusted to us.</p>
+
+        <p>In August 2026, we became APS Land Services. The new name reflects the expertise and capabilities we&rsquo;ve built while carrying forward the standard we started with: hard work, honesty, and being exceptionally good at what we do.</p>
       </div>
-
-      <p>Our work has spanned hundreds of successful projects in 23 states, plus experience in Alberta and Saskatchewan. Thousands of square miles have been successfully permitted, with extensive right-of-way acquired across energy and infrastructure projects. That work has required direct coordination with thousands of landowners across private, state, federal, and tribal lands. We don&rsquo;t outsource that communication.</p>
-
-      <p>Decades in the field have refined how we operate as we continue advancing our technology, processes, and project management, always focused on what matters most: getting the details right. We take pride in protecting landowners, field crews, the environment, and the projects entrusted to us.</p>
-
-      <p>In August 2026, we became APS Land Services. The new name reflects the expertise and capabilities we&rsquo;ve built while carrying forward the standard we started with: hard work, honesty, and being exceptionally good at what we do.</p>
     </div>
   </div>
 </section>
 
 <!-- CTA / Footer -->
+
 
 <section class="cta-band">
   <div class="shell cta-inner" data-reveal>
