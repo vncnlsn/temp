@@ -1,195 +1,510 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/jpeg" href="assets/APS_favicon_2.jpg">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Us - APS Land Services</title>
-<meta name="description" content="Learn about APS Land Services, its history, leadership, and experience supporting energy, exploration, and infrastructure projects nationwide.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{--navy:#1E3B5F;--navy-deep:#16222C;--paper:#FAF6EA;--paper-dim:#EEE6D2;--clay:#B23A28;--clay-bright:#D9755F;--brass:#8C8271;--ink:#221C15;--ink-soft:rgba(34,28,21,.66);--paper-soft:rgba(250,246,234,.9);--line:rgba(28,27,24,.14);--line-on-navy:rgba(250,246,234,.16);--ease:cubic-bezier(.22,.61,.36,1);--shell:1440px;--nav-h:78px;--serif:'Spectral',Georgia,serif;--sans:'Public Sans',-apple-system,sans-serif;--mono:'IBM Plex Mono','Courier New',monospace}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}img{max-width:100%;display:block}a{color:inherit;text-decoration:none}::selection{background:var(--clay);color:var(--paper)}:focus-visible{outline:2px solid var(--brass);outline-offset:3px}.shell{max-width:var(--shell);margin:0 auto;padding:0 56px}h1,h2,h3,h4{margin:0;font-family:var(--serif);font-weight:600;letter-spacing:-.005em}[data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease),transform .8s var(--ease)}[data-reveal].in-view{opacity:1;transform:translateY(0)}
+  <link rel="icon" type="image/jpeg" href="assets/APS_favicon_2.jpg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - APS Land Services</title>
+  <meta name="description" content="Learn about APS Land Services, its history, leadership, and experience supporting energy, exploration, and infrastructure projects nationwide.">
 
-/* Navigation */
-.site-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);background:var(--navy-deep);border-bottom:1px solid var(--line-on-navy);box-shadow:0 4px 18px rgba(0,0,0,.14);display:flex;align-items:center;justify-content:center}.nav-menu-centered{display:flex;align-items:center;justify-content:center;gap:clamp(28px,5.5vw,68px);width:100%;margin:0;padding:0 24px;list-style:none}.nav-logo{display:flex;align-items:center;justify-content:center}.nav-logo-img{height:44px;width:auto;max-height:calc(var(--nav-h) - 22px);filter:brightness(0) invert(1)}.nav-logo-fallback{font-family:var(--serif);font-weight:600;font-size:1.35rem;color:var(--paper)}.nav-link{font-family:var(--mono);font-size:.88rem;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--paper-soft);white-space:nowrap;transition:color .25s var(--ease)}.nav-link:hover,.nav-link.active{color:var(--clay-bright)}.menu-toggle{display:none;position:absolute;left:20px;background:none;border:none;padding:8px;cursor:pointer;flex-direction:column;justify-content:center;gap:5px;z-index:210}.menu-toggle span{display:block;width:22px;height:2px;background:var(--paper);border-radius:2px;transition:transform .4s var(--ease),opacity .4s var(--ease)}.menu-toggle.is-active span:nth-child(1){transform:translateY(7px) rotate(45deg)}.menu-toggle.is-active span:nth-child(2){opacity:0}.menu-toggle.is-active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}.mobile-drawer{display:none;position:fixed;top:var(--nav-h);left:0;right:0;z-index:199;padding:24px 0;background:var(--navy-deep);border-bottom:2px solid var(--clay);box-shadow:0 10px 20px rgba(0,0,0,.5);transform:translateY(-100%);opacity:0;transition:transform .5s var(--ease),opacity .5s var(--ease)}.mobile-drawer.is-open{transform:translateY(0);opacity:1}.mobile-drawer ul{display:flex;flex-direction:column;align-items:center;gap:20px;margin:0;padding:0;list-style:none}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-/* Hero */
-.about-hero{padding:calc(var(--nav-h) + clamp(52px,7vw,88px)) 0 clamp(54px,6vw,78px);text-align:center}.about-hero h1{font-size:clamp(3rem,7vw,5.2rem);color:var(--navy);line-height:1.04}.hero-rule{width:72px;height:2px;background:var(--clay);margin:28px auto 0}
+  <style>
+    :root{
+      --navy:#1E3B5F;
+      --navy-deep:#16222C;
+      --paper:#FAF6EA;
+      --paper-dim:#EEE6D2;
+      --clay:#B23A28;
+      --clay-bright:#D9755F;
+      --brass:#8C8271;
+      --ink:#221C15;
+      --ink-soft:rgba(34,28,21,.66);
+      --paper-soft:rgba(250,246,234,.9);
+      --line:rgba(28,27,24,.14);
+      --line-on-navy:rgba(250,246,234,.16);
+      --ease:cubic-bezier(.22,.61,.36,1);
+      --shell:1440px;
+      --nav-h:78px;
+      --serif:'Spectral',Georgia,serif;
+      --sans:'Public Sans',-apple-system,sans-serif;
+      --mono:'IBM Plex Mono','Courier New',monospace;
+    }
 
-/* Company */
-.company-section{padding:clamp(62px,7vw,100px) 0 clamp(86px,9vw,120px)}.company-intro{display:grid;grid-template-columns:minmax(260px,.82fr) minmax(0,1.18fr);gap:clamp(48px,7vw,110px);align-items:start}.company-title h2{font-size:clamp(2.1rem,4vw,3.35rem);line-height:1.08;color:var(--navy);max-width:420px}.company-body{max-width:760px}.company-body p{margin:0 0 22px;font-size:1.04rem;line-height:1.75;color:var(--ink)}.company-body p.lead{font-size:clamp(1.15rem,2vw,1.34rem);line-height:1.62;font-weight:500;color:var(--navy)}.company-body p:last-child{margin-bottom:0}.company-break{margin:clamp(58px,8vw,94px) auto 0;max-width:1120px;padding-top:clamp(40px,5vw,58px);border-top:1px solid var(--line)}.company-break-grid{display:grid;grid-template-columns:1.45fr .75fr;gap:clamp(42px,7vw,100px);align-items:start}.company-emphasis{font-family:var(--serif);font-style:italic;font-size:clamp(1.7rem,3.2vw,2.5rem);line-height:1.25;font-weight:500;color:var(--navy);max-width:760px}.company-note{padding-top:8px}.company-note p{margin:0;font-size:.96rem;line-height:1.72;color:var(--ink-soft)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    ::selection{background:var(--clay);color:var(--paper)}
+    :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+    .shell{max-width:var(--shell);margin:0 auto;padding:0 56px}
+    h1,h2,h3,h4{font-family:var(--serif);font-weight:600;letter-spacing:-.005em;margin:0}
+    [data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+    [data-reveal].in-view{opacity:1;transform:translateY(0)}
 
-/* Historical image */
-.history-image{padding:0 0 clamp(82px,9vw,122px)}.history-image-inner{width:min(1328px,calc(100% - 112px));margin:0 auto}.history-image figure{margin:0}.history-image img{width:100%;aspect-ratio:1.78/1;object-fit:cover;object-position:center;border-radius:2px;filter:grayscale(1);box-shadow:0 18px 40px rgba(34,28,21,.12)}.history-image figcaption{margin-top:12px;text-align:right;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--brass)}
+    /* Navigation */
+    .site-nav{position:fixed;inset:0 0 auto;z-index:200;height:var(--nav-h);background:var(--navy-deep);border-bottom:1px solid var(--line-on-navy);box-shadow:0 4px 18px rgba(0,0,0,.14);display:flex;align-items:center;justify-content:center}
+    .nav-menu-centered{display:flex;align-items:center;justify-content:center;gap:clamp(28px,5.5vw,68px);list-style:none;margin:0;padding:0 24px;width:100%}
+    .nav-logo{display:flex;align-items:center;justify-content:center}
+    .nav-logo-img{height:44px;width:auto;max-height:calc(var(--nav-h) - 22px);display:block;filter:brightness(0) invert(1)}
+    .nav-logo-fallback{font-family:var(--serif);font-weight:600;font-size:1.35rem;color:var(--paper)}
+    .nav-link{font-family:var(--mono);font-size:.88rem;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--paper-soft);transition:color .25s var(--ease);white-space:nowrap}
+    .nav-link:hover,.nav-link.active{color:var(--clay-bright)}
+    .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;justify-content:center;gap:5px;z-index:210}
+    .menu-toggle span{display:block;width:22px;height:2px;background:var(--paper);border-radius:2px;transition:transform .4s var(--ease),opacity .4s var(--ease)}
+    .menu-toggle.is-active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .menu-toggle.is-active span:nth-child(2){opacity:0}
+    .menu-toggle.is-active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-drawer{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--navy-deep);border-bottom:2px solid var(--clay);padding:24px 0;z-index:199;box-shadow:0 10px 20px rgba(0,0,0,.5);transform:translateY(-100%);opacity:0;transition:transform .5s var(--ease),opacity .5s var(--ease)}
+    .mobile-drawer.is-open{transform:translateY(0);opacity:1}
+    .mobile-drawer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;align-items:center;gap:20px}
 
-/* Leadership */
-.team-section{background:var(--navy-deep);padding:clamp(78px,8vw,112px) 0 clamp(88px,9vw,126px)}.section-head-center{text-align:center;max-width:720px;margin:0 auto clamp(42px,5vw,62px)}.team-section .section-head-center h2{font-size:clamp(2.2rem,4.2vw,3.1rem);color:var(--paper)}.team-list{display:flex;flex-direction:column;gap:clamp(52px,7vw,88px);max-width:1140px;margin:0 auto}.team-profile{display:grid;grid-template-columns:minmax(240px,310px) minmax(0,1fr);gap:clamp(42px,5vw,72px);align-items:center}.team-profile + .team-profile{padding-top:clamp(52px,6vw,72px);border-top:1px solid var(--line-on-navy)}.team-photo-frame{width:100%;aspect-ratio:1;overflow:hidden;border:1px solid var(--line-on-navy);border-radius:2px;background:rgba(250,246,234,.04);box-shadow:0 16px 34px rgba(0,0,0,.32)}.team-photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center top}.team-profile-content h3{font-size:clamp(1.9rem,3vw,2.55rem);color:var(--paper);line-height:1.12}.team-role{display:block;margin:8px 0 20px;font-family:var(--mono);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--clay-bright)}.team-bio{margin:0;font-size:1rem;line-height:1.68;color:var(--paper-soft)}.team-bio + .team-bio{margin-top:16px}.team-profile-content:before{content:"";display:block;width:72px;height:2px;background:var(--clay);margin-bottom:22px}
+    /* Hero */
+    .about-hero{position:relative;min-height:calc(100vh - var(--nav-h));min-height:calc(100dvh - var(--nav-h));margin-top:var(--nav-h);display:flex;align-items:flex-end;padding:0 0 clamp(58px,8vw,100px);overflow:hidden;background:var(--navy-deep)}
+    .about-hero-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:grayscale(1);transform:scale(1.01)}
+    .about-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,34,44,.06) 10%,rgba(22,34,44,.18) 44%,rgba(22,34,44,.84) 100%)}
+    .about-hero-inner{position:relative;z-index:1;width:100%}
+    .about-hero-copy{max-width:900px}
+    .about-hero h1{font-size:clamp(3.6rem,9vw,7.2rem);line-height:1.01;color:var(--paper);letter-spacing:-.018em}
+    .about-hero-meta{display:flex;align-items:center;gap:18px;margin-top:24px;font-family:var(--mono);font-size:.82rem;letter-spacing:.11em;text-transform:uppercase;color:rgba(250,246,234,.78)}
+    .about-hero-rule{width:52px;height:2px;background:var(--clay-bright)}
 
-/* Closing */
-.closing-section{padding:clamp(90px,10vw,132px) 0 clamp(92px,10vw,132px);text-align:center}.closing-copy{max-width:760px;margin:0 auto}.closing-copy p{margin:0;font-family:var(--serif);font-style:italic;font-size:clamp(1.45rem,2.7vw,2.05rem);line-height:1.4;font-weight:500;color:var(--navy)}.closing-link{display:inline-flex;align-items:center;gap:10px;margin-top:34px;font-family:var(--mono);font-size:.76rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--clay)}.closing-link .arrow{transition:transform .25s var(--ease)}.closing-link:hover .arrow{transform:translateX(4px)}
+    /* Company */
+    .company-section{padding:clamp(94px,10vw,142px) 0 clamp(90px,10vw,132px)}
+    .company-intro{display:grid;grid-template-columns:minmax(260px,.8fr) minmax(0,1.2fr);gap:clamp(52px,8vw,120px);align-items:start}
+    .company-title h2{font-size:clamp(2.4rem,4.7vw,3.8rem);line-height:1.08;color:var(--navy);max-width:470px}
+    .company-body{max-width:760px}
+    .company-body p{margin:0 0 24px;font-size:1.03rem;line-height:1.76;color:var(--ink)}
+    .company-body p.lead{font-size:clamp(1.25rem,2.2vw,1.5rem);line-height:1.58;font-weight:500;color:var(--navy)}
+    .company-body p:last-child{margin-bottom:0}
 
-/* CTA / Footer */
-.cta-band{background:var(--navy-deep);padding:clamp(66px,7vw,94px) 0;border-bottom:1px solid var(--line-on-navy)}.cta-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;text-align:center}.cta-inner h2{font-size:clamp(1.7rem,2.9vw,2.25rem);color:var(--paper)}.cta-btn{display:inline-flex;align-items:center;gap:12px;padding:15px 28px;border:1px solid var(--paper-soft);color:var(--paper);font-size:.86rem;font-weight:600;transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease)}.cta-btn:hover{background:var(--clay);border-color:var(--clay)}.cta-btn .arrow{transition:transform .25s var(--ease)}.cta-btn:hover .arrow{transform:translateX(4px)}
-footer{background:linear-gradient(180deg,#16222C 0%,#111B23 100%);color:var(--paper);padding:64px 0 32px;border-top:2px solid var(--clay)}.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid var(--line-on-navy);text-align:center;align-items:start}.footer-brand{display:flex;flex-direction:column;align-items:center;justify-content:center}.footer-logo-img{height:32px;width:auto;filter:brightness(0) invert(1);margin:0 auto 12px}.footer-brand-fallback{display:none;font-family:var(--serif);font-weight:600;font-size:1.25rem;color:var(--paper);margin-bottom:8px}.footer-brand p{margin:0;font-size:.85rem;color:rgba(250,246,234,.7);line-height:1.5}.footer-hq-badge{display:inline-block;margin-top:16px;padding:6px 14px;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--clay-bright);background:rgba(217,117,95,.08);border:1px solid rgba(217,117,95,.2);border-radius:3px}.footer-grid h4{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--clay-bright);margin:0 0 18px;font-weight:600}.footer-grid ul{margin:0;padding:0;list-style:none}.nav-list,.contact-list{display:flex;flex-direction:column;align-items:center}.contact-list{gap:12px}.footer-grid li{font-size:.88rem;color:var(--paper-soft)}.nav-list li + li{margin-top:12px}.footer-grid a{color:var(--paper-soft);transition:color .25s var(--ease)}.footer-grid a:hover{color:var(--clay-bright)}.contact-link{background:rgba(250,246,234,.04);padding:6px 14px;border-radius:3px;border:1px solid rgba(250,246,234,.06);font-family:var(--mono);font-size:.8rem}.footer-bottom{padding-top:28px;display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:.7rem;color:rgba(250,246,234,.5)}
+    /* Statement */
+    .statement-section{padding:0 0 clamp(104px,12vw,156px)}
+    .statement-rule{border-top:1px solid var(--line);padding-top:clamp(54px,6vw,76px)}
+    .statement-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(220px,.55fr);gap:clamp(48px,8vw,120px);align-items:end}
+    .statement-copy{font-family:var(--serif);font-size:clamp(2.2rem,5vw,4.55rem);font-weight:600;line-height:1.08;letter-spacing:-.018em;color:var(--navy);max-width:980px}
+    .statement-copy em{font-style:italic;font-weight:500;color:var(--clay)}
+    .statement-note{padding-bottom:8px}
+    .statement-note p{margin:0;font-size:.98rem;line-height:1.72;color:var(--ink-soft)}
 
-/* Responsive */
-@media (max-width:900px){.company-intro{grid-template-columns:1fr;gap:22px;text-align:center}.company-title{display:flex;justify-content:center}.company-title h2{max-width:620px}.company-break-grid{grid-template-columns:1fr;text-align:center}.company-emphasis{margin:0 auto}.team-profile{grid-template-columns:minmax(210px,250px) minmax(0,1fr)}.team-profile-content:before{margin-left:0}}
-@media (max-width:768px){.site-nav{justify-content:space-between;padding:0 20px}.menu-toggle{display:flex}.nav-menu-centered{width:100%;padding:0}.nav-menu-centered .desktop-only{display:none}.nav-logo-img{height:34px}.mobile-drawer{display:block}.history-image-inner{width:calc(100% - 40px)}.team-profile{grid-template-columns:1fr;text-align:center}.team-profile + .team-profile{padding-top:48px}.team-photo-frame{width:min(220px,60vw);margin:0 auto}.team-profile-content:before{margin:0 auto 22px}.footer-grid{display:flex;flex-direction:column;align-items:center;gap:20px;padding-bottom:24px}.col-nav{order:1}.col-contact{order:2;display:block}.col-brand{order:3}.footer-grid h4.nav-header{display:none}.nav-list{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:12px}.nav-list li{display:inline-flex;align-items:center}.nav-list li + li{margin-top:0}.nav-list li:not(:last-child)::after{content:"·";margin-left:12px;color:rgba(250,246,234,.3);font-weight:700}.footer-bottom{flex-direction:column;gap:6px;text-align:center;padding-top:18px}}
-@media (max-width:640px){.shell{padding:0 20px}.about-hero{padding-top:calc(var(--nav-h) + 48px);padding-bottom:56px}.company-section{padding-top:64px;padding-bottom:78px}.company-body p{font-size:.97rem}.company-body p.lead{font-size:1.08rem}.history-image{padding-bottom:74px}.history-image-inner{width:calc(100% - 40px)}.history-image img{aspect-ratio:1.35/1;object-position:center}.history-image figcaption{text-align:center;font-size:.62rem}.team-section{padding-top:72px;padding-bottom:82px}.team-bio{font-size:.95rem}.closing-section{padding-top:76px;padding-bottom:82px}.cta-band{padding-top:78px;padding-bottom:78px}footer{padding-top:32px;padding-bottom:24px}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}[data-reveal]{transform:none;transition:opacity .3s linear}}
-</style>
+    /* Transition */
+    .transition-section{background:var(--navy-deep);padding:clamp(92px,10vw,132px) 0 clamp(98px,11vw,144px)}
+    .transition-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);gap:clamp(54px,9vw,140px);align-items:end}
+    .transition-copy{font-family:var(--serif);font-size:clamp(2rem,4.4vw,3.65rem);font-weight:500;line-height:1.16;color:var(--paper);max-width:860px}
+    .transition-copy em{font-style:italic;color:var(--clay-bright)}
+    .transition-note{border-left:1px solid var(--line-on-navy);padding-left:clamp(24px,3vw,42px)}
+    .transition-note p{margin:0;font-size:.98rem;line-height:1.76;color:var(--paper-soft)}
+
+    /* Leadership */
+    .team-section{background:var(--navy-deep);padding:0 0 clamp(108px,12vw,156px)}
+    .team-head{padding:clamp(22px,4vw,38px) 0 clamp(58px,7vw,86px);border-top:1px solid var(--line-on-navy)}
+    .team-head h2{font-size:clamp(2.35rem,4.6vw,3.55rem);color:var(--paper)}
+    .team-list{display:flex;flex-direction:column;gap:clamp(80px,10vw,138px)}
+    .team-profile{display:grid;grid-template-columns:minmax(250px,420px) minmax(0,1fr);gap:clamp(46px,7vw,110px);align-items:center}
+    .team-profile.reverse{grid-template-columns:minmax(0,1fr) minmax(250px,420px)}
+    .team-profile.reverse .team-photo-frame{grid-column:2;grid-row:1}
+    .team-profile.reverse .team-profile-content{grid-column:1;grid-row:1}
+    .team-photo-frame{position:relative;width:100%;aspect-ratio:4 / 4.8;overflow:hidden;background:rgba(250,246,234,.04);border:1px solid var(--line-on-navy);box-shadow:0 18px 40px rgba(0,0,0,.3)}
+    .team-photo-frame::after{content:"";position:absolute;inset:12px;border:1px solid rgba(250,246,234,.11);pointer-events:none}
+    .team-photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(.86)}
+    .team-profile-content{max-width:720px}
+    .team-profile-content::before{content:"";display:block;width:64px;height:2px;background:var(--clay-bright);margin-bottom:24px}
+    .team-profile-content h3{font-size:clamp(2.1rem,4vw,3.2rem);line-height:1.06;color:var(--paper)}
+    .team-role{display:block;margin:10px 0 24px;font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--clay-bright)}
+    .team-bio{margin:0;font-size:1rem;line-height:1.75;color:var(--paper-soft)}
+    .team-bio + .team-bio{margin-top:18px}
+
+    /* CTA + Footer */
+    .cta-band{background:var(--navy-deep);padding:clamp(74px,8vw,104px) 0;border-top:1px solid var(--line-on-navy);border-bottom:1px solid var(--line-on-navy)}
+    .cta-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;text-align:center}
+    .cta-inner h2{font-size:clamp(1.7rem,3vw,2.3rem);color:var(--paper)}
+    .cta-btn{display:inline-flex;align-items:center;gap:12px;padding:15px 28px;border:1px solid var(--paper-soft);color:var(--paper);font-size:.86rem;font-weight:600;transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease)}
+    .cta-btn:hover{background:var(--clay);border-color:var(--clay)}
+    .cta-btn .arrow{transition:transform .25s var(--ease)}
+    .cta-btn:hover .arrow{transform:translateX(4px)}
+
+    footer{background:linear-gradient(180deg,#16222C 0%,#111B23 100%);color:var(--paper);padding:64px 0 32px;border-top:2px solid var(--clay)}
+    .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid var(--line-on-navy);text-align:center;align-items:start}
+    .footer-brand{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+    .footer-logo-img{height:32px;width:auto;filter:brightness(0) invert(1);margin:0 auto 12px;display:block}
+    .footer-brand-fallback{display:none;font-family:var(--serif);font-weight:600;font-size:1.25rem;color:var(--paper);margin-bottom:8px}
+    .footer-brand p{font-size:.85rem;color:rgba(250,246,234,.7);line-height:1.5;margin:0;text-align:center}
+    .footer-hq-badge{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--clay-bright);background:rgba(217,117,95,.08);border:1px solid rgba(217,117,95,.2);padding:6px 14px;border-radius:3px;transition:background .25s var(--ease),border-color .25s var(--ease),color .25s var(--ease)}
+    .footer-hq-badge:hover{background:rgba(217,117,95,.18);border-color:rgba(217,117,95,.4);color:var(--paper)}
+    footer h4{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--clay-bright);margin:0 0 18px;font-weight:600;text-align:center}
+    footer ul.nav-list,footer ul.contact-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;align-items:center}
+    footer ul.contact-list{gap:12px}
+    footer li{font-size:.88rem;color:var(--paper-soft);text-align:center}
+    footer ul.nav-list li{margin-bottom:12px}
+    footer ul.nav-list li:last-child{margin-bottom:0}
+    footer a{color:var(--paper-soft);transition:color .25s var(--ease);display:inline-block}
+    footer a:hover{color:var(--clay-bright)}
+    .contact-link{background:rgba(250,246,234,.04);padding:6px 14px;border-radius:3px;border:1px solid rgba(250,246,234,.06);font-family:var(--mono);font-size:.8rem;transition:background .25s var(--ease),border-color .25s var(--ease)}
+    .contact-link:hover{background:rgba(217,117,95,.1);border-color:rgba(217,117,95,.3)}
+    .footer-bottom{padding-top:28px;display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:.7rem;color:rgba(250,246,234,.5)}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .company-intro{grid-template-columns:1fr;gap:26px}
+      .company-title h2{max-width:620px}
+      .statement-grid{grid-template-columns:1fr;gap:28px}
+      .statement-note{padding-bottom:0;max-width:620px}
+      .transition-grid{grid-template-columns:1fr;gap:34px}
+      .transition-note{border-left:0;border-top:1px solid var(--line-on-navy);padding:26px 0 0;max-width:620px}
+    }
+
+    @media (max-width:768px){
+      .site-nav{justify-content:space-between;padding:0 20px}
+      .menu-toggle{display:flex;position:absolute;left:20px}
+      .nav-menu-centered{padding:0}
+      .nav-menu-centered .desktop-only{display:none}
+      .nav-logo-img{height:34px}
+      .mobile-drawer{display:block}
+      .about-hero{min-height:calc(82vh - var(--nav-h));min-height:calc(82dvh - var(--nav-h));padding-bottom:54px}
+      .about-hero h1{max-width:720px}
+      .team-profile,.team-profile.reverse{grid-template-columns:1fr;gap:34px}
+      .team-profile.reverse .team-photo-frame,.team-profile.reverse .team-profile-content{grid-column:auto;grid-row:auto}
+      .team-photo-frame{width:min(420px,100%);aspect-ratio:4 / 4.8;margin:0 auto}
+      .team-profile-content{max-width:none}
+      footer{padding:32px 0 24px}
+      .footer-grid{display:flex;flex-direction:column;align-items:center;gap:20px;padding-bottom:24px}
+      .col-nav{order:1}
+      .col-contact{display:none!important}
+      .col-brand{order:2}
+      footer h4.nav-header{display:block}
+      footer ul.nav-list{flex-direction:row;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px}
+      footer ul.nav-list li{margin-bottom:0;display:inline-flex;align-items:center}
+      footer ul.nav-list li:not(:last-child)::after{content:"·";margin-left:12px;color:rgba(250,246,234,.3);font-weight:700}
+      .footer-hq-badge{margin-top:10px}
+      .footer-bottom{flex-direction:column;gap:6px;text-align:center;padding-top:18px}
+    }
+
+    @media (max-width:640px){
+      .shell{padding:0 20px}
+      .about-hero{min-height:72vh;min-height:72dvh}
+      .about-hero-copy{max-width:100%}
+      .about-hero h1{font-size:clamp(3rem,15vw,4.8rem)}
+      .about-hero-meta{gap:14px;font-size:.68rem;letter-spacing:.08em}
+      .about-hero-rule{width:36px}
+      .company-section{padding-top:76px;padding-bottom:84px}
+      .company-body p{font-size:.97rem}
+      .company-body p.lead{font-size:1.12rem}
+      .statement-section{padding-bottom:96px}
+      .statement-copy{font-size:clamp(2rem,9.5vw,3.2rem)}
+      .statement-note{font-size:.94rem}
+      .transition-section{padding-top:76px;padding-bottom:86px}
+      .transition-copy{font-size:clamp(1.9rem,9vw,3rem)}
+      .team-section{padding-bottom:92px}
+      .team-head{padding-top:20px;padding-bottom:50px}
+      .team-profile{gap:30px}
+      .team-profile-content h3{font-size:2.3rem}
+      .team-bio{font-size:.95rem}
+      .cta-band{padding-top:78px;padding-bottom:78px}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      [data-reveal]{transition:opacity .3s linear;transform:none}
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- Navigation -->
-<nav class="site-nav" id="siteNav" aria-label="Primary">
-  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
-  <ul class="nav-menu-centered">
-    <li class="desktop-only"><a class="nav-link" href="index.html">Home</a></li>
-    <li class="desktop-only"><a class="nav-link active" href="about.html">About</a></li>
-    <li><a class="nav-logo" href="index.html" aria-label="APS Land Services - Home"><img class="nav-logo-img" src="assets/APSLand_Logo.png" alt="APS Land" decoding="async" onerror="this.style.display='none';document.getElementById('navLogoFallback').style.display='inline'"><span id="navLogoFallback" class="nav-logo-fallback" style="display:none;">APS Land</span></a></li>
-    <li class="desktop-only"><a class="nav-link" href="services.html">Services</a></li>
-    <li class="desktop-only"><a class="nav-link" href="contact.html">Contact</a></li>
-  </ul>
-</nav>
-<div class="mobile-drawer" id="mobileDrawer" aria-hidden="true"><ul><li><a class="nav-link" href="index.html">Home</a></li><li><a class="nav-link active" href="about.html">About</a></li><li><a class="nav-link" href="services.html">Services</a></li><li><a class="nav-link" href="contact.html">Contact</a></li></ul></div>
+  <!-- Navigation -->
+  <nav class="site-nav" id="siteNav" aria-label="Primary">
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
 
-<!-- Hero -->
-<header class="about-hero shell" data-reveal>
-  <h1>We are APS Land</h1>
-  <div class="hero-rule"></div>
-</header>
+    <ul class="nav-menu-centered">
+      <li class="desktop-only"><a class="nav-link" href="index.html">Home</a></li>
+      <li class="desktop-only"><a class="nav-link active" href="about.html">About</a></li>
 
-<!-- Company -->
-<section class="company-section shell">
-  <div class="company-intro" data-reveal>
-    <div class="company-title"><h2>Setting the Standard Since 1980</h2></div>
-    <div class="company-body">
-      <p class="lead">From its roots in permitting, the company has grown to support energy, exploration, and infrastructure projects across North America.</p>
-      <p>Our work has spanned hundreds of successful projects in 28 states, plus experience in Alberta and Saskatchewan. Thousands of successful negotiations have been completed across energy and infrastructure projects. That work has required direct coordination with thousands of landowners across private, state, federal, and tribal lands. We don&rsquo;t outsource that communication.</p>
-      <p>Decades in the field have refined how we operate as we continue advancing our technology, processes, and project management.</p>
-    </div>
+      <li>
+        <a class="nav-logo" href="index.html" aria-label="APS - Home">
+          <img class="nav-logo-img" src="assets/APSLand_Logo.png" alt="APS Land" decoding="async" onerror="this.style.display='none';document.getElementById('navLogoFallback').style.display='inline'">
+          <span id="navLogoFallback" class="nav-logo-fallback" style="display:none;">APS Land</span>
+        </a>
+      </li>
+
+      <li class="desktop-only"><a class="nav-link" href="services.html">Services</a></li>
+      <li class="desktop-only"><a class="nav-link" href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <ul>
+      <li><a class="nav-link" href="index.html">Home</a></li>
+      <li><a class="nav-link active" href="about.html">About</a></li>
+      <li><a class="nav-link" href="services.html">Services</a></li>
+      <li><a class="nav-link" href="contact.html">Contact</a></li>
+    </ul>
   </div>
 
-  <div class="company-break" data-reveal>
-    <div class="company-break-grid">
-      <p class="company-emphasis">Always focused on what matters most: getting the details right.</p>
-      <div class="company-note"><p>We take pride in protecting landowners, field crews, the environment, and the projects entrusted to us.</p></div>
-    </div>
-  </div>
-</section>
+  <!-- Hero -->
+  <header class="about-hero" data-reveal>
+    <img class="about-hero-image" src="assets/vintage.jpg" alt="Historical Vibroseis field operations" decoding="async">
 
-<!-- Historical context -->
-<section class="history-image" data-reveal>
-  <div class="history-image-inner">
-    <figure>
-      <img src="assets/about-vibroseis.jpg" alt="Historical-style illustration of Vibroseis seismic field operations in the American West" loading="lazy" decoding="async">
-      <figcaption>Land seismic exploration</figcaption>
-    </figure>
-  </div>
-</section>
+    <div class="shell about-hero-inner">
+      <div class="about-hero-copy">
+        <h1>We are APS Land</h1>
 
-<!-- Company transition -->
-<section class="company-section shell" style="padding-top:0;">
-  <div class="company-break" data-reveal style="margin-top:0;">
-    <div class="company-break-grid">
-      <p class="company-emphasis">The standard we started with: hard work, honesty, and being exceptionally good at what we do.</p>
-      <div class="company-note"><p>In August 2026, we became APS Land Services. The new name reflects the expertise and capabilities we&rsquo;ve built while carrying that standard forward.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- Team -->
-<section class="team-section" id="team">
-  <div class="shell">
-    <div class="section-head-center" data-reveal><h2>Meet the Team</h2></div>
-    <div class="team-list">
-      <article class="team-profile" data-reveal>
-        <div class="team-photo-frame"><img src="assets/mark_photo.jpg" alt="Mark Fischbuch, President &amp; Founder" loading="lazy" decoding="async"></div>
-        <div class="team-profile-content">
-          <h3>Mark Fischbuch</h3>
-          <span class="team-role">President &amp; Founder</span>
-          <p class="team-bio">Mark Fischbuch began working in the industry in 1980, after years of hard work across surveying, drilling, permitting, and field operations. He learned the industry firsthand, from the science and technology behind it to the realities of difficult field work. That practical knowledge shaped APS&rsquo;s comprehensive approach to land services and remains at the foundation of the company today.</p>
+        <div class="about-hero-meta">
+          <span class="about-hero-rule"></span>
+          <span>Setting the Standard Since 1980</span>
         </div>
-      </article>
+      </div>
+    </div>
+  </header>
 
-      <article class="team-profile" data-reveal>
-        <div class="team-photo-frame"><img src="assets/zane_photo.jpg" alt="Zane Nelson, Vice President" loading="lazy" decoding="async"></div>
-        <div class="team-profile-content">
-          <h3>Zane Nelson</h3>
-          <span class="team-role">Vice President</span>
-          <p class="team-bio">Zane Nelson joined APS in 2010, building on a successful career spanning accounting, business analysis, and enterprise operations. He&rsquo;s combined those disciplines to lead the company&rsquo;s day-to-day operations, transform its financial and operational structure, and expand its capabilities. He has developed extensive knowledge of land services through years of hands-on project and field experience.</p>
-          <p class="team-bio">Zane remains deeply involved in strengthening client relationships, personally overseeing field work, and positioning APS for new opportunities across the industry.</p>
+  <!-- Company -->
+  <section class="company-section shell">
+    <div class="company-intro" data-reveal>
+      <div class="company-title">
+        <h2>Setting the Standard Since 1980</h2>
+      </div>
+
+      <div class="company-body">
+        <p class="lead">From its roots in permitting, the company has grown to support energy, exploration, and infrastructure projects across North America.</p>
+
+        <p>Our work has spanned hundreds of successful projects in 28 states, plus experience in Alberta and Saskatchewan. Thousands of successful negotiations have been completed across energy and infrastructure projects. That work has required direct coordination with thousands of landowners across private, state, federal, and tribal lands. We don&rsquo;t outsource that communication.</p>
+
+        <p>Decades in the field have refined how we operate as we continue advancing our technology, processes, and project management.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statement -->
+  <section class="statement-section shell">
+    <div class="statement-rule" data-reveal>
+      <div class="statement-grid">
+        <p class="statement-copy">Always focused on what matters most: <em>getting the details right.</em></p>
+
+        <div class="statement-note">
+          <p>We take pride in protecting landowners, field crews, the environment, and the projects entrusted to us.</p>
         </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- Closing -->
-<section class="closing-section shell">
-  <div class="closing-copy" data-reveal>
-    <p>Our work continues to be defined by the same standard that has guided APS from the beginning.</p>
-    <a class="closing-link" href="services.html">Explore Our Services <span class="arrow">→</span></a>
-  </div>
-</section>
-
-<!-- CTA / Footer -->
-<section class="cta-band">
-  <div class="shell cta-inner" data-reveal>
-    <h2>Let&rsquo;s get to work.</h2>
-    <a class="cta-btn" href="contact.html">Contact Us <span class="arrow">→</span></a>
-  </div>
-</section>
-
-<footer>
-  <div class="shell">
-    <div class="footer-grid">
-      <div class="col-brand footer-brand">
-        <img class="footer-logo-img" src="assets/APSLand_Logo.png" alt="APS Land Services" decoding="async" onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='block'">
-        <span id="footerLogoFallback" class="footer-brand-fallback">APS Land Services</span>
-        <p>Setting the Standard Since 1980</p>
-        <a class="footer-hq-badge" href="https://www.google.com/maps/search/?api=1&query=Lewiston%2C+UT" target="_blank" rel="noopener noreferrer">Cache Valley, Utah ↗</a>
-      </div>
-      <div class="col-nav">
-        <h4 class="nav-header">Navigation</h4>
-        <ul class="nav-list"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul>
-      </div>
-      <div class="col-contact">
-        <h4 class="contact-header">Contact</h4>
-        <ul class="contact-list"><li><a class="contact-link" href="tel:+13039035873">303-903-5873</a></li><li><a class="contact-link" href="mailto:allstatepermit@allstatepermit.com">allstatepermit@allstatepermit.com</a></li></ul>
       </div>
     </div>
-    <div class="footer-bottom"><span>&copy; 2026 APS Land Services. All rights reserved.</span><span>Land Services Nationwide</span></div>
-  </div>
-</footer>
+  </section>
 
-<script>
-(function(){
-  var nav=document.getElementById('siteNav');
-  var toggleBtn=document.getElementById('menuToggle');
-  var mobileDrawer=document.getElementById('mobileDrawer');
+  <!-- Transition -->
+  <section class="transition-section">
+    <div class="shell">
+      <div class="transition-grid" data-reveal>
+        <p class="transition-copy">The standard we started with: <em>hard work, honesty, and being exceptionally good at what we do.</em></p>
 
-  function closeDrawer(){if(!mobileDrawer||!toggleBtn)return;mobileDrawer.classList.remove('is-open');toggleBtn.classList.remove('is-active');toggleBtn.setAttribute('aria-expanded','false');mobileDrawer.setAttribute('aria-hidden','true')}
-  function openDrawer(){if(!mobileDrawer||!toggleBtn)return;mobileDrawer.classList.add('is-open');toggleBtn.classList.add('is-active');toggleBtn.setAttribute('aria-expanded','true');mobileDrawer.setAttribute('aria-hidden','false')}
-  function samePage(href){var target=document.createElement('a');target.href=href;var tp=target.pathname.replace(/\/index\.html$/,'/').replace(/\/$/,'')||'/';var hp=window.location.pathname.replace(/\/index\.html$/,'/').replace(/\/$/,'')||'/';return tp===hp}
+        <div class="transition-note">
+          <p>In August 2026, we became APS Land Services. The new name reflects the expertise and capabilities we&rsquo;ve built while carrying that standard forward.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  if(toggleBtn&&mobileDrawer)toggleBtn.addEventListener('click',function(e){e.stopPropagation();mobileDrawer.classList.contains('is-open')?closeDrawer():openDrawer()});
-  document.addEventListener('click',function(e){if(!mobileDrawer||!mobileDrawer.classList.contains('is-open'))return;var inNav=nav&&nav.contains(e.target);var inDrawer=mobileDrawer.contains(e.target);if(!inNav&&!inDrawer)closeDrawer()});
-  document.addEventListener('scroll',closeDrawer,{passive:true});
+  <!-- Leadership -->
+  <section class="team-section" id="team">
+    <div class="shell">
+      <div class="team-head" data-reveal>
+        <h2>Meet the Team</h2>
+      </div>
 
-  document.querySelectorAll('.nav-link').forEach(function(link){link.addEventListener('click',function(e){var href=link.getAttribute('href');closeDrawer();if(samePage(href)){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'})}})});
+      <div class="team-list">
+        <article class="team-profile" data-reveal>
+          <div class="team-photo-frame">
+            <img src="assets/mark_photo.jpg" alt="Mark Fischbuch, President &amp; Founder" loading="lazy" decoding="async">
+          </div>
 
-  var currentPath=window.location.pathname.split('/').pop()||'index.html';
-  document.querySelectorAll('.nav-link').forEach(function(link){var href=link.getAttribute('href');link.classList.toggle('active',href===currentPath||(currentPath===''&&href==='index.html'))});
+          <div class="team-profile-content">
+            <h3>Mark Fischbuch</h3>
+            <span class="team-role">President &amp; Founder</span>
 
-  var reveals=document.querySelectorAll('[data-reveal]');
-  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('in-view');io.unobserve(entry.target)}})},{threshold:.15});reveals.forEach(function(el){io.observe(el)})}else{reveals.forEach(function(el){el.classList.add('in-view')})}
-  if('scrollRestoration' in history)history.scrollRestoration='manual';
-})();
-</script>
+            <p class="team-bio">Mark Fischbuch began working in the industry in 1980, after years of hard work across surveying, drilling, permitting, and field operations. He learned the industry firsthand, from the science and technology behind it to the realities of difficult field work. That practical knowledge shaped APS&rsquo;s comprehensive approach to land services and remains at the foundation of the company today.</p>
+          </div>
+        </article>
+
+        <article class="team-profile reverse" data-reveal>
+          <div class="team-photo-frame">
+            <img src="assets/zane_photo.jpg" alt="Zane Nelson, Vice President" loading="lazy" decoding="async">
+          </div>
+
+          <div class="team-profile-content">
+            <h3>Zane Nelson</h3>
+            <span class="team-role">Vice President</span>
+
+            <p class="team-bio">Zane Nelson joined APS in 2010, building on a successful career spanning accounting, business analysis, and enterprise operations. He&rsquo;s combined those disciplines to lead the company&rsquo;s day-to-day operations, transform its financial and operational structure, and expand its capabilities. He has developed extensive knowledge of land services through years of hands-on project and field experience.</p>
+
+            <p class="team-bio">Zane remains deeply involved in strengthening client relationships, personally overseeing field work, and positioning APS for new opportunities across the industry.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / Footer -->
+  <section class="cta-band">
+    <div class="shell cta-inner" data-reveal>
+      <h2>Let&rsquo;s get to work.</h2>
+      <a class="cta-btn" href="contact.html">Contact Us <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="shell">
+      <div class="footer-grid">
+        <div class="col-brand footer-brand">
+          <img class="footer-logo-img" src="assets/APSLand_Logo.png" alt="APS Land Services" decoding="async" onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='block'">
+          <span id="footerLogoFallback" class="footer-brand-fallback">APS Land Services</span>
+          <p>Setting the Standard Since 1980</p>
+          <a class="footer-hq-badge" href="https://www.google.com/maps/search/?api=1&query=Lewiston%2C+UT" target="_blank" rel="noopener noreferrer">Cache Valley, Utah ↗</a>
+        </div>
+
+        <div class="col-nav">
+          <h4 class="nav-header">Navigation</h4>
+
+          <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-contact">
+          <h4 class="contact-header">Contact</h4>
+
+          <ul class="contact-list">
+            <li><a class="contact-link" href="tel:+13039035873">303-903-5873</a></li>
+            <li><a class="contact-link" href="mailto:allstatepermit@allstatepermit.com">allstatepermit@allstatepermit.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 APS Land Services. All rights reserved.</span>
+        <span>Land Services Nationwide</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var nav=document.getElementById('siteNav');
+      var toggleBtn=document.getElementById('menuToggle');
+      var mobileDrawer=document.getElementById('mobileDrawer');
+
+      function closeDrawer(){
+        if(!mobileDrawer||!toggleBtn)return;
+
+        mobileDrawer.classList.remove('is-open');
+        toggleBtn.classList.remove('is-active');
+        toggleBtn.setAttribute('aria-expanded','false');
+        mobileDrawer.setAttribute('aria-hidden','true');
+      }
+
+      /* Navigation */
+
+      function samePage(href){
+        var target=document.createElement('a');
+        target.href=href;
+
+        var targetPath=target.pathname
+          .replace(/\/index\.html$/,'/')
+          .replace(/\/$/,'')||'/';
+
+        var herePath=window.location.pathname
+          .replace(/\/index\.html$/,'/')
+          .replace(/\/$/,'')||'/';
+
+        return targetPath===herePath;
+      }
+
+      if(toggleBtn&&mobileDrawer){
+        toggleBtn.addEventListener('click',function(e){
+          e.stopPropagation();
+
+          if(mobileDrawer.classList.contains('is-open')){
+            closeDrawer();
+          }else{
+            mobileDrawer.classList.add('is-open');
+            toggleBtn.classList.add('is-active');
+            toggleBtn.setAttribute('aria-expanded','true');
+            mobileDrawer.setAttribute('aria-hidden','false');
+          }
+        });
+      }
+
+      document.addEventListener('click',function(e){
+        if(!mobileDrawer||!mobileDrawer.classList.contains('is-open'))return;
+
+        var insideNav=nav&&nav.contains(e.target);
+        var insideDrawer=mobileDrawer.contains(e.target);
+
+        if(!insideNav&&!insideDrawer){
+          closeDrawer();
+        }
+      });
+
+      document.addEventListener('scroll',closeDrawer,{passive:true});
+
+      document.querySelectorAll('.nav-link').forEach(function(link){
+        link.addEventListener('click',function(e){
+          var href=link.getAttribute('href');
+
+          closeDrawer();
+
+          if(samePage(href)){
+            e.preventDefault();
+
+            window.scrollTo({
+              top:0,
+              behavior:'smooth'
+            });
+          }
+        });
+      });
+
+      var currentPath=window.location.pathname.split('/').pop()||'index.html';
+
+      document.querySelectorAll('.nav-link').forEach(function(link){
+        var href=link.getAttribute('href');
+
+        link.classList.toggle(
+          'active',
+          href===currentPath||
+          (currentPath===''&&href==='index.html')
+        );
+      });
+
+      /* Reveal on scroll */
+
+      var reveals=document.querySelectorAll('[data-reveal]');
+
+      if('IntersectionObserver' in window){
+        var io=new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            if(entry.isIntersecting){
+              entry.target.classList.add('in-view');
+              io.unobserve(entry.target);
+            }
+          });
+        },{threshold:.15});
+
+        reveals.forEach(function(el){
+          io.observe(el);
+        });
+      }else{
+        reveals.forEach(function(el){
+          el.classList.add('in-view');
+        });
+      }
+
+      if('scrollRestoration' in history){
+        history.scrollRestoration='manual';
+      }
+    })();
+  </script>
 </body>
 </html>
