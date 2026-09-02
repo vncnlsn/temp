@@ -237,21 +237,22 @@
 
   .company-grid{
     display: grid;
-    grid-template-columns: minmax(260px, .82fr) minmax(0, 1.18fr);
-    gap: clamp(42px, 6vw, 84px);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(56px, 6vw, 80px);
     align-items: center;
-    max-width: 1180px;
+    max-width: 1320px;
     margin: 0 auto;
   }
 
   .company-photo{
-    max-width: 520px;
+    max-width: 640px;
+    width: 100%;
     justify-self: center;
   }
 
   .company-photo img{
     width: 100%;
-    aspect-ratio: 1.24 / 1;
+    aspect-ratio: 1.28 / 1;
     object-fit: cover;
     border: 1px solid rgba(28,27,24,.12);
     border-radius: 3px;
@@ -263,7 +264,6 @@
     font-family: var(--mono);
     font-size: .68rem;
     letter-spacing: .08em;
-    text-transform: uppercase;
     color: var(--brass);
     text-align: left;
   }
@@ -580,7 +580,7 @@
     }
 
     .company-photo{
-      max-width: 560px;
+      max-width: 640px;
       width: 100%;
     }
 
@@ -841,7 +841,7 @@
     <div class="company-grid">
       <figure class="company-photo" data-reveal>
         <img src="assets/vintage.jpg" alt="Vintage vibroseis operations photo" loading="lazy">
-        <figcaption>Vibroseis operations · 1980s</figcaption>
+        <figcaption>Vibroseis operations · 1980's</figcaption>
       </figure>
 
       <div class="company-body" data-reveal>
