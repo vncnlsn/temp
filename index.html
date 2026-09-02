@@ -1199,21 +1199,6 @@
   <!-- Zone 2 — Purpose: WHY APS exists -->
   <p class="hero-purpose">Supporting the energy, exploration, and infrastructure projects that power America.</p>
 
-  <!-- Zone 3 — Capabilities: WHAT APS does. Same order and naming as
-       the "Our Capabilities" timeline on services.html, each linking
-       straight to that service's description. Hidden on mobile
-       (≤640px) — see .hero-capabilities media query — so the
-       "Contacted by APS?" link below rises to take this spot instead. -->
-  <div class="hero-capabilities">
-    <a class="hero-cap-link" href="services.html#title-ownership">Title &amp; Leasing</a>
-    <span class="hero-sep" aria-hidden="true"></span>
-    <a class="hero-cap-link" href="services.html#gis-services">GIS</a>
-    <span class="hero-sep" aria-hidden="true"></span>
-    <a class="hero-cap-link" href="services.html#seismic-permitting">Seismic Permitting</a>
-    <span class="hero-sep" aria-hidden="true"></span>
-    <a class="hero-cap-link" href="services.html#right-of-way">Right-of-Way Acquisition</a>
-  </div>
-
   <!-- Landowner redirect: quiet aside on desktop, pinned to the hero
        corner. On mobile it becomes a static in-flow element, and since
        .hero-capabilities collapses to display:none at that breakpoint,
@@ -1274,8 +1259,9 @@
   </div>
 </section>
 
-<!-- ================= 3. COMMITMENT & PROOF ================= -->
+<!-- ================= 3. COMMITMENT ================= -->
 <section class="capabilities-section shell" id="capabilities">
+
   <div class="commitment-head" data-reveal>
     <h2 class="commitment-headline">
       <span class="ch-line ch-line-1">We're committed to the details<span class="ch-ellipsis">…</span></span>
@@ -1283,49 +1269,72 @@
     </h2>
   </div>
 
+  <!-- Service navigation -->
+  <nav class="service-bar" aria-label="Our services" data-reveal>
+    <a href="services.html#title-ownership">Title &amp; Leasing</a>
+    <span aria-hidden="true"></span>
+    <a href="services.html#gis-services">GIS</a>
+    <span aria-hidden="true"></span>
+    <a href="services.html#seismic-permitting">Seismic Permitting</a>
+    <span aria-hidden="true"></span>
+    <a href="services.html#right-of-way">Right-of-Way Acquisition</a>
+  </nav>
+
+  <!-- Differentiators -->
   <div class="capabilities-grid capabilities-grid--compact">
 
     <div class="cap-card cap-card--compact" data-reveal>
       <h3>Direct Leadership</h3>
       <ul class="cap-list cap-list--compact">
-        <li>Senior leadership on every project, not a rotating account team</li>
+        <li>Senior leadership stays directly involved in every project</li>
         <li>One point of contact from bid through closeout</li>
-        <li>Direct phone and email access, no call center</li>
+        <li>Direct phone and email access — no call center</li>
       </ul>
     </div>
 
     <div class="cap-card cap-card--compact" data-reveal>
-      <h3>Defined Pricing</h3>
+      <h3>Reliable Pricing</h3>
       <ul class="cap-list cap-list--compact">
         <li>Turnkey pricing available</li>
-        <li>Scope and costs set before work begins</li>
-        <li>No change orders sprung after the fact</li>
+        <li>Clear scope and pricing before work begins</li>
+        <li>Straightforward expectations from the start</li>
       </ul>
     </div>
 
     <div class="cap-card cap-card--compact" data-reveal>
-      <h3>Safety Without Shortcuts</h3>
+      <h3>Safety Standards</h3>
       <ul class="cap-list cap-list--compact">
         <li>Formal Safety Program Manual</li>
-        <li>Stop-Work Authority held by every crew member</li>
+        <li>Stop-work authority held by every crew member</li>
         <li>Member of <strong>ISNetworld</strong></li>
       </ul>
     </div>
 
   </div>
 
-  <div class="section-head-center proof-head" data-reveal>
-    <h2>Don't just take our word for it.</h2>
+</section>
+
+<!-- ================= 4. PROVEN EXPERIENCE ================= -->
+<section class="proven-section" id="clients">
+
+  <div class="shell">
+    <div class="section-head-center proof-head" data-reveal>
+      <h2>Don't just take our word for it.</h2>
+    </div>
   </div>
 
-  <div class="marquee-stack" id="clients" data-reveal>
+  <div class="marquee-stack" data-reveal>
+
     <div class="marquee-viewport" id="marqueeViewportA">
       <div class="marquee-track" id="marqueeTrackA"><!-- populated by JS --></div>
     </div>
+
     <div class="marquee-viewport" id="marqueeViewportB">
       <div class="marquee-track marquee-track-reverse" id="marqueeTrackB"><!-- populated by JS --></div>
     </div>
+
   </div>
+
 </section>
 
 <!-- ================= 5. CTA + FOOTER ================= -->
