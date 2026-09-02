@@ -128,18 +128,18 @@
     .ch-ellipsis{color:inherit}
 
     .capabilities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,2.8vw,38px);align-items:stretch}
-    .cap-card{position:relative;min-height:300px;padding:clamp(36px,3.6vw,50px) clamp(30px,3.2vw,44px) clamp(32px,3.3vw,44px);background:#FFFDF7;border:1px solid rgba(34,28,21,.14);border-radius:0;display:flex;flex-direction:column;box-shadow:none;overflow:hidden;transition:border-color .3s var(--ease),background .3s var(--ease),transform .3s var(--ease)}
+    .cap-card{position:relative;min-height:300px;padding:clamp(36px,3.6vw,50px) clamp(30px,3.2vw,44px) clamp(32px,3.3vw,44px);background:#FFFDF7;border:1px solid rgba(34,28,21,.14);border-radius:0;display:flex;flex-direction:column;box-shadow:none;overflow:hidden;transition:border-color .35s var(--ease),background .35s var(--ease)}
     .cap-card::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--clay);transform:scaleX(.26);transform-origin:left;transition:transform .35s var(--ease)}
-    .cap-card:hover,.cap-card:focus-visible{border-color:rgba(34,28,21,.24);background:#FFFDF9;transform:translateY(-1px)}
+    .cap-card:hover,.cap-card:focus-visible{border-color:rgba(34,28,21,.24);background:#FFFDF9}
     .cap-card:hover::before,.cap-card:focus-visible::before{transform:scaleX(.5)}
     .cap-card--linked{cursor:pointer}
     .cap-card h3{font-family:var(--serif);font-size:clamp(1.6rem,2.2vw,1.95rem);font-weight:600;letter-spacing:-.01em;text-align:left;color:var(--navy);line-height:1.15;margin:0 0 28px}
     .cap-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:17px}
     .cap-list li{font-family:var(--sans);font-size:1.02rem;font-weight:500;line-height:1.45;color:var(--navy);margin:0}
     .cap-list strong{font-weight:600;color:var(--navy)}
-    .cap-card-action{margin-top:auto;padding-top:28px;align-self:center;font-family:var(--mono);font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--clay);display:inline-flex;align-items:center;gap:5px;transition:transform .3s var(--ease),gap .3s var(--ease)}
+    .cap-card-action{margin-top:auto;padding-top:28px;align-self:center;font-family:var(--mono);font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--clay);display:inline-flex;align-items:center;gap:5px;transition:font-size .35s var(--ease),letter-spacing .35s var(--ease),gap .35s var(--ease)}
     .cap-card-action span{transition:transform .25s var(--ease)}
-    .cap-card:hover .cap-card-action,.cap-card:focus-visible .cap-card-action{gap:6px;transform:scale(1.04)}
+    .cap-card:hover .cap-card-action,.cap-card:focus-visible .cap-card-action{font-size:.77rem;letter-spacing:.085em;gap:6px}
     .cap-card:hover .cap-card-action span,.cap-card:focus-visible .cap-card-action span{transform:translateX(2px)}
 
     /* Proven Experience */
@@ -153,7 +153,7 @@
     .marquee-viewport::before{left:0;background:linear-gradient(to right,var(--proof-paper),rgba(247,243,232,0))}
     .marquee-viewport::after{right:0;background:linear-gradient(to left,var(--proof-paper),rgba(247,243,232,0))}
     .marquee-track{display:flex;align-items:stretch;width:max-content;will-change:transform}
-    .logo-cell{flex:0 0 auto;min-width:230px;height:138px;display:flex;align-items:center;justify-content:center;padding:0 48px;border-right:1px solid rgba(140,130,113,.18);font-family:var(--serif);font-style:italic;font-weight:500;font-size:1.24rem;line-height:1.2;color:var(--ink-soft);white-space:nowrap;user-select:none}
+    .logo-cell{flex:0 0 auto;min-width:230px;height:138px;display:flex;align-items:center;justify-content:center;padding:0 48px;background:#EEE8DA;border-right:1px solid rgba(140,130,113,.22);font-family:var(--serif);font-style:italic;font-weight:500;font-size:1.24rem;line-height:1.2;color:var(--ink-soft);white-space:nowrap;user-select:none}
     .proof-close{text-align:center;margin:clamp(58px,7vw,86px) auto 0}
     .proof-close p{margin:0;font-family:var(--serif);font-size:clamp(1.55rem,2.5vw,2.1rem);font-weight:600;line-height:1.15;color:var(--navy)}
     .proof-close p+p{margin-top:8px;font-style:italic;font-weight:500;color:var(--clay)}
@@ -856,14 +856,14 @@
         document.getElementById('marqueeViewportA'),
         document.getElementById('marqueeTrackA'),
         1,
-        96
+        104
       );
 
       var marqueeB=setupMarquee(
         document.getElementById('marqueeViewportB'),
         document.getElementById('marqueeTrackB'),
         -1,
-        104
+        112
       );
 
       window.addEventListener(
