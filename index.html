@@ -6,9 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>APS Land Services</title>
   <meta name="description" content="APS Land Services delivers seismic permitting, right-of-way acquisition, title curative, and GIS services for energy and exploration projects nationwide. Setting the standard since 1980.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --navy:#1E3B5F;
@@ -42,8 +44,6 @@
     ::selection{background:var(--clay);color:var(--paper)}
     :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
     .shell{max-width:var(--shell);margin:0 auto;padding:0 56px}
-    .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;font-weight:500;color:var(--clay)}
-    .eyebrow::before{content:"— ";color:var(--brass)}
     h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.005em;margin:0}
     [data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
     [data-reveal].in-view{opacity:1;transform:translateY(0)}
@@ -76,12 +76,14 @@
     .hero-tagline{font-family:var(--mono);font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);margin:30px 0 0}
     .hero-rule{width:64px;height:2px;background:var(--clay);margin:24px auto 0}
     .hero-purpose{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,3.8vw,2.9rem);letter-spacing:-.01em;color:var(--navy);max-width:760px;margin:clamp(72px,10vw,116px) auto 0;line-height:1.32}
+
     .hero-capabilities{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;width:100%;max-width:1040px;margin:clamp(56px,7vw,88px) auto 0;padding:clamp(30px,3.6vw,40px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
     .hero-cap-link{position:relative;padding-bottom:4px;font-family:var(--mono);font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);font-weight:700;transition:color .25s var(--ease)}
     .hero-cap-link::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--clay);transition:right .3s var(--ease)}
     .hero-cap-link:hover,.hero-cap-link:focus-visible{color:var(--clay)}
     .hero-cap-link:hover::after,.hero-cap-link:focus-visible::after{right:0}
     .hero-sep{width:1px;height:14px;background:var(--brass);opacity:.5;display:inline-block;margin:0 24px}
+
     .hero-landowner{display:none}
     .hero-landowner-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.9rem;letter-spacing:.04em;text-transform:uppercase;font-weight:500;white-space:nowrap;color:var(--paper);background:var(--clay);padding:14px 22px;border-radius:3px;border:none;box-shadow:0 8px 20px rgba(178,58,40,.28);transition:color .25s var(--ease),background .25s var(--ease)}
     .hero-landowner-link:hover,.hero-landowner-link:active{color:var(--paper);background:var(--clay-bright)}
@@ -97,6 +99,7 @@
     .footprint-stats .stat strong{font-family:var(--mono);font-weight:600;font-size:clamp(1.1rem,1.9vw,1.5rem);color:var(--glow-strong);letter-spacing:.02em}
     .footprint-stats .stat small{font-family:var(--sans);font-size:.8rem;color:rgba(250,246,234,.62);max-width:220px;line-height:1.45}
     .stat-divider{width:1px;align-self:stretch;background:var(--line-on-navy)}
+
     .map-canvas-wrap{display:flex;justify-content:center;max-width:1780px;margin:0 auto}
     .map-stage{position:relative;height:min(64vh,700px);width:auto;max-width:1520px;aspect-ratio:860 / 535}
     .map-canvas svg{filter:drop-shadow(0 10px 26px rgba(0,0,0,.45)) drop-shadow(0 0 1.5px rgba(250,246,234,.4))}
@@ -122,23 +125,25 @@
     .ch-line{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,4vw,3rem);color:var(--navy);line-height:1.18}
     .ch-line-2{align-self:flex-end;font-style:italic;font-weight:500;color:var(--clay);margin-top:8px;padding-right:clamp(0px,4vw,44px)}
     .ch-ellipsis{color:var(--brass)}
+
     .capabilities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,2.8vw,38px);align-items:stretch}
     .cap-card{position:relative;min-height:320px;padding:clamp(34px,3.5vw,48px) clamp(30px,3vw,42px);background:#FFFDF7;border-radius:3px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(34,28,21,.04),0 12px 28px rgba(34,28,21,.06);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
     .cap-card:hover{transform:translateY(-5px);box-shadow:0 3px 6px rgba(34,28,21,.05),0 18px 36px rgba(34,28,21,.09)}
     .cap-card--linked{cursor:pointer}
-    .cap-card h3{font-family:var(--mono);font-size:.82rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;text-align:left;color:var(--navy);line-height:1.4;margin:0 0 28px}
-    .cap-card-tagline{font-family:var(--serif);font-size:clamp(1.45rem,2.1vw,1.85rem);font-weight:600;line-height:1.22;color:var(--navy);margin:0 0 18px;max-width:340px}
-    .cap-card-copy{font-size:.96rem;line-height:1.6;color:var(--ink-soft);margin:0;max-width:390px}
-    .cap-card-action{margin-top:auto;padding-top:28px;font-family:var(--mono);font-size:.75rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--clay);display:inline-flex;align-items:center;gap:8px;transition:gap .25s var(--ease)}
+    .cap-card h3{font-family:var(--mono);font-size:.82rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;text-align:left;color:var(--navy);line-height:1.4;margin:0 0 34px}
+    .cap-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px}
+    .cap-list li{font-family:var(--sans);font-size:1rem;font-weight:500;line-height:1.45;color:var(--navy);margin:0}
+    .cap-list strong{font-weight:600;color:var(--navy)}
+    .cap-card-action{margin-top:auto;padding-top:30px;font-family:var(--mono);font-size:.75rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--clay);display:inline-flex;align-items:center;gap:8px;transition:gap .25s var(--ease)}
     .cap-card-action span{transition:transform .25s var(--ease)}
     .cap-card:hover .cap-card-action{gap:11px}
     .cap-card:hover .cap-card-action span{transform:translateX(3px)}
 
     /* Proven Experience */
-    .proven-section{min-height:65vh;display:flex;flex-direction:column;justify-content:center;padding:clamp(92px,10vw,130px) 0;background:var(--paper)}
+    .proven-section{min-height:65vh;display:flex;flex-direction:column;justify-content:center;padding:clamp(96px,10vw,132px) 0;background:var(--paper)}
     .proof-head{margin:0 auto}
     .proof-head h2{font-size:clamp(2.1rem,4.3vw,3.2rem);color:var(--navy)}
-    .marquee-stack{width:100%;margin-top:clamp(64px,8vw,100px);display:flex;flex-direction:column;gap:2px}
+    .marquee-stack{width:100%;margin-top:clamp(68px,8vw,104px);display:flex;flex-direction:column;gap:2px}
     .marquee-viewport{position:relative;overflow:hidden;border-top:1px solid var(--paper-dim);border-bottom:1px solid var(--paper-dim);cursor:grab;touch-action:pan-y}
     .marquee-viewport.dragging{cursor:grabbing}
     .marquee-viewport::before,.marquee-viewport::after{content:"";position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
@@ -156,6 +161,7 @@
     .cta-btn:hover{background:var(--clay);border-color:var(--clay)}
     .cta-btn .arrow{transition:transform .25s var(--ease)}
     .cta-btn:hover .arrow{transform:translateX(4px)}
+
     footer{background:linear-gradient(180deg,#16222C 0%,#111B23 100%);color:var(--paper);padding:64px 0 32px;position:relative;border-top:2px solid var(--clay)}
     .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid var(--line-on-navy);text-align:center;align-items:start}
     .footer-brand{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
@@ -232,7 +238,8 @@
       .ch-line-2{align-self:center;padding-right:0}
       .commitment-headline{align-items:center}
       .cap-card{min-height:0;padding:30px 26px}
-      .cap-card-tagline{font-size:1.45rem}
+      .cap-list{gap:14px}
+      .cap-list li{font-size:.96rem}
       .proven-section{min-height:60vh;padding-top:clamp(82px,13vw,108px);padding-bottom:clamp(88px,14vw,116px)}
       .marquee-stack{margin-top:clamp(54px,10vw,72px)}
       .marquee-viewport::before,.marquee-viewport::after{width:54px}
@@ -246,6 +253,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- Navigation -->
@@ -253,6 +261,7 @@
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
+
     <ul class="nav-menu-centered">
       <li class="desktop-only"><a class="nav-link" href="index.html">Home</a></li>
       <li class="desktop-only"><a class="nav-link" href="about.html">About</a></li>
@@ -265,7 +274,11 @@
       <li class="desktop-only"><a class="nav-link" href="services.html">Services</a></li>
       <li class="desktop-only"><a class="nav-link" href="contact.html">Contact</a></li>
     </ul>
-    <a class="nav-landowner-link" href="about.html#landowner-info">Contacted by APS? <span class="arrow">→</span></a>
+
+    <a class="nav-landowner-link" href="about.html#landowner-info">
+      Contacted by APS?
+      <span class="arrow">→</span>
+    </a>
   </nav>
 
   <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
@@ -285,7 +298,9 @@
       <div class="hero-rule"></div>
     </div>
 
-    <p class="hero-purpose">Supporting the energy, exploration, and infrastructure projects that power America.</p>
+    <p class="hero-purpose">
+      Supporting the energy, exploration, and infrastructure projects that power America.
+    </p>
 
     <nav class="hero-capabilities" aria-label="Our services" data-reveal>
       <a class="hero-cap-link" href="services.html#title-ownership">Title &amp; Leasing</a>
@@ -298,7 +313,10 @@
     </nav>
 
     <div class="hero-landowner">
-      <a class="hero-landowner-link" href="about.html#landowner-info">Contacted by APS? Start Here <span class="arrow">→</span></a>
+      <a class="hero-landowner-link" href="about.html#landowner-info">
+        Contacted by APS? Start Here
+        <span class="arrow">→</span>
+      </a>
     </div>
   </header>
 
@@ -314,17 +332,23 @@
           <strong>3 Locations</strong>
           <small>Utah &bull; Montana &bull; Texas</small>
         </span>
+
         <span class="stat-divider" aria-hidden="true"></span>
+
         <span class="stat">
           <strong>28 States</strong>
           <small>plus project experience in Alberta and Saskatchewan</small>
         </span>
+
         <span class="stat-divider" aria-hidden="true"></span>
+
         <span class="stat">
           <strong>Hundreds</strong>
           <small>of projects completed</small>
         </span>
+
         <span class="stat-divider" aria-hidden="true"></span>
+
         <span class="stat">
           <strong>Thousands</strong>
           <small>of successful negotiations</small>
@@ -333,7 +357,12 @@
 
       <div class="map-canvas-wrap" data-reveal>
         <div class="map-stage">
-          <div id="us-map" class="map-canvas" aria-label="Interactive map of the contiguous United States showing APS Land Services coverage and locations"></div>
+          <div
+            id="us-map"
+            class="map-canvas"
+            aria-label="Interactive map of the contiguous United States showing APS Land Services coverage and locations"
+          ></div>
+
           <div id="map-state-panel" class="map-state-panel">
             <span id="msp-name" class="msp-name"></span>
           </div>
@@ -346,26 +375,35 @@
   <section class="capabilities-section shell" id="capabilities">
     <div class="commitment-head" data-reveal>
       <h2 class="commitment-headline">
-        <span class="ch-line ch-line-1">We're committed to the details<span class="ch-ellipsis">…</span></span>
-        <span class="ch-line ch-line-2">…and the deadlines.</span>
+        <span class="ch-line ch-line-1">
+          We're committed to the details<span class="ch-ellipsis">…</span>
+        </span>
+        <span class="ch-line ch-line-2">
+          …and the deadlines.
+        </span>
       </h2>
     </div>
 
     <div class="capabilities-grid">
+
       <a class="cap-card cap-card--linked" href="about.html#team" data-reveal>
         <h3>Consistent Execution</h3>
-        <p class="cap-card-tagline">Work stays in capable hands.</p>
+
         <ul class="cap-list">
           <li>Direct APS leadership oversight</li>
           <li>Clear, responsive communication</li>
           <li>Experienced field personnel</li>
         </ul>
-        <span class="cap-card-action">Meet the Team <span>→</span></span>
+
+        <span class="cap-card-action">
+          Meet the Team
+          <span>→</span>
+        </span>
       </a>
 
       <div class="cap-card" data-reveal>
         <h3>Reliable Pricing</h3>
-        <p class="cap-card-tagline">Clear expectations from the start.</p>
+
         <ul class="cap-list">
           <li>Turnkey pricing available</li>
           <li>Scope-specific pricing available</li>
@@ -375,14 +413,19 @@
 
       <a class="cap-card cap-card--linked" href="services.html#safety-hse" data-reveal>
         <h3>Safety &amp; Compliance</h3>
-        <p class="cap-card-tagline">Safety is built into the work.</p>
+
         <ul class="cap-list">
           <li>Formal Safety Program Manual</li>
           <li>Stop-Work Authority</li>
           <li>ISNetworld member</li>
         </ul>
-        <span class="cap-card-action">Safety &amp; HSE <span>→</span></span>
+
+        <span class="cap-card-action">
+          Safety &amp; HSE
+          <span>→</span>
+        </span>
       </a>
+
     </div>
   </section>
 
@@ -398,6 +441,7 @@
       <div class="marquee-viewport" id="marqueeViewportA">
         <div class="marquee-track" id="marqueeTrackA"></div>
       </div>
+
       <div class="marquee-viewport" id="marqueeViewportB">
         <div class="marquee-track" id="marqueeTrackB"></div>
       </div>
@@ -408,8 +452,12 @@
   <section class="cta-band">
     <div class="shell cta-inner" data-reveal>
       <h2>Let's get to work.</h2>
+
       <div class="cta-actions">
-        <a class="cta-btn" href="contact.html">Contact Us <span class="arrow">→</span></a>
+        <a class="cta-btn" href="contact.html">
+          Contact Us
+          <span class="arrow">→</span>
+        </a>
       </div>
     </div>
   </section>
@@ -417,15 +465,35 @@
   <footer>
     <div class="shell">
       <div class="footer-grid">
+
         <div class="col-brand footer-brand">
-          <img class="footer-logo-img" src="assets/APSLand_Logo.png" alt="APS Land Services" decoding="async" onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='block'">
-          <span id="footerLogoFallback" class="footer-brand-fallback">APS Land Services</span>
+          <img
+            class="footer-logo-img"
+            src="assets/APSLand_Logo.png"
+            alt="APS Land Services"
+            decoding="async"
+            onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='block'"
+          >
+
+          <span id="footerLogoFallback" class="footer-brand-fallback">
+            APS Land Services
+          </span>
+
           <p>Setting the Standard Since 1980</p>
-          <a class="footer-hq-badge" href="https://www.google.com/maps/search/?api=1&query=Lewiston%2C+UT" target="_blank" rel="noopener noreferrer">Cache Valley, Utah ↗</a>
+
+          <a
+            class="footer-hq-badge"
+            href="https://www.google.com/maps/search/?api=1&query=Lewiston%2C+UT"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Cache Valley, Utah ↗
+          </a>
         </div>
 
         <div class="col-nav">
           <h4 class="nav-header">Navigation</h4>
+
           <ul class="nav-list">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -436,11 +504,22 @@
 
         <div class="col-contact">
           <h4 class="contact-header">Contact</h4>
+
           <ul class="contact-list">
-            <li><a class="contact-link" href="tel:+13039035873">303-903-5873</a></li>
-            <li><a class="contact-link" href="mailto:allstatepermit@allstatepermit.com">allstatepermit@allstatepermit.com</a></li>
+            <li>
+              <a class="contact-link" href="tel:+13039035873">
+                303-903-5873
+              </a>
+            </li>
+
+            <li>
+              <a class="contact-link" href="mailto:allstatepermit@allstatepermit.com">
+                allstatepermit@allstatepermit.com
+              </a>
+            </li>
           </ul>
         </div>
+
       </div>
 
       <div class="footer-bottom">
@@ -464,17 +543,27 @@
         mobileDrawer.setAttribute('aria-hidden','true');
       }
 
+      /* Navigation */
+
       function samePage(href){
         var target=document.createElement('a');
         target.href=href;
-        var targetPath=target.pathname.replace(/\/index\.html$/,'/').replace(/\/$/,'')||'/';
-        var herePath=window.location.pathname.replace(/\/index\.html$/,'/').replace(/\/$/,'')||'/';
+
+        var targetPath=target.pathname
+          .replace(/\/index\.html$/,'/')
+          .replace(/\/$/,'')||'/';
+
+        var herePath=window.location.pathname
+          .replace(/\/index\.html$/,'/')
+          .replace(/\/$/,'')||'/';
+
         return targetPath===herePath;
       }
 
       if(toggleBtn&&mobileDrawer){
         toggleBtn.addEventListener('click',function(e){
           e.stopPropagation();
+
           if(mobileDrawer.classList.contains('is-open')){
             closeDrawer();
           }else{
@@ -488,31 +577,56 @@
 
       document.addEventListener('click',function(e){
         if(!mobileDrawer||!mobileDrawer.classList.contains('is-open'))return;
+
         var insideNav=nav&&nav.contains(e.target);
         var insideDrawer=mobileDrawer.contains(e.target);
-        if(!insideNav&&!insideDrawer)closeDrawer();
+
+        if(!insideNav&&!insideDrawer){
+          closeDrawer();
+        }
       });
 
-      document.addEventListener('scroll',function(){closeDrawer()},{passive:true});
+      document.addEventListener(
+        'scroll',
+        function(){
+          closeDrawer();
+        },
+        {passive:true}
+      );
 
       document.querySelectorAll('.nav-link').forEach(function(link){
         link.addEventListener('click',function(e){
           var href=link.getAttribute('href');
+
           closeDrawer();
+
           if(samePage(href)){
             e.preventDefault();
-            window.scrollTo({top:0,behavior:'smooth'});
+            window.scrollTo({
+              top:0,
+              behavior:'smooth'
+            });
           }
         });
       });
 
-      var currentPath=window.location.pathname.split('/').pop()||'index.html';
+      var currentPath=
+        window.location.pathname.split('/').pop()||'index.html';
+
       document.querySelectorAll('.nav-link').forEach(function(link){
         var href=link.getAttribute('href');
-        link.classList.toggle('active',href===currentPath||(currentPath===''&&href==='index.html'));
+
+        link.classList.toggle(
+          'active',
+          href===currentPath||
+          (currentPath===''&&href==='index.html')
+        );
       });
 
+      /* Reveal on scroll */
+
       var reveals=document.querySelectorAll('[data-reveal]');
+
       if('IntersectionObserver' in window){
         var io=new IntersectionObserver(function(entries){
           entries.forEach(function(entry){
@@ -522,46 +636,107 @@
             }
           });
         },{threshold:.15});
-        reveals.forEach(function(el){io.observe(el)});
+
+        reveals.forEach(function(el){
+          io.observe(el);
+        });
       }else{
-        reveals.forEach(function(el){el.classList.add('in-view')});
+        reveals.forEach(function(el){
+          el.classList.add('in-view');
+        });
       }
 
-      if('scrollRestoration' in history)history.scrollRestoration='manual';
+      if('scrollRestoration' in history){
+        history.scrollRestoration='manual';
+      }
+
+      /* Client marquee */
 
       var CLIENTS_ROW_A=[
-        'Battelle','777 Oil & Gas','Charger Exploration','ConocoPhillips','XTO Energy','EOG Resources','Dawson Geophysical','Schlumberger',
-        'Occidental Petroleum (Oxy)','Devon Energy','Apache Corporation','TGS','Pioneer Natural Resources','Anadarko Petroleum','Marathon Oil','Noble Energy'
+        'Battelle',
+        '777 Oil & Gas',
+        'Charger Exploration',
+        'ConocoPhillips',
+        'XTO Energy',
+        'EOG Resources',
+        'Dawson Geophysical',
+        'Schlumberger',
+        'Occidental Petroleum (Oxy)',
+        'Devon Energy',
+        'Apache Corporation',
+        'TGS',
+        'Pioneer Natural Resources',
+        'Anadarko Petroleum',
+        'Marathon Oil',
+        'Noble Energy'
       ];
 
       var CLIENTS_ROW_B=[
-        'Interstate Exploration','PanAmerican Geoexchange','Samson Resources','Ormat Technologies','PGS Onshore','Denbury Resources','MicroSeismic, Inc.',
-        'Seitel','Geokinetics','Global Geophysical Services','SAE Exploration','Vantage Geophysical','Paragon Geophysical','Silverthorne Seismic','Tesla-Conquest Inc.'
+        'Interstate Exploration',
+        'PanAmerican Geoexchange',
+        'Samson Resources',
+        'Ormat Technologies',
+        'PGS Onshore',
+        'Denbury Resources',
+        'MicroSeismic, Inc.',
+        'Seitel',
+        'Geokinetics',
+        'Global Geophysical Services',
+        'SAE Exploration',
+        'Vantage Geophysical',
+        'Paragon Geophysical',
+        'Silverthorne Seismic',
+        'Tesla-Conquest Inc.'
       ];
 
       function buildTrack(el,list){
         if(!el)return;
+
         var frag=document.createDocumentFragment();
+
         list.forEach(function(name){
           var cell=document.createElement('div');
+
           cell.className='logo-cell';
           cell.textContent=name;
+
           frag.appendChild(cell);
         });
+
         el.appendChild(frag.cloneNode(true));
         el.appendChild(frag);
       }
 
-      buildTrack(document.getElementById('marqueeTrackA'),CLIENTS_ROW_A);
-      buildTrack(document.getElementById('marqueeTrackB'),CLIENTS_ROW_B);
+      buildTrack(
+        document.getElementById('marqueeTrackA'),
+        CLIENTS_ROW_A
+      );
 
-      var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      buildTrack(
+        document.getElementById('marqueeTrackB'),
+        CLIENTS_ROW_B
+      );
 
-      function setupMarquee(viewport,track,direction,durationSeconds){
+      var reduceMotion=
+        window.matchMedia&&
+        window.matchMedia(
+          '(prefers-reduced-motion: reduce)'
+        ).matches;
+
+      function setupMarquee(
+        viewport,
+        track,
+        direction,
+        durationSeconds
+      ){
         if(!viewport||!track)return null;
 
         var half=track.scrollWidth/2||1;
-        var autoSpeed=reduceMotion?0:half/(durationSeconds*60);
+        var autoSpeed=
+          reduceMotion
+            ? 0
+            : half/(durationSeconds*60);
+
         var offset=0;
         var momentum=0;
         var isDown=false;
@@ -571,11 +746,15 @@
 
         function wrap(){
           offset%=half;
-          if(offset<0)offset+=half;
+
+          if(offset<0){
+            offset+=half;
+          }
         }
 
         function render(){
-          track.style.transform='translate3d('+(-offset)+'px,0,0)';
+          track.style.transform=
+            'translate3d('+(-offset)+'px,0,0)';
         }
 
         function frame(){
@@ -587,38 +766,55 @@
             momentum=0;
             offset+=direction*autoSpeed;
           }
+
           wrap();
           render();
+
           requestAnimationFrame(frame);
         }
 
-        viewport.addEventListener('pointerdown',function(e){
-          isDown=true;
-          momentum=0;
-          lastX=e.clientX;
-          lastT=performance.now();
-          lastDx=0;
-          viewport.classList.add('dragging');
-          if(viewport.setPointerCapture){
-            try{viewport.setPointerCapture(e.pointerId)}catch(err){}
-          }
-        });
+        viewport.addEventListener(
+          'pointerdown',
+          function(e){
+            isDown=true;
+            momentum=0;
+            lastX=e.clientX;
+            lastT=performance.now();
+            lastDx=0;
 
-        viewport.addEventListener('pointermove',function(e){
-          if(!isDown)return;
-          var now=performance.now();
-          var dx=e.clientX-lastX;
-          offset-=dx;
-          wrap();
-          render();
-          var dt=Math.max(1,now-lastT);
-          lastDx=dx/dt;
-          lastX=e.clientX;
-          lastT=now;
-        });
+            viewport.classList.add('dragging');
+
+            if(viewport.setPointerCapture){
+              try{
+                viewport.setPointerCapture(e.pointerId);
+              }catch(err){}
+            }
+          }
+        );
+
+        viewport.addEventListener(
+          'pointermove',
+          function(e){
+            if(!isDown)return;
+
+            var now=performance.now();
+            var dx=e.clientX-lastX;
+
+            offset-=dx;
+            wrap();
+            render();
+
+            var dt=Math.max(1,now-lastT);
+
+            lastDx=dx/dt;
+            lastX=e.clientX;
+            lastT=now;
+          }
+        );
 
         function endDrag(){
           if(!isDown)return;
+
           isDown=false;
           viewport.classList.remove('dragging');
           momentum=lastDx*16.7;
@@ -626,29 +822,57 @@
 
         viewport.addEventListener('pointerup',endDrag);
         viewport.addEventListener('pointercancel',endDrag);
-        viewport.addEventListener('pointerleave',function(){if(isDown)endDrag()});
+
+        viewport.addEventListener(
+          'pointerleave',
+          function(){
+            if(isDown){
+              endDrag();
+            }
+          }
+        );
+
         requestAnimationFrame(frame);
 
         return {
           recalc:function(){
             half=track.scrollWidth/2||1;
-            autoSpeed=reduceMotion?0:half/(durationSeconds*60);
+            autoSpeed=
+              reduceMotion
+                ? 0
+                : half/(durationSeconds*60);
+
             wrap();
             render();
           }
         };
       }
 
-      var marqueeA=setupMarquee(document.getElementById('marqueeViewportA'),document.getElementById('marqueeTrackA'),1,96);
-      var marqueeB=setupMarquee(document.getElementById('marqueeViewportB'),document.getElementById('marqueeTrackB'),-1,104);
+      var marqueeA=setupMarquee(
+        document.getElementById('marqueeViewportA'),
+        document.getElementById('marqueeTrackA'),
+        1,
+        96
+      );
 
-      window.addEventListener('resize',function(){
-        if(marqueeA)marqueeA.recalc();
-        if(marqueeB)marqueeB.recalc();
-      });
+      var marqueeB=setupMarquee(
+        document.getElementById('marqueeViewportB'),
+        document.getElementById('marqueeTrackB'),
+        -1,
+        104
+      );
+
+      window.addEventListener(
+        'resize',
+        function(){
+          if(marqueeA)marqueeA.recalc();
+          if(marqueeB)marqueeB.recalc();
+        }
+      );
     })();
   </script>
 
   <script src="assets/us-map.js?v=20260831-1" defer></script>
+
 </body>
 </html>
