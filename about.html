@@ -216,39 +216,37 @@
     list-style: none;
   }
 
-  /* Hero */
-
-  .about-hero{
-    padding: calc(var(--nav-h) + clamp(48px, 6vw, 72px)) 0 clamp(52px, 6vw, 72px);
-    text-align: center;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .about-hero h1{
-    margin-top: 10px;
-    font-size: clamp(2.8rem, 6vw, 4.8rem);
-    color: var(--navy);
-    line-height: 1.08;
-  }
-
   /* Company */
 
-  .company-section{
-    padding: clamp(72px, 8vw, 104px) 0;
-  }
-
-  .company-grid{
+  .company-intro{
     display: grid;
-    grid-template-columns: 1fr 1.6fr;
-    gap: clamp(32px, 5vw, 64px);
+    grid-template-columns: minmax(320px, .92fr) minmax(0, 1.08fr);
+    gap: clamp(36px, 5vw, 72px);
     align-items: start;
   }
 
+  .company-photo{
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--paper-dim);
+    box-shadow: 0 12px 28px rgba(34,28,21,.12);
+  }
+
+  .company-photo img{
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .company-title{
+    margin-bottom: 20px;
+  }
+
   .company-title h2{
-    margin-top: 6px;
-    font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
     color: var(--navy);
-    line-height: 1.15;
+    line-height: 1.1;
   }
 
   .company-body p{
@@ -262,16 +260,10 @@
     margin-bottom: 0;
   }
 
-  .company-body p.lead{
-    font-size: 1.15rem;
-    font-weight: 500;
-    color: var(--navy);
-  }
-
   /* Team */
 
   .team-section{
-    padding: clamp(72px, 8vw, 104px) 0;
+    padding: calc(var(--nav-h) + clamp(72px, 8vw, 104px)) 0 clamp(72px, 8vw, 104px);
     background: var(--navy-deep);
   }
 
@@ -351,140 +343,6 @@
 
   .team-bio + .team-bio{
     margin-top: 10px;
-  }
-
-  /* Landowner */
-
-  .control-section{
-    padding: clamp(76px, 8.5vw, 108px) 0;
-  }
-
-  .control-header{
-    max-width: 920px;
-    margin: 0 auto clamp(40px, 5vw, 56px);
-    text-align: center;
-  }
-
-  .control-header h2{
-    margin-bottom: 14px;
-    font-size: clamp(1.9rem, 3.2vw, 2.5rem);
-    color: var(--navy);
-  }
-
-  .control-header p{
-    margin: 0;
-    font-size: 1.02rem;
-    line-height: 1.65;
-    color: var(--ink-soft);
-  }
-
-  .reassure-grid{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: clamp(28px, 3.2vw, 40px) clamp(36px, 4.4vw, 60px);
-    max-width: 860px;
-    margin: 0 auto clamp(48px, 5.5vw, 64px);
-  }
-
-  .reassure-item{
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    text-align: left;
-  }
-
-  .reassure-check{
-    display: flex;
-    flex: 0 0 auto;
-    align-items: center;
-    justify-content: center;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: rgba(178,58,40,.08);
-    color: var(--clay);
-  }
-
-  .reassure-check svg{
-    width: 20px;
-    height: 20px;
-  }
-
-  .reassure-item h3{
-    margin: 0 0 5px;
-    font-size: 1.16rem;
-    color: var(--navy);
-    line-height: 1.3;
-  }
-
-  .reassure-item p{
-    margin: 0;
-    font-size: .96rem;
-    line-height: 1.58;
-    color: var(--ink-soft);
-  }
-
-  .control-lead{
-    max-width: 760px;
-    margin: 0 auto 18px;
-    text-align: center;
-    font-family: var(--serif);
-    font-size: clamp(1.3rem, 2.3vw, 1.6rem);
-    font-style: italic;
-    font-weight: 500;
-    line-height: 1.5;
-    color: var(--navy);
-  }
-
-  .control-detail{
-    max-width: 700px;
-    margin: 0 auto 44px;
-    text-align: center;
-    font-size: .92rem;
-    line-height: 1.65;
-    color: var(--ink-soft);
-  }
-
-  .page-nav-links{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 16px 20px;
-    max-width: 940px;
-    margin: 0 auto;
-    padding-top: 32px;
-    border-top: 1px solid var(--line);
-  }
-
-  .page-nav-link{
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 26px;
-    border: 1px solid rgba(30,59,95,.3);
-    border-radius: 3px;
-    color: var(--navy);
-    font-family: var(--mono);
-    font-size: .8rem;
-    letter-spacing: .05em;
-    text-transform: uppercase;
-    font-weight: 600;
-    transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
-  }
-
-  .page-nav-link:hover{
-    background: var(--navy);
-    border-color: var(--navy);
-    color: var(--paper);
-  }
-
-  .page-nav-link .arrow{
-    transition: transform .25s var(--ease);
-  }
-
-  .page-nav-link:hover .arrow{
-    transform: translateX(4px);
   }
 
   /* CTA / Footer */
@@ -687,15 +545,18 @@
   /* Responsive */
 
   @media (max-width: 900px){
-    .company-grid{
+    .company-intro{
       grid-template-columns: 1fr;
-      gap: 20px;
-      text-align: center;
+      gap: 28px;
+    }
+
+    .company-photo{
+      max-width: 640px;
+      margin: 0 auto;
     }
 
     .company-title{
-      display: flex;
-      justify-content: center;
+      text-align: center;
     }
 
     .team-profile{
@@ -795,10 +656,6 @@
       padding: 0 20px;
     }
 
-    .about-hero{
-      padding-top: calc(var(--nav-h) + 48px);
-      padding-bottom: 56px;
-    }
 
     .company-section{
       padding-top: 68px;
@@ -806,7 +663,7 @@
     }
 
     .team-section{
-      padding-top: 72px;
+      padding-top: calc(var(--nav-h) + 72px);
       padding-bottom: 72px;
     }
 
@@ -814,27 +671,6 @@
       font-size: .95rem;
     }
 
-    .control-section{
-      padding-top: 72px;
-      padding-bottom: 72px;
-    }
-
-    .reassure-grid{
-      grid-template-columns: 1fr;
-      gap: 28px;
-      margin-bottom: 48px;
-    }
-
-    .reassure-item{
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      text-align: center;
-    }
-
-    .page-nav-links{
-      padding-top: 28px;
-    }
 
     .cta-band{
       padding-top: 76px;
@@ -897,32 +733,6 @@
   </ul>
 </div>
 
-<!-- Hero -->
-
-<header class="about-hero shell" data-reveal>
-  <h1>We are APS Land</h1>
-</header>
-
-<!-- Company -->
-
-<section class="company-section shell">
-  <div class="company-grid" data-reveal>
-    <div class="company-title">
-      <h2>Setting the Standard Since 1980</h2>
-    </div>
-
-    <div class="company-body">
-      <p class="lead">APS began in 1980 as Allstate Permit Services. From its roots in permitting, the company has grown to support energy, exploration, and infrastructure projects across North America.</p>
-
-      <p>Our work has spanned hundreds of successful projects in 23 states, plus experience in Alberta and Saskatchewan. Thousands of square miles have been successfully permitted, with extensive right-of-way acquired across energy and infrastructure projects. That work has required direct coordination with thousands of landowners across private, state, federal, and tribal lands. We don&rsquo;t outsource that communication.</p>
-
-      <p>Decades in the field have refined how we operate as we continue advancing our technology, processes, and project management, always focused on what matters most: getting the details right. We take pride in protecting landowners, field crews, the environment, and the projects entrusted to us.</p>
-
-      <p>In August 2026, we became APS Land Services. The new name reflects the expertise and capabilities we&rsquo;ve built while carrying forward the standard we started with: hard work, honesty, and being exceptionally good at what we do.</p>
-    </div>
-  </div>
-</section>
-
 <!-- Team -->
 
 <section class="team-section" id="team">
@@ -962,71 +772,25 @@
   </div>
 </section>
 
-<!-- Landowner -->
+<!-- Company -->
 
-<section class="control-section shell" id="landowner-info">
-  <div class="control-header" data-reveal>
-    <h2>You Stay in Control of Your Land</h2>
-    <p>If we've reached out, it's because a project may involve your property. Here's what that means for you.</p>
-  </div>
-
-  <div class="reassure-grid" data-reveal>
-    <div class="reassure-item">
-      <span class="reassure-check" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-      </span>
-      <div>
-        <h3>You Keep Your Land</h3>
-        <p>An access agreement never transfers ownership of your property.</p>
-      </div>
+<section class="company-section shell">
+  <div class="company-intro" data-reveal>
+    <div class="company-photo">
+      <img src="assets/vintage.jpg" alt="Historical vibroseis operations photograph" loading="lazy">
     </div>
 
-    <div class="reassure-item">
-      <span class="reassure-check" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-      </span>
-      <div>
-        <h3>Your Minerals Stay Yours</h3>
-        <p>This isn't a mineral lease. Seismic survey access doesn't touch your mineral rights.</p>
+    <div class="company-body">
+      <div class="company-title">
+        <h2>We are APS Land</h2>
       </div>
+
+      <p>Our work has spanned hundreds of successful projects in 23 states, plus experience in Alberta and Saskatchewan. Thousands of square miles have been successfully permitted, with extensive right-of-way acquired across energy and infrastructure projects. That work has required direct coordination with thousands of landowners across private, state, federal, and tribal lands. We don&rsquo;t outsource that communication.</p>
+
+      <p>Decades in the field have refined how we operate as we continue advancing our technology, processes, and project management, always focused on what matters most: getting the details right. We take pride in protecting landowners, field crews, the environment, and the projects entrusted to us.</p>
+
+      <p>In August 2026, we became APS Land Services. The new name reflects the expertise and capabilities we&rsquo;ve built while carrying forward the standard we started with: hard work, honesty, and being exceptionally good at what we do.</p>
     </div>
-
-    <div class="reassure-item">
-      <span class="reassure-check" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-      </span>
-      <div>
-        <h3>Surveying, Not Fracking</h3>
-        <p>Seismic surveying maps what's underground. It doesn't extract anything.</p>
-      </div>
-    </div>
-
-    <div class="reassure-item">
-      <span class="reassure-check" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-      </span>
-      <div>
-        <h3>Clear From Day One</h3>
-        <p>Access, compensation, and timing are all spelled out before any work starts.</p>
-      </div>
-    </div>
-  </div>
-
-  <p class="control-lead" data-reveal>We'll always tell you who we represent, why we've reached out, and what to expect before anything happens on your land.</p>
-
-  <p class="control-detail" data-reveal>This applies to seismic survey work as well as right-of-way, utility, and other infrastructure projects. The specifics vary by project, and we'll walk you through them directly. No surprises, no fine print.</p>
-
-  <div class="page-nav-links" data-reveal>
-    <a class="page-nav-link" href="index.html#clients">View Companies We've Represented <span class="arrow">→</span></a>
-    <a class="page-nav-link" href="contact.html">Contact APS Leadership <span class="arrow">→</span></a>
   </div>
 </section>
 
