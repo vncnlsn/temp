@@ -1,18 +1,15 @@
-/* ============================================================
-   APS LAND — US-MAP.JS  (contiguous US only, cropped viewBox,
-   randomized one-time reveal, TX county line, reserved-gutter
-   info card handled entirely in CSS via .map-state-panel).
-   ============================================================ */
+/* ================= MAP SETUP ================= */
 (function () {
   var mapEl = document.getElementById('us-map');
   if (!mapEl) return;
 
-  /* ---- Covered states (client-provided list) ---- */
+  /* Covered states */
   var COVERED = [
-    'AL','AR','AZ','CA','CO','FL','ID','IL','KS','LA','MD','MI','MS','MT','ND','NE','NV','NM','OH','OK','OR','PA','SD','TX','UT','WA','WV','WY'
+    'AL','AR','AZ','CA','CO','FL','ID','IL','KS','LA','MD','MI','MS','MT',
+    'ND','NE','NV','NM','OH','OK','OR','PA','SD','TX','UT','WA','WV','WY'
   ];
 
-  /* ---- Build and inject SVG (contiguous US only — AK/HI removed) ---- */
+  /* Build map SVG */
   var pathStrings = [
   '<path id="MA" data-state="MA" data-name="Massachusetts" d="m 956.31178,153.05085 -0.29118,-0.19412 0,0.29119 0.29118,-0.0971 z m -2.91189,-2.6207 0.67944,-0.29119 0,-0.38825 -0.67944,0.67944 z m 12.03583,-7.57092 -0.0971,-1.35889 -0.19412,-0.7765 0.29119,2.13539 z m -42.41659,-9.9975 -0.67944,0.29119 -5.5326,1.65007 -1.94126,0.67944 -2.23245,0.67944 -0.7765,0.29119 0,0.29119 0.29118,5.04728 0.29119,4.65903 0.29119,4.27078 0.48532,0.29119 1.74714,-0.48532 7.86211,-2.32951 0.19412,0.48531 13.97709,-5.33847 0.0971,0.19413 1.26182,-0.48532 4.4649,-1.74713 4.27078,5.14434 0,0 0.58238,-0.48531 0.29119,-1.45595 -0.0971,2.32952 0,0 0.97063,0 0.29119,1.16475 0.87357,1.65008 0,0 4.56197,-5.5326 3.78546,1.26182 0.87357,-1.94126 6.21204,-3.30015 -2.62071,-5.14435 0.67945,3.30015 -3.20309,2.42658 -3.59133,0.29119 -7.18267,-7.66799 -3.20309,-4.85315 3.20309,-3.39721 -3.30015,-0.19413 -1.35888,-3.20308 -0.0971,-0.19413 -5.53259,6.01791 -12.22996,4.07666 -3.97959,1.26182 0,0 z"/>',
   '<path id="MN" data-state="MN" data-name="Minnesota" d="m 558.54712,73.847349 1.94126,6.891482 4.07665,24.848159 1.94126,9.90044 0.58238,8.73568 2.23246,5.24141 0.48531,4.4649 0.38825,1.45595 -0.0971,0.29119 -3.88252,6.40616 2.52364,4.27078 4.85315,34.16622 0.19413,4.4649 4.85315,-0.29119 19.12144,-1.06769 47.75505,-3.97959 4.7561,-0.48532 0,-0.48531 -1.35889,-7.47386 -5.92085,-3.00896 -4.65903,-4.85315 -7.37679,-4.46491 -2.32952,-0.19412 -3.59133,-2.71777 0.97063,-13.39471 -3.39721,-3.10602 1.16476,-5.43554 6.21204,-5.62966 -1.0677,-11.64757 2.23245,-2.52364 0,0 7.57093,-7.95918 8.63861,-11.065195 3.30015,-2.329514 5.82379,-2.814831 6.11497,-4.561967 -4.07665,0.776505 -2.42658,-1.844199 -9.31806,1.261821 -1.45594,-1.747136 -8.34743,3.397209 -6.69736,-2.814831 -1.84419,-2.232452 -5.33848,0.388253 -3.59133,-1.844199 1.16476,-1.358884 -4.56197,-1.455947 -4.07665,0 -6.50323,2.814831 -1.26182,-1.941263 -10.28869,-1.455947 -3.49427,-8.73568 -0.38826,-2.620705 -4.4649,-1.26182 0.38825,7.47386 -11.8417,0.873568 -14.65653,0.582379 -0.97063,0.09706 z"/>',
@@ -65,366 +62,293 @@
   '<path id="MI" data-state="MI" data-name="Michigan" d="m 719.96309,138.2002 -0.48532,-0.77651 -0.0971,0.97063 0.58238,-0.19412 z m 1.55301,-1.74714 -1.16476,-1.55301 -0.19413,0.67944 1.35889,0.87357 z m 0.97063,-6.98854 -0.97063,-0.87357 0,0.19412 0.97063,0.67945 z m -2.42658,76.00042 12.03583,-1.94126 3.39721,-0.67944 14.85065,-2.62071 0.29119,1.26182 0.97063,-0.29119 6.40617,-1.35888 6.11498,-1.45595 6.21204,-1.55301 -0.0971,-0.29119 3.20309,-6.3091 -0.29119,-5.24141 3.59133,-9.02687 2.81483,1.65007 1.0677,-2.03832 -0.29119,-7.76505 -2.62071,-4.85316 -3.88252,-10.28869 -3.39721,-3.78546 -1.74714,-0.48531 -6.3091,4.36784 0.67944,0.87356 -3.30014,6.21204 -3.20309,-0.58238 -0.97063,-6.50322 1.35889,-0.48532 2.81483,-6.50323 0.29119,-11.45345 -4.36784,-9.70631 -9.70632,-1.65007 -0.97063,-1.45595 -9.02687,-2.6207 -4.07665,5.04728 0.38825,4.36784 -3.10602,3.88252 0.67945,6.01792 -3.00896,2.13539 0,-7.57093 -2.71777,5.72673 -3.20308,5.04728 -2.13539,1.65007 1.06769,5.33847 -1.35888,5.5326 0.77651,6.89148 -0.97064,3.39721 6.98855,13.39471 0.87357,5.14435 -0.87357,9.51218 -4.65903,10.67695 -0.58238,0.38825 z m 20.77151,-87.45387 -2.52364,0.19412 1.55301,1.16476 0.97063,-1.35888 z m -14.7536,2.52364 -0.7765,0 0.87357,0.38825 -0.0971,-0.38825 z m 16.98605,-12.32702 -0.97063,-1.55301 -0.38825,0.0971 1.35888,1.45594 z m -87.93919,7.08561 3.10602,1.74714 15.91835,4.85315 7.3768,1.94127 7.18267,0.48531 5.24141,4.27078 0,6.60029 4.65903,4.65903 0,-0.0971 3.78546,-10.96814 4.56197,-3.20308 3.49427,-3.88252 0.58238,3.49427 3.59134,-5.5326 8.63861,-3.30014 0.67945,-1.35889 8.73568,1.0677 3.39721,1.74713 1.65007,-4.27077 1.55301,0.97063 6.79442,-1.0677 -1.65008,-2.71777 -3.00895,-1.74713 0.58238,-6.3091 -5.92085,3.30014 -5.43554,-0.67944 -1.74714,-4.17371 0.58238,-1.358888 -7.37679,3.494268 -4.7561,0.29119 -8.54155,5.24141 -0.97063,1.94126 -5.24141,-1.26182 -3.30015,1.45595 -6.60029,-5.72672 -14.65653,-4.46491 -0.29119,-1.747133 -9.41512,9.026873 -5.33847,1.35888 -7.57093,5.72673 -0.29119,0.19412 z m 34.36035,-22.033327 -11.35639,5.629661 3.78546,3.688396 1.45595,-3.688396 3.88253,-4.756093 2.23245,-0.873568 z M 676.77,79.962326 l -7.76505,5.338471 -0.38825,2.620704 6.11497,-4.464903 2.03833,-3.494272 z"/>'
   ];
 
-  var svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+var svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
-/* Cropped from the original 0 0 1000 589 to the bounding box of the
-   contiguous states. */
-svgEl.setAttribute('viewBox', '135 15 860 535');
-svgEl.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-svgEl.setAttribute('aria-label', 'Interactive map of the contiguous United States');
-svgEl.setAttribute('role', 'img');
-svgEl.style.cssText = 'width:100%;height:100%;display:block;position:absolute;inset:0;';
-svgEl.innerHTML = pathStrings.join('\n');
-mapEl.appendChild(svgEl);
+  svgEl.setAttribute('viewBox', '135 15 860 535');
+  svgEl.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  svgEl.setAttribute('aria-label', 'Interactive map of the contiguous United States');
+  svgEl.setAttribute('role', 'img');
+  svgEl.style.cssText = 'width:100%;height:100%;display:block;position:absolute;inset:0;';
+  svgEl.innerHTML = pathStrings.join('\n');
+  mapEl.appendChild(svgEl);
 
+  /* APS locations */
+  var LOCATIONS = [
+    { cx: 343.78, cy: 204.48, name: 'Cove, UT' },
+    { cx: 329.04, cy: 68.73, name: 'Whitefish, MT' },
+    { cx: 576.74, cy: 402.54, name: 'Dallas, TX' }
+  ];
 
-/* ---- APS location markers ----
-   These represent APS personnel / operating locations.
-   All three locations use the same visual treatment and interaction. */
+  var locationGroups = [];
 
-var LOCATIONS = [
-  {
-    cx: 343.78,
-    cy: 204.48,
-    name: 'Cove, UT'
-  },
-  {
-    cx: 329.04,
-    cy: 68.73,
-    name: 'Whitefish, MT'
-  },
-  {
-    cx: 576.74,
-    cy: 402.54,
-    name: 'Dallas, TX'
-  }
-];
+  LOCATIONS.forEach(function (location) {
+    var group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 
-var locationGroups = [];
+    group.setAttribute('class', 'map-location');
+    group.setAttribute('tabindex', '0');
+    group.setAttribute('role', 'button');
+    group.setAttribute('aria-label', location.name);
 
-LOCATIONS.forEach(function (location) {
-  var group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    var ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    ring.setAttribute('class', 'location-ring');
+    ring.setAttribute('cx', location.cx);
+    ring.setAttribute('cy', location.cy);
+    ring.setAttribute('r', '9');
+    ring.setAttribute('fill', 'none');
+    ring.setAttribute('stroke', '#D9755F');
+    ring.setAttribute('stroke-width', '1');
 
-  group.setAttribute('class', 'map-location');
-  group.setAttribute('tabindex', '0');
-  group.setAttribute('role', 'button');
-  group.setAttribute('aria-label', location.name);
+    var dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dot.setAttribute('class', 'location-dot');
+    dot.setAttribute('cx', location.cx);
+    dot.setAttribute('cy', location.cy);
+    dot.setAttribute('r', '5.5');
+    dot.setAttribute('fill', '#B23A28');
+    dot.setAttribute('stroke', '#D9755F');
+    dot.setAttribute('stroke-width', '1.5');
 
-  var ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  ring.setAttribute('class', 'location-ring');
-  ring.setAttribute('cx', location.cx);
-  ring.setAttribute('cy', location.cy);
-  ring.setAttribute('r', '9');
-  ring.setAttribute('fill', 'none');
-  ring.setAttribute('stroke', '#D9755F');
-  ring.setAttribute('stroke-width', '1');
+    group.appendChild(ring);
+    group.appendChild(dot);
+    svgEl.appendChild(group);
 
-  var dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  dot.setAttribute('class', 'location-dot');
-  dot.setAttribute('cx', location.cx);
-  dot.setAttribute('cy', location.cy);
-  dot.setAttribute('r', '5.5');
-  dot.setAttribute('fill', '#B23A28');
-  dot.setAttribute('stroke', '#D9755F');
-  dot.setAttribute('stroke-width', '1.5');
-
-  group.appendChild(ring);
-  group.appendChild(dot);
-  svgEl.appendChild(group);
-
-  locationGroups.push({
-    el: group,
-    name: location.name
+    locationGroups.push({
+      el: group,
+      name: location.name
+    });
   });
-});
 
+  /* Map info panel */
+  var panel = document.getElementById('map-state-panel');
+  var panelName = document.getElementById('msp-name');
 
-/* ---- Map info panel ---- */
+  function showPanel(name) {
+    if (!panel || !panelName) return;
 
-var panel = document.getElementById('map-state-panel');
-var panelName = document.getElementById('msp-name');
+    panelName.textContent = name;
+    panel.classList.add('msp-visible');
+  }
 
-function showPanel(name) {
-  if (!panel || !panelName) return;
+  function hidePanel() {
+    if (!panel || !panelName) return;
 
-  panelName.textContent = name;
-  panel.classList.add('msp-visible');
-}
+    panel.classList.remove('msp-visible');
+    panelName.textContent = '';
+  }
 
-function hidePanel() {
-  if (!panel || !panelName) return;
+  /* Interactive elements */
+  var paths = svgEl.querySelectorAll('path[data-state]');
+  var allInteractive = [];
 
-  panel.classList.remove('msp-visible');
-  panelName.textContent = '';
-}
+  paths.forEach(function (path) {
+    allInteractive.push(path);
+  });
 
+  locationGroups.forEach(function (location) {
+    allInteractive.push(location.el);
+  });
 
-/* ---- Unified interaction wiring ---- */
+  var pinned = null;
 
-var paths = svgEl.querySelectorAll('path[data-state]');
-var allInteractive = [];
+  function wireInteractive(el, name, reactive) {
+    el.addEventListener('mouseenter', function () {
+      if (pinned) return;
 
-paths.forEach(function (path) {
-  allInteractive.push(path);
-});
+      if (reactive) {
+        el.classList.add('hovered');
+      }
 
-locationGroups.forEach(function (location) {
-  allInteractive.push(location.el);
-});
+      showPanel(name);
+    });
 
-var pinned = null;
+    el.addEventListener('mouseleave', function () {
+      if (pinned) return;
 
-function wireInteractive(el, name, reactive) {
+      el.classList.remove('hovered');
+      hidePanel();
+    });
 
-  el.addEventListener('mouseenter', function () {
-    if (pinned) return;
+    el.addEventListener('click', function () {
+      togglePin(el, name, reactive);
+    });
+
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        togglePin(el, name, reactive);
+      }
+    });
+  }
+
+  function togglePin(el, name, reactive) {
+    if (pinned === el) {
+      pinned = null;
+      el.classList.remove('pinned');
+      hidePanel();
+      return;
+    }
+
+    allInteractive.forEach(function (item) {
+      item.classList.remove('hovered', 'pinned');
+    });
+
+    pinned = el;
 
     if (reactive) {
-      el.classList.add('hovered');
+      el.classList.add('pinned');
     }
 
     showPanel(name);
-  });
+  }
 
-  el.addEventListener('mouseleave', function () {
-    if (pinned) return;
+  /* Wire states */
+  var coveredPaths = [];
 
-    el.classList.remove('hovered');
-    hidePanel();
-  });
+  paths.forEach(function (path) {
+    var state = path.getAttribute('data-state');
+    var name = path.getAttribute('data-name') || state;
+    var covered = COVERED.indexOf(state) > -1;
 
-  el.addEventListener('click', function () {
-    togglePin(el, name, reactive);
-  });
-
-  el.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      togglePin(el, name, reactive);
+    if (covered) {
+      coveredPaths.push(path);
     }
-  });
-}
 
-function togglePin(el, name, reactive) {
-
-  if (pinned === el) {
-    pinned = null;
-    el.classList.remove('pinned');
-    hidePanel();
-    return;
-  }
-
-  allInteractive.forEach(function (item) {
-    item.classList.remove('hovered', 'pinned');
+    wireInteractive(path, name, covered);
   });
 
-  pinned = el;
-
-  if (reactive) {
-    el.classList.add('pinned');
-  }
-
-  showPanel(name);
-}
-
-
-/* ---- Wire all states ---- */
-
-var coveredPaths = [];
-
-paths.forEach(function (path) {
-  var state = path.getAttribute('data-state');
-  var name = path.getAttribute('data-name') || state;
-  var covered = COVERED.indexOf(state) > -1;
-
-  if (covered) {
-    coveredPaths.push(path);
-  }
-
-  wireInteractive(
-    path,
-    name,
-    covered
-  );
-});
-
-
-/* ---- Wire APS locations ---- */
-
-locationGroups.forEach(function (location) {
-  wireInteractive(
-    location.el,
-    location.name,
-    true
-  );
-});
-
-
-/* ---- One-time randomized coverage reveal ---- */
-
-function shuffle(arr) {
-  var a = arr.slice();
-
-  for (var i = a.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var t = a[i];
-    a[i] = a[j];
-    a[j] = t;
-  }
-
-  return a;
-}
-
-var poweredOn = false;
-
-function powerOnCoverage() {
-  if (poweredOn) return;
-
-  poweredOn = true;
-
-  var order = shuffle(coveredPaths);
-
-  order.forEach(function (path, i) {
-    path.classList.add('revealing');
-    path.style.transitionDelay = (i * 26) + 'ms';
-    path.classList.add('covered');
-
-    window.setTimeout(function () {
-      path.style.transitionDelay = '';
-      path.classList.remove('revealing');
-    }, 1500);
+  /* Wire APS locations */
+  locationGroups.forEach(function (location) {
+    wireInteractive(location.el, location.name, true);
   });
-}
 
+  /* Coverage reveal */
+  function shuffle(arr) {
+    var a = arr.slice();
 
-/* ---- Fire once on first entry ---- */
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i];
 
-var mapSection = document.getElementById('footprint');
+      a[i] = a[j];
+      a[j] = t;
+    }
 
-if (mapSection && 'IntersectionObserver' in window) {
+    return a;
+  }
 
-  var io = new IntersectionObserver(function (entries) {
+  var poweredOn = false;
 
-    entries.forEach(function (entry) {
+  function powerOnCoverage() {
+    if (poweredOn) return;
 
-      if (entry.isIntersecting) {
-        powerOnCoverage();
-        io.disconnect();
-      }
+    poweredOn = true;
 
+    var order = shuffle(coveredPaths);
+
+    order.forEach(function (path, i) {
+      path.classList.add('revealing');
+      path.style.transitionDelay = (i * 26) + 'ms';
+      path.classList.add('covered');
+
+      window.setTimeout(function () {
+        path.style.transitionDelay = '';
+        path.classList.remove('revealing');
+      }, 1500);
+    });
+  }
+
+  /* Reveal on first entry */
+  var mapSection = document.getElementById('footprint');
+
+  if (mapSection && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          powerOnCoverage();
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+
+    io.observe(mapSection);
+  } else {
+    powerOnCoverage();
+  }
+
+  /* ================= RESET ================= */
+
+  function resetPinnedState() {
+    if (pinned) {
+      pinned.classList.remove('pinned');
+      pinned = null;
+    }
+
+    allInteractive.forEach(function (el) {
+      el.classList.remove('hovered', 'pinned');
     });
 
-  }, { threshold: 0.2 });
-
-  io.observe(mapSection);
-
-} else {
-
-  powerOnCoverage();
-
-}
-
-
-/* ============================================================
-   UNIVERSAL RESET
-   ============================================================ */
-
-function resetPinnedState() {
-
-  if (pinned) {
-    pinned.classList.remove('pinned');
-    pinned = null;
+    hidePanel();
   }
 
-  allInteractive.forEach(function (el) {
-    el.classList.remove('hovered', 'pinned');
-  });
+  function isMapTarget(event) {
+    var target = event.target;
 
-  hidePanel();
-}
+    if (!target) return false;
 
+    var path = typeof event.composedPath === 'function'
+      ? event.composedPath()
+      : [];
 
-function isMapTarget(event) {
+    for (var i = 0; i < path.length; i++) {
+      var node = path[i];
 
-  var target = event.target;
+      if (!node || !node.matches) continue;
 
-  if (!target) return false;
-
-  var path = typeof event.composedPath === 'function'
-    ? event.composedPath()
-    : [];
-
-  for (var i = 0; i < path.length; i++) {
-
-    var node = path[i];
-
-    if (!node || !node.matches) continue;
-
-    if (node.matches('#us-map path[data-state]')) {
-      return true;
-    }
-
-    if (node.matches('#us-map .map-location')) {
-      return true;
-    }
-  }
-
-  if (target.closest) {
-
-    if (target.closest('#us-map path[data-state]')) {
-      return true;
-    }
-
-    if (target.closest('#us-map .map-location')) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-
-/* Pointer interaction catches mouse, touch, and pen. */
-
-window.addEventListener('pointerdown', function (e) {
-
-  if (!isMapTarget(e)) {
-    resetPinnedState();
-  }
-
-}, true);
-
-
-/* Click fallback ensures normal mouse clicks also dismiss reliably. */
-
-window.addEventListener('click', function (e) {
-
-  if (!isMapTarget(e)) {
-    resetPinnedState();
-  }
-
-}, true);
-
-
-/* ---- Reset when the map leaves the viewport ---- */
-
-var resetSection = document.getElementById('footprint');
-
-if (resetSection && 'IntersectionObserver' in window) {
-
-  var io2 = new IntersectionObserver(function (entries) {
-
-    entries.forEach(function (entry) {
-
-      if (!entry.isIntersecting) {
-        resetPinnedState();
+      if (
+        node.matches('#us-map path[data-state]') ||
+        node.matches('#us-map .map-location')
+      ) {
+        return true;
       }
+    }
 
-    });
+    if (target.closest) {
+      if (
+        target.closest('#us-map path[data-state]') ||
+        target.closest('#us-map .map-location')
+      ) {
+        return true;
+      }
+    }
 
-  }, { threshold: 0.01 });
+    return false;
+  }
 
-  io2.observe(resetSection);
-}
+  /* Dismiss pinned state outside the map */
+  window.addEventListener('pointerdown', function (e) {
+    if (!isMapTarget(e)) {
+      resetPinnedState();
+    }
+  }, true);
 
+  window.addEventListener('click', function (e) {
+    if (!isMapTarget(e)) {
+      resetPinnedState();
+    }
+  }, true);
+
+  /* Reset when map leaves viewport */
+  var resetSection = document.getElementById('footprint');
+
+  if (resetSection && 'IntersectionObserver' in window) {
+    var io2 = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) {
+          resetPinnedState();
+        }
+      });
+    }, { threshold: 0.01 });
+
+    io2.observe(resetSection);
+  }
+})();
 })();
