@@ -67,43 +67,42 @@
     .about-hero h1{font-size:clamp(3rem,7vw,5.2rem);color:var(--navy);line-height:1.04}
     .hero-rule{width:64px;height:2px;background:var(--clay);margin:26px auto 0}
 
-    /* Leadership */
-    .team-section{background:var(--navy-deep);padding:clamp(74px,8vw,104px) 0 clamp(82px,9vw,116px)}
+    /* History (Past) */
+    .history-section{background:var(--navy-deep);padding:clamp(80px,9vw,116px) 0 clamp(88px,9vw,124px)}
+    .history-head{text-align:center;max-width:720px;margin:0 auto clamp(48px,6vw,66px)}
+    .history-head h2{font-size:clamp(2.2rem,4.2vw,3.1rem);color:var(--paper)}
+    .history-photo-inner{width:min(1000px,calc(100% - 112px));margin:0 auto clamp(56px,6vw,78px)}
+    .history-photo-inner figure{margin:0}
+    .history-photo-inner img{width:100%;aspect-ratio:1.78/1;object-fit:cover;object-position:center;filter:grayscale(1);box-shadow:0 18px 40px rgba(0,0,0,.4)}
+    .history-photo-inner figcaption{margin-top:12px;text-align:right;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--clay-bright)}
+    .history-body{max-width:780px;margin:0 auto}
+    .history-body p{margin:0 0 22px;font-size:1.04rem;line-height:1.75;color:var(--paper-soft)}
+    .history-body p.lead{font-size:clamp(1.2rem,2.1vw,1.45rem);line-height:1.6;font-weight:500;color:var(--paper)}
+    .history-body p:last-child{margin-bottom:0}
+    .history-transition{margin:clamp(54px,7vw,78px) auto 0;max-width:780px;padding-top:clamp(38px,5vw,52px);border-top:1px solid var(--line-on-navy);text-align:center}
+    .history-transition p.emphasis{margin:0;font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.35;font-weight:500;color:var(--paper)}
+    .history-transition p.note{margin:16px 0 0;font-size:.96rem;line-height:1.72;color:var(--paper-soft)}
+
+    /* Leadership Today (Present) */
+    .today-section{padding:clamp(84px,9vw,118px) 0 clamp(70px,8vw,98px)}
     .section-head-center{text-align:center;max-width:720px;margin:0 auto clamp(46px,5vw,62px)}
-    .team-section .section-head-center h2{font-size:clamp(2.2rem,4.2vw,3.1rem);color:var(--paper)}
+    .today-section .section-head-center h2{font-size:clamp(2.2rem,4.2vw,3.1rem);color:var(--navy)}
     .team-list{display:flex;flex-direction:column;gap:clamp(52px,7vw,82px);max-width:1140px;margin:0 auto}
     .team-profile{display:grid;grid-template-columns:minmax(240px,310px) minmax(0,1fr);gap:clamp(42px,5vw,72px);align-items:center}
-    .team-profile + .team-profile{padding-top:clamp(52px,6vw,70px);border-top:1px solid var(--line-on-navy)}
-    .team-photo-frame{width:100%;aspect-ratio:1;overflow:hidden;border:1px solid var(--line-on-navy);background:rgba(250,246,234,.04);box-shadow:0 16px 34px rgba(0,0,0,.32)}
+    .team-profile + .team-profile{padding-top:clamp(52px,6vw,70px);border-top:1px solid var(--line)}
+    .team-photo-frame{width:100%;aspect-ratio:1;overflow:hidden;border:1px solid var(--line);background:rgba(34,28,21,.03);box-shadow:0 14px 30px rgba(34,28,21,.12)}
     .team-photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center top}
     .team-profile-content::before{content:"";display:block;width:72px;height:2px;background:var(--clay);margin-bottom:22px}
-    .team-profile-content h3{font-size:clamp(1.9rem,3vw,2.55rem);color:var(--paper);line-height:1.12}
-    .team-role{display:block;margin:8px 0 20px;font-family:var(--mono);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--clay-bright)}
-    .team-bio{margin:0;font-size:1rem;line-height:1.68;color:var(--paper-soft)}
+    .team-profile-content h3{font-size:clamp(1.9rem,3vw,2.55rem);color:var(--navy);line-height:1.12}
+    .team-role{display:block;margin:8px 0 20px;font-family:var(--mono);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--clay)}
+    .team-bio{margin:0;font-size:1rem;line-height:1.68;color:var(--ink-soft)}
     .team-bio + .team-bio{margin-top:16px}
 
-    /* Company */
-    .company-section{padding:clamp(82px,9vw,118px) 0 clamp(68px,8vw,98px)}
-    .company-body{max-width:880px;margin:0 auto}
-    .company-body p{margin:0 0 22px;font-size:1.04rem;line-height:1.75;color:var(--ink)}
-    .company-body p.lead{font-size:clamp(1.25rem,2.2vw,1.52rem);line-height:1.58;font-weight:500;color:var(--navy)}
-    .company-body p:last-child{margin-bottom:0}
-    .company-break{margin:clamp(54px,7vw,78px) auto 0;max-width:1120px;padding-top:clamp(38px,5vw,52px);border-top:1px solid var(--line)}
-    .company-break-grid{display:grid;grid-template-columns:1.45fr .75fr;gap:clamp(42px,7vw,100px);align-items:start}
-    .company-emphasis{margin:0;font-family:var(--serif);font-style:italic;font-size:clamp(1.7rem,3.2vw,2.5rem);line-height:1.25;font-weight:500;color:var(--navy);max-width:760px}
-    .company-note{padding-top:8px}
-    .company-note p{margin:0;font-size:.96rem;line-height:1.72;color:var(--ink-soft)}
-
-    /* Historical Image */
-    .history-image{padding:0 0 clamp(72px,8vw,102px)}
-    .history-image-inner{width:min(1080px,calc(100% - 112px));margin:0 auto}
-    .history-image figure{margin:0}
-    .history-image img{width:100%;aspect-ratio:1.78/1;object-fit:cover;object-position:center;filter:grayscale(1);box-shadow:0 16px 36px rgba(34,28,21,.11)}
-    .history-image figcaption{margin-top:12px;text-align:right;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--brass)}
-
-    /* Company Transition */
-    .company-transition{padding:0 0 clamp(88px,9vw,120px)}
-    .company-transition .company-break{margin-top:0}
+    .today-values{margin:clamp(54px,7vw,78px) auto 0;max-width:1120px;padding-top:clamp(38px,5vw,52px);border-top:1px solid var(--line)}
+    .today-values-grid{display:grid;grid-template-columns:1.45fr .75fr;gap:clamp(42px,7vw,100px);align-items:start}
+    .today-emphasis{margin:0;font-family:var(--serif);font-style:italic;font-size:clamp(1.7rem,3.2vw,2.5rem);line-height:1.25;font-weight:500;color:var(--navy);max-width:760px}
+    .today-note{padding-top:8px}
+    .today-note p{margin:0;font-size:.96rem;line-height:1.72;color:var(--ink-soft)}
 
     /* Closing */
     .closing-section{padding:clamp(82px,9vw,112px) 0 clamp(86px,9vw,118px);text-align:center;border-top:1px solid var(--line)}
@@ -144,9 +143,9 @@
 
     /* Responsive */
     @media (max-width:900px){
-      .company-break-grid{grid-template-columns:1fr;text-align:center}
-      .company-emphasis{margin:0 auto}
-      .company-note{max-width:620px;margin:0 auto}
+      .today-values-grid{grid-template-columns:1fr;text-align:center}
+      .today-emphasis{margin:0 auto}
+      .today-note{max-width:620px;margin:0 auto}
       .team-profile{grid-template-columns:minmax(210px,250px) minmax(0,1fr)}
     }
 
@@ -161,7 +160,7 @@
       .team-profile + .team-profile{padding-top:48px}
       .team-photo-frame{width:min(220px,60vw);margin:0 auto}
       .team-profile-content::before{margin:0 auto 22px}
-      .history-image-inner{width:calc(100% - 40px)}
+      .history-photo-inner{width:calc(100% - 40px)}
       footer{padding:32px 0 24px}
       .footer-grid{display:flex;flex-direction:column;align-items:center;gap:20px;padding-bottom:24px}
       .col-nav{order:1}
@@ -178,16 +177,15 @@
     @media (max-width:640px){
       .shell{padding:0 20px}
       .about-hero{padding-top:calc(var(--nav-h) + 48px);padding-bottom:54px}
-      .team-section{padding-top:68px;padding-bottom:76px}
+      .history-section{padding-top:68px;padding-bottom:76px}
+      .history-body p{font-size:.97rem}
+      .history-body p.lead{font-size:1.1rem}
+      .history-photo-inner img{aspect-ratio:1.4/1}
+      .history-photo-inner figcaption{text-align:center;font-size:.62rem}
+      .history-transition{margin-top:48px;padding-top:36px}
+      .today-section{padding-top:68px;padding-bottom:62px}
       .team-bio{font-size:.95rem}
-      .company-section{padding-top:68px;padding-bottom:62px}
-      .company-body p{font-size:.97rem}
-      .company-body p.lead{font-size:1.1rem}
-      .company-break{margin-top:48px;padding-top:36px}
-      .history-image{padding-bottom:64px}
-      .history-image img{aspect-ratio:1.4/1}
-      .history-image figcaption{text-align:center;font-size:.62rem}
-      .company-transition{padding-bottom:76px}
+      .today-values{margin-top:48px;padding-top:36px}
       .closing-section{padding-top:72px;padding-bottom:78px}
       .cta-band{padding-top:78px;padding-bottom:78px}
     }
@@ -238,84 +236,77 @@
     <div class="hero-rule"></div>
   </header>
 
-  <!-- Leadership -->
-  <section class="team-section" id="team">
+  <!-- History (Past) -->
+  <section class="history-section">
     <div class="shell">
-      <div class="section-head-center" data-reveal>
-        <h2>Meet the Team</h2>
+      <div class="history-head" data-reveal>
+        <h2>Our History</h2>
       </div>
 
-      <div class="team-list">
-        <article class="team-profile" data-reveal>
-          <div class="team-photo-frame">
-            <img src="assets/mark_photo.jpg" alt="Mark Fischbuch, President &amp; Founder" loading="lazy" decoding="async">
-          </div>
+      <div class="history-photo-inner" data-reveal>
+        <figure>
+          <img src="assets/vintage.jpg" alt="Historical Vibroseis seismic field operations" loading="lazy" decoding="async">
+          <figcaption>Land seismic exploration, 1980s</figcaption>
+        </figure>
+      </div>
 
-          <div class="team-profile-content">
-            <h3>Mark Fischbuch</h3>
-            <span class="team-role">President &amp; Founder</span>
+      <div class="history-body" data-reveal>
+        <p class="lead">From its roots in permitting, the company has grown to support energy, exploration, and infrastructure projects across North America.</p>
 
-            <p class="team-bio">Mark Fischbuch began working in the industry in 1980, after years of hard work across surveying, drilling, permitting, and field operations. He learned the industry firsthand, from the science and technology behind it to the realities of difficult field work. That practical knowledge shaped APS&rsquo;s comprehensive approach to land services and remains at the foundation of the company today.</p>
-          </div>
-        </article>
+        <p>Our work has spanned hundreds of successful projects in 28 states, plus experience in Alberta and Saskatchewan. Thousands of successful negotiations have been completed across energy and infrastructure projects. That work has required direct coordination with thousands of landowners across private, state, federal, and tribal lands. We don&rsquo;t outsource that communication.</p>
 
-        <article class="team-profile" data-reveal>
-          <div class="team-photo-frame">
-            <img src="assets/zane_photo.jpg" alt="Zane Nelson, Vice President" loading="lazy" decoding="async">
-          </div>
+        <p>Decades in the field have refined how we operate as we continue advancing our technology, processes, and project management.</p>
+      </div>
 
-          <div class="team-profile-content">
-            <h3>Zane Nelson</h3>
-            <span class="team-role">Vice President</span>
-
-            <p class="team-bio">Zane Nelson joined APS in 2010, building on a successful career spanning accounting, business analysis, and enterprise operations. He&rsquo;s combined those disciplines to lead the company&rsquo;s day-to-day operations, transform its financial and operational structure, and expand its capabilities. He has developed extensive knowledge of land services through years of hands-on project and field experience.</p>
-
-            <p class="team-bio">Zane remains deeply involved in strengthening client relationships, personally overseeing field work, and positioning APS for new opportunities across the industry.</p>
-          </div>
-        </article>
+      <div class="history-transition" data-reveal>
+        <p class="emphasis">The standard we started with: hard work, honesty, and being exceptionally good at what we do.</p>
+        <p class="note">In August 2026, we became APS Land Services. The new name reflects the expertise and capabilities we&rsquo;ve built while carrying that standard forward.</p>
       </div>
     </div>
   </section>
 
-  <!-- Company -->
-  <section class="company-section shell">
-    <div class="company-body" data-reveal>
-      <p class="lead">From its roots in permitting, the company has grown to support energy, exploration, and infrastructure projects across North America.</p>
-
-      <p>Our work has spanned hundreds of successful projects in 28 states, plus experience in Alberta and Saskatchewan. Thousands of successful negotiations have been completed across energy and infrastructure projects. That work has required direct coordination with thousands of landowners across private, state, federal, and tribal lands. We don&rsquo;t outsource that communication.</p>
-
-      <p>Decades in the field have refined how we operate as we continue advancing our technology, processes, and project management.</p>
+  <!-- Leadership Today (Present) -->
+  <section class="today-section shell" id="team">
+    <div class="section-head-center" data-reveal>
+      <h2>Leadership Today</h2>
     </div>
 
-    <div class="company-break" data-reveal>
-      <div class="company-break-grid">
-        <p class="company-emphasis">Always focused on what matters most: getting the details right.</p>
-
-        <div class="company-note">
-          <p>We take pride in protecting landowners, field crews, the environment, and the projects entrusted to us.</p>
+    <div class="team-list">
+      <article class="team-profile" data-reveal>
+        <div class="team-photo-frame">
+          <img src="assets/mark_photo.jpg" alt="Mark Fischbuch, President &amp; Founder" loading="lazy" decoding="async">
         </div>
-      </div>
+
+        <div class="team-profile-content">
+          <h3>Mark Fischbuch</h3>
+          <span class="team-role">President &amp; Founder</span>
+
+          <p class="team-bio">Mark Fischbuch began working in the industry in 1980, after years of hard work across surveying, drilling, permitting, and field operations. He learned the industry firsthand, from the science and technology behind it to the realities of difficult field work. That practical knowledge shaped APS&rsquo;s comprehensive approach to land services and remains at the foundation of the company today.</p>
+        </div>
+      </article>
+
+      <article class="team-profile" data-reveal>
+        <div class="team-photo-frame">
+          <img src="assets/zane_photo.jpg" alt="Zane Nelson, Vice President" loading="lazy" decoding="async">
+        </div>
+
+        <div class="team-profile-content">
+          <h3>Zane Nelson</h3>
+          <span class="team-role">Vice President</span>
+
+          <p class="team-bio">Zane Nelson joined APS in 2010, building on a successful career spanning accounting, business analysis, and enterprise operations. He&rsquo;s combined those disciplines to lead the company&rsquo;s day-to-day operations, transform its financial and operational structure, and expand its capabilities. He has developed extensive knowledge of land services through years of hands-on project and field experience.</p>
+
+          <p class="team-bio">Zane remains deeply involved in strengthening client relationships, personally overseeing field work, and positioning APS for new opportunities across the industry.</p>
+        </div>
+      </article>
     </div>
-  </section>
 
-  <!-- Historical Image -->
-  <section class="history-image" data-reveal>
-    <div class="history-image-inner">
-      <figure>
-        <img src="assets/vintage.jpg" alt="Historical Vibroseis seismic field operations" loading="lazy" decoding="async">
-        <figcaption>Land seismic exploration, 1980s</figcaption>
-      </figure>
-    </div>
-  </section>
+    <div class="today-values" data-reveal>
+      <div class="today-values-grid">
+        <p class="today-emphasis">Always focused on what matters most: getting the details right.</p>
 
-  <!-- Company Transition -->
-  <section class="company-transition shell">
-    <div class="company-break" data-reveal>
-      <div class="company-break-grid">
-        <p class="company-emphasis">The standard we started with: hard work, honesty, and being exceptionally good at what we do.</p>
-
-        <div class="company-note">
-          <p>In August 2026, we became APS Land Services. The new name reflects the expertise and capabilities we&rsquo;ve built while carrying that standard forward.</p>
+        <div class="today-note">
+          <p>We take pride in protecting landowners, field crews, the environment, and the projects entrusted to us.</p>
         </div>
       </div>
     </div>
