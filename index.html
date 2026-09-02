@@ -127,14 +127,16 @@
     .ch-ellipsis{color:var(--brass)}
 
     .capabilities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,2.8vw,38px);align-items:stretch}
-    .cap-card{position:relative;min-height:320px;padding:clamp(34px,3.5vw,48px) clamp(30px,3vw,42px);background:#FFFDF7;border-radius:3px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(34,28,21,.04),0 12px 28px rgba(34,28,21,.06);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
-    .cap-card:hover{transform:translateY(-5px);box-shadow:0 3px 6px rgba(34,28,21,.05),0 18px 36px rgba(34,28,21,.09)}
+    .cap-card{position:relative;overflow:hidden;min-height:340px;padding:clamp(38px,3.5vw,48px) clamp(30px,3vw,42px) clamp(32px,3vw,40px);background:#FFFDF7;border:1px solid rgba(34,28,21,.05);border-radius:3px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(34,28,21,.04),0 12px 28px rgba(34,28,21,.06);transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease)}
+    .cap-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:var(--clay);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+    .cap-card:hover{transform:translateY(-5px);border-color:rgba(34,28,21,.08);box-shadow:0 3px 6px rgba(34,28,21,.05),0 18px 36px rgba(34,28,21,.09)}
+    .cap-card:hover::before,.cap-card:focus-visible::before{transform:scaleX(1)}
     .cap-card--linked{cursor:pointer}
-    .cap-card h3{font-family:var(--mono);font-size:.82rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;text-align:left;color:var(--navy);line-height:1.4;margin:0 0 34px}
-    .cap-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px}
-    .cap-list li{font-family:var(--sans);font-size:1rem;font-weight:500;line-height:1.45;color:var(--navy);margin:0}
-    .cap-list strong{font-weight:600;color:var(--navy)}
-    .cap-card-action{margin-top:auto;padding-top:30px;font-family:var(--mono);font-size:.75rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--clay);display:inline-flex;align-items:center;gap:8px;transition:gap .25s var(--ease)}
+    .cap-card h3{font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-align:left;color:var(--navy);line-height:1.4;margin:0 0 38px}
+    .cap-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
+    .cap-list li{position:relative;padding-left:15px;font-family:var(--sans);font-size:1rem;font-weight:500;line-height:1.45;color:var(--navy);margin:0}
+    .cap-list li::before{content:"";position:absolute;left:0;top:.68em;width:6px;height:1px;background:var(--brass)}
+    .cap-card-action{margin-top:auto;padding-top:30px;font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--clay);display:inline-flex;align-items:center;gap:8px;transition:gap .25s var(--ease)}
     .cap-card-action span{transition:transform .25s var(--ease)}
     .cap-card:hover .cap-card-action{gap:11px}
     .cap-card:hover .cap-card-action span{transform:translateX(3px)}
@@ -237,7 +239,8 @@
       .ch-line{font-size:1.5rem}
       .ch-line-2{align-self:center;padding-right:0}
       .commitment-headline{align-items:center}
-      .cap-card{min-height:0;padding:30px 26px}
+      .cap-card{min-height:0;padding:32px 26px}
+      .cap-card h3{margin-bottom:30px}
       .cap-list{gap:14px}
       .cap-list li{font-size:.96rem}
       .proven-section{min-height:60vh;padding-top:clamp(82px,13vw,108px);padding-bottom:clamp(88px,14vw,116px)}
@@ -392,7 +395,7 @@
         <ul class="cap-list">
           <li>Direct APS leadership oversight</li>
           <li>Clear, responsive communication</li>
-          <li>Experienced field personnel</li>
+          <li>Vetted field personnel</li>
         </ul>
 
         <span class="cap-card-action">
@@ -401,23 +404,28 @@
         </span>
       </a>
 
-      <div class="cap-card" data-reveal>
+      <a class="cap-card cap-card--linked" href="services.html#services" data-reveal>
         <h3>Reliable Pricing</h3>
 
         <ul class="cap-list">
           <li>Turnkey pricing available</li>
           <li>Scope-specific pricing available</li>
-          <li>Direct, transparent communication</li>
+          <li>Clear pricing expectations upfront</li>
         </ul>
-      </div>
+
+        <span class="cap-card-action">
+          Explore Services
+          <span>→</span>
+        </span>
+      </a>
 
       <a class="cap-card cap-card--linked" href="services.html#safety-hse" data-reveal>
         <h3>Safety &amp; Compliance</h3>
 
         <ul class="cap-list">
-          <li>Formal Safety Program Manual</li>
+          <li>Daily safety briefings &amp; JSAs</li>
           <li>Stop-Work Authority</li>
-          <li>ISNetworld member</li>
+          <li>ISNetworld compliant</li>
         </ul>
 
         <span class="cap-card-action">
@@ -872,7 +880,7 @@
     })();
   </script>
 
-  <script src="assets/us-map.js?v=20260831-1" defer></script>
+  <script src="assets/us-map.js?v=20260902-1" defer></script>
 
 </body>
 </html>
