@@ -326,6 +326,63 @@
       line-height:1.32;
     }
 
+    /* Hero service navigation */
+
+    .hero-capabilities{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      max-width:1040px;
+      margin:clamp(56px,7vw,88px) auto 0;
+      padding:clamp(30px,3.6vw,40px) 0;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+
+    .hero-cap-link{
+      position:relative;
+      padding-bottom:4px;
+      font-family:var(--mono);
+      font-size:1rem;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      color:var(--navy);
+      font-weight:700;
+      transition:color .25s var(--ease);
+    }
+
+    .hero-cap-link::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:100%;
+      bottom:0;
+      height:2px;
+      background:var(--clay);
+      transition:right .3s var(--ease);
+    }
+
+    .hero-cap-link:hover,
+    .hero-cap-link:focus-visible{
+      color:var(--clay)
+    }
+
+    .hero-cap-link:hover::after,
+    .hero-cap-link:focus-visible::after{
+      right:0
+    }
+
+    .hero-sep{
+      width:1px;
+      height:14px;
+      background:var(--brass);
+      opacity:.5;
+      display:inline-block;
+      margin:0 24px
+    }
+
     .hero-landowner{
       display:none
     }
@@ -552,13 +609,13 @@
     /* ================= COMMITMENT ================= */
 
     .capabilities-section{
-      padding:clamp(92px,10vw,132px) 0 clamp(88px,9vw,116px);
+      padding:clamp(100px,11vw,144px) 0 clamp(96px,10vw,132px);
     }
 
     .commitment-head{
       text-align:center;
       max-width:760px;
-      margin:0 auto clamp(46px,5.5vw,64px);
+      margin:0 auto clamp(54px,6vw,76px);
     }
 
     .commitment-headline{
@@ -569,9 +626,9 @@
     .ch-line{
       font-family:var(--serif);
       font-weight:600;
-      font-size:clamp(1.8rem,3.6vw,2.65rem);
+      font-size:clamp(2rem,4vw,3rem);
       color:var(--navy);
-      line-height:1.2;
+      line-height:1.18;
     }
 
     .ch-line-2{
@@ -579,154 +636,130 @@
       font-style:italic;
       font-weight:500;
       color:var(--clay);
-      margin-top:6px;
-      padding-right:clamp(0px,4vw,42px);
+      margin-top:8px;
+      padding-right:clamp(0px,4vw,44px);
     }
 
     .ch-ellipsis{
       color:var(--brass)
     }
 
-    /* Service navigation */
-    .service-bar{
-      width:100%;
-      max-width:1180px;
-      margin:0 auto clamp(52px,6vw,72px);
-      padding:26px 0;
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:12px 0;
-    }
-
-    .service-bar a{
-      position:relative;
-      display:inline-block;
-      padding:0 24px 4px;
-      font-family:var(--mono);
-      font-size:.88rem;
-      font-weight:600;
-      letter-spacing:.065em;
-      text-transform:uppercase;
-      color:var(--navy);
-      transition:color .25s var(--ease);
-    }
-
-    .service-bar a::after{
-      content:"";
-      position:absolute;
-      left:24px;
-      right:24px;
-      bottom:0;
-      height:2px;
-      background:var(--clay);
-      transform:scaleX(0);
-      transform-origin:left;
-      transition:transform .3s var(--ease);
-    }
-
-    .service-bar a:hover,
-    .service-bar a:focus-visible{
-      color:var(--clay)
-    }
-
-    .service-bar a:hover::after,
-    .service-bar a:focus-visible::after{
-      transform:scaleX(1)
-    }
-
-    .service-bar span{
-      width:1px;
-      height:15px;
-      background:var(--brass);
-      opacity:.45;
-      flex:0 0 auto
-    }
-
     /* Differentiator cards */
+
     .capabilities-grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
-      gap:clamp(22px,2.4vw,30px);
+      gap:clamp(24px,2.8vw,38px);
       align-items:stretch;
     }
 
     .cap-card{
+      position:relative;
+      min-height:320px;
+      padding:clamp(34px,3.5vw,48px) clamp(30px,3vw,42px);
       background:#FFFDF7;
-      padding:clamp(28px,3vw,38px) clamp(26px,2.6vw,34px);
       border-radius:3px;
       display:flex;
       flex-direction:column;
       box-shadow:
         0 1px 2px rgba(34,28,21,.04),
-        0 10px 22px rgba(34,28,21,.055);
+        0 12px 28px rgba(34,28,21,.06);
       transition:
-        transform .3s var(--ease),
-        box-shadow .3s var(--ease);
+        transform .35s var(--ease),
+        box-shadow .35s var(--ease);
     }
 
     .cap-card:hover{
-      transform:translateY(-3px);
+      transform:translateY(-5px);
       box-shadow:
-        0 2px 4px rgba(34,28,21,.05),
-        0 14px 28px rgba(34,28,21,.075);
+        0 3px 6px rgba(34,28,21,.05),
+        0 18px 36px rgba(34,28,21,.09);
+    }
+
+    .cap-card--linked{
+      cursor:pointer;
     }
 
     .cap-card h3{
-      font-size:1.12rem;
-      color:var(--navy);
-      line-height:1.3;
-      margin:0 0 18px;
-      text-transform:uppercase;
-      text-align:center;
-      letter-spacing:.045em;
-    }
-
-    .cap-list{
-      list-style:none;
-      margin:0;
-      padding:0;
-    }
-
-    .cap-list li{
-      font-size:.88rem;
-      line-height:1.5;
-      color:var(--ink-soft);
-      padding:9px 0;
-      border-top:1px solid var(--line);
-    }
-
-    .cap-list li:first-child{
-      border-top:none;
-      padding-top:0
-    }
-
-    .cap-list strong{
+      font-family:var(--mono);
+      font-size:.82rem;
       font-weight:600;
-      color:var(--navy)
+      letter-spacing:.11em;
+      text-transform:uppercase;
+      text-align:left;
+      color:var(--navy);
+      line-height:1.4;
+      margin:0 0 28px;
+    }
+
+    .cap-card-tagline{
+      font-family:var(--serif);
+      font-size:clamp(1.45rem,2.1vw,1.85rem);
+      font-weight:600;
+      line-height:1.22;
+      color:var(--navy);
+      margin:0 0 18px;
+      max-width:340px;
+    }
+
+    .cap-card-copy{
+      font-size:.96rem;
+      line-height:1.6;
+      color:var(--ink-soft);
+      margin:0;
+      max-width:390px;
+    }
+
+    .cap-card-action{
+      margin-top:auto;
+      padding-top:28px;
+      font-family:var(--mono);
+      font-size:.75rem;
+      font-weight:600;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+      color:var(--clay);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition:gap .25s var(--ease);
+    }
+
+    .cap-card-action span{
+      transition:transform .25s var(--ease)
+    }
+
+    .cap-card:hover .cap-card-action{
+      gap:11px
+    }
+
+    .cap-card:hover .cap-card-action span{
+      transform:translateX(3px)
     }
 
     /* ================= PROVEN EXPERIENCE ================= */
 
     .proven-section{
-      padding:clamp(96px,11vw,148px) 0 clamp(100px,11vw,140px);
+      min-height:65vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      padding:clamp(92px,10vw,130px) 0;
       background:var(--paper);
     }
 
     .proof-head{
-      margin:0 auto clamp(44px,5vw,64px)
+      margin:0 auto
     }
 
     .proof-head h2{
-      font-size:clamp(2rem,4.2vw,3.2rem);
-      color:var(--navy)
+      font-size:clamp(2.1rem,4.3vw,3.2rem);
+      color:var(--navy);
     }
 
-    /* Client marquee */
     .marquee-stack{
+      width:100%;
+      margin-top:clamp(64px,8vw,100px);
       display:flex;
       flex-direction:column;
       gap:2px;
@@ -1046,23 +1079,17 @@
         grid-template-columns:1fr
       }
 
-      .service-bar{
+      .hero-capabilities{
         flex-direction:column;
         gap:18px
       }
 
-      .service-bar span{
+      .hero-sep{
         display:none
       }
 
-      .service-bar a{
-        padding-left:0;
-        padding-right:0
-      }
-
-      .service-bar a::after{
-        left:0;
-        right:0
+      .hero-cap-link{
+        width:auto
       }
     }
 
@@ -1189,6 +1216,19 @@
         margin-top:clamp(56px,11vw,84px)
       }
 
+      .hero-capabilities{
+        gap:16px
+      }
+
+      .hero-cap-link{
+        width:100%;
+        font-size:.82rem
+      }
+
+      .hero-sep{
+        display:none
+      }
+
       .hero-landowner{
         display:flex;
         justify-content:center;
@@ -1235,17 +1275,23 @@
         align-items:center
       }
 
-      .service-bar{
-        margin-bottom:44px
+      .cap-card{
+        min-height:0;
+        padding:30px 26px
       }
 
-      .cap-card{
-        padding:26px 24px
+      .cap-card-tagline{
+        font-size:1.45rem
       }
 
       .proven-section{
+        min-height:60vh;
         padding-top:clamp(82px,13vw,108px);
         padding-bottom:clamp(88px,14vw,116px)
+      }
+
+      .marquee-stack{
+        margin-top:clamp(54px,10vw,72px)
       }
 
       .marquee-viewport::before,
@@ -1282,6 +1328,7 @@
 <body>
 
   <!-- Navigation -->
+
   <nav class="site-nav" id="siteNav" aria-label="Primary">
     <button
       class="menu-toggle"
@@ -1289,7 +1336,9 @@
       aria-label="Toggle navigation menu"
       aria-expanded="false"
     >
-      <span></span><span></span><span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
 
     <ul class="nav-menu-centered">
@@ -1310,6 +1359,7 @@
             decoding="async"
             onerror="this.style.display='none';document.getElementById('navLogoFallback').style.display='inline'"
           >
+
           <span
             id="navLogoFallback"
             class="nav-logo-fallback"
@@ -1339,6 +1389,7 @@
   </nav>
 
   <!-- Mobile Navigation -->
+
   <div
     class="mobile-drawer"
     id="mobileDrawer"
@@ -1355,15 +1406,64 @@
   <!-- ================= HERO ================= -->
 
   <header class="hero shell" data-reveal>
+
     <div class="hero-identity">
       <h1>APS Land Services</h1>
-      <p class="hero-tagline">Setting the Standard Since 1980</p>
+
+      <p class="hero-tagline">
+        Setting the Standard Since 1980
+      </p>
+
       <div class="hero-rule"></div>
     </div>
 
     <p class="hero-purpose">
       Supporting the energy, exploration, and infrastructure projects that power America.
     </p>
+
+    <!-- Service navigation -->
+
+    <nav
+      class="hero-capabilities"
+      aria-label="Our services"
+      data-reveal
+    >
+      <a
+        class="hero-cap-link"
+        href="services.html#title-ownership"
+      >
+        Title &amp; Leasing
+      </a>
+
+      <span class="hero-sep" aria-hidden="true"></span>
+
+      <a
+        class="hero-cap-link"
+        href="services.html#gis-services"
+      >
+        GIS
+      </a>
+
+      <span class="hero-sep" aria-hidden="true"></span>
+
+      <a
+        class="hero-cap-link"
+        href="services.html#seismic-permitting"
+      >
+        Seismic Permitting
+      </a>
+
+      <span class="hero-sep" aria-hidden="true"></span>
+
+      <a
+        class="hero-cap-link"
+        href="services.html#right-of-way"
+      >
+        Right-of-Way Acquisition
+      </a>
+    </nav>
+
+    <!-- Landowner redirect -->
 
     <div class="hero-landowner">
       <a
@@ -1374,11 +1474,16 @@
         <span class="arrow">→</span>
       </a>
     </div>
+
   </header>
 
   <!-- ================= NATIONWIDE FOOTPRINT ================= -->
 
-  <section class="footprint-section" id="footprint">
+  <section
+    class="footprint-section"
+    id="footprint"
+  >
+
     <div class="footprint-frame">
 
       <div class="footprint-head" data-reveal>
@@ -1386,35 +1491,48 @@
       </div>
 
       <div class="footprint-stats" data-reveal>
+
         <span class="stat">
           <strong>3 Locations</strong>
           <small>Utah &bull; Montana &bull; Texas</small>
         </span>
 
-        <span class="stat-divider" aria-hidden="true"></span>
+        <span
+          class="stat-divider"
+          aria-hidden="true"
+        ></span>
 
         <span class="stat">
           <strong>28 States</strong>
           <small>plus project experience in Alberta and Saskatchewan</small>
         </span>
 
-        <span class="stat-divider" aria-hidden="true"></span>
+        <span
+          class="stat-divider"
+          aria-hidden="true"
+        ></span>
 
         <span class="stat">
           <strong>Hundreds</strong>
           <small>of projects completed</small>
         </span>
 
-        <span class="stat-divider" aria-hidden="true"></span>
+        <span
+          class="stat-divider"
+          aria-hidden="true"
+        ></span>
 
         <span class="stat">
           <strong>Thousands</strong>
           <small>of successful negotiations</small>
         </span>
+
       </div>
 
       <div class="map-canvas-wrap" data-reveal>
+
         <div class="map-stage">
+
           <div
             id="us-map"
             class="map-canvas"
@@ -1430,10 +1548,13 @@
               class="msp-name"
             ></span>
           </div>
+
         </div>
+
       </div>
 
     </div>
+
   </section>
 
   <!-- ================= COMMITMENT ================= -->
@@ -1444,7 +1565,9 @@
   >
 
     <div class="commitment-head" data-reveal>
+
       <h2 class="commitment-headline">
+
         <span class="ch-line ch-line-1">
           We're committed to the details<span class="ch-ellipsis">…</span>
         </span>
@@ -1452,96 +1575,84 @@
         <span class="ch-line ch-line-2">
           …and the deadlines.
         </span>
+
       </h2>
+
     </div>
 
-    <!-- Service navigation -->
-    <nav
-      class="service-bar"
-      aria-label="Our services"
-      data-reveal
-    >
-      <a href="services.html#title-ownership">
-        Title &amp; Leasing
-      </a>
-
-      <span aria-hidden="true"></span>
-
-      <a href="services.html#gis-services">
-        GIS
-      </a>
-
-      <span aria-hidden="true"></span>
-
-      <a href="services.html#seismic-permitting">
-        Seismic Permitting
-      </a>
-
-      <span aria-hidden="true"></span>
-
-      <a href="services.html#right-of-way">
-        Right-of-Way Acquisition
-      </a>
-    </nav>
-
-    <!-- Differentiators -->
     <div class="capabilities-grid">
 
-      <div class="cap-card" data-reveal>
+      <!-- Direct Leadership -->
+
+      <a
+        class="cap-card cap-card--linked"
+        href="about.html#team"
+        data-reveal
+      >
+
         <h3>Direct Leadership</h3>
 
-        <ul class="cap-list">
-          <li>
-            Senior leadership stays directly involved in every project
-          </li>
+        <p class="cap-card-tagline">
+          Leadership stays close to the work.
+        </p>
 
-          <li>
-            One point of contact from bid through closeout
-          </li>
+        <p class="cap-card-copy">
+          Senior APS leadership remains directly involved from bid through closeout, with direct access to the people responsible for your project.
+        </p>
 
-          <li>
-            Direct phone and email access — no call center
-          </li>
-        </ul>
-      </div>
+        <span class="cap-card-action">
+          Meet the Team
+          <span>→</span>
+        </span>
 
-      <div class="cap-card" data-reveal>
+      </a>
+
+      <!-- Reliable Pricing -->
+
+      <div
+        class="cap-card"
+        data-reveal
+      >
+
         <h3>Reliable Pricing</h3>
 
-        <ul class="cap-list">
-          <li>
-            Turnkey pricing available
-          </li>
+        <p class="cap-card-tagline">
+          Clear expectations from the start.
+        </p>
 
-          <li>
-            Clear scope and pricing before work begins
-          </li>
+        <p class="cap-card-copy">
+          Turnkey pricing is available, with scope and pricing established before work begins.
+        </p>
 
-          <li>
-            Straightforward expectations from the start
-          </li>
-        </ul>
       </div>
 
-      <div class="cap-card" data-reveal>
+      <!-- Safety Standards -->
+
+      <a
+        class="cap-card cap-card--linked"
+        href="services.html#safety-hse"
+        data-reveal
+      >
+
         <h3>Safety Standards</h3>
 
-        <ul class="cap-list">
-          <li>
-            Formal Safety Program Manual
-          </li>
+        <p class="cap-card-tagline">
+          Safety is built into the work.
+        </p>
 
-          <li>
-            Stop-work authority held by every crew member
-          </li>
+        <p class="cap-card-copy">
+          Formal safety programs, stop-work authority, and ISNetworld membership support the standards APS brings to every project.
+        </p>
 
-          <li>
-            Member of <strong>ISNetworld</strong>
-          </li>
-        </ul>
-      </div>
+        <span class="cap-card-action">
+          Our Safety Standards
+          <span>→</span>
+        </span>
+
+      </a>
 
     </div>
+
   </section>
 
   <!-- ================= PROVEN EXPERIENCE ================= -->
@@ -1552,15 +1663,21 @@
   >
 
     <div class="shell">
-      <div class="section-head-center proof-head" data-reveal>
+
+      <div
+        class="section-head-center proof-head"
+        data-reveal
+      >
         <h2>Don't just take our word for it.</h2>
       </div>
+
     </div>
 
     <div
       class="marquee-stack"
       data-reveal
     >
+
       <div
         class="marquee-viewport"
         id="marqueeViewportA"
@@ -1580,6 +1697,7 @@
           id="marqueeTrackB"
         ></div>
       </div>
+
     </div>
 
   </section>
@@ -1587,10 +1705,16 @@
   <!-- ================= CTA / FOOTER ================= -->
 
   <section class="cta-band">
-    <div class="shell cta-inner" data-reveal>
+
+    <div
+      class="shell cta-inner"
+      data-reveal
+    >
+
       <h2>Let's get to work.</h2>
 
       <div class="cta-actions">
+
         <a
           class="cta-btn"
           href="contact.html"
@@ -1598,16 +1722,21 @@
           Contact Us
           <span class="arrow">→</span>
         </a>
+
       </div>
+
     </div>
+
   </section>
 
   <footer>
+
     <div class="shell">
 
       <div class="footer-grid">
 
         <div class="col-brand footer-brand">
+
           <img
             class="footer-logo-img"
             src="assets/APSLand_Logo.png"
@@ -1623,7 +1752,9 @@
             APS Land Services
           </span>
 
-          <p>Setting the Standard Since 1980</p>
+          <p>
+            Setting the Standard Since 1980
+          </p>
 
           <a
             class="footer-hq-badge"
@@ -1633,23 +1764,45 @@
           >
             Cache Valley, Utah ↗
           </a>
+
         </div>
 
         <div class="col-nav">
-          <h4 class="nav-header">Navigation</h4>
+
+          <h4 class="nav-header">
+            Navigation
+          </h4>
 
           <ul class="nav-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
+
+            <li>
+              <a href="index.html">Home</a>
+            </li>
+
+            <li>
+              <a href="about.html">About</a>
+            </li>
+
+            <li>
+              <a href="services.html">Services</a>
+            </li>
+
+            <li>
+              <a href="contact.html">Contact</a>
+            </li>
+
           </ul>
+
         </div>
 
         <div class="col-contact">
-          <h4 class="contact-header">Contact</h4>
+
+          <h4 class="contact-header">
+            Contact
+          </h4>
 
           <ul class="contact-list">
+
             <li>
               <a
                 class="contact-link"
@@ -1667,21 +1820,32 @@
                 allstatepermit@allstatepermit.com
               </a>
             </li>
+
           </ul>
+
         </div>
 
       </div>
 
       <div class="footer-bottom">
-        <span>© 2026 APS Land Services. All rights reserved.</span>
-        <span>Land Services Nationwide</span>
+
+        <span>
+          © 2026 APS Land Services. All rights reserved.
+        </span>
+
+        <span>
+          Land Services Nationwide
+        </span>
+
       </div>
 
     </div>
+
   </footer>
 
   <script>
     (function(){
+
       var nav = document.getElementById('siteNav');
       var toggleBtn = document.getElementById('menuToggle');
       var mobileDrawer = document.getElementById('mobileDrawer');
@@ -1714,32 +1878,61 @@
       }
 
       if(toggleBtn && mobileDrawer){
-        toggleBtn.addEventListener('click',function(e){
-          e.stopPropagation();
 
-          if(mobileDrawer.classList.contains('is-open')){
-            closeDrawer();
-          }else{
-            mobileDrawer.classList.add('is-open');
-            toggleBtn.classList.add('is-active');
-            toggleBtn.setAttribute('aria-expanded','true');
-            mobileDrawer.setAttribute('aria-hidden','false');
+        toggleBtn.addEventListener(
+          'click',
+          function(e){
+
+            e.stopPropagation();
+
+            if(mobileDrawer.classList.contains('is-open')){
+              closeDrawer();
+            }else{
+
+              mobileDrawer.classList.add('is-open');
+              toggleBtn.classList.add('is-active');
+
+              toggleBtn.setAttribute(
+                'aria-expanded',
+                'true'
+              );
+
+              mobileDrawer.setAttribute(
+                'aria-hidden',
+                'false'
+              );
+
+            }
+
           }
-        });
+        );
+
       }
 
-      document.addEventListener('click',function(e){
-        if(!mobileDrawer || !mobileDrawer.classList.contains('is-open')){
-          return;
-        }
+      document.addEventListener(
+        'click',
+        function(e){
 
-        var insideNav = nav && nav.contains(e.target);
-        var insideDrawer = mobileDrawer.contains(e.target);
+          if(
+            !mobileDrawer ||
+            !mobileDrawer.classList.contains('is-open')
+          ){
+            return;
+          }
 
-        if(!insideNav && !insideDrawer){
-          closeDrawer();
+          var insideNav =
+            nav &&
+            nav.contains(e.target);
+
+          var insideDrawer =
+            mobileDrawer.contains(e.target);
+
+          if(!insideNav && !insideDrawer){
+            closeDrawer();
+          }
+
         }
-      });
+      );
 
       document.addEventListener(
         'scroll',
@@ -1749,60 +1942,100 @@
         {passive:true}
       );
 
-      document.querySelectorAll('.nav-link').forEach(function(link){
-        link.addEventListener('click',function(e){
-          var href = link.getAttribute('href');
+      document.querySelectorAll('.nav-link').forEach(
+        function(link){
 
-          closeDrawer();
+          link.addEventListener(
+            'click',
+            function(e){
 
-          if(samePage(href)){
-            e.preventDefault();
+              var href = link.getAttribute('href');
 
-            window.scrollTo({
-              top:0,
-              behavior:'smooth'
-            });
-          }
-        });
-      });
+              closeDrawer();
+
+              if(samePage(href)){
+
+                e.preventDefault();
+
+                window.scrollTo({
+                  top:0,
+                  behavior:'smooth'
+                });
+
+              }
+
+            }
+          );
+
+        }
+      );
 
       var currentPath =
-        window.location.pathname.split('/').pop() || 'index.html';
+        window.location.pathname.split('/').pop() ||
+        'index.html';
 
-      document.querySelectorAll('.nav-link').forEach(function(link){
-        var href = link.getAttribute('href');
+      document.querySelectorAll('.nav-link').forEach(
+        function(link){
 
-        link.classList.toggle(
-          'active',
-          href === currentPath ||
-          (currentPath === '' && href === 'index.html')
-        );
-      });
+          var href =
+            link.getAttribute('href');
+
+          link.classList.toggle(
+            'active',
+            href === currentPath ||
+            (
+              currentPath === '' &&
+              href === 'index.html'
+            )
+          );
+
+        }
+      );
 
       /* Reveal-on-scroll */
 
-      var reveals = document.querySelectorAll('[data-reveal]');
+      var reveals =
+        document.querySelectorAll('[data-reveal]');
 
       if('IntersectionObserver' in window){
+
         var io = new IntersectionObserver(
           function(entries){
-            entries.forEach(function(entry){
-              if(entry.isIntersecting){
-                entry.target.classList.add('in-view');
-                io.unobserve(entry.target);
+
+            entries.forEach(
+              function(entry){
+
+                if(entry.isIntersecting){
+
+                  entry.target.classList.add(
+                    'in-view'
+                  );
+
+                  io.unobserve(entry.target);
+
+                }
+
               }
-            });
+            );
+
           },
           {threshold:.15}
         );
 
-        reveals.forEach(function(el){
-          io.observe(el);
-        });
+        reveals.forEach(
+          function(el){
+            io.observe(el);
+          }
+        );
+
       }else{
-        reveals.forEach(function(el){
-          el.classList.add('in-view');
-        });
+
+        reveals.forEach(
+          function(el){
+            el.classList.add('in-view');
+          }
+        );
+
       }
 
       if('scrollRestoration' in history){
@@ -1849,21 +2082,29 @@
       ];
 
       function buildTrack(el,list){
+
         if(!el) return;
 
-        var frag = document.createDocumentFragment();
+        var frag =
+          document.createDocumentFragment();
 
-        list.forEach(function(name){
-          var cell = document.createElement('div');
+        list.forEach(
+          function(name){
 
-          cell.className = 'logo-cell';
-          cell.textContent = name;
+            var cell =
+              document.createElement('div');
 
-          frag.appendChild(cell);
-        });
+            cell.className = 'logo-cell';
+            cell.textContent = name;
+
+            frag.appendChild(cell);
+
+          }
+        );
 
         el.appendChild(frag.cloneNode(true));
         el.appendChild(frag);
+
       }
 
       buildTrack(
@@ -1878,7 +2119,9 @@
 
       var reduceMotion =
         window.matchMedia &&
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.matchMedia(
+          '(prefers-reduced-motion: reduce)'
+        ).matches;
 
       function setupMarquee(
         viewport,
@@ -1886,9 +2129,14 @@
         direction,
         durationSeconds
       ){
-        if(!viewport || !track) return null;
 
-        var half = track.scrollWidth / 2 || 1;
+        if(!viewport || !track){
+          return null;
+        }
+
+        var half =
+          track.scrollWidth / 2 || 1;
+
         var autoSpeed =
           reduceMotion
             ? 0
@@ -1902,56 +2150,82 @@
         var lastDx = 0;
 
         function wrap(){
+
           offset %= half;
 
           if(offset < 0){
             offset += half;
           }
+
         }
 
         function render(){
+
           track.style.transform =
-            'translate3d(' + (-offset) + 'px,0,0)';
+            'translate3d(' +
+            (-offset) +
+            'px,0,0)';
+
         }
 
         function frame(){
+
           if(isDown){
-          }else if(Math.abs(momentum) > 0.05){
+
+          }else if(
+            Math.abs(momentum) > 0.05
+          ){
+
             offset -= momentum;
             momentum *= .94;
+
           }else{
+
             momentum = 0;
-            offset += direction * autoSpeed;
+            offset +=
+              direction * autoSpeed;
+
           }
 
           wrap();
           render();
 
           requestAnimationFrame(frame);
+
         }
 
         viewport.addEventListener(
           'pointerdown',
           function(e){
+
             isDown = true;
             momentum = 0;
+
             lastX = e.clientX;
             lastT = performance.now();
             lastDx = 0;
 
-            viewport.classList.add('dragging');
+            viewport.classList.add(
+              'dragging'
+            );
 
             if(viewport.setPointerCapture){
+
               try{
-                viewport.setPointerCapture(e.pointerId);
+                viewport.setPointerCapture(
+                  e.pointerId
+                );
               }catch(err){}
+
             }
+
           }
         );
 
         viewport.addEventListener(
           'pointermove',
           function(e){
+
             if(!isDown) return;
 
             var now = performance.now();
@@ -1962,76 +2236,126 @@
             wrap();
             render();
 
-            var dt = Math.max(1,now - lastT);
+            var dt =
+              Math.max(
+                1,
+                now - lastT
+              );
 
             lastDx = dx / dt;
+
             lastX = e.clientX;
             lastT = now;
+
           }
         );
 
         function endDrag(){
+
           if(!isDown) return;
 
           isDown = false;
-          viewport.classList.remove('dragging');
-          momentum = lastDx * 16.7;
+
+          viewport.classList.remove(
+            'dragging'
+          );
+
+          momentum =
+            lastDx * 16.7;
+
         }
 
-        viewport.addEventListener('pointerup',endDrag);
-        viewport.addEventListener('pointercancel',endDrag);
+        viewport.addEventListener(
+          'pointerup',
+          endDrag
+        );
+
+        viewport.addEventListener(
+          'pointercancel',
+          endDrag
+        );
 
         viewport.addEventListener(
           'pointerleave',
           function(){
+
             if(isDown){
               endDrag();
             }
+
           }
         );
 
         requestAnimationFrame(frame);
 
         return {
+
           recalc:function(){
-            half = track.scrollWidth / 2 || 1;
+
+            half =
+              track.scrollWidth / 2 || 1;
 
             autoSpeed =
               reduceMotion
                 ? 0
-                : half / (durationSeconds * 60);
+                : half /
+                  (durationSeconds * 60);
 
             wrap();
             render();
+
           }
+
         };
+
       }
 
-      var marqueeA = setupMarquee(
-        document.getElementById('marqueeViewportA'),
-        document.getElementById('marqueeTrackA'),
-        1,
-        78
-      );
+      var marqueeA =
+        setupMarquee(
+          document.getElementById(
+            'marqueeViewportA'
+          ),
+          document.getElementById(
+            'marqueeTrackA'
+          ),
+          1,
+          96
+        );
 
-      var marqueeB = setupMarquee(
-        document.getElementById('marqueeViewportB'),
-        document.getElementById('marqueeTrackB'),
-        -1,
-        86
-      );
+      var marqueeB =
+        setupMarquee(
+          document.getElementById(
+            'marqueeViewportB'
+          ),
+          document.getElementById(
+            'marqueeTrackB'
+          ),
+          -1,
+          104
+        );
 
       window.addEventListener(
         'resize',
         function(){
-          if(marqueeA) marqueeA.recalc();
-          if(marqueeB) marqueeB.recalc();
+
+          if(marqueeA){
+            marqueeA.recalc();
+          }
+
+          if(marqueeB){
+            marqueeB.recalc();
+          }
+
         }
       );
+
     })();
   </script>
 
-  <script src="assets/us-map.js?v=20260831-1" defer></script>
+  <script
+    src="assets/us-map.js?v=20260831-1"
+    defer
+  ></script>
 
 </body>
 </html>
