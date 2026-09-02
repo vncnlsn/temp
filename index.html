@@ -4,11 +4,22 @@
   <link rel="icon" type="image/jpeg" href="assets/APS_favicon_2.jpg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>APS Land Services</title>
-  <meta name="description" content="APS Land Services delivers seismic permitting, right-of-way acquisition, title curative, and GIS services for energy and exploration projects nationwide. Setting the standard since 1980.">
+
+  <meta
+    name="description"
+    content="APS Land Services delivers seismic permitting, right-of-way acquisition, title curative, and GIS services for energy and exploration projects nationwide. Setting the standard since 1980."
+  >
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
   <style>
     :root{
       --navy:#1E3B5F;
@@ -35,22 +46,78 @@
     }
 
     *{box-sizing:border-box}
+
     html{scroll-behavior:smooth}
-    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-    img{max-width:100%;display:block}
-    a{color:inherit;text-decoration:none}
-    ::selection{background:var(--clay);color:var(--paper)}
-    :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
-    .shell{max-width:var(--shell);margin:0 auto;padding:0 56px}
 
-    .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;font-weight:500;color:var(--clay)}
-    .eyebrow::before{content:"— ";color:var(--brass)}
-    h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.005em;margin:0}
+    body{
+      margin:0;
+      background:var(--paper);
+      color:var(--ink);
+      font-family:var(--sans);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden
+    }
 
-    [data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-    [data-reveal].in-view{opacity:1;transform:translateY(0)}
+    img{
+      max-width:100%;
+      display:block
+    }
 
-    /* Navigation */
+    a{
+      color:inherit;
+      text-decoration:none
+    }
+
+    ::selection{
+      background:var(--clay);
+      color:var(--paper)
+    }
+
+    :focus-visible{
+      outline:2px solid var(--brass);
+      outline-offset:3px
+    }
+
+    .shell{
+      max-width:var(--shell);
+      margin:0 auto;
+      padding:0 56px
+    }
+
+    .eyebrow{
+      font-family:var(--mono);
+      font-size:.72rem;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+      font-weight:500;
+      color:var(--clay)
+    }
+
+    .eyebrow::before{
+      content:"— ";
+      color:var(--brass)
+    }
+
+    h1,h2,h3{
+      font-family:var(--serif);
+      font-weight:600;
+      letter-spacing:-.005em;
+      margin:0
+    }
+
+    [data-reveal]{
+      opacity:0;
+      transform:translateY(16px);
+      transition:opacity .8s var(--ease),transform .8s var(--ease)
+    }
+
+    [data-reveal].in-view{
+      opacity:1;
+      transform:translateY(0)
+    }
+
+    /* ================= NAVIGATION ================= */
+
     .site-nav{
       position:fixed;
       inset:0 0 auto;
@@ -75,9 +142,26 @@
       width:100%;
     }
 
-    .nav-logo{display:flex;align-items:center;justify-content:center}
-    .nav-logo-img{height:44px;width:auto;max-height:calc(var(--nav-h) - 22px);display:block;filter:brightness(0) invert(1)}
-    .nav-logo-fallback{font-family:var(--serif);font-weight:600;font-size:1.35rem;color:var(--paper)}
+    .nav-logo{
+      display:flex;
+      align-items:center;
+      justify-content:center
+    }
+
+    .nav-logo-img{
+      height:44px;
+      width:auto;
+      max-height:calc(var(--nav-h) - 22px);
+      display:block;
+      filter:brightness(0) invert(1)
+    }
+
+    .nav-logo-fallback{
+      font-family:var(--serif);
+      font-weight:600;
+      font-size:1.35rem;
+      color:var(--paper)
+    }
 
     .nav-link{
       font-family:var(--mono);
@@ -89,7 +173,11 @@
       transition:color .25s var(--ease);
       white-space:nowrap;
     }
-    .nav-link:hover,.nav-link.active{color:var(--clay-bright)}
+
+    .nav-link:hover,
+    .nav-link.active{
+      color:var(--clay-bright)
+    }
 
     .menu-toggle{
       display:none;
@@ -102,17 +190,27 @@
       gap:5px;
       z-index:210;
     }
+
     .menu-toggle span{
       display:block;
       width:22px;
       height:2px;
       background:var(--paper);
       border-radius:2px;
-      transition:transform .4s var(--ease),opacity .4s var(--ease);
+      transition:transform .4s var(--ease),opacity .4s var(--ease)
     }
-    .menu-toggle.is-active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-    .menu-toggle.is-active span:nth-child(2){opacity:0}
-    .menu-toggle.is-active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+    .menu-toggle.is-active span:nth-child(1){
+      transform:translateY(7px) rotate(45deg)
+    }
+
+    .menu-toggle.is-active span:nth-child(2){
+      opacity:0
+    }
+
+    .menu-toggle.is-active span:nth-child(3){
+      transform:translateY(-7px) rotate(-45deg)
+    }
 
     .mobile-drawer{
       display:none;
@@ -129,7 +227,12 @@
       opacity:0;
       transition:transform .5s var(--ease),opacity .5s var(--ease);
     }
-    .mobile-drawer.is-open{transform:translateY(0);opacity:1}
+
+    .mobile-drawer.is-open{
+      transform:translateY(0);
+      opacity:1
+    }
+
     .mobile-drawer ul{
       list-style:none;
       margin:0;
@@ -157,11 +260,21 @@
       white-space:nowrap;
       transition:color .25s var(--ease);
     }
-    .nav-landowner-link:hover{color:var(--paper)}
-    .nav-landowner-link .arrow{transition:transform .25s var(--ease)}
-    .nav-landowner-link:hover .arrow{transform:translateX(4px)}
 
-    /* Hero */
+    .nav-landowner-link:hover{
+      color:var(--paper)
+    }
+
+    .nav-landowner-link .arrow{
+      transition:transform .25s var(--ease)
+    }
+
+    .nav-landowner-link:hover .arrow{
+      transform:translateX(4px)
+    }
+
+    /* ================= HERO ================= */
+
     .hero{
       position:relative;
       min-height:100vh;
@@ -172,10 +285,36 @@
       padding:calc(var(--nav-h) + clamp(32px,5vw,56px)) 0 clamp(80px,10vw,120px);
       text-align:center;
     }
-    .hero-identity{display:flex;flex-direction:column;align-items:center}
-    .hero h1{font-size:clamp(3.4rem,9.5vw,7.2rem);color:var(--navy);line-height:1.02;letter-spacing:-.015em}
-    .hero-tagline{font-family:var(--mono);font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);margin:30px 0 0}
-    .hero-rule{width:64px;height:2px;background:var(--clay);margin:24px auto 0}
+
+    .hero-identity{
+      display:flex;
+      flex-direction:column;
+      align-items:center
+    }
+
+    .hero h1{
+      font-size:clamp(3.4rem,9.5vw,7.2rem);
+      color:var(--navy);
+      line-height:1.02;
+      letter-spacing:-.015em
+    }
+
+    .hero-tagline{
+      font-family:var(--mono);
+      font-size:.86rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--brass);
+      margin:30px 0 0
+    }
+
+    .hero-rule{
+      width:64px;
+      height:2px;
+      background:var(--clay);
+      margin:24px auto 0
+    }
+
     .hero-purpose{
       font-family:var(--serif);
       font-weight:600;
@@ -187,44 +326,10 @@
       line-height:1.32;
     }
 
-    .hero-capabilities{
-      display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:center;
-      width:100%;
-      max-width:1040px;
-      margin:clamp(56px,7vw,88px) auto 0;
-      padding:clamp(30px,3.6vw,40px) 0;
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
+    .hero-landowner{
+      display:none
     }
-    .hero-cap-link{
-      position:relative;
-      padding-bottom:4px;
-      font-family:var(--mono);
-      font-size:1rem;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      color:var(--navy);
-      font-weight:700;
-      transition:color .25s var(--ease);
-    }
-    .hero-cap-link::after{
-      content:"";
-      position:absolute;
-      left:0;
-      right:100%;
-      bottom:0;
-      height:2px;
-      background:var(--clay);
-      transition:right .3s var(--ease);
-    }
-    .hero-cap-link:hover{color:var(--clay)}
-    .hero-cap-link:hover::after{right:0}
-    .hero-sep{width:1px;height:14px;background:var(--brass);opacity:.5;display:inline-block;margin:0 24px}
 
-    .hero-landowner{display:none}
     .hero-landowner-link{
       display:inline-flex;
       align-items:center;
@@ -243,17 +348,39 @@
       box-shadow:0 8px 20px rgba(178,58,40,.28);
       transition:color .25s var(--ease),background .25s var(--ease);
     }
-    .hero-landowner-link:hover,.hero-landowner-link:active{color:var(--paper);background:var(--clay-bright)}
-    .hero-landowner-link .arrow{transition:transform .25s var(--ease)}
-    .hero-landowner-link:hover .arrow{transform:translateX(4px)}
 
-    /* Footprint */
+    .hero-landowner-link:hover,
+    .hero-landowner-link:active{
+      color:var(--paper);
+      background:var(--clay-bright)
+    }
+
+    .hero-landowner-link .arrow{
+      transition:transform .25s var(--ease)
+    }
+
+    .hero-landowner-link:hover .arrow{
+      transform:translateX(4px)
+    }
+
+    /* ================= FOOTPRINT ================= */
+
     .footprint-section{
       background:var(--navy-deep);
       padding:clamp(64px,7vw,96px) 0 clamp(56px,6vw,80px);
     }
-    .footprint-frame{max-width:1880px;margin:0 auto;padding:0 clamp(20px,4vw,72px);text-align:center}
-    .footprint-head h2{font-size:clamp(2rem,4.4vw,3rem);color:var(--paper)}
+
+    .footprint-frame{
+      max-width:1880px;
+      margin:0 auto;
+      padding:0 clamp(20px,4vw,72px);
+      text-align:center
+    }
+
+    .footprint-head h2{
+      font-size:clamp(2rem,4.4vw,3rem);
+      color:var(--paper)
+    }
 
     .footprint-stats{
       display:flex;
@@ -264,7 +391,13 @@
       margin:clamp(30px,4vw,44px) auto clamp(40px,5vw,56px);
       max-width:1280px;
     }
-    .footprint-stats .stat{display:flex;flex-direction:column;gap:6px}
+
+    .footprint-stats .stat{
+      display:flex;
+      flex-direction:column;
+      gap:6px
+    }
+
     .footprint-stats .stat strong{
       font-family:var(--mono);
       font-weight:600;
@@ -272,6 +405,7 @@
       color:var(--glow-strong);
       letter-spacing:.02em;
     }
+
     .footprint-stats .stat small{
       font-family:var(--sans);
       font-size:.8rem;
@@ -279,9 +413,20 @@
       max-width:220px;
       line-height:1.45;
     }
-    .stat-divider{width:1px;align-self:stretch;background:var(--line-on-navy)}
 
-    .map-canvas-wrap{display:flex;justify-content:center;max-width:1780px;margin:0 auto}
+    .stat-divider{
+      width:1px;
+      align-self:stretch;
+      background:var(--line-on-navy)
+    }
+
+    .map-canvas-wrap{
+      display:flex;
+      justify-content:center;
+      max-width:1780px;
+      margin:0 auto
+    }
+
     .map-stage{
       position:relative;
       height:min(64vh,700px);
@@ -289,9 +434,13 @@
       max-width:1520px;
       aspect-ratio:860 / 535;
     }
+
     .map-canvas svg{
-      filter:drop-shadow(0 10px 26px rgba(0,0,0,.45)) drop-shadow(0 0 1.5px rgba(250,246,234,.4));
+      filter:
+        drop-shadow(0 10px 26px rgba(0,0,0,.45))
+        drop-shadow(0 0 1.5px rgba(250,246,234,.4));
     }
+
     .map-canvas path{
       fill:rgba(250,246,234,.018);
       stroke:rgba(250,246,234,.1);
@@ -303,23 +452,69 @@
       -webkit-tap-highlight-color:transparent;
       outline:none;
     }
-    .map-canvas path:focus{outline:none}
-    .map-canvas path.covered{fill:rgba(85,214,196,.22);stroke:rgba(250,246,234,.16)}
-    .map-canvas path.covered.hovered,.map-canvas path.covered.pinned{
+
+    .map-canvas path:focus{
+      outline:none
+    }
+
+    .map-canvas path.covered{
+      fill:rgba(85,214,196,.22);
+      stroke:rgba(250,246,234,.16)
+    }
+
+    .map-canvas path.covered.hovered,
+    .map-canvas path.covered.pinned{
       fill:rgba(85,214,196,.52);
       stroke:rgba(250,246,234,.34);
       transform:scale(1.015);
       filter:drop-shadow(0 8px 16px rgba(0,0,0,.4));
-      transition:fill .3s var(--ease),stroke .3s var(--ease),transform .3s var(--ease),filter .3s var(--ease);
+      transition:
+        fill .3s var(--ease),
+        stroke .3s var(--ease),
+        transform .3s var(--ease),
+        filter .3s var(--ease);
     }
-    .map-canvas path.revealing{transition:fill .9s var(--ease),stroke .9s var(--ease)}
 
-    .map-location{cursor:pointer;-webkit-tap-highlight-color:transparent;outline:none}
-    .map-location:focus{outline:none}
-    .location-ring{fill:none;stroke:rgba(217,117,95,.4);stroke-width:1;transition:stroke .35s var(--ease),opacity .35s var(--ease)}
-    .location-dot{fill:var(--clay);stroke:var(--clay-bright);stroke-width:1.5;filter:drop-shadow(0 0 4px rgba(178,58,40,.6));transition:stroke .35s var(--ease),fill .35s var(--ease),filter .35s var(--ease)}
-    .map-location:hover .location-dot,.map-location.pinned .location-dot{fill:var(--glow-strong);stroke:var(--glow-strong);filter:drop-shadow(0 0 6px rgba(85,214,196,.7))}
-    .map-location:hover .location-ring,.map-location.pinned .location-ring{stroke:var(--glow-line)}
+    .map-canvas path.revealing{
+      transition:fill .9s var(--ease),stroke .9s var(--ease)
+    }
+
+    .map-location{
+      cursor:pointer;
+      -webkit-tap-highlight-color:transparent;
+      outline:none
+    }
+
+    .map-location:focus{
+      outline:none
+    }
+
+    .location-ring{
+      fill:none;
+      stroke:rgba(217,117,95,.4);
+      stroke-width:1;
+      transition:stroke .35s var(--ease),opacity .35s var(--ease)
+    }
+
+    .location-dot{
+      fill:var(--clay);
+      stroke:var(--clay-bright);
+      stroke-width:1.5;
+      filter:drop-shadow(0 0 4px rgba(178,58,40,.6));
+      transition:stroke .35s var(--ease),fill .35s var(--ease),filter .35s var(--ease)
+    }
+
+    .map-location:hover .location-dot,
+    .map-location.pinned .location-dot{
+      fill:var(--glow-strong);
+      stroke:var(--glow-strong);
+      filter:drop-shadow(0 0 6px rgba(85,214,196,.7))
+    }
+
+    .map-location:hover .location-ring,
+    .map-location.pinned .location-ring{
+      stroke:var(--glow-line)
+    }
 
     .map-state-panel{
       position:absolute;
@@ -339,73 +534,301 @@
       pointer-events:none;
       text-align:left;
     }
-    .map-state-panel.msp-visible{opacity:1;transform:translateY(0)}
-    .msp-name{display:block;font-family:var(--serif);font-weight:500;font-size:1.05rem;color:var(--paper);white-space:nowrap}
 
-    /* Capabilities */
-    .capabilities-section{padding:clamp(80px,9vw,120px) 0 clamp(64px,7vw,96px)}
-    .commitment-head{text-align:center;max-width:720px;margin:0 auto clamp(40px,5vw,56px)}
-    .commitment-headline{display:flex;flex-direction:column}
-    .ch-line{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.5rem);color:var(--navy);line-height:1.25}
-    .ch-line-2{align-self:flex-end;font-style:italic;font-weight:500;color:var(--clay);margin-top:6px;padding-right:clamp(0px,4vw,40px)}
-    .ch-ellipsis{color:var(--brass)}
-
-    .capabilities-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:clamp(20px,2.4vw,30px);
-      align-items:stretch;
+    .map-state-panel.msp-visible{
+      opacity:1;
+      transform:translateY(0)
     }
-    .cap-card{
-      background:#FFFDF7;
-      padding:clamp(24px,2.4vw,30px);
-      border-radius:3px;
+
+    .msp-name{
+      display:block;
+      font-family:var(--serif);
+      font-weight:500;
+      font-size:1.05rem;
+      color:var(--paper);
+      white-space:nowrap
+    }
+
+    /* ================= COMMITMENT ================= */
+
+    .capabilities-section{
+      padding:clamp(92px,10vw,132px) 0 clamp(88px,9vw,116px);
+    }
+
+    .commitment-head{
+      text-align:center;
+      max-width:760px;
+      margin:0 auto clamp(46px,5.5vw,64px);
+    }
+
+    .commitment-headline{
       display:flex;
-      flex-direction:column;
-      box-shadow:0 1px 2px rgba(34,28,21,.04),0 10px 22px rgba(34,28,21,.06);
-      transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+      flex-direction:column
     }
-    .cap-card:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(34,28,21,.05),0 14px 28px rgba(34,28,21,.08)}
-    .cap-card h3{font-size:1.18rem;color:var(--navy);line-height:1.3;margin-bottom:16px;text-transform:uppercase;text-align:center;letter-spacing:.04em}
-    .cap-list{list-style:none;margin:0;padding:0}
-    .cap-list li{font-size:.88rem;line-height:1.5;color:var(--ink-soft);padding:8px 0;border-top:1px solid var(--line)}
-    .cap-list li:first-child{border-top:none;padding-top:0}
-    .cap-list strong{font-weight:600;color:var(--navy)}
 
-    .section-head-center{text-align:center;max-width:640px;margin:clamp(44px,6vw,64px) auto 0}
-    .section-head-center h2{font-size:clamp(1.7rem,3vw,2.4rem);color:var(--navy)}
+    .ch-line{
+      font-family:var(--serif);
+      font-weight:600;
+      font-size:clamp(1.8rem,3.6vw,2.65rem);
+      color:var(--navy);
+      line-height:1.2;
+    }
 
-    /* Client marquee */
-    .marquee-stack{margin-top:clamp(28px,3.5vw,40px);display:flex;flex-direction:column;gap:2px}
-    .marquee-viewport{position:relative;overflow:hidden;border-top:1px solid var(--paper-dim);border-bottom:1px solid var(--paper-dim);cursor:grab;touch-action:pan-y}
-    .marquee-viewport.dragging{cursor:grabbing}
-    .marquee-viewport::before,.marquee-viewport::after{content:"";position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
-    .marquee-viewport::before{left:0;background:linear-gradient(to right,var(--paper),rgba(250,246,234,0))}
-    .marquee-viewport::after{right:0;background:linear-gradient(to left,var(--paper),rgba(250,246,234,0))}
-    .marquee-track{display:flex;align-items:stretch;width:max-content;will-change:transform}
-    .logo-cell{
-      flex:0 0 auto;
-      height:92px;
+    .ch-line-2{
+      align-self:flex-end;
+      font-style:italic;
+      font-weight:500;
+      color:var(--clay);
+      margin-top:6px;
+      padding-right:clamp(0px,4vw,42px);
+    }
+
+    .ch-ellipsis{
+      color:var(--brass)
+    }
+
+    /* Service navigation */
+    .service-bar{
+      width:100%;
+      max-width:1180px;
+      margin:0 auto clamp(52px,6vw,72px);
+      padding:26px 0;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:0 42px;
+      flex-wrap:wrap;
+      gap:12px 0;
+    }
+
+    .service-bar a{
+      position:relative;
+      display:inline-block;
+      padding:0 24px 4px;
+      font-family:var(--mono);
+      font-size:.88rem;
+      font-weight:600;
+      letter-spacing:.065em;
+      text-transform:uppercase;
+      color:var(--navy);
+      transition:color .25s var(--ease);
+    }
+
+    .service-bar a::after{
+      content:"";
+      position:absolute;
+      left:24px;
+      right:24px;
+      bottom:0;
+      height:2px;
+      background:var(--clay);
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:transform .3s var(--ease);
+    }
+
+    .service-bar a:hover,
+    .service-bar a:focus-visible{
+      color:var(--clay)
+    }
+
+    .service-bar a:hover::after,
+    .service-bar a:focus-visible::after{
+      transform:scaleX(1)
+    }
+
+    .service-bar span{
+      width:1px;
+      height:15px;
+      background:var(--brass);
+      opacity:.45;
+      flex:0 0 auto
+    }
+
+    /* Differentiator cards */
+    .capabilities-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:clamp(22px,2.4vw,30px);
+      align-items:stretch;
+    }
+
+    .cap-card{
+      background:#FFFDF7;
+      padding:clamp(28px,3vw,38px) clamp(26px,2.6vw,34px);
+      border-radius:3px;
+      display:flex;
+      flex-direction:column;
+      box-shadow:
+        0 1px 2px rgba(34,28,21,.04),
+        0 10px 22px rgba(34,28,21,.055);
+      transition:
+        transform .3s var(--ease),
+        box-shadow .3s var(--ease);
+    }
+
+    .cap-card:hover{
+      transform:translateY(-3px);
+      box-shadow:
+        0 2px 4px rgba(34,28,21,.05),
+        0 14px 28px rgba(34,28,21,.075);
+    }
+
+    .cap-card h3{
+      font-size:1.12rem;
+      color:var(--navy);
+      line-height:1.3;
+      margin:0 0 18px;
+      text-transform:uppercase;
+      text-align:center;
+      letter-spacing:.045em;
+    }
+
+    .cap-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+    }
+
+    .cap-list li{
+      font-size:.88rem;
+      line-height:1.5;
+      color:var(--ink-soft);
+      padding:9px 0;
+      border-top:1px solid var(--line);
+    }
+
+    .cap-list li:first-child{
+      border-top:none;
+      padding-top:0
+    }
+
+    .cap-list strong{
+      font-weight:600;
+      color:var(--navy)
+    }
+
+    /* ================= PROVEN EXPERIENCE ================= */
+
+    .proven-section{
+      padding:clamp(96px,11vw,148px) 0 clamp(100px,11vw,140px);
+      background:var(--paper);
+    }
+
+    .proof-head{
+      margin:0 auto clamp(44px,5vw,64px)
+    }
+
+    .proof-head h2{
+      font-size:clamp(2rem,4.2vw,3.2rem);
+      color:var(--navy)
+    }
+
+    /* Client marquee */
+    .marquee-stack{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+
+    .marquee-viewport{
+      position:relative;
+      overflow:hidden;
+      border-top:1px solid var(--paper-dim);
+      border-bottom:1px solid var(--paper-dim);
+      cursor:grab;
+      touch-action:pan-y;
+    }
+
+    .marquee-viewport.dragging{
+      cursor:grabbing
+    }
+
+    .marquee-viewport::before,
+    .marquee-viewport::after{
+      content:"";
+      position:absolute;
+      top:0;
+      bottom:0;
+      width:120px;
+      z-index:2;
+      pointer-events:none;
+    }
+
+    .marquee-viewport::before{
+      left:0;
+      background:linear-gradient(
+        to right,
+        var(--paper),
+        rgba(250,246,234,0)
+      );
+    }
+
+    .marquee-viewport::after{
+      right:0;
+      background:linear-gradient(
+        to left,
+        var(--paper),
+        rgba(250,246,234,0)
+      );
+    }
+
+    .marquee-track{
+      display:flex;
+      align-items:stretch;
+      width:max-content;
+      will-change:transform;
+    }
+
+    .logo-cell{
+      flex:0 0 auto;
+      min-width:230px;
+      height:122px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:0 48px;
       border-right:1px solid var(--paper-dim);
       font-family:var(--serif);
       font-style:italic;
       font-weight:500;
-      font-size:1.08rem;
+      font-size:1.24rem;
       line-height:1.2;
       color:var(--ink-soft);
       white-space:nowrap;
       user-select:none;
     }
 
-    /* CTA / Footer */
-    .cta-band{background:var(--navy-deep);padding:clamp(64px,7vw,92px) 0}
-    .cta-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(24px,3vw,32px);text-align:center}
-    .cta-inner h2{font-size:clamp(1.6rem,2.8vw,2.2rem);color:var(--paper)}
-    .cta-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px}
+    /* ================= CTA / FOOTER ================= */
+
+    .cta-band{
+      background:var(--navy-deep);
+      padding:clamp(64px,7vw,92px) 0;
+    }
+
+    .cta-inner{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:clamp(24px,3vw,32px);
+      text-align:center;
+    }
+
+    .cta-inner h2{
+      font-size:clamp(1.6rem,2.8vw,2.2rem);
+      color:var(--paper)
+    }
+
+    .cta-actions{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:center;
+      gap:16px;
+    }
+
     .cta-btn{
       display:inline-flex;
       align-items:center;
@@ -416,11 +839,24 @@
       font-size:.86rem;
       font-weight:600;
       flex:0 0 auto;
-      transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease);
+      transition:
+        background .3s var(--ease),
+        color .3s var(--ease),
+        border-color .3s var(--ease);
     }
-    .cta-btn:hover{background:var(--clay);border-color:var(--clay)}
-    .cta-btn .arrow{transition:transform .25s var(--ease)}
-    .cta-btn:hover .arrow{transform:translateX(4px)}
+
+    .cta-btn:hover{
+      background:var(--clay);
+      border-color:var(--clay)
+    }
+
+    .cta-btn .arrow{
+      transition:transform .25s var(--ease)
+    }
+
+    .cta-btn:hover .arrow{
+      transform:translateX(4px)
+    }
 
     footer{
       background:linear-gradient(180deg,#16222C 0%,#111B23 100%);
@@ -429,6 +865,7 @@
       position:relative;
       border-top:2px solid var(--clay);
     }
+
     .footer-grid{
       display:grid;
       grid-template-columns:1fr 1fr 1fr;
@@ -438,10 +875,41 @@
       text-align:center;
       align-items:start;
     }
-    .footer-brand{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-    .footer-logo-img{height:32px;width:auto;filter:brightness(0) invert(1);margin:0 auto 12px;display:block}
-    .footer-brand-fallback{display:none;font-family:var(--serif);font-weight:600;font-size:1.25rem;color:var(--paper);margin-bottom:8px}
-    .footer-brand p{font-size:.85rem;color:rgba(250,246,234,.7);line-height:1.5;font-family:var(--sans);margin:0;text-align:center}
+
+    .footer-brand{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center
+    }
+
+    .footer-logo-img{
+      height:32px;
+      width:auto;
+      filter:brightness(0) invert(1);
+      margin:0 auto 12px;
+      display:block
+    }
+
+    .footer-brand-fallback{
+      display:none;
+      font-family:var(--serif);
+      font-weight:600;
+      font-size:1.25rem;
+      color:var(--paper);
+      margin-bottom:8px
+    }
+
+    .footer-brand p{
+      font-size:.85rem;
+      color:rgba(250,246,234,.7);
+      line-height:1.5;
+      font-family:var(--sans);
+      margin:0;
+      text-align:center
+    }
+
     .footer-hq-badge{
       display:inline-block;
       margin-top:16px;
@@ -454,17 +922,67 @@
       border:1px solid rgba(217,117,95,.2);
       padding:6px 14px;
       border-radius:3px;
-      transition:background .25s var(--ease),border-color .25s var(--ease),color .25s var(--ease);
+      transition:
+        background .25s var(--ease),
+        border-color .25s var(--ease),
+        color .25s var(--ease);
     }
-    .footer-hq-badge:hover{background:rgba(217,117,95,.18);border-color:rgba(217,117,95,.4);color:var(--paper)}
-    footer h4{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--clay-bright);margin:0 0 18px;font-weight:600;text-align:center}
-    footer ul.nav-list,footer ul.contact-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;align-items:center}
-    footer ul.contact-list{gap:12px}
-    footer li{font-size:.88rem;color:var(--paper-soft);text-align:center}
-    footer ul.nav-list li{margin-bottom:12px}
-    footer ul.nav-list li:last-child{margin-bottom:0}
-    footer a{color:var(--paper-soft);transition:color .25s var(--ease);display:inline-block}
-    footer a:hover{color:var(--clay-bright)}
+
+    .footer-hq-badge:hover{
+      background:rgba(217,117,95,.18);
+      border-color:rgba(217,117,95,.4);
+      color:var(--paper)
+    }
+
+    footer h4{
+      font-family:var(--mono);
+      font-size:.68rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--clay-bright);
+      margin:0 0 18px;
+      font-weight:600;
+      text-align:center
+    }
+
+    footer ul.nav-list,
+    footer ul.contact-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    footer ul.contact-list{
+      gap:12px
+    }
+
+    footer li{
+      font-size:.88rem;
+      color:var(--paper-soft);
+      text-align:center
+    }
+
+    footer ul.nav-list li{
+      margin-bottom:12px
+    }
+
+    footer ul.nav-list li:last-child{
+      margin-bottom:0
+    }
+
+    footer a{
+      color:var(--paper-soft);
+      transition:color .25s var(--ease);
+      display:inline-block
+    }
+
+    footer a:hover{
+      color:var(--clay-bright)
+    }
+
     .contact-link{
       background:rgba(250,246,234,.04);
       padding:6px 14px;
@@ -472,106 +990,360 @@
       border:1px solid rgba(250,246,234,.06);
       font-family:var(--mono);
       font-size:.8rem;
-      transition:background .25s var(--ease),border-color .25s var(--ease);
+      transition:
+        background .25s var(--ease),
+        border-color .25s var(--ease);
     }
-    .contact-link:hover{background:rgba(217,117,95,.1);border-color:rgba(217,117,95,.3)}
-    .footer-bottom{padding-top:28px;display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:.7rem;color:rgba(250,246,234,.5)}
 
-    /* Responsive */
+    .contact-link:hover{
+      background:rgba(217,117,95,.1);
+      border-color:rgba(217,117,95,.3)
+    }
+
+    .footer-bottom{
+      padding-top:28px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-family:var(--mono);
+      font-size:.7rem;
+      color:rgba(250,246,234,.5)
+    }
+
+    /* ================= RESPONSIVE ================= */
+
     @media (max-width:1280px){
-      .map-canvas-wrap{flex-direction:column;align-items:center}
-      .map-stage{max-width:1100px;height:min(50vh,560px);margin-bottom:70px}
-      .map-state-panel{top:100%;left:50%;width:max-content;max-width:280px;margin-top:16px;text-align:center;border-left:none;border-top:2px solid var(--glow-line);transform:translate(-50%,-6px)}
-      .map-state-panel.msp-visible{transform:translate(-50%,0)}
+      .map-canvas-wrap{
+        flex-direction:column;
+        align-items:center
+      }
+
+      .map-stage{
+        max-width:1100px;
+        height:min(50vh,560px);
+        margin-bottom:70px
+      }
+
+      .map-state-panel{
+        top:100%;
+        left:50%;
+        width:max-content;
+        max-width:280px;
+        margin-top:16px;
+        text-align:center;
+        border-left:none;
+        border-top:2px solid var(--glow-line);
+        transform:translate(-50%,-6px)
+      }
+
+      .map-state-panel.msp-visible{
+        transform:translate(-50%,0)
+      }
     }
 
     @media (max-width:900px){
-      .capabilities-grid{grid-template-columns:1fr}
+      .capabilities-grid{
+        grid-template-columns:1fr
+      }
+
+      .service-bar{
+        flex-direction:column;
+        gap:18px
+      }
+
+      .service-bar span{
+        display:none
+      }
+
+      .service-bar a{
+        padding-left:0;
+        padding-right:0
+      }
+
+      .service-bar a::after{
+        left:0;
+        right:0
+      }
     }
 
     @media (max-width:768px){
-      .site-nav{justify-content:space-between;padding:0 20px}
-      .menu-toggle{display:flex;position:absolute;left:20px}
-      .nav-menu-centered{padding:0}
-      .nav-menu-centered .desktop-only{display:none}
-      .nav-logo-img{height:34px}
-      .mobile-drawer{display:block}
-      .nav-landowner-link{display:none}
+      .site-nav{
+        justify-content:space-between;
+        padding:0 20px
+      }
 
-      .stat-divider{display:none}
-      .footprint-stats{gap:24px}
-      .footprint-stats .stat{align-items:center;text-align:center}
+      .menu-toggle{
+        display:flex;
+        position:absolute;
+        left:20px
+      }
 
-      footer{padding:32px 0 24px}
-      .footer-grid{display:flex;flex-direction:column;align-items:center;gap:20px;padding-bottom:24px}
-      .col-nav{order:1}
-      .col-contact{display:none !important}
-      .col-brand{order:2}
-      footer h4.nav-header{display:block}
-      footer ul.nav-list{flex-direction:row;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px}
-      footer ul.nav-list li{margin-bottom:0;display:inline-flex;align-items:center}
-      footer ul.nav-list li:not(:last-child)::after{content:"·";margin-left:12px;color:rgba(250,246,234,.3);font-weight:700}
-      .footer-hq-badge{margin-top:10px}
-      .footer-bottom{flex-direction:column;gap:6px;text-align:center;padding-top:18px}
+      .nav-menu-centered{
+        padding:0
+      }
+
+      .nav-menu-centered .desktop-only{
+        display:none
+      }
+
+      .nav-logo-img{
+        height:34px
+      }
+
+      .mobile-drawer{
+        display:block
+      }
+
+      .nav-landowner-link{
+        display:none
+      }
+
+      .stat-divider{
+        display:none
+      }
+
+      .footprint-stats{
+        gap:24px
+      }
+
+      .footprint-stats .stat{
+        align-items:center;
+        text-align:center
+      }
+
+      footer{
+        padding:32px 0 24px
+      }
+
+      .footer-grid{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:20px;
+        padding-bottom:24px
+      }
+
+      .col-nav{
+        order:1
+      }
+
+      .col-contact{
+        display:none !important
+      }
+
+      .col-brand{
+        order:2
+      }
+
+      footer h4.nav-header{
+        display:block
+      }
+
+      footer ul.nav-list{
+        flex-direction:row;
+        flex-wrap:wrap;
+        justify-content:center;
+        align-items:center;
+        gap:12px
+      }
+
+      footer ul.nav-list li{
+        margin-bottom:0;
+        display:inline-flex;
+        align-items:center
+      }
+
+      footer ul.nav-list li:not(:last-child)::after{
+        content:"·";
+        margin-left:12px;
+        color:rgba(250,246,234,.3);
+        font-weight:700
+      }
+
+      .footer-hq-badge{
+        margin-top:10px
+      }
+
+      .footer-bottom{
+        flex-direction:column;
+        gap:6px;
+        text-align:center;
+        padding-top:18px
+      }
     }
 
     @media (max-width:640px){
-      .shell{padding:0 20px}
-      .footprint-frame{padding:0 20px}
-      .hero{padding-top:calc(var(--nav-h) + 8px)}
-      .hero-purpose{margin-top:clamp(56px,11vw,84px)}
-      .hero-capabilities{display:none}
-      .hero-landowner{display:flex;justify-content:center;margin:clamp(28px,6vw,40px) 0 0}
+      .shell{
+        padding:0 20px
+      }
 
-      .hero-sep{display:none}
-      .hero-cap-link{width:100%;font-size:.82rem}
+      .footprint-frame{
+        padding:0 20px
+      }
 
-      .footprint-section{padding-top:clamp(80px,12vw,104px);padding-bottom:clamp(72px,11vw,96px)}
-      .map-stage{width:100%;max-width:100%;height:auto;margin-bottom:70px}
-      .map-state-panel{max-width:240px;padding:10px 16px}
-      .msp-name{font-size:.92rem;white-space:normal}
+      .hero{
+        padding-top:calc(var(--nav-h) + 8px)
+      }
 
-      .capabilities-section{padding-top:clamp(96px,15vw,128px);padding-bottom:clamp(80px,12vw,104px)}
-      .ch-line{font-size:1.5rem}
-      .ch-line-2{align-self:center;padding-right:0}
-      .commitment-headline{align-items:center}
+      .hero-purpose{
+        margin-top:clamp(56px,11vw,84px)
+      }
 
-      .marquee-viewport::before,.marquee-viewport::after{width:54px}
-      .logo-cell{height:82px;padding:0 30px;font-size:1rem}
+      .hero-landowner{
+        display:flex;
+        justify-content:center;
+        margin:clamp(28px,6vw,40px) 0 0
+      }
 
-      .cta-band{padding-top:clamp(80px,12vw,104px);padding-bottom:clamp(80px,12vw,104px)}
+      .footprint-section{
+        padding-top:clamp(80px,12vw,104px);
+        padding-bottom:clamp(72px,11vw,96px)
+      }
+
+      .map-stage{
+        width:100%;
+        max-width:100%;
+        height:auto;
+        margin-bottom:70px
+      }
+
+      .map-state-panel{
+        max-width:240px;
+        padding:10px 16px
+      }
+
+      .msp-name{
+        font-size:.92rem;
+        white-space:normal
+      }
+
+      .capabilities-section{
+        padding-top:clamp(82px,14vw,110px);
+        padding-bottom:clamp(78px,13vw,104px)
+      }
+
+      .ch-line{
+        font-size:1.5rem
+      }
+
+      .ch-line-2{
+        align-self:center;
+        padding-right:0
+      }
+
+      .commitment-headline{
+        align-items:center
+      }
+
+      .service-bar{
+        margin-bottom:44px
+      }
+
+      .cap-card{
+        padding:26px 24px
+      }
+
+      .proven-section{
+        padding-top:clamp(82px,13vw,108px);
+        padding-bottom:clamp(88px,14vw,116px)
+      }
+
+      .marquee-viewport::before,
+      .marquee-viewport::after{
+        width:54px
+      }
+
+      .logo-cell{
+        min-width:190px;
+        height:96px;
+        padding:0 30px;
+        font-size:1.05rem
+      }
+
+      .cta-band{
+        padding-top:clamp(80px,12vw,104px);
+        padding-bottom:clamp(80px,12vw,104px)
+      }
     }
 
     @media (prefers-reduced-motion:reduce){
-      html{scroll-behavior:auto}
-      [data-reveal]{transition:opacity .3s linear;transform:none}
+      html{
+        scroll-behavior:auto
+      }
+
+      [data-reveal]{
+        transition:opacity .3s linear;
+        transform:none
+      }
     }
   </style>
 </head>
+
 <body>
+
   <!-- Navigation -->
   <nav class="site-nav" id="siteNav" aria-label="Primary">
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+    >
       <span></span><span></span><span></span>
     </button>
 
     <ul class="nav-menu-centered">
-      <li class="desktop-only"><a class="nav-link" href="index.html">Home</a></li>
-      <li class="desktop-only"><a class="nav-link" href="about.html">About</a></li>
+      <li class="desktop-only">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
+
+      <li class="desktop-only">
+        <a class="nav-link" href="about.html">About</a>
+      </li>
+
       <li>
         <a class="nav-logo" href="index.html" aria-label="APS - Home">
-          <img class="nav-logo-img" src="assets/APSLand_Logo.png" alt="APS Land" decoding="async" onerror="this.style.display='none';document.getElementById('navLogoFallback').style.display='inline'">
-          <span id="navLogoFallback" class="nav-logo-fallback" style="display:none;">APS Land</span>
+          <img
+            class="nav-logo-img"
+            src="assets/APSLand_Logo.png"
+            alt="APS Land"
+            decoding="async"
+            onerror="this.style.display='none';document.getElementById('navLogoFallback').style.display='inline'"
+          >
+          <span
+            id="navLogoFallback"
+            class="nav-logo-fallback"
+            style="display:none;"
+          >
+            APS Land
+          </span>
         </a>
       </li>
-      <li class="desktop-only"><a class="nav-link" href="services.html">Services</a></li>
-      <li class="desktop-only"><a class="nav-link" href="contact.html">Contact</a></li>
+
+      <li class="desktop-only">
+        <a class="nav-link" href="services.html">Services</a>
+      </li>
+
+      <li class="desktop-only">
+        <a class="nav-link" href="contact.html">Contact</a>
+      </li>
     </ul>
 
-    <a class="nav-landowner-link" href="about.html#landowner-info">Contacted by APS? <span class="arrow">→</span></a>
+    <a
+      class="nav-landowner-link"
+      href="about.html#landowner-info"
+    >
+      Contacted by APS?
+      <span class="arrow">→</span>
+    </a>
   </nav>
 
-  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+  <!-- Mobile Navigation -->
+  <div
+    class="mobile-drawer"
+    id="mobileDrawer"
+    aria-hidden="true"
+  >
     <ul>
       <li><a class="nav-link" href="index.html">Home</a></li>
       <li><a class="nav-link" href="about.html">About</a></li>
@@ -580,7 +1352,8 @@
     </ul>
   </div>
 
-  <!-- Hero -->
+  <!-- ================= HERO ================= -->
+
   <header class="hero shell" data-reveal>
     <div class="hero-identity">
       <h1>APS Land Services</h1>
@@ -588,26 +1361,26 @@
       <div class="hero-rule"></div>
     </div>
 
-    <p class="hero-purpose">Supporting the energy, exploration, and infrastructure projects that power America.</p>
-
-    <div class="hero-capabilities">
-      <a class="hero-cap-link" href="services.html#title-ownership">Title &amp; Leasing</a>
-      <span class="hero-sep" aria-hidden="true"></span>
-      <a class="hero-cap-link" href="services.html#gis-services">GIS</a>
-      <span class="hero-sep" aria-hidden="true"></span>
-      <a class="hero-cap-link" href="services.html#seismic-permitting">Seismic Permitting</a>
-      <span class="hero-sep" aria-hidden="true"></span>
-      <a class="hero-cap-link" href="services.html#right-of-way">Right-of-Way Acquisition</a>
-    </div>
+    <p class="hero-purpose">
+      Supporting the energy, exploration, and infrastructure projects that power America.
+    </p>
 
     <div class="hero-landowner">
-      <a class="hero-landowner-link" href="about.html#landowner-info">Contacted by APS? Start Here <span class="arrow">→</span></a>
+      <a
+        class="hero-landowner-link"
+        href="about.html#landowner-info"
+      >
+        Contacted by APS? Start Here
+        <span class="arrow">→</span>
+      </a>
     </div>
   </header>
 
-  <!-- Nationwide Footprint -->
+  <!-- ================= NATIONWIDE FOOTPRINT ================= -->
+
   <section class="footprint-section" id="footprint">
     <div class="footprint-frame">
+
       <div class="footprint-head" data-reveal>
         <h2>A Nationwide Footprint</h2>
       </div>
@@ -617,17 +1390,23 @@
           <strong>3 Locations</strong>
           <small>Utah &bull; Montana &bull; Texas</small>
         </span>
+
         <span class="stat-divider" aria-hidden="true"></span>
+
         <span class="stat">
           <strong>28 States</strong>
           <small>plus project experience in Alberta and Saskatchewan</small>
         </span>
+
         <span class="stat-divider" aria-hidden="true"></span>
+
         <span class="stat">
           <strong>Hundreds</strong>
           <small>of projects completed</small>
         </span>
+
         <span class="stat-divider" aria-hidden="true"></span>
+
         <span class="stat">
           <strong>Thousands</strong>
           <small>of successful negotiations</small>
@@ -636,89 +1415,229 @@
 
       <div class="map-canvas-wrap" data-reveal>
         <div class="map-stage">
-          <div id="us-map" class="map-canvas" aria-label="Interactive map of the contiguous United States showing APS Land Services coverage and locations"></div>
-          <div id="map-state-panel" class="map-state-panel">
-            <span id="msp-name" class="msp-name"></span>
+          <div
+            id="us-map"
+            class="map-canvas"
+            aria-label="Interactive map of the contiguous United States showing APS Land Services coverage and locations"
+          ></div>
+
+          <div
+            id="map-state-panel"
+            class="map-state-panel"
+          >
+            <span
+              id="msp-name"
+              class="msp-name"
+            ></span>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- Commitment & Proof -->
-  <section class="capabilities-section shell" id="capabilities">
+  <!-- ================= COMMITMENT ================= -->
+
+  <section
+    class="capabilities-section shell"
+    id="capabilities"
+  >
+
     <div class="commitment-head" data-reveal>
       <h2 class="commitment-headline">
-        <span class="ch-line ch-line-1">We're committed to the details<span class="ch-ellipsis">…</span></span>
-        <span class="ch-line ch-line-2">…and the deadlines.</span>
+        <span class="ch-line ch-line-1">
+          We're committed to the details<span class="ch-ellipsis">…</span>
+        </span>
+
+        <span class="ch-line ch-line-2">
+          …and the deadlines.
+        </span>
       </h2>
     </div>
 
+    <!-- Service navigation -->
+    <nav
+      class="service-bar"
+      aria-label="Our services"
+      data-reveal
+    >
+      <a href="services.html#title-ownership">
+        Title &amp; Leasing
+      </a>
+
+      <span aria-hidden="true"></span>
+
+      <a href="services.html#gis-services">
+        GIS
+      </a>
+
+      <span aria-hidden="true"></span>
+
+      <a href="services.html#seismic-permitting">
+        Seismic Permitting
+      </a>
+
+      <span aria-hidden="true"></span>
+
+      <a href="services.html#right-of-way">
+        Right-of-Way Acquisition
+      </a>
+    </nav>
+
+    <!-- Differentiators -->
     <div class="capabilities-grid">
+
       <div class="cap-card" data-reveal>
         <h3>Direct Leadership</h3>
+
         <ul class="cap-list">
-          <li>Senior leadership on every project, not a rotating account team</li>
-          <li>One point of contact from bid through closeout</li>
-          <li>Direct phone and email access, no call center</li>
+          <li>
+            Senior leadership stays directly involved in every project
+          </li>
+
+          <li>
+            One point of contact from bid through closeout
+          </li>
+
+          <li>
+            Direct phone and email access — no call center
+          </li>
         </ul>
       </div>
 
       <div class="cap-card" data-reveal>
-        <h3>Defined Pricing</h3>
+        <h3>Reliable Pricing</h3>
+
         <ul class="cap-list">
-          <li>Turnkey pricing available</li>
-          <li>Scope and costs set before work begins</li>
-          <li>No change orders sprung after the fact</li>
+          <li>
+            Turnkey pricing available
+          </li>
+
+          <li>
+            Clear scope and pricing before work begins
+          </li>
+
+          <li>
+            Straightforward expectations from the start
+          </li>
         </ul>
       </div>
 
       <div class="cap-card" data-reveal>
-        <h3>Safety Without Shortcuts</h3>
+        <h3>Safety Standards</h3>
+
         <ul class="cap-list">
-          <li>Formal Safety Program Manual</li>
-          <li>Stop-Work Authority held by every crew member</li>
-          <li>Member of <strong>ISNetworld</strong></li>
+          <li>
+            Formal Safety Program Manual
+          </li>
+
+          <li>
+            Stop-work authority held by every crew member
+          </li>
+
+          <li>
+            Member of <strong>ISNetworld</strong>
+          </li>
         </ul>
       </div>
-    </div>
 
-    <div class="section-head-center proof-head" data-reveal>
-      <h2>Don't just take our word for it.</h2>
-    </div>
-
-    <div class="marquee-stack" id="clients" data-reveal>
-      <div class="marquee-viewport" id="marqueeViewportA">
-        <div class="marquee-track" id="marqueeTrackA"></div>
-      </div>
-      <div class="marquee-viewport" id="marqueeViewportB">
-        <div class="marquee-track" id="marqueeTrackB"></div>
-      </div>
     </div>
   </section>
 
-  <!-- CTA / Footer -->
+  <!-- ================= PROVEN EXPERIENCE ================= -->
+
+  <section
+    class="proven-section"
+    id="clients"
+  >
+
+    <div class="shell">
+      <div class="section-head-center proof-head" data-reveal>
+        <h2>Don't just take our word for it.</h2>
+      </div>
+    </div>
+
+    <div
+      class="marquee-stack"
+      data-reveal
+    >
+      <div
+        class="marquee-viewport"
+        id="marqueeViewportA"
+      >
+        <div
+          class="marquee-track"
+          id="marqueeTrackA"
+        ></div>
+      </div>
+
+      <div
+        class="marquee-viewport"
+        id="marqueeViewportB"
+      >
+        <div
+          class="marquee-track"
+          id="marqueeTrackB"
+        ></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ================= CTA / FOOTER ================= -->
+
   <section class="cta-band">
     <div class="shell cta-inner" data-reveal>
       <h2>Let's get to work.</h2>
+
       <div class="cta-actions">
-        <a class="cta-btn" href="contact.html">Contact Us <span class="arrow">→</span></a>
+        <a
+          class="cta-btn"
+          href="contact.html"
+        >
+          Contact Us
+          <span class="arrow">→</span>
+        </a>
       </div>
     </div>
   </section>
 
   <footer>
     <div class="shell">
+
       <div class="footer-grid">
+
         <div class="col-brand footer-brand">
-          <img class="footer-logo-img" src="assets/APSLand_Logo.png" alt="APS Land Services" decoding="async" onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='block'">
-          <span id="footerLogoFallback" class="footer-brand-fallback">APS Land Services</span>
+          <img
+            class="footer-logo-img"
+            src="assets/APSLand_Logo.png"
+            alt="APS Land Services"
+            decoding="async"
+            onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='block'"
+          >
+
+          <span
+            id="footerLogoFallback"
+            class="footer-brand-fallback"
+          >
+            APS Land Services
+          </span>
+
           <p>Setting the Standard Since 1980</p>
-          <a class="footer-hq-badge" href="https://www.google.com/maps/search/?api=1&query=Lewiston%2C+UT" target="_blank" rel="noopener noreferrer">Cache Valley, Utah ↗</a>
+
+          <a
+            class="footer-hq-badge"
+            href="https://www.google.com/maps/search/?api=1&query=Lewiston%2C+UT"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Cache Valley, Utah ↗
+          </a>
         </div>
 
         <div class="col-nav">
           <h4 class="nav-header">Navigation</h4>
+
           <ul class="nav-list">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -729,28 +1648,47 @@
 
         <div class="col-contact">
           <h4 class="contact-header">Contact</h4>
+
           <ul class="contact-list">
-            <li><a class="contact-link" href="tel:+13039035873">303-903-5873</a></li>
-            <li><a class="contact-link" href="mailto:allstatepermit@allstatepermit.com">allstatepermit@allstatepermit.com</a></li>
+            <li>
+              <a
+                class="contact-link"
+                href="tel:+13039035873"
+              >
+                303-903-5873
+              </a>
+            </li>
+
+            <li>
+              <a
+                class="contact-link"
+                href="mailto:allstatepermit@allstatepermit.com"
+              >
+                allstatepermit@allstatepermit.com
+              </a>
+            </li>
           </ul>
         </div>
+
       </div>
 
       <div class="footer-bottom">
         <span>© 2026 APS Land Services. All rights reserved.</span>
         <span>Land Services Nationwide</span>
       </div>
+
     </div>
   </footer>
 
   <script>
     (function(){
-      var nav=document.getElementById('siteNav');
-      var toggleBtn=document.getElementById('menuToggle');
-      var mobileDrawer=document.getElementById('mobileDrawer');
+      var nav = document.getElementById('siteNav');
+      var toggleBtn = document.getElementById('menuToggle');
+      var mobileDrawer = document.getElementById('mobileDrawer');
 
       function closeDrawer(){
         if(!mobileDrawer || !toggleBtn) return;
+
         mobileDrawer.classList.remove('is-open');
         toggleBtn.classList.remove('is-active');
         toggleBtn.setAttribute('aria-expanded','false');
@@ -758,19 +1696,30 @@
       }
 
       /* Navigation behavior */
+
       function samePage(href){
-        var target=document.createElement('a');
-        target.href=href;
-        var targetPath=target.pathname.replace(/\/index\.html$/,'/').replace(/\/$/,'') || '/';
-        var herePath=window.location.pathname.replace(/\/index\.html$/,'/').replace(/\/$/,'') || '/';
-        return targetPath===herePath;
+        var target = document.createElement('a');
+
+        target.href = href;
+
+        var targetPath = target.pathname
+          .replace(/\/index\.html$/,'/')
+          .replace(/\/$/,'') || '/';
+
+        var herePath = window.location.pathname
+          .replace(/\/index\.html$/,'/')
+          .replace(/\/$/,'') || '/';
+
+        return targetPath === herePath;
       }
 
       if(toggleBtn && mobileDrawer){
         toggleBtn.addEventListener('click',function(e){
           e.stopPropagation();
-          if(mobileDrawer.classList.contains('is-open')) closeDrawer();
-          else{
+
+          if(mobileDrawer.classList.contains('is-open')){
+            closeDrawer();
+          }else{
             mobileDrawer.classList.add('is-open');
             toggleBtn.classList.add('is-active');
             toggleBtn.setAttribute('aria-expanded','true');
@@ -780,171 +1729,309 @@
       }
 
       document.addEventListener('click',function(e){
-        if(!mobileDrawer || !mobileDrawer.classList.contains('is-open')) return;
-        var insideNav=nav && nav.contains(e.target);
-        var insideDrawer=mobileDrawer.contains(e.target);
-        if(!insideNav && !insideDrawer) closeDrawer();
+        if(!mobileDrawer || !mobileDrawer.classList.contains('is-open')){
+          return;
+        }
+
+        var insideNav = nav && nav.contains(e.target);
+        var insideDrawer = mobileDrawer.contains(e.target);
+
+        if(!insideNav && !insideDrawer){
+          closeDrawer();
+        }
       });
 
-      document.addEventListener('scroll',function(){
-        closeDrawer();
-      },{passive:true});
+      document.addEventListener(
+        'scroll',
+        function(){
+          closeDrawer();
+        },
+        {passive:true}
+      );
 
       document.querySelectorAll('.nav-link').forEach(function(link){
         link.addEventListener('click',function(e){
-          var href=link.getAttribute('href');
+          var href = link.getAttribute('href');
+
           closeDrawer();
+
           if(samePage(href)){
             e.preventDefault();
-            window.scrollTo({top:0,behavior:'smooth'});
+
+            window.scrollTo({
+              top:0,
+              behavior:'smooth'
+            });
           }
         });
       });
 
-      var currentPath=window.location.pathname.split('/').pop() || 'index.html';
+      var currentPath =
+        window.location.pathname.split('/').pop() || 'index.html';
+
       document.querySelectorAll('.nav-link').forEach(function(link){
-        var href=link.getAttribute('href');
-        link.classList.toggle('active',href===currentPath || (currentPath==='' && href==='index.html'));
+        var href = link.getAttribute('href');
+
+        link.classList.toggle(
+          'active',
+          href === currentPath ||
+          (currentPath === '' && href === 'index.html')
+        );
       });
 
       /* Reveal-on-scroll */
-      var reveals=document.querySelectorAll('[data-reveal]');
+
+      var reveals = document.querySelectorAll('[data-reveal]');
+
       if('IntersectionObserver' in window){
-        var io=new IntersectionObserver(function(entries){
-          entries.forEach(function(entry){
-            if(entry.isIntersecting){
-              entry.target.classList.add('in-view');
-              io.unobserve(entry.target);
-            }
-          });
-        },{threshold:.15});
-        reveals.forEach(function(el){io.observe(el)});
+        var io = new IntersectionObserver(
+          function(entries){
+            entries.forEach(function(entry){
+              if(entry.isIntersecting){
+                entry.target.classList.add('in-view');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          {threshold:.15}
+        );
+
+        reveals.forEach(function(el){
+          io.observe(el);
+        });
       }else{
-        reveals.forEach(function(el){el.classList.add('in-view')});
+        reveals.forEach(function(el){
+          el.classList.add('in-view');
+        });
       }
 
-      if('scrollRestoration' in history) history.scrollRestoration='manual';
+      if('scrollRestoration' in history){
+        history.scrollRestoration = 'manual';
+      }
 
       /* Client marquee */
-      var CLIENTS_ROW_A=[
-        'Battelle','777 Oil & Gas','Charger Exploration','ConocoPhillips','XTO Energy','EOG Resources','Dawson Geophysical','Schlumberger',
-        'Occidental Petroleum (Oxy)','Devon Energy','Apache Corporation','TGS','Pioneer Natural Resources','Anadarko Petroleum','Marathon Oil','Noble Energy'
+
+      var CLIENTS_ROW_A = [
+        'Battelle',
+        '777 Oil & Gas',
+        'Charger Exploration',
+        'ConocoPhillips',
+        'XTO Energy',
+        'EOG Resources',
+        'Dawson Geophysical',
+        'Schlumberger',
+        'Occidental Petroleum (Oxy)',
+        'Devon Energy',
+        'Apache Corporation',
+        'TGS',
+        'Pioneer Natural Resources',
+        'Anadarko Petroleum',
+        'Marathon Oil',
+        'Noble Energy'
       ];
-      var CLIENTS_ROW_B=[
-        'Interstate Exploration','PanAmerican Geoexchange','Samson Resources','Ormat Technologies','PGS Onshore','Denbury Resources','MicroSeismic, Inc.',
-        'Seitel','Geokinetics','Global Geophysical Services','SAE Exploration','Vantage Geophysical','Paragon Geophysical','Silverthorne Seismic','Tesla-Conquest Inc.'
+
+      var CLIENTS_ROW_B = [
+        'Interstate Exploration',
+        'PanAmerican Geoexchange',
+        'Samson Resources',
+        'Ormat Technologies',
+        'PGS Onshore',
+        'Denbury Resources',
+        'MicroSeismic, Inc.',
+        'Seitel',
+        'Geokinetics',
+        'Global Geophysical Services',
+        'SAE Exploration',
+        'Vantage Geophysical',
+        'Paragon Geophysical',
+        'Silverthorne Seismic',
+        'Tesla-Conquest Inc.'
       ];
 
       function buildTrack(el,list){
         if(!el) return;
-        var frag=document.createDocumentFragment();
+
+        var frag = document.createDocumentFragment();
+
         list.forEach(function(name){
-          var cell=document.createElement('div');
-          cell.className='logo-cell';
-          cell.textContent=name;
+          var cell = document.createElement('div');
+
+          cell.className = 'logo-cell';
+          cell.textContent = name;
+
           frag.appendChild(cell);
         });
+
         el.appendChild(frag.cloneNode(true));
         el.appendChild(frag);
       }
 
-      buildTrack(document.getElementById('marqueeTrackA'),CLIENTS_ROW_A);
-      buildTrack(document.getElementById('marqueeTrackB'),CLIENTS_ROW_B);
+      buildTrack(
+        document.getElementById('marqueeTrackA'),
+        CLIENTS_ROW_A
+      );
 
-      var reduceMotion=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      buildTrack(
+        document.getElementById('marqueeTrackB'),
+        CLIENTS_ROW_B
+      );
 
-      function setupMarquee(viewport,track,direction,durationSeconds){
+      var reduceMotion =
+        window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function setupMarquee(
+        viewport,
+        track,
+        direction,
+        durationSeconds
+      ){
         if(!viewport || !track) return null;
 
-        var half=track.scrollWidth/2 || 1;
-        var autoSpeed=reduceMotion ? 0 : half/(durationSeconds*60);
-        var offset=0;
-        var momentum=0;
-        var isDown=false;
-        var lastX=0;
-        var lastT=0;
-        var lastDx=0;
+        var half = track.scrollWidth / 2 || 1;
+        var autoSpeed =
+          reduceMotion
+            ? 0
+            : half / (durationSeconds * 60);
+
+        var offset = 0;
+        var momentum = 0;
+        var isDown = false;
+        var lastX = 0;
+        var lastT = 0;
+        var lastDx = 0;
 
         function wrap(){
-          offset%=half;
-          if(offset<0) offset+=half;
+          offset %= half;
+
+          if(offset < 0){
+            offset += half;
+          }
         }
 
         function render(){
-          track.style.transform='translate3d('+(-offset)+'px,0,0)';
+          track.style.transform =
+            'translate3d(' + (-offset) + 'px,0,0)';
         }
 
         function frame(){
-          if(isDown){}
-          else if(Math.abs(momentum)>0.05){
-            offset-=momentum;
-            momentum*=.94;
+          if(isDown){
+          }else if(Math.abs(momentum) > 0.05){
+            offset -= momentum;
+            momentum *= .94;
           }else{
-            momentum=0;
-            offset+=direction*autoSpeed;
+            momentum = 0;
+            offset += direction * autoSpeed;
           }
+
           wrap();
           render();
+
           requestAnimationFrame(frame);
         }
 
-        viewport.addEventListener('pointerdown',function(e){
-          isDown=true;
-          momentum=0;
-          lastX=e.clientX;
-          lastT=performance.now();
-          lastDx=0;
-          viewport.classList.add('dragging');
-          if(viewport.setPointerCapture){
-            try{viewport.setPointerCapture(e.pointerId)}catch(err){}
-          }
-        });
+        viewport.addEventListener(
+          'pointerdown',
+          function(e){
+            isDown = true;
+            momentum = 0;
+            lastX = e.clientX;
+            lastT = performance.now();
+            lastDx = 0;
 
-        viewport.addEventListener('pointermove',function(e){
-          if(!isDown) return;
-          var now=performance.now();
-          var dx=e.clientX-lastX;
-          offset-=dx;
-          wrap();
-          render();
-          var dt=Math.max(1,now-lastT);
-          lastDx=dx/dt;
-          lastX=e.clientX;
-          lastT=now;
-        });
+            viewport.classList.add('dragging');
+
+            if(viewport.setPointerCapture){
+              try{
+                viewport.setPointerCapture(e.pointerId);
+              }catch(err){}
+            }
+          }
+        );
+
+        viewport.addEventListener(
+          'pointermove',
+          function(e){
+            if(!isDown) return;
+
+            var now = performance.now();
+            var dx = e.clientX - lastX;
+
+            offset -= dx;
+
+            wrap();
+            render();
+
+            var dt = Math.max(1,now - lastT);
+
+            lastDx = dx / dt;
+            lastX = e.clientX;
+            lastT = now;
+          }
+        );
 
         function endDrag(){
           if(!isDown) return;
-          isDown=false;
+
+          isDown = false;
           viewport.classList.remove('dragging');
-          momentum=lastDx*16.7;
+          momentum = lastDx * 16.7;
         }
 
         viewport.addEventListener('pointerup',endDrag);
         viewport.addEventListener('pointercancel',endDrag);
-        viewport.addEventListener('pointerleave',function(){if(isDown) endDrag()});
+
+        viewport.addEventListener(
+          'pointerleave',
+          function(){
+            if(isDown){
+              endDrag();
+            }
+          }
+        );
 
         requestAnimationFrame(frame);
 
         return {
           recalc:function(){
-            half=track.scrollWidth/2 || 1;
-            autoSpeed=reduceMotion ? 0 : half/(durationSeconds*60);
+            half = track.scrollWidth / 2 || 1;
+
+            autoSpeed =
+              reduceMotion
+                ? 0
+                : half / (durationSeconds * 60);
+
             wrap();
             render();
           }
         };
       }
 
-      var marqueeA=setupMarquee(document.getElementById('marqueeViewportA'),document.getElementById('marqueeTrackA'),1,78);
-      var marqueeB=setupMarquee(document.getElementById('marqueeViewportB'),document.getElementById('marqueeTrackB'),-1,86);
+      var marqueeA = setupMarquee(
+        document.getElementById('marqueeViewportA'),
+        document.getElementById('marqueeTrackA'),
+        1,
+        78
+      );
 
-      window.addEventListener('resize',function(){
-        if(marqueeA) marqueeA.recalc();
-        if(marqueeB) marqueeB.recalc();
-      });
+      var marqueeB = setupMarquee(
+        document.getElementById('marqueeViewportB'),
+        document.getElementById('marqueeTrackB'),
+        -1,
+        86
+      );
+
+      window.addEventListener(
+        'resize',
+        function(){
+          if(marqueeA) marqueeA.recalc();
+          if(marqueeB) marqueeB.recalc();
+        }
+      );
     })();
   </script>
+
   <script src="assets/us-map.js?v=20260831-1" defer></script>
+
 </body>
 </html>
